@@ -13,8 +13,6 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
       href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
       rel="stylesheet">
@@ -53,13 +51,17 @@
           </div>
           <div class="swiper screens js-screens">
             <div class="swiper-wrapper">
-              <div class="screens-item">
+              <div class="swiper-slide screens-item">
                 <img src="images/screen-1.png" alt="">
               </div>
-              <!-- <div class="screens-item">
+              <div class="swiper-slide screens-item">
                 <img src="images/screen-2.png" alt="">
-              </div> -->
-            </div>
+              </div>
+              <div class="swiper-slide screens-item">
+                <img src="images/screen-2.png" alt="">
+              </div>
+            </div> <!-- If you need pagination dots -->
+            <div class="swiper-pagination"></div>
           </div>
         </section>
         <section class="section">
@@ -198,9 +200,6 @@
                 </div>
               </div>
             </div>
-
-
-
           </div>
         </section>
         <section class="section">
@@ -210,56 +209,54 @@
               <p>Whatever you rent, Rentify is the one-stop destination to manage any rental business you want to
                 operate online. It supports diverse rental niches.</p>
             </header>
-            <div class="section-body">
-
-              <div class="div"><!-- Main Slider Container -->
-                <div class="swiper">
-                  <!-- Additional required wrapper -->
-                  <div class="swiper-wrapper">
-                    <!-- Slides -->
-                    <div class="swiper-slide">
-                      <img src="images/Niches-1.png" alt="Slide 1">
-                    </div>
-                    <div class="swiper-slide">
-                      <img src="images/Niches-2.png" alt="Slide 1">
-                    </div>
-                    <div class="swiper-slide">
-                      <img src="images/Niches-3.png" alt="Slide 1">
-                    </div>
-                    <div class="swiper-slide">
-                      <img src="images/Niches-4.png" alt="Slide 1">
-                    </div>
-                    <div class="swiper-slide">
-                      <img src="images/Niches-1.png" alt="Slide 1">
-                    </div>
-                    <div class="swiper-slide">
-                      <img src="images/Niches-2.png" alt="Slide 1">
-                    </div>
-                    <div class="swiper-slide">
-                      <img src="images/Niches-3.png" alt="Slide 1">
-                    </div>
-                    <div class="swiper-slide">
-                      <img src="images/Niches-4.png" alt="Slide 1">
-                    </div>
-                  </div>
-
-                  <!-- If you need pagination dots -->
-                  <div class="swiper-pagination"></div>
-
-                  <!-- If you need navigation buttons -->
-                  <div class="swiper-button-prev"></div>
-                  <div class="swiper-button-next"></div>
+          </div>
+          <div class="section-body">
+            <!-- Main Slider Container -->
+            <div class="swiper niches-swiper">
+              <!-- Additional required wrapper -->
+              <div class="swiper-wrapper">
+                <!-- Slides -->
+                <div class="swiper-slide">
+                  <img src="images/Niches-1.png" alt="Slide 1">
+                </div>
+                <div class="swiper-slide">
+                  <img src="images/Niches-2.png" alt="Slide 1">
+                </div>
+                <div class="swiper-slide">
+                  <img src="images/Niches-3.png" alt="Slide 1">
+                </div>
+                <div class="swiper-slide">
+                  <img src="images/Niches-4.png" alt="Slide 1">
+                </div>
+                <div class="swiper-slide">
+                  <img src="images/Niches-1.png" alt="Slide 1">
+                </div>
+                <div class="swiper-slide">
+                  <img src="images/Niches-2.png" alt="Slide 1">
+                </div>
+                <div class="swiper-slide">
+                  <img src="images/Niches-3.png" alt="Slide 1">
+                </div>
+                <div class="swiper-slide">
+                  <img src="images/Niches-4.png" alt="Slide 1">
                 </div>
               </div>
-            </div>
-            <div class="section-foot">
-              <div class="section-cta">
-                <h3> See How Rentify Fits to Your Rental Business</h3>
-                <a class="btn btn-black" href="">Request a Personalized Demo</a>
-              </div>
-            </div>
 
+              <!-- If you need pagination dots -->
+              <div class="swiper-pagination"></div>
+
+              <!-- If you need navigation buttons -->
+              <div class="swiper-button-prev"></div>
+              <div class="swiper-button-next"></div>
+            </div>
           </div>
+          <div class="section-foot">
+            <div class="section-cta">
+              <h3> See How Rentify Fits to Your Rental Business</h3>
+              <a class="btn btn-black" href="">Request a Personalized Demo</a>
+            </div>
+          </div>
+
         </section>
         <div class="divider"></div>
         <section class="section">
@@ -330,59 +327,350 @@
         </section>
         <section class="section bg-pricing">
           <div class="container">
-            <header class="section-head section-head-center">
-              <h2 class="section-text-h2"> Transparent Pricing, No Surprises</h2>
-              <p>Get started with Rentify for free and scale when you are ready, flexibly upgrading to a plan that fits.
-              </p>
-            </header>
-            <div class="section-body">
-              <div class="pricings">
-                <div class="pricings-item">
-                  <div class="pricings-head">
-                    <div class="pricings-icon">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="52.31" height="52" viewBox="0 0 52.31 52">
-                        <g id="Group_4096" data-name="Group 4096" transform="translate(-373 -8014)">
-                          <path id="Path_1633" data-name="Path 1633"
-                            d="M26.913,26.972a2.432,2.432,0,0,1,.316-.027h.35a1.864,1.864,0,0,1,.316.027l17.747,3.121.092.019c3.27.754,6.783,2.829,7.466,6.861l.01.071.277,2.134v0c.642,4.888-3.233,8.442-7.809,8.442a2.432,2.432,0,0,1-.3-.024H9.129c-4.576,0-8.454-3.557-7.809-8.447L1.6,37.039l.012-.073c.681-3.958,4.223-6.15,7.486-6.858l.071-.015Z"
-                            transform="translate(371.751 8018.375)" fill="#2d85fe" />
-                          <ellipse id="Ellipse_69" data-name="Ellipse 69" cx="13.539" cy="13.539" rx="13.539"
-                            ry="13.539" transform="translate(385.616 8014)" fill="#a1c8ff" />
-                        </g>
-                      </svg>
+            <div class="row justify-content-center">
+              <div class="col-lg-10">
+                <header class="section-head section-head-center">
+                  <h2 class="section-text-h2"> Transparent Pricing, No Surprises</h2>
+                  <p>Get started with Rentify for free and scale when you are ready, flexibly upgrading to a plan that
+                    fits.
+                  </p>
+                </header>
+                <div class="section-body">
+                  <div class="pricings">
+                    <div class="pricings-item">
+                      <div class="pricings-head">
+                        <div class="pricings-icon">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="52.31" height="52" viewBox="0 0 52.31 52">
+                            <g id="Group_4096" data-name="Group 4096" transform="translate(-373 -8014)">
+                              <path id="Path_1633" data-name="Path 1633"
+                                d="M26.913,26.972a2.432,2.432,0,0,1,.316-.027h.35a1.864,1.864,0,0,1,.316.027l17.747,3.121.092.019c3.27.754,6.783,2.829,7.466,6.861l.01.071.277,2.134v0c.642,4.888-3.233,8.442-7.809,8.442a2.432,2.432,0,0,1-.3-.024H9.129c-4.576,0-8.454-3.557-7.809-8.447L1.6,37.039l.012-.073c.681-3.958,4.223-6.15,7.486-6.858l.071-.015Z"
+                                transform="translate(371.751 8018.375)" fill="#2d85fe" />
+                              <ellipse id="Ellipse_69" data-name="Ellipse 69" cx="13.539" cy="13.539" rx="13.539"
+                                ry="13.539" transform="translate(385.616 8014)" fill="#a1c8ff" />
+                            </g>
+                          </svg>
+                        </div>
+                        <h3 class="h3">Personal</h3>
+                        <p>For a basic website</p>
+                      </div>
+
+                      <div class="pricings-body">
+                        <div class="pricings-price">$0.00</div>
+                        <div class="pricings-action">Try for free</div>
+                        <h6>Key Features</h6>
+                        <ul class="pricings-checks">
+                          <li class="checkmark">85 Editor Pro widgets (included)</li>
+                          <li class="checkmark">Theme Builder (included)</li>
+                          <li class="checkmark">Dynamic Content </li>
+                          <li class="checkmark">Form Builder</li>
+                          <li class="crossmark">Popup Builder</li>
+                          <li class="crossmark">Custom code & CSS </li>
+                          <li class="crossmark">eCommerce features</li>
+                        </ul>
+                      </div>
+
                     </div>
-                    <h3 class="h3">Personal</h3>
-                    <p>For a basic website</p>
-                  </div>
+                    <div class="pricings-item">
+                      <div class="pricings-head">
+                        <div class="pricings-icon">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="52.769" height="52" viewBox="0 0 52.769 52">
+                            <g id="Group_4102" data-name="Group 4102" transform="translate(-12.692 -13.013)">
+                              <g id="Group_4063" data-name="Group 4063" transform="translate(12.692 13.013)">
+                                <path id="Path_1562" data-name="Path 1562"
+                                  d="M488.87,227.347a5.866,5.866,0,0,1,0,8.216c-2.973,2.993-9.291,3.912-10,3.912h-.254a1.954,1.954,0,0,1-1.956-2.21c.1-.7.978-7.023,3.912-10a5.868,5.868,0,0,1,8.293.079Z"
+                                  transform="translate(-476.648 -187.475)" fill="#a1c8ff" />
+                                <path id="Path_1563" data-name="Path 1563"
+                                  d="M519.043,235.755a81.843,81.843,0,0,1-15.334,11.834,7.5,7.5,0,0,1-3.655.945,7.665,7.665,0,0,1-5.469-2.248l-7.666-7.668a7.67,7.67,0,0,1-1.3-9.124,81.82,81.82,0,0,1,11.832-15.332,29.7,29.7,0,0,1,28.291-8.537,2.557,2.557,0,0,1,1.712,1.713,29.693,29.693,0,0,1-8.407,28.418Zm-2.555-19.219a2.115,2.115,0,1,0,.075,0Zm2.989,22.259a88.188,88.188,0,0,1-13.442,10.352l5.111,5.111a2.561,2.561,0,0,0,3.6,0l1.739-1.737a12.777,12.777,0,0,0,3.781-9.1,13.239,13.239,0,0,0-.715-4.627ZM480.5,216.461l-1.737,1.737a2.552,2.552,0,0,0,0,3.6l5.111,5.111A86.058,86.058,0,0,1,494.1,213.5a12.772,12.772,0,0,0-13.595,2.965Z"
+                                  transform="translate(-475.495 -204.857)" fill="#2d85fe" />
+                              </g>
+                            </g>
+                          </svg>
 
-                  <div class="pricings-body">
-                    <div class="pricings-price">$0.00</div>
-                    <div class="pricings-action">Try for free</div>
-                    <h6>Key Features</h6>
-                    <ul>
-                      <li>85 Editor Pro widgets (included)</li>
-                      <li>Theme Builder (included)</li>
-                      <li>Dynamic Content </li>
-                      <li>Form Builder</li>
-                      <li>Popup Builder</li>
-                      <li>Custom code & CSS </li>
-                      <li>eCommerce features</li>
-                    </ul>
-                  </div>
+                        </div>
+                        <h3 class="h3">Starter</h3>
+                        <p>For a basic website</p>
+                      </div>
 
+                      <div class="pricings-body">
+                        <div class="pricings-price">$30.00</div>
+                        <div class="pricings-action">Try for free</div>
+                        <h6>Key Features</h6>
+                        <ul class="pricings-checks">
+                          <li class="checkmark">85 Editor Pro widgets (included)</li>
+                          <li class="checkmark">Theme Builder (included)</li>
+                          <li class="checkmark">Dynamic Content </li>
+                          <li class="checkmark">Form Builder</li>
+                          <li class="checkmark">Popup Builder</li>
+                          <li class="checkmark">Custom code & CSS </li>
+                          <li class="checkmark">eCommerce features</li>
+                        </ul>
+                      </div>
+
+                    </div>
+                    <div class="pricings-item">
+                      <div class="pricings-head">
+                        <div class="pricings-icon">
+
+                          <svg xmlns="http://www.w3.org/2000/svg" width="57.778" height="52" viewBox="0 0 57.778 52">
+                            <g id="Group_4416" data-name="Group 4416" transform="translate(-370.266 -8033)">
+                              <path id="Path_1634" data-name="Path 1634"
+                                d="M10.667,43.889,6.983,20.706a1.633,1.633,0,0,0-.326.038,1.472,1.472,0,0,1-.324.035,4.172,4.172,0,0,1-3.068-1.265,4.352,4.352,0,0,1,0-6.136,4.184,4.184,0,0,1,3.068-1.265A4.194,4.194,0,0,1,9.4,13.376a4.138,4.138,0,0,1,1.262,3.068,3.816,3.816,0,0,1-.11.939,6.664,6.664,0,0,1-.251.794l9.028,4.044,9.028-12.35a4.446,4.446,0,0,1-1.3-1.517,4.2,4.2,0,0,1-.506-2.022,4.181,4.181,0,0,1,1.265-3.071,4.359,4.359,0,0,1,6.139,0,4.147,4.147,0,0,1,1.262,3.068,4.2,4.2,0,0,1-.506,2.022,4.446,4.446,0,0,1-1.3,1.517l9.028,12.35,9.028-4.044a6.32,6.32,0,0,1-.254-.794,3.728,3.728,0,0,1-.107-.939,4.333,4.333,0,1,1,7.4,3.071,4.153,4.153,0,0,1-3.071,1.262,1.718,1.718,0,0,1-.324-.035,1.93,1.93,0,0,0-.326-.038L51.111,43.889Z"
+                                transform="translate(368.266 8031)" fill="#2d85fe" />
+                              <rect id="Rectangle_4163" data-name="Rectangle 4163" width="41" height="6"
+                                transform="translate(379.266 8079)" fill="#a1c8ff" />
+                            </g>
+                          </svg>
+
+                        </div>
+                        <h3 class="h3">Premium</h3>
+                        <p>For a basic website</p>
+                      </div>
+
+                      <div class="pricings-body">
+                        <div class="pricings-price">$80.00</div>
+                        <div class="pricings-action">Try for free</div>
+                        <h6>Key Features</h6>
+                        <ul class="pricings-checks">
+                          <li class="checkmark">85 Editor Pro widgets (included)</li>
+                          <li class="checkmark">Theme Builder (included)</li>
+                          <li class="checkmark">Dynamic Content </li>
+                          <li class="checkmark">Form Builder</li>
+                          <li class="checkmark">Popup Builder</li>
+                          <li class="checkmark">Custom code & CSS </li>
+                          <li class="checkmark">eCommerce features</li>
+                        </ul>
+                      </div>
+
+                    </div>
+                  </div>
                 </div>
-                <div class="pricings-item"></div>
-                <div class="pricings-item"></div>
+                <div class="section-foot">
+                  <div class="section-cta">
+                    <a class="btn btn-white-outline" href="">Compare Plans and Features</a>
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="section-foot">
-              <div class="section-cta">
-                <a class="btn btn-white-outline" href="">Compare Plans and Features</a>
+
+          </div>
+        </section>
+        <section class="section">
+          <div class="container">
+            <header class="section-head section-head-align-center">
+              <h2 class="section-text-h2">Why Choose Rentify?</h2>
+              <p>Rentify makes the journey of building and managing your online rental store
+                hassle-free. You can launch and grow your rental business effortlessly.</p>
+            </header>
+            <div class="section-body">
+              <div class="why-us">
+                <!-- item -->
+                <div class="why-us-item">
+                  <div class="why-us-icon">
+                    <svg id="Group_4364" data-name="Group 4364" xmlns="http://www.w3.org/2000/svg"
+                      xmlns:xlink="http://www.w3.org/1999/xlink" width="113.864" height="113.864"
+                      viewBox="0 0 113.864 113.864">
+                      <defs>
+                        <clipPath id="clip-path">
+                          <rect id="Rectangle_4241" data-name="Rectangle 4241" width="113.864" height="113.864"
+                            fill="#2d85fe" />
+                        </clipPath>
+                      </defs>
+                      <g id="Group_4363" data-name="Group 4363" clip-path="url(#clip-path)">
+                        <path id="Path_9490" data-name="Path 9490"
+                          d="M113.864,56.932A56.932,56.932,0,1,1,56.932,0a56.932,56.932,0,0,1,56.932,56.932M98.1,90.661c18.424-21.268,15.278-55.529-6.254-74C72.473.049,44.135-.916,24.163,14.99L34.785,27.64c2.408,2.868,4.248,5.785,7.121,8.492l50.865,60.68ZM17.72,93.1c18.946,20.415,50.313,23.046,71.973,5.733L21.348,17.268C-.476,36.544-2.689,71.111,17.72,93.1"
+                          fill="#2d85fe" />
+                        <path id="Path_9491" data-name="Path 9491"
+                          d="M49.357,93.108c.524.527.218,1.323.246,1.694.037.494-1.276,1.591-1.905,1.23l-17.6-17.56L46.959,61.461a3.79,3.79,0,0,1,2.083,2.683L34.762,78.451Z"
+                          transform="translate(-10.538 -21.523)" fill="#2d85fe" />
+                        <path id="Path_9492" data-name="Path 9492"
+                          d="M73.291,114.309a1.891,1.891,0,0,1-2.007,1.4c-.662-.063-1.786-1.065-1.4-2.051L78.13,92.827a7.68,7.68,0,0,1,2.412,3.135Z"
+                          transform="translate(-24.446 -32.507)" fill="#2d85fe" />
+                        <path id="Path_9493" data-name="Path 9493"
+                          d="M117.777,95a5.472,5.472,0,0,1-2.764-2.058L129.68,78.174,114.966,63.406c-.618-.621-.215-1.5-.016-1.918s1.546-1.126,2.057-.616l17.266,17.269Z"
+                          transform="translate(-40.144 -21.254)" fill="#2d85fe" />
+                        <path id="Path_9494" data-name="Path 9494"
+                          d="M91.064,70.07a13.836,13.836,0,0,1-2.519-3.15l7.406-18.477a1.927,1.927,0,0,1,1.828-1.336,1.773,1.773,0,0,1,1.484,2.181Z"
+                          transform="translate(-31.007 -16.496)" fill="#2d85fe" />
+                      </g>
+                    </svg>
+                  </div>
+                  <h3 class="h3">No Coding</h3>
+                  <p class="desc">Take your rental business online without tech headaches.</p>
+                </div>
+                <!-- item -->
+                <div class="why-us-item">
+                  <div class="why-us-icon">
+                    <svg id="Group_4368" data-name="Group 4368" xmlns="http://www.w3.org/2000/svg"
+                      xmlns:xlink="http://www.w3.org/1999/xlink" width="98.828" height="113.864"
+                      viewBox="0 0 98.828 113.864">
+                      <defs>
+                        <clipPath id="clip-path">
+                          <rect id="Rectangle_4243" data-name="Rectangle 4243" width="98.828" height="113.864"
+                            fill="none" />
+                        </clipPath>
+                      </defs>
+                      <g id="Group_4367" data-name="Group 4367" transform="translate(0 0)" clip-path="url(#clip-path)">
+                        <path id="Path_9499" data-name="Path 9499"
+                          d="M27.761,131.435l9.846,3.042a28.23,28.23,0,0,0,22.255-2.139l40.328-21.6c3.89-2.084,4.019-7.164,1.4-10.228-3.145-3.674-7.508-4.611-12.012-3.1l-19.816,6.628L83.91,57.147A8.517,8.517,0,0,0,78.334,46.71C74.1,45.323,69.03,47.36,67.6,51.8L63.309,65.2c-2.778-2.446-5.286-3.714-8.656-3.079a9.246,9.246,0,0,0-6.762,5.7c-2.708-2.525-5.369-3.734-8.917-3.04-2.629.514-4.95,2.55-6.586,5.621-2.711-2.727-5.625-3.81-9.157-2.913A8.6,8.6,0,0,0,17.171,73.4L10.362,100.24a25.917,25.917,0,0,0,17.4,31.195m4.171-51.68a1.608,1.608,0,0,0,1.617-1.069l2.258-7.164a5.227,5.227,0,0,1,6.829-3.331,5.371,5.371,0,0,1,3.291,6.644l-2.1,6.832a1.556,1.556,0,0,0,1.251,2.113,1.648,1.648,0,0,0,1.886-1.167l4.2-13.628a5.254,5.254,0,0,1,6.809-3.432A5.422,5.422,0,0,1,61.3,72.333L57.17,85.772a1.711,1.711,0,0,0,1.073,2.065,1.623,1.623,0,0,0,1.986-.875L70.584,53.24a5.179,5.179,0,0,1,6.748-3.375,5.277,5.277,0,0,1,3.429,6.31L65.395,106.749a1.454,1.454,0,0,0,.411,1.407,1.772,1.772,0,0,0,1.619.447l24.333-8.335a6.524,6.524,0,0,1,8.109,3.962,3.09,3.09,0,0,1-1.4,3.753L56.35,130.333a20.8,20.8,0,0,1-15.631,1.537l-12.113-3.657C16.645,124.6,10.7,111.9,13.768,99.908l6.414-25.086c.81-3.168,3.465-4.921,6.462-4.2,6.646,1.591,2.1,9.09,5.287,9.136"
+                          transform="translate(-9.556 -21.966)" fill="#1a1818" />
+                        <path id="Path_9500" data-name="Path 9500"
+                          d="M16.837,78.855a1.943,1.943,0,0,0,2.6-1.209,1.979,1.979,0,0,0-1.308-2.455L2.812,69.944A2.05,2.05,0,0,0,.3,70.688a1.916,1.916,0,0,0,1.116,2.881Z"
+                          transform="translate(79.311 -33.129)" fill="#1a1818" />
+                        <path id="Path_9501" data-name="Path 9501"
+                          d="M39.367,16.622a2.052,2.052,0,0,0,1.214,2.813,1.984,1.984,0,0,0,2.5-1.5L48.279,2.6A2,2,0,0,0,47.526.279a1.94,1.94,0,0,0-2.827.945Z"
+                          transform="translate(29.84 0)" fill="#1a1818" />
+                        <path id="Path_9502" data-name="Path 9502"
+                          d="M80.656,20.236c.648,1.34,1.913,1.87,3.051,1.178a2.1,2.1,0,0,0,.545-2.844L77.124,4.129a1.994,1.994,0,0,0-2.554-.953,1.944,1.944,0,0,0-.887,2.647Z"
+                          transform="translate(-24.332 -1.437)" fill="#1a1818" />
+                        <path id="Path_9503" data-name="Path 9503"
+                          d="M5.448,42.912l14.97-7.259a2.011,2.011,0,0,0,1.024-2.9,2.044,2.044,0,0,0-2.812-.588L3.815,39.49a1.994,1.994,0,0,0-.683,2.418,1.837,1.837,0,0,0,2.317,1"
+                          transform="translate(75.529 -15.125)" fill="#1a1818" />
+                        <path id="Path_9504" data-name="Path 9504"
+                          d="M106.171,48.252a1.942,1.942,0,0,0,2.65-1.458,2.044,2.044,0,0,0-1.412-2.231L92.138,39.315a2.092,2.092,0,0,0-2.579.868,1.943,1.943,0,0,0,1.179,2.773Z"
+                          transform="translate(-56.958 -18.596)" fill="#1a1818" />
+                      </g>
+                    </svg>
+
+                  </div>
+                  <h3 class="h3">Free Trial</h3>
+                  <p class="desc">Get started with launching your online rental store for free.</p>
+                </div>
+                <!-- item -->
+                <div class="why-us-item">
+                  <div class="why-us-icon">
+
+                    <svg id="Group_4366" data-name="Group 4366" xmlns="http://www.w3.org/2000/svg"
+                      xmlns:xlink="http://www.w3.org/1999/xlink" width="98.578" height="113.864"
+                      viewBox="0 0 98.578 113.864">
+                      <defs>
+                        <clipPath id="clip-path">
+                          <rect id="Rectangle_4242" data-name="Rectangle 4242" width="98.578" height="113.864"
+                            fill="#fff" />
+                        </clipPath>
+                      </defs>
+                      <g id="Group_4365" data-name="Group 4365" clip-path="url(#clip-path)">
+                        <path id="Path_9495" data-name="Path 9495"
+                          d="M74.655,108.779l-6.589-8.193-2.736,4.978c-3.7,6.726-11.923,10.724-18.967,6.673L7.279,89.757A13.852,13.852,0,0,1,1.887,70.639L33.876,15.357a13.3,13.3,0,0,1,8.13-6.547L74.219.371C80.867-1.37,87.914,3.227,89.661,9.716L98.12,41.129a13,13,0,0,1-1.3,9.959L74.931,88.95l9.744,12.217a3.821,3.821,0,0,1-.426,5.292l-3.463,2.84a4.182,4.182,0,0,1-6.131-.519M60.039,88.489c-1.184-.364-2.154-.465-3.086-1.549a25.51,25.51,0,1,1,10.227-8.2c1.078,1.409.675,2.771.78,4.222,1.386,2.43,2.41,3.709,5.1,3.867l21.428-37.1A10.268,10.268,0,0,0,95.5,41.754L87.186,10.745A10.774,10.774,0,0,0,74.093,3.1L43.005,11.309a10.323,10.323,0,0,0-6.428,4.8L4.363,71.669C1.257,77.025,2.589,83.837,8.081,87.018l39.283,22.755A10.873,10.873,0,0,0,62.081,105.7l4.249-7.355-2.953-3.762a5.347,5.347,0,0,0-3.336-6.093m5.471-7.19-1.71-2.55a22.854,22.854,0,1,0-6.308,4.961l2.479,2.116Zm.159,3.339-2.725,2.175,2.707,3.39,2.725-2.175Zm11.976,23.369a18.131,18.131,0,0,0,5.46-4.464L71.438,88.961l-5.606,4.517Z"
+                          transform="translate(0 0)" fill="#fff" />
+                        <path id="Path_9496" data-name="Path 9496"
+                          d="M147.864,34.789a8.04,8.04,0,1,1-8.04-8.04,8.04,8.04,0,0,1,8.04,8.04m-2.692,0a5.346,5.346,0,1,0-5.346,5.346,5.346,5.346,0,0,0,5.346-5.346"
+                          transform="translate(-67.782 -13.758)" fill="#fff" />
+                        <path id="Path_9497" data-name="Path 9497"
+                          d="M95.053,111.322A18.575,18.575,0,1,1,76.479,92.747a18.574,18.574,0,0,1,18.574,18.575m-2.7-.007a15.879,15.879,0,1,0-15.879,15.879A15.879,15.879,0,0,0,92.35,111.315"
+                          transform="translate(-29.783 -47.704)" fill="#fff" />
+                        <path id="Path_9498" data-name="Path 9498"
+                          d="M88.974,128.243c-2.646-.933-4.242-2.705-4.343-5.35a1.594,1.594,0,0,1,1.21-1.366c2.044-.321.954,4.324,4.652,4.021a2.759,2.759,0,0,0,2.529-2.992c-.5-3.78-7.344-.649-8.371-7.307-.39-2.527,1.747-4.693,3.975-5.7.32-.205.364-1.443.623-1.69a1.429,1.429,0,0,1,1.625-.3c.5.251.591,1.517.855,1.988,1.845.89,4.112,2.515,4.018,5.051-.034.894-.5,1.539-1.242,1.583-1.953.116-.865-3.63-3.947-3.995a2.72,2.72,0,0,0-3.132,2.228,2.619,2.619,0,0,0,2.491,3.037,5.655,5.655,0,0,1,5.789,4.71c.464,2.784-1.471,5.061-4.164,6.068.035.89-.348,1.869-.917,2.023-.851.231-1.962-.366-1.65-2.012"
+                          transform="translate(-43.516 -55.253)" fill="#fff" />
+                      </g>
+                    </svg>
+
+                  </div>
+                  <h3 class="h3">Transparent Pricing</h3>
+                  <p class="desc">No hidden surprises, Rentify’s pricing is transparent.</p>
+                </div>
+                <!-- item -->
+                <div class="why-us-item">
+                  <div class="why-us-icon">
+
+                    <svg id="Group_4042" data-name="Group 4042" xmlns="http://www.w3.org/2000/svg"
+                      xmlns:xlink="http://www.w3.org/1999/xlink" width="121.034" height="113.864"
+                      viewBox="0 0 121.034 113.864">
+                      <defs>
+                        <clipPath id="clip-path">
+                          <rect id="Rectangle_4120" data-name="Rectangle 4120" width="121.034" height="113.864"
+                            fill="#fff" />
+                        </clipPath>
+                      </defs>
+                      <g id="Group_4041" data-name="Group 4041" clip-path="url(#clip-path)">
+                        <path id="Path_1512" data-name="Path 1512"
+                          d="M356.788,311.208a1.372,1.372,0,1,1-2.741.085l.032-13.141c0-.687.867-.966,1.359-.979a1.252,1.252,0,0,1,1.323,1.18Z"
+                          transform="translate(-295.201 -247.779)" fill="#fff" />
+                        <path id="Path_1513" data-name="Path 1513"
+                          d="M218.551,234.8c-.543,1.982-.232,3.98-.289,5.979a3.4,3.4,0,0,1-2.4,3.094,3.586,3.586,0,0,1-3.932-1.165l-5.111-6.528-.585-.761L201.5,229.35a36.174,36.174,0,0,0-2.827-3.52,34.437,34.437,0,0,0-4.1-.118,3.092,3.092,0,0,1-2.887-3.239l.033-35.118a2.958,2.958,0,0,1,3.02-2.849l50.982-.012a3.035,3.035,0,0,1,3.2,3l.01,35.135a3.014,3.014,0,0,1-3.022,3.084l-9.624.083-.858-.047a55.346,55.346,0,0,0-9.785.117c-3.227.395-5.652,3.283-6.459,6.21-.193.7-.683,1.3-.477,2,.109.372-.063.38-.156.721m6.914-11.666,20.676-.232c.109-2.784,0-4.948,0-7.56l.035-26.9-.172-1.2-51.445.006c.11.6-.107.79-.107,1.205l0,34.478,5.627.081,14.211,18.143c.306.39.705-.021.907-.125.268-.139.342-.552.327-.9a24.034,24.034,0,0,1,1.008-9.03c1.307-3.877,4.481-7.911,8.931-7.961"
+                          transform="translate(-159.825 -153.829)" fill="#fff" />
+                        <path id="Path_1514" data-name="Path 1514"
+                          d="M356.1,250c-.548-.475-2.053.139-2.069-1.324-.018-1.61-.074-3.183.017-4.822.037-.657.81-1.027,1.35-1.03a1.313,1.313,0,0,1,1.324,1.22c.029,1.69.057,3.41-.027,5.07-.113.243-.714.4-.6.886"
+                          transform="translate(-295.159 -202.466)" fill="#fff" />
+                        <path id="Path_1515" data-name="Path 1515"
+                          d="M86.672,96.442l2.533-.85a29.852,29.852,0,0,0,9.581-4.9l2.161-1.761c.963-.784,1.559-1.693,2.374-2.483,5.068-4.919,8.474-13.7,8.479-20.755l0-7.865-5.107-.044a1.321,1.321,0,0,1-1.319-1.422V41.746c0-.789.464-1.078,1.067-1.384.395-.2.526-.112.933-.074a30.816,30.816,0,0,0,4.425.006,35.936,35.936,0,0,0-3.729-16.087c-.032-.066-.277.031-.323.027-.154-.014.108-.271.083-.347a14.282,14.282,0,0,0-1.615-2.916A33.479,33.479,0,0,0,98.4,12.118l-.725-.582A37.752,37.752,0,0,0,87.616,5.947c-.385-.151-.632-.45-1.11-.078-.073-.091.062-.376-.072-.431A37.373,37.373,0,0,0,71.948,2.743l-26.07.014a34.352,34.352,0,0,0-10.137,1.4l-.888.27a35.209,35.209,0,0,0-15.031,9.12l-1.467,1.532c-6.4,6.682-9.383,15.873-9.148,25.207a30.231,30.231,0,0,0,4.4,0c1.038-.1,2.044.427,2.044,1.348l-.007,14.849a1.312,1.312,0,0,1-1.365,1.3L1.16,57.775A1.264,1.264,0,0,1,.019,56.524L0,41.744a1.289,1.289,0,0,1,1.21-1.361l5.259-.034A39.077,39.077,0,0,1,45.372.016L73.208,0A40.3,40.3,0,0,1,88.142,3.147l3.263,1.36c.07.029.28-.2.413-.169.074.015-.018.247.007.386a12.64,12.64,0,0,0,1.7.792c.52.083.628.317,1.012.543a40.054,40.054,0,0,1,11.978,10.412,39.329,39.329,0,0,1,8.067,23.841l5.066.045a1.338,1.338,0,0,1,1.384,1.409l-.017,14.716a1.307,1.307,0,0,1-1.346,1.308l-5.085.029-.013,6.87A36.037,36.037,0,0,1,110.257,81.7a3.915,3.915,0,0,1-.265.588l-2.284,3.4a38.47,38.47,0,0,1-6.9,6.978,37.247,37.247,0,0,1-10.731,5.563l-22.638,7.747a7.489,7.489,0,0,1-.862.35c-1.7.4-3.32,1.121-5.011,1.64.3.531-.04.746-.115,1.084a5.991,5.991,0,0,1-5.781,4.784l-9.133.027a13.575,13.575,0,0,1-2.366-.445c-.553-.091-.669-.383-1.019-.641a6.261,6.261,0,0,1-1.531-8.486,2.175,2.175,0,0,1,.935-1.054,6.873,6.873,0,0,1,3.821-1.476l9.126.006a6.053,6.053,0,0,1,5.471,3.405,4.3,4.3,0,0,0,1.683-.557c.374-.316.526-.131.911-.263l22.7-7.76c.869.352-1.514-.792-.19-.351ZM2.737,55.05H12.9V43.1H2.737ZM118.279,43.1l-10.171,0,0,11.955,10.171,0Zm-62.684,68a3.18,3.18,0,0,0,3.045-2.4,3.033,3.033,0,0,0-.633-2.993,3.3,3.3,0,0,0-2.509-1.176l-8.8-.017a3.362,3.362,0,0,0-3.275,4.005,3.018,3.018,0,0,0,1.679,2.135,4.692,4.692,0,0,0,1.112.413Z"
+                          transform="translate(0)" fill="#fff" />
+                      </g>
+                    </svg>
+
+                  </div>
+                  <h3 class="h3">24/7 Support</h3>
+                  <p class="desc">Our dedicated team is always available to help with any questions or issues.</p>
+                </div>
               </div>
             </div>
           </div>
         </section>
-        <section class="section">
-          <div class="container"></div>
+        <section class="section bg-faqs">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-lg-10">
+                <header class="section-head section-head-align-center">
+                  <h2 class="section-text-h2">Frequently asked questions</h2>
+                  <a href=""> View All</a>
+                </header>
+                <div class="section-body">
+                  <ul class="faq-list" id="listing">
+                    <li class="faq-list-item">
+                      <button class="faq-list-link faqHeading collapsed" type="button" data-cat-id="1"
+                        data-bs-toggle="collapse" data-bs-target="#faqCollapse1" data-id="1" aria-expanded="false">Can I
+                        try a Rentify Premium plan for free?</button>
+                      <div class="collapse" id="faqCollapse1">
+                        <p class="faq_data faqText">Yes. Try any Rentify Premium plan and if you decide it's not for
+                          you, you can cancel within 14 days and receive a full refund—no questions asked. This applies
+                          to the initial upgrade to a Premium plan.</p>
+                      </div>
+                    </li>
+                    <li class="faq-list-item">
+                      <button class="faq-list-link faqHeading" type="button" data-cat-id="1" data-bs-toggle="collapse"
+                        data-bs-target="#faqCollapse2" data-id="2"> Do I get free web hosting when I open an online
+                        store? </button>
+                      <div class="collapse" id="faqCollapse2">
+                        <p class="faq_data faqText">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam
+                          earum necessitatibus nisi, reiciendis nostrum itaque eius veritatis ratione temporibus, ullam
+                          iste maiores cumque repudiandae, molestiae nobis blanditiis nesciunt dolorum fugit.</p>
+                      </div>
+                    </li>
+                    <li class="faq-list-item">
+                      <button class="faq-list-link faqHeading" type="button" data-cat-id="1" data-bs-toggle="collapse"
+                        data-bs-target="#faqCollapse3" data-id="3"> How do you support builds for large-scale projects?
+                      </button>
+                      <div class="collapse" id="faqCollapse3">
+                        <p class="faq_data faqText">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam
+                          earum necessitatibus nisi, reiciendis nostrum itaque eius veritatis ratione temporibus, ullam
+                          iste maiores cumque repudiandae, molestiae nobis blanditiis nesciunt dolorum fugit.</p>
+                      </div>
+                    </li>
+                    <li class="faq-list-item">
+                      <button class="faq-list-link faqHeading" type="button" data-cat-id="1" data-bs-toggle="collapse"
+                        data-bs-target="#faqCollapse4" data-id="4"> How do i get my free domain? </button>
+                      <div class="collapse" id="faqCollapse4">
+                        <p class="faq_data faqText">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam
+                          earum necessitatibus nisi, reiciendis nostrum itaque eius veritatis ratione temporibus, ullam
+                          iste maiores cumque repudiandae, molestiae nobis blanditiis nesciunt dolorum fugit.</p>
+                      </div>
+                    </li>
+                    <li class="faq-list-item">
+                      <button class="faq-list-link faqHeading" type="button" data-cat-id="1" data-bs-toggle="collapse"
+                        data-bs-target="#faqCollapse5" data-id="5"> How can i get my own personalized email address?
+                      </button>
+                      <div class="collapse" id="faqCollapse5">
+                        <p class="faq_data faqText">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam
+                          earum necessitatibus nisi, reiciendis nostrum itaque eius veritatis ratione temporibus, ullam
+                          iste maiores cumque repudiandae, molestiae nobis blanditiis nesciunt dolorum fugit.</p>
+                      </div>
+                    </li>
+
+
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
       </main>
       <footer class="footer" id="footer" data-collection="footer">
@@ -427,20 +715,23 @@
       </div>
     </div> -->
 
-    <script src='./js/j1gsap.min.js'></script>
+    <!-- <script src='./js/j1gsap.min.js'></script>
     <script src='./js/j2ScrollTrigger.min.js'></script>
     <script src='./js/j3lenis.min.js'></script>
     <script src='./js/j4CustomEase.min.js'></script>
-    <script src='./js/j5SplitText.min.js'></script>
+    <script src='./js/j5SplitText.min.js'></script> -->
     <script src='./js/j6bootstrap.js'></script>
     <script src="./js/j7zscript.js"></script>
     <!-- <script src="./js/min/bundle.js"></script> -->
-    <script src="./js/page-js/swiper-bundle.min.js"></script>
 
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
 
     <script>
       var swiper = new Swiper(".js-screens", {
         slidesPerView: 1,
+        effect: "fade",
         spaceBetween: 0,
         grabCursor: true,
         pagination: {
@@ -448,45 +739,24 @@
           clickable: true,
           dynamicBullets: true
         },
-        navigation: {
-          prevEl: ".js-screens-prev",
-          nextEl: ".js-screens-next",
-        },
+
       });
 
-      // Initialize the full-width Swiper instance
-      const swiper = new Swiper('.swiper', {
-        // Core parameters
-        direction: 'horizontal',
-        loop: true,               // Infinite loop mode
-        slidesPerView: 1,         // Show exactly one full-screen slide at a time
-        spaceBetween: 0,          // No gaps between edges of adjacent slides
 
-        // Smooth slide transitions
-        speed: 800,
-
-        // Autoplay function
-        autoplay: {
-          delay: 4000,
-          disableOnInteraction: false,
-        },
-
-        // Pagination indicators
+      var swiper = new Swiper(".niches-swiper", {
+        slidesPerView: 2.5,
+        spaceBetween: 30,
+        //  centeredSlides: true,
+        freeMode: true,
+        loop: true,
+        grabCursor: true,
         pagination: {
-          el: '.swiper-pagination',
+          el: ".swiper-pagination",
           clickable: true,
-        },
-
-        // Navigation interface triggers
-        navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev',
         },
       });
 
     </script>
-
-
   </body>
 
 </html>
