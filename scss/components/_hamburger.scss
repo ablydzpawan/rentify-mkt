@@ -1,0 +1,76 @@
+//hamburger
+.hamburger {
+  mix-blend-mode: difference;
+  background-color: transparent;
+  border: none;
+  margin: 0;
+  margin-left: -1.5rem;
+  padding: 0;
+  input {
+    display: none;
+  }
+  label {
+    display: block;
+    cursor: pointer;
+    width: 80px;
+    height: 80px;
+    max-width: 150px;
+    max-height: 150px;
+  }
+  path {
+    fill: none;
+    stroke: #fff;
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    --length: 24;
+    --offset: -38;
+    stroke-dasharray: var(--length) var(--total-length);
+    stroke-dashoffset: var(--offset);
+    transition: all 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+  }
+
+  circle {
+    fill: #fff3;
+    opacity: 0;
+  }
+
+  label:hover circle {
+    opacity: 1;
+  }
+  .cross input:checked + svg .line--1,
+  .cross input:checked + svg .line--3 {
+    --length: 22.627416998;
+  }
+
+  .cross input:checked + svg .line--2 {
+    --length: 0;
+  }
+
+  .back input:checked + svg .line--1,
+  .back input:checked + svg .line--3 {
+    --length: 8.602325267;
+  }
+
+  .menu--1 {
+  }
+
+  .menu--1 .line--1,
+  .menu--1 .line--3 {
+    --total-length: 126.64183044433594;
+  }
+
+  .menu--1 .line--2 {
+    --total-length: 70;
+    --length: 16;
+  }
+
+  .menu--1 input:checked + svg .line--1,
+  .menu--1 input:checked + svg .line--3 {
+    --offset: -94.1149185097;
+  }
+
+  .menu--1 input:checked + svg .line--2 {
+    --offset: -50;
+  }
+}

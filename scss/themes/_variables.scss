@@ -1,0 +1,368 @@
+:root {
+  --bs-gutter-x: 1rem;
+  --bs-gutter-y: 1rem;
+  --background-bg-primary: #efefef;
+  --background-bg-secondary: #fff;
+  --background-bg-tertiary: rgba(0, 0, 0, 0.06);
+  --brand-color: #1177DD;
+  --brand-color-alpha: 13, 128, 101;
+  --brand-color-inverse: rgb(255, 255, 255);
+  --secondary-color: #14424c;
+  --secondary-color-inverse: #ffffff;
+  --secondary-color-alpha: 7, 149, 230;
+}
+
+//default colors
+$dark-color: #888;
+$blue: var(--brand-color);
+$primary: #ff3a59;
+$black: rgba(0, 0, 0, 1);
+
+//dynamic theme colors
+$brand-color: #2D85FE;
+$brand-color-inverse: #fff;
+$bg-brand-light: rgba(var(--brand-color-alpha), 0.1);
+$bg-brand-100: rgba(var(--brand-color-alpha), 0.1);
+$bg-brand-200: rgba(var(--brand-color-alpha), 0.2);
+$bg-brand-300: rgba(var(--brand-color-alpha), 0.3);
+$bg-brand-400: rgba(var(--brand-color-alpha), 0.4);
+$bg-brand-500: rgba(var(--brand-color-alpha), 0.5);
+$bg-brand-600: rgba(var(--brand-color-alpha), 0.6);
+$bg-brand-700: rgba(var(--brand-color-alpha), 0.7);
+$bg-brand-800: rgba(var(--brand-color-alpha), 0.8);
+$bg-brand-900: rgba(var(--brand-color-alpha), 0.9);
+
+$primary-color: var(--primary-color);
+$primary-color-inverse: var(--primary-color-inverse);
+
+$secondary-color: var(--secondary-color);
+$secondary-color-inverse: var(--secondary-color-inverse);
+
+$third-color: var(--third-color);
+$third-color-inverse: var(--third-color-inverse);
+
+//fixed theme colors
+$txt-brand: $brand-color;
+$txt-secondary: $secondary-color;
+$txt-black: rgba(0, 0, 0, 1);
+$txt-body: #1d2e39;
+$txt-gray: rgba(0, 0, 0, 0.77);
+$text-muted: #888888 !default;
+$text-secondary: #696969;
+
+//font familty
+$family-1: DM Sans, sans-serif;
+
+//Font weight
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-normal: 500;
+$font-weight-bold: 600;
+$font-weight-bolder: 700;
+$font-weight-boldest: 800;
+
+//space
+$gap: 1.5rem;
+$gap-sm: 1rem;
+$space: calc(1rem + 40vw);
+
+//border colors
+$border-brand: solid 1px $brand-color;
+$border-color: #e8e8e8;
+$border: solid 1px $border-color;
+$border-black: solid 1px #000;
+$border-light: solid 1px lighten($border-color, 5);
+$border-transparent: solid 1px transparent;
+
+//outline
+$outline: solid 1px $border-color;
+
+//backgrounds colors
+$bg-white: #fff;
+$bg-white-inverse: $txt-body;
+$bg-brand: $brand-color;
+//$bg-brand-light: rgba(var(--brand-color-alpha), 0.1);
+$bg-brand-light: $bg-brand-light;
+
+$bg-secondary: $secondary-color;
+$bg-secondary-light: rgba(var(--secondary-color-alpha), 0.1);
+
+$bg-light: #f8eae1;
+$bg-gray: #f5f6f6;
+$gray-light: #f3f4f5;
+$bg-black: #000;
+$bg-placeholder: rgba(0, 0, 0, 0.03);
+$bg-body: #f3f4f5;
+
+//shadow
+$shadow-rgb: var(--shadow-rgb);
+$shadow0: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+$shadow1: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+$shadow2: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+$shadow3: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+$shadow4: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+$shadow5: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+$shadow6: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+$shadow7: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+$shadow8: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
+$shadow9: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+  rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+$shadow10: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+$shadow11: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px,
+  rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px,
+  rgba(0, 0, 0, 0.09) 0px -3px 5px;
+
+//radius
+$radius-radius-lg: 16px;
+$theme-radius: 24px;
+$common-radius: 4px;
+$card-radius: 12px;
+$radius4: 4px;
+$radius3: 3px;
+$radius2: 2px;
+$radius1: 1px;
+$radius: 4px;
+
+//messages
+$success-color: #1dc9b7;
+$warning-color: #ffb822;
+$info-color: #5578eb;
+$danger-color: #fd397a;
+$star-color: #ff3a59;
+
+//aspect-ratio
+//$product-ratio: 155/84;
+$product-ratio: 1/1;
+$category-ratio: 4/1;
+$category-mobile-ratio: 16/9;
+$category-tablet-ratio: 16/9;
+
+$shop-ratio: 1/1;
+$shop-banner-ratio: 4/1;
+$shop-banner-mobile-ratio: 4/3;
+
+//$hero-ratio: 10/3.33;
+$hero-ratio: 10/3.33;
+$video-ratio: 16/9;
+$avatar-ratio: 1/1;
+
+//Bg brand
+@mixin bg-brand {
+  background-color: $brand-color;
+  color: $brand-color-inverse;
+}
+
+@mixin bg-brand-light {
+  background-color: $bg-brand-light;
+  color: $brand-color;
+}
+
+@mixin bg-secondary {
+  background-color: $secondary-color;
+  color: $secondary-color-inverse;
+}
+
+@mixin bg-third {
+  background-color: $third-color;
+  color: $third-color-inverse;
+}
+
+@mixin bg-white {
+  background-color: $bg-white;
+  color: $txt-black;
+}
+
+@mixin bg-black {
+  background-color: #000;
+  color: #fff;
+}
+
+@mixin bg-gray {
+  background-color: $bg-gray;
+  color: $txt-body;
+}
+
+@mixin bg-gray-dark {
+  background-color: $bg-gray;
+  color: $txt-body;
+}
+
+@mixin bg-invert {
+  background-color: #222;
+  color: #fff;
+}
+
+//blur
+@mixin bg-blur-white {
+  background-color: rgba(255, 255, 255, 0.93);
+  color: $txt-black;
+  backdrop-filter: blur(10px);
+}
+
+@mixin bg-blur-black {
+  background-color: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  backdrop-filter: blur(10px);
+}
+
+//display
+@mixin display($flex, $center, $space-between, $gap) {
+  display: $flex;
+  align-items: $center;
+  justify-content: $space-between;
+  gap: $gap;
+}
+
+//Push auto
+@mixin push--auto {
+  margin: {
+    left: auto;
+    right: auto;
+  }
+}
+
+//Transitions
+@mixin staggered_transitions($nth: 1, $items: 2, $initial: 0, $step: 0.1) {
+  @for $i from $nth through $items {
+    &:nth-of-type(#{$i}) {
+      animation-delay: #{$initial}s;
+    }
+
+    $initial: $initial + $step;
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+//Pseudo
+@mixin pseudo($display: block, $pos: absolute, $content: "") {
+  content: $content;
+  display: $display;
+  position: $pos;
+}
+
+// img absolute
+@mixin img-absolute {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+//Truncate
+@mixin truncate($truncation-boundary) {
+  max-width: $truncation-boundary;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin placeholder {
+  animation: placeholderShimmer 2s linear;
+  animation-iteration-count: infinite;
+  background-color: $bg-white;
+  background-image: -webkit-gradient(linear,
+      left top,
+      right top,
+      from(rgba(0, 0, 0, 0.08)),
+      color-stop(15%, rgba(0, 0, 0, 0.15)),
+      color-stop(30%, rgba(0, 0, 0, 0.08)));
+  background-image: -webkit-linear-gradient(left,
+      rgba(0, 0, 0, 0.08) 0,
+      rgba(0, 0, 0, 0.15) 15%,
+      rgba(0, 0, 0, 0.08) 30%);
+  background-image: linear-gradient(to right,
+      rgba(0, 0, 0, 0.08) 0,
+      rgba(0, 0, 0, 0.15) 15%,
+      rgba(0, 0, 0, 0.08) 30%);
+  background-size: 1200px 100%;
+}
+
+@-webkit-keyframes placeholderShimmer {
+  0% {
+    background-position: -1200px 0;
+  }
+
+  100% {
+    background-position: 1200px 0;
+  }
+}
+
+@keyframes placeholderShimmer {
+  0% {
+    background-position: -1200px 0;
+  }
+
+  100% {
+    background-position: 1200px 0;
+  }
+}
+
+@mixin underline {
+  text-rendering: optimizeLegibility;
+  transition: color 0.3s ease-in-out;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 50% 100%;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  transition: background-size 0.2s;
+  text-decoration: none;
+  background-size: 0% 1px;
+  border: none;
+
+  &:is(:hover, :focus, :active) {
+    color: currentColor;
+    text-decoration: none !important;
+    background-size: 100% 1px;
+  }
+}
+
+@mixin btn-hover {
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    @include bg-brand;
+    position: absolute;
+    #{$end-direction}: 100%;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    content: "";
+    z-index: 0;
+    transition: all 0.2s ease;
+  }
+
+  &:is(:hover, .active) {
+    color: #fff;
+
+    &::after {
+      #{$end-direction}: 0;
+      transition: all 0.2s ease;
+    }
+  }
+
+  .svg {
+    position: relative;
+    z-index: 1;
+  }
+}
