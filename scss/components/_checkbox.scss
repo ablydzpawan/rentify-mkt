@@ -49,6 +49,7 @@ $checkbox-active-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.04),
     width: var(--size);
     height: var(--size);
     margin-top: 0;
+
     &[type="checkbox"] {
       border-radius: 6px;
     }
@@ -107,9 +108,11 @@ $checkbox-active-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.04),
       }
     }
   }
+
   .label-txt {
     line-height: 1.5;
   }
+
   .link {
     font-size: inherit;
   }
@@ -117,6 +120,7 @@ $checkbox-active-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.04),
 
 .radio {
   @extend .checkbox;
+
   input {
     border-radius: 50% !important;
 

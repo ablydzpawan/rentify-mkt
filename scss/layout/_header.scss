@@ -2,15 +2,20 @@
   position: fixed;
   top: 0;
   z-index: 20;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   width: 100%;
-  min-height: 74px;
+
   margin: 0 auto;
   background: rgba(255, 255, 255, 0.82);
   backdrop-filter: blur(18px);
-  padding: 0 5%;
+  padding: 0;
+
+  &-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 0;
+  }
+
 }
 
 .brand {
@@ -28,12 +33,22 @@
   align-items: center;
   gap: clamp(18px, 3vw, 38px);
   color: #1e2a3d;
-  font-size: 14px;
-  font-weight: 650;
+  font-size: 1.125rem;
+  font-weight: 600;
 
   a {
+    padding: 0.6rem 1rem;
     transition: color 220ms esease-in-out;
     @include btn-hover;
+
+
+    &:after {
+      background-color: $bg-brand-200;
+      z-index: -1;
+      border-radius: 50px;
+    }
+
+
 
     &:hover {
       color: var(--blue);

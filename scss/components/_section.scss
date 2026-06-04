@@ -27,7 +27,12 @@
     // flex-wrap: wrap;
     // overflow: auto;
 
-    @include media-breakpoint-up(lg) {}
+    @include media-breakpoint-up(lg) {
+      margin: 0 auto;
+      margin-bottom: 2rem;
+      max-width: 80%;
+      text-wrap-style: balance;
+    }
 
     &-start {
       flex: 1;
@@ -37,12 +42,7 @@
       flex: 1;
     }
 
-    &-align-center {
-      @include media-breakpoint-up(lg) {
-        align-items: center;
 
-      }
-    }
 
     &-center {
       justify-content: center;
@@ -51,6 +51,24 @@
       p {
         margin: 0 auto;
       }
+    }
+
+    &-coloumn {
+      // margin: 0;
+      max-width: none;
+      flex-direction: row;
+      gap: 2rem;
+
+      @include media-breakpoint-up(lg) {
+        align-items: center;
+
+      }
+    }
+
+    p {
+      color: currentColor;
+      text-wrap-style: balance;
+      font-weight: 400;
     }
   }
 
@@ -81,6 +99,8 @@
       font-size: clamp(1rem, 1.692vw, 2rem);
       margin-bottom: 1.2rem;
     }
+
+
 
     &-desc {
       color: currentColor;

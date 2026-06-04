@@ -4,8 +4,8 @@
   --background-bg-primary: #efefef;
   --background-bg-secondary: #fff;
   --background-bg-tertiary: rgba(0, 0, 0, 0.06);
-  --brand-color: #1177DD;
-  --brand-color-alpha: 13, 128, 101;
+  --brand-color: #2D85FE;
+  --brand-color-alpha: 45, 133, 254;
   --brand-color-inverse: rgb(255, 255, 255);
   --secondary-color: #14424c;
   --secondary-color-inverse: #ffffff;
@@ -47,6 +47,8 @@ $txt-secondary: $secondary-color;
 $txt-black: rgba(0, 0, 0, 1);
 $txt-body: #1d2e39;
 $txt-gray: rgba(0, 0, 0, 0.77);
+$txt-gray-light: rgba(0, 0, 0, 0.6);
+$txt-gray-lighest: rgba(0, 0, 0, 0.5);
 $text-muted: #888888 !default;
 $text-secondary: #696969;
 

@@ -1,119 +1,142 @@
-$section-padding: clamp(2rem, 5vw, 10rem);
+$section-padding: clamp(2rem, 3vw, 10rem);
 
 .footer {
-  @include media-breakpoint-up(lg) {
-    position: sticky;
-    bottom: -1px;
-    z-index: 0;
+  padding: 0;
+  color: #fff;
+  background-color: #000E20;
+
+  &-top {}
+
+  &-bottom {
+    padding: 2rem 0;
+    border-top: solid 1px #21334B;
   }
 
-  // padding: $section-padding;
-  &-logo {
-    margin-left: auto;
-    margin-bottom: -4px;
-    display: none;
+  .short-about {
+    padding-block: $section-padding;
+    padding-right: $section-padding;
 
-    @include media-breakpoint-up(lg) {
-      max-width: 450px;
+    .desc {
+      color: #94ABC9;
+      font-size: 1.5rem;
+      line-height: 1.4;
+
+      strong {
+        font-weight: 600;
+        color: #fff;
+      }
+    }
+
+    .copyrights {
+      margin-top: 5rem;
+      font-size: 1rem;
+      color: #C2D1E5;
+    }
+  }
+
+
+
+  .footer-group {
+    padding-inline: $section-padding;
+    padding-block: 2rem;
+    border-left: solid 1px #21334B;
+    height: 100%;
+
+    &-head {
+      color: #94ABC9;
+      font-size: 1.5rem;
+      font-weight: 500;
+      padding: 5px 0;
+      margin-bottom: 16px;
+      border-radius: $radius;
+
+      @include media-breakpoint-up(lg) {
+        pointer-events: none;
+
+        &:after {
+          content: normal !important;
+        }
+      }
+
+      @include media-breakpoint-down(sm) {
+        margin-top: 1.5rem;
+        //background-color: $bg-gray;
+        // padding: 1rem;
+
+        &.is-active {
+          background-color: darken($bg-gray, 10);
+        }
+      }
+
+
+    }
+
+    .footer-nav {
       display: block;
 
-      img {
-        max-width: 100%;
+      @include media-breakpoint-down(sm) {
+        display: none;
+
+        &.show {
+          display: block;
+        }
+      }
+
+      &-double {
+        @include media-breakpoint-up(lg) {
+          columns: 2;
+          column-gap: 2rem;
+        }
+      }
+
+      &-item {
+        color: currentColor;
+        font-size: 0.875em;
+        font-weight: $font-weight-regular;
+        padding: 5px 0;
+        display: block;
+      }
+
+      &-link {
+        opacity: 0.7;
+        color: currentColor;
+        font-size: inherit;
+        position: relative;
+        text-rendering: optimizeLegibility;
+        transition: color 0.3s ease-in-out;
+        background-image: linear-gradient(currentColor, currentColor);
+        background-position: 50% 100%;
+        background-repeat: no-repeat;
+        background-size: 0% 1px;
+        transition: background-size 0.3s;
+
+        &:hover,
+        &:focus {
+          opacity: 1;
+          color: currentColor;
+          text-decoration: none;
+          background-size: 100% 1px;
+        }
       }
     }
   }
 
-  &-top {
-    @include bg-brand;
-    background-color: $bg-brand !important;
-
-    @include media-breakpoint-up(lg) {
-      padding-bottom: 0;
-    }
-  }
-
-  .lets-connect {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-
-    @include media-breakpoint-up(lg) {
-      align-items: center;
-      flex-direction: row;
-    }
-
-    &-start {
-      @include media-breakpoint-up(lg) {
-        max-width: 50%;
-      }
-    }
-
-    .btn {
-      line-height: 1.4;
-      height: auto;
-      gap: 1.5rem;
-      padding: 0.5rem 1rem;
-      // font-size: 1.88rem;
-
-
-      @include media-breakpoint-up(lg) {
-        font-size: 1.88rem;
-        padding: 0.5rem 2rem;
-      }
-    }
-  }
-
-
-}
-
-.footer-bottom {
-  padding: 0.5rem 0;
-
-  &-inner {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 0.5rem;
-    flex-direction: column;
-
-    @include media-breakpoint-up(lg) {
-      flex-direction: row;
-      gap: 1rem;
-    }
-  }
-
-  &-item {
-    font-weight: 300;
-  }
-
-  p {
-    color: #000;
-    font-size: 1.125rem;
-    padding: 0.125rem 0;
-
-    @include media-breakpoint-up(lg) {
-      padding: 0.5rem 0;
-    }
-
-  }
-
-  .address {
-    text-align: start;
-  }
-
-  .short-links {
+  .footer-cta {
+    margin: 2rem 0;
     text-align: center;
 
-    a {
-      @include underline;
-
-      &:hover {
-        color: #000;
-      }
+    h3 {
+      font-size: clamp(1.5rem, calc(1.25rem + 1.250vw), 3.5rem);
+      margin-bottom: 1rem;
     }
   }
 
-  .copyright {
+  .contacts-info {
     text-align: end;
+    font-size: 1rem;
+
+    a {
+      font-size: 1rem;
+    }
   }
 }

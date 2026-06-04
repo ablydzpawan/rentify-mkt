@@ -58,8 +58,12 @@
      @include bg-brand;
      border-color: $brand-color;
 
-     &:hover {
-       color: $brand-color-inverse;
+     &:hover,
+     &:active,
+     &:focus {
+       @include bg-brand;
+       border-color: $brand-color;
+
      }
    }
 
