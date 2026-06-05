@@ -35,13 +35,23 @@
               <a href="#pricing">Pricing</a>
               <a href="#blogs">Blogs</a>
             </nav>
-            <a class="btn btn-pill btn-black" href="#start">Contact Us</a>
+            <div class="d-flex gap-3">
+              <button class="menu-button" type="button" data-fade-in="down" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+                <span class="button-icon">
+                  <svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em"
+                    fill="currentColor">
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                    <path d="M3 4H21V6H3V4ZM3 11H15V13H3V11ZM3 18H21V20H3V18Z"></path>
+                  </svg>
+                </span> <span class="button-txt">Menu</span> </button>
+              <a class="btn btn-pill btn-black cta-btn" href="#start">Contact Us</a>
+            </div>
+
           </div>
         </div>
       </header>
       <main class="main" id="main">
-
-
         <section class="hero" aria-labelledby="hero-title">
           <div class="hero-content" data-hero="">
 
@@ -460,7 +470,7 @@
                 </div>
                 <div class="section-foot">
                   <div class="section-cta">
-                    <a class="btn btn-white-outline" href="">Compare Plans and Features</a>
+                    <a class="btn btn-outline-white" href="">Compare Plans and Features</a>
                   </div>
                 </div>
               </div>
@@ -718,17 +728,17 @@
                   </h4>
                   <ul class="footer-nav footer-nav-double" id="Quick">
                     <li class="footer-nav-item">
-                      <a class="footer-nav-link" href="/products/featured"> How to
+                      <a class="footer-nav-link" href="#"> How to
                         Start </a>
                     </li>
                     <li class="footer-nav-item">
-                      <a class="footer-nav-link" href="/shops/featured">Why Rentify </a>
+                      <a class="footer-nav-link" href="#">Why Rentify </a>
                     </li>
                     <li class="footer-nav-item">
-                      <a class="footer-nav-link" href="//collections/view/8">Features </a>
+                      <a class="footer-nav-link" href="#">Features </a>
                     </li>
                     <li class="footer-nav-item">
-                      <a class="footer-nav-link" href="/collections/view/5">
+                      <a class="footer-nav-link" href="#">
                         Resources</a>
                     </li>
                     <li class="footer-nav-item">
@@ -754,16 +764,16 @@
                   </h4>
                   <ul class="footer-nav" id="Follow">
                     <li class="footer-nav-item">
-                      <a class="footer-nav-link" href="/products/featured"> Facebook </a>
+                      <a class="footer-nav-link" href="#"> Facebook </a>
                     </li>
                     <li class="footer-nav-item">
-                      <a class="footer-nav-link" href="/shops/featured">Instagram</a>
+                      <a class="footer-nav-link" href="#">Instagram</a>
                     </li>
                     <li class="footer-nav-item">
-                      <a class="footer-nav-link" href="//collections/view/8"> X </a>
+                      <a class="footer-nav-link" href="#"> X </a>
                     </li>
                     <li class="footer-nav-item">
-                      <a class="footer-nav-link" href="/collections/view/5">
+                      <a class="footer-nav-link" href="#">
                         LinkedIn</a>
                     </li>
                   </ul>
@@ -779,7 +789,11 @@
               <a href="#" class="btn btn-brand">Talk to Our Experts</a>
             </div>
             <div class="row justify-content-between">
-              <div class="col-lg-6"><img src="images/footer-logo.png" width="200" alt=""></div>
+              <div class="col-lg-6">
+                <div class="footer-logo">
+                  <img src="images/footer-logo.png" width="200" alt="">
+                </div>
+              </div>
               <div class="col-lg-6">
                 <div class="contacts-info">
                   <a href="">+1 256 792 5883</a> |
@@ -807,10 +821,11 @@
       </div> -->
     </div>
 
-    <!-- <div class="offcanvas offcanvas-menu" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas offcanvas-end offcanvas-menu" tabindex="-1" id="offcanvasExample"
+      aria-labelledby="offcanvasExampleLabel">
       <div class="offcanvas-header">
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"><svg
-            xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+            xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 48 48">
             <g id="Group_304" data-name="Group 304" transform="translate(-1801 -32)">
               <path id="Path_1285" data-name="Path 1285"
                 d="M26,50A24,24,0,1,1,50,26,24,24,0,0,1,26,50Zm0-27.394-6.788-6.788-3.394,3.394L22.606,26l-6.788,6.788,3.394,3.394L26,29.394l6.788,6.788,3.394-3.394L29.394,26l6.788-6.788-3.394-3.394Z"
@@ -821,14 +836,33 @@
       </div>
       <div class="offcanvas-body">
         <ul class="menu">
-          <li><a class="menu-link" href="index.html">Home</a></li>
-          <li><a class="menu-link" href="about-us.html">About Us</a></li>
-          <li><a class="menu-link" href="our-rex-tower-system.html">Our Rex Tower System</a></li>
-          <li><a class="menu-link" href="elliott-bay-tower.html">Elliott Bay Tower</a></li>
-          <li><a class="menu-link" href="contact-us.html">Contact Us</a></li>
+          <li><a class="menu-link" href="#">How it works</a></li>
+          <li><a class="menu-link" href="#">Why Rentify</a></li>
+          <li><a class="menu-link" href="#">Features</a></li>
+          <li><a class="menu-link" href="#">Resources</a></li>
+          <li><a class="menu-link" href="#">Pricing</a></li>
+          <li><a class="menu-link" href="#">Blogs</a></li>
+
         </ul>
+
+        <ul class="socail-nav" id="">
+          <li class="socail-nav-item">
+            <a class="socail-nav-link" href="#"> Facebook </a>
+          </li>
+          <li class="socail-nav-item">
+            <a class="socail-nav-link" href="#">Instagram</a>
+          </li>
+          <li class="socail-nav-item">
+            <a class="socail-nav-link" href="#"> X </a>
+          </li>
+          <li class="socail-nav-item">
+            <a class="socail-nav-link" href="#">
+              LinkedIn</a>
+          </li>
+        </ul>
+
       </div>
-    </div> -->
+    </div>
 
     <!-- <script src='./js/j1gsap.min.js'></script>
     <script src='./js/j2ScrollTrigger.min.js'></script>
@@ -859,8 +893,7 @@
 
 
       var swiper = new Swiper(".niches-swiper", {
-        slidesPerView: 2.5,
-        spaceBetween: 30,
+
         //  centeredSlides: true,
         freeMode: true,
         loop: true,
@@ -869,6 +902,20 @@
           el: ".swiper-pagination",
           clickable: true,
         },
+        breakpoints: {
+          640: {
+            slidesPerView: 1,
+            spaceBetween: 20,
+          },
+          768: {
+            slidesPerView: 2,
+            spaceBetween: 30,
+          }, 1024: {
+            slidesPerView: 2.5,
+            spaceBetween: 30,
+          },
+        },
+
       });
 
     </script>

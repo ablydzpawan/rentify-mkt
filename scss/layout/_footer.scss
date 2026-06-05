@@ -39,8 +39,16 @@ $section-padding: clamp(2rem, 3vw, 10rem);
   .footer-group {
     padding-inline: $section-padding;
     padding-block: 2rem;
-    border-left: solid 1px #21334B;
     height: 100%;
+
+    @include media-breakpoint-down(lg) {
+      border-top: solid 1px #21334B;
+      padding: 0;
+    }
+
+    @include media-breakpoint-up(lg) {
+      border-left: solid 1px #21334B;
+    }
 
     &-head {
       color: #94ABC9;
@@ -132,11 +140,21 @@ $section-padding: clamp(2rem, 3vw, 10rem);
   }
 
   .contacts-info {
-    text-align: end;
+    text-align: center;
     font-size: 1rem;
+
+    @include media-breakpoint-up(lg) {
+      text-align: end;
+    }
 
     a {
       font-size: 1rem;
     }
+  }
+}
+
+.footer-logo {
+  @include media-breakpoint-down(sm) {
+    display: none;
   }
 }
