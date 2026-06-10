@@ -58,6 +58,12 @@ html {
   }
 }
 
+@media (max-width:600px) {
+  .container {
+    padding: 0 1.5rem;
+  }
+}
+
 @media print {
   .pagebreak {
     clear: both;

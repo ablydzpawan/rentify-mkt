@@ -72,7 +72,10 @@
                 <img src="images/screen-2.png" alt="">
               </div>
               <div class="swiper-slide screens-item">
-                <img src="images/screen-2.png" alt="">
+                <img src="images/screen-3.png" alt="">
+              </div>
+              <div class="swiper-slide screens-item">
+                <img src="images/screen-4.png" alt="">
               </div>
             </div> <!-- If you need pagination dots -->
             <div class="swiper-pagination"></div>
@@ -105,9 +108,7 @@
               <div class="bussinesses-item">
                 <img src="images/brands-8.png" alt="">
               </div>
-              <div class="bussinesses-item">
-                <img src="images/brands-7.png" alt="">
-              </div>
+
               <div class="bussinesses-item">
                 <img src="images/brands-5.png" alt="">
               </div>
@@ -204,7 +205,7 @@
                     <h3 class="h3">
                       Advanced Calendar-based Inventory Management System
                     </h3>
-                    <ul class="">
+                    <ul class="check">
                       <li> Smart and interactive calendar view </li>
                       <li> Booking status and slot availability </li>
                       <li> Inventory availability and management</li>
@@ -238,6 +239,7 @@
 
             </header>
           </div>
+
           <div class="section-body">
             <!-- Main Slider Container -->
             <div class="swiper niches-swiper">
@@ -273,15 +275,15 @@
               <!-- If you need pagination dots -->
               <div class="swiper-pagination"></div>
 
-              <!-- If you need navigation buttons -->
-              <div class="swiper-button-prev"></div>
-              <div class="swiper-button-next"></div>
+
             </div>
           </div>
-          <div class="section-foot">
-            <div class="section-cta">
-              <h3> See How Rentify Fits to Your Rental Business</h3>
-              <a class="btn btn-black" href="">Request a Personalized Demo</a>
+          <div class="container">
+            <div class="section-foot">
+              <div class="section-cta">
+                <h3> See How Rentify Fits to Your Rental Business</h3>
+                <a class="btn btn-black" href="">Request a Personalized Demo</a>
+              </div>
             </div>
           </div>
 
@@ -803,9 +805,8 @@
             </div>
           </div>
         </div>
-
       </footer>
-      <!-- <div class="back-top">
+      <div class="back-top">
         <svg width="50" height="50" viewBox="0 0 50 50">
           <circle cx="25" cy="25" r="22" stroke="rgba(255,255,255,0.15)" stroke-width="4" fill="none">
           </circle>
@@ -818,9 +819,9 @@
           <path d="M12 20V4M12 4L6 10M12 4L18 10" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"
             stroke-linejoin="round" />
         </svg>
-      </div> -->
+      </div>
     </div>
-
+    <!-- offcanvas menu -->
     <div class="offcanvas offcanvas-end offcanvas-menu" tabindex="-1" id="offcanvasExample"
       aria-labelledby="offcanvasExampleLabel">
       <div class="offcanvas-header">
@@ -881,6 +882,7 @@
       var swiper = new Swiper(".js-screens", {
         slidesPerView: 1,
         effect: "fade",
+        loop: true,
         spaceBetween: 0,
         grabCursor: true,
         pagination: {
@@ -893,7 +895,6 @@
 
 
       var swiper = new Swiper(".niches-swiper", {
-
         //  centeredSlides: true,
         freeMode: true,
         loop: true,
