@@ -1,11 +1,13 @@
 .site-header {
-  position: fixed;
+  // position: fixed;
+  position: sticky;
   top: 0;
-  z-index: 20;
+  z-index: $zindex-sticky;
   width: 100%;
   margin: 0 auto;
   background: rgba(255, 255, 255, 0.82);
   backdrop-filter: blur(18px);
+  border-bottom: solid 1px #eeeeee;
   padding: 0;
 
   &-inner {
@@ -79,7 +81,7 @@
   letter-spacing: 0;
 
   @include media-breakpoint-up(lg) {
-    max-width: 200px;
+    max-width: 160px;
   }
 }
 
@@ -113,4 +115,10 @@
       color: var(--blue);
     }
   }
+}
+
+.divider {
+  height: 1px;
+  background: $border-color;
+  margin: 15px 0;
 }

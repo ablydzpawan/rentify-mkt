@@ -1,0 +1,68 @@
+$space: 24px;
+
+.cookies-notice {
+  position: fixed;
+  z-index: $zindex-modal;
+  bottom: $space;
+  #{$start-direction}: $space;
+
+  @include media-breakpoint-down(sm) {
+    #{$end-direction}: $space;
+  }
+
+  &-content {
+    @include bg-white;
+    box-shadow: $shadow1;
+    width: 100%;
+    max-width: 450px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-flow: column;
+    border-radius: $radius;
+    padding: $space;
+
+    a {
+      color: currentColor;
+      text-decoration: underline;
+    }
+  }
+
+  &-message {
+    color: currentColor;
+    font-size: 13px;
+    font-weight: $font-weight-regular;
+  }
+
+  &-buttons {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 8px;
+
+    .btn-decline {
+      &:hover {}
+    }
+
+    .btn-accept {}
+  }
+}
+
+.cookie-alert {
+  font-size: 0.9rem;
+
+  .cookies-group {
+    margin: 1rem 0;
+
+    &-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    &-body {
+      padding: 10px 0;
+    }
+  }
+}

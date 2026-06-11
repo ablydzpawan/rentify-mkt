@@ -1,0 +1,47 @@
+<style>
+    body {
+        display: flex;
+        flex-flow: row wrap;
+        gap: 1rem;
+    }
+
+    * {
+        padding: 1rem;
+
+    }
+
+    .svg-wrap {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border: solid 2px #ddd;
+        border-radius: 4px;
+
+    }
+</style>
+
+
+<div id="svgSprite"></div>
+
+
+<script>
+    let el = document.getElementById('svgSprite')
+    fetch('/dashboard/images/retina/sprite.svg')
+        .then(r => r.text())
+        .then(text => {
+            el.innerHTML = text;
+            const sprite = document.querySelector("svg");
+            const symbols = sprite.querySelectorAll("symbol");
+            symbols.forEach(symbol => {
+                var path = symbol.querySelectorAll('path');
+                document.body.insertAdjacentHTML("beforeend", `
+           <div class="svg-wrap"> <svg width="40" height="40">
+            <use xlink:href="#${symbol.id}" />
+            <svg>
+            <span class="svg-wrap-name">#${symbol.id}</span></div>`);
+            });
+        })
+        .catch(console.error.bind(console));
+</script>

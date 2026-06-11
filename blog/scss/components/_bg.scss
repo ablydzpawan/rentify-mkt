@@ -1,0 +1,33 @@
+/*Backgrounds*/
+
+.bg-brand {
+  @include bg-brand;
+}
+
+.bg-brand-light {
+  @include bg-brand-light;
+}
+
+.bg-secondary {
+  @include bg-secondary;
+}
+
+.bg-third {
+  @include bg-third;
+}
+
+.bg-white {
+  @include bg-white;
+}
+
+.bg-black {
+  @include bg-black;
+}
+
+.bg-gray {
+  @include bg-gray;
+}
+
+.bg-gray-dark {
+  @include bg-gray-dark;
+}

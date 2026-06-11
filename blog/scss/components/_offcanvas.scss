@@ -1,0 +1,90 @@
+$offcanvas-space: 1rem 2rem;
+$offcanvas-radius: 12px;
+
+.offcanvas {
+  border-radius: $offcanvas-radius;
+  margin: 1rem;
+
+  &-backdrop {
+    position: fixed;
+    top: 0;
+    #{$start-direction}: 0;
+    z-index: 1040;
+    width: 100vw;
+    height: 100vh;
+    @include backdrop;
+  }
+
+  &.offcanvas-start {
+    border: none;
+    #{$end-direction}: auto;
+    #{$start-direction}: 0;
+    transform: translateX(-100% * $transform-direction);
+
+  }
+
+  &.offcanvas-end {
+    border: none;
+    #{$start-direction}: auto;
+    #{$end-direction}: 0;
+    transform: translateX(100% * $transform-direction);
+
+  }
+
+
+  &-header {
+    justify-content: space-between;
+    padding: $offcanvas-space;
+  }
+
+  &-body {
+    padding: $offcanvas-space;
+    //scrollbar-gutter: stable;
+  }
+
+  &-foot {
+    padding: $offcanvas-space;
+  }
+
+  .btn-close {
+    margin: 0;
+    margin-#{$start-direction}: auto;
+  }
+
+  &-gps-location {
+    height: 50vh;
+  }
+
+  //sizes
+  &-size-sm {
+    width: 300px;
+  }
+
+  &-size-md {
+    width: 400px;
+  }
+
+  &-size-lg {
+    width: 500px;
+  }
+
+  &-size-xl {
+    width: 600px;
+  }
+
+  &-size-xxl {
+    width: 700px;
+  }
+
+  &-custom {
+    //width: calc(100% - #{$sidebar-width});
+  }
+}
+
+.side-cart {
+  height: auto;
+
+  .cart-summary {
+    margin-bottom: 2rem;
+  }
+}

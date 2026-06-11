@@ -12,7 +12,7 @@ import concat from "gulp-concat";
 const scss = gulpSass(sass);
 scss.compiler = nodeSass;
 
-// css
+// css 
 function css() {
   return src("scss/*.scss")
     .pipe(sourcemaps.init({ loadMaps: true }))
@@ -20,6 +20,14 @@ function css() {
     .pipe(autoPrefixer())
     .pipe(sourcemaps.write("."))
     .pipe(dest("css"));
+}
+function blog() {
+  return src("blog/scss/*.scss")
+    .pipe(sourcemaps.init({ loadMaps: true }))
+    .pipe(scss({ outputStyle: "compressed" }))
+    .pipe(autoPrefixer())
+    .pipe(sourcemaps.write("."))
+    .pipe(dest("blog/css"));
 }
 
 // minifyJs
@@ -34,8 +42,9 @@ function minifyJs() {
 // Watch files
 function watchFiles() {
   watch(["scss"], css);
+  watch(["scss"], blog);
   watch(["js/*.js"], minifyJs);
 }
 
-export default series(css, minifyJs);
+export default series(css, blog, minifyJs);
 export { watchFiles as watch };

@@ -368,3 +368,47 @@ $avatar-ratio: 1/1;
     z-index: 1;
   }
 }
+
+@mixin button {
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+}
+
+//bg messages
+@mixin bg-success {
+  background-color: lighten($color: #1dc9b7, $amount: 45);
+  color: darken($color: #1dc9b7, $amount: 10);
+}
+
+@mixin bg-warning {
+  background-color: lighten($color: #ffb822, $amount: 45);
+  color: darken($color: #ffb822, $amount: 10);
+}
+
+@mixin bg-info {
+  background-color: lighten($color: #5578eb, $amount: 25);
+  color: darken($color: #5578eb, $amount: 10);
+}
+
+@mixin bg-danger {
+  background-color: lighten($color: #fd397a, $amount: 35);
+  color: darken($color: #fd397a, $amount: 10);
+}
+
+@mixin avatar {
+  @include bg-brand;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  aspect-ratio: $avatar-ratio;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  // width: 40px;
+  // height: 40px;
+}

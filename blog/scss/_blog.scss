@@ -1,0 +1,23 @@
+//Framework
+
+//@import "bootstrap/bootstrap";
+//@import "bootstrap/variables";
+$blog-banner-ratio: 16/5;
+$blog-ratio: 16/9;
+
+//themes   
+@import "../../scss/main";
+
+
+//layout
+@import "layout/header";
+@import "layout/footer";
+
+//components
+
+
+//vendors
+//@import "vendors/animate";
+
+//pages
+@import "pages/blog";

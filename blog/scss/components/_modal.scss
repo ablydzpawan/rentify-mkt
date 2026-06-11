@@ -1,0 +1,153 @@
+$space: 1rem;
+
+.modal {
+  &-backdrop {
+    position: fixed;
+    top: 0;
+    #{$start-direction}: 0;
+    z-index: 1040;
+    width: 100vw;
+    height: 100vh;
+    @include backdrop;
+  }
+
+  &-content {
+    border: none;
+    //border-radius: $common-radius;
+    border-radius: $card-radius;
+    box-shadow: 0 2px 48px 0 rgba(0, 0, 0, 0.06);
+
+    .close {
+      font-weight: $font-weight-regular;
+    }
+  }
+
+  &-header {
+    padding: $space;
+
+    .close {
+      margin: -1rem;
+      margin-#{$start-direction}: auto !important;
+    }
+
+    .btn-close {
+      margin-#{$start-direction}: auto !important;
+      margin-#{$end-direction}: 0 !important;
+    }
+  }
+
+  &-footer {
+    padding: $space;
+  }
+
+  &-title {
+    font-size: 1.2rem;
+    color: $txt-body;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+
+    //flex-direction: column;
+    small {
+      font-size: 0.8rem;
+    }
+  }
+
+  &.fixed-right {
+    padding-#{$end-direction}: 0 !important;
+
+    &.fade .modal-dialog-vertical {
+      transform: translateX(100% * $transform-direction);
+    }
+
+    &.show .modal-dialog-vertical {
+      transform: translateX(0 * $transform-direction);
+    }
+
+    .modal-content {
+      border-radius: 0 !important;
+    }
+  }
+
+  &-dialog-vertical {
+    height: 100%;
+    max-width: 500px;
+    margin: 0;
+    margin-#{$start-direction}: auto;
+
+    .modal-content {
+      //border-radius: $common-radius;
+      border-radius: $card-radius;
+      height: inherit;
+      overflow-y: auto;
+      scrollbar-gutter: stable;
+
+      .modal-header {
+        padding: 1.5rem 2rem;
+      }
+    }
+  }
+
+  &-sm {
+    max-width: 250px;
+  }
+
+  &-md {
+    max-width: 750px;
+  }
+
+  &-lg {
+    max-width: 1000px;
+  }
+
+  &-xl {
+    width: 80%;
+  }
+
+  &-xxl {
+    width: 100%;
+  }
+}
+
+// .modal.fade .modal-dialog.modal-dialog-zoom {
+//     transform: translate(0, 0) scale(0.5);
+// }
+// .modal.show .modal-dialog.modal-dialog-zoom {
+//     transform: translate(0, 0) scale(1);
+// }
+
+button.close {
+  font-weight: $font-weight-regular;
+  font-size: 1.5rem;
+}
+
+.dialogue {
+  .icn {
+    font-size: 5rem;
+    margin-bottom: 2rem;
+
+    &-warning {
+      color: $warning-color;
+    }
+
+    &-success {
+      color: $success-color;
+    }
+
+    &-danger {
+      color: $danger-color;
+    }
+  }
+}
+
+.btn-close-start {
+  position: absolute;
+  top: 1rem;
+  #{$start-direction}: 1rem;
+}
+
+.btn-close-end {
+  position: absolute;
+  top: 1rem;
+  #{$end-direction}: 1rem;
+}

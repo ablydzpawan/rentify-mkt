@@ -1,0 +1,159 @@
+.contact-page {
+  padding-top: 0;
+  padding-bottom: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+
+  @include media-breakpoint-up(lg) {
+    flex-direction: row;
+    gap: 5rem;
+  }
+
+  &-start {
+
+    padding: 2rem 2rem;
+
+    @include media-breakpoint-up(lg) {
+      flex: 0 0 60%;
+      max-width: 60%;
+    }
+
+    .form {
+      @include media-breakpoint-up(lg) {
+        margin-left: auto;
+        max-width: 750px;
+      }
+    }
+  }
+
+  &-end {
+    background-color: $bg-gray;
+    flex: auto;
+    padding: 2rem;
+
+    @include media-breakpoint-up(lg) {
+      padding: 2rem 4rem;
+    }
+  }
+
+  .section-text-h2 {
+    font-weight: 400;
+    font-size: clamp(1.5rem, calc(2.25rem + 2.250vw), 3.5rem);
+  }
+}
+
+.contact-address {
+  border-radius: $card-radius;
+
+  // border: $border;
+  // border-radius: 4px;
+  @include media-breakpoint-up(md) {}
+
+  color: $txt-gray;
+  font-size: 0.85rem;
+
+  &-item {
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+    border-bottom: $border;
+
+    &:last-child {
+      padding-bottom: 0;
+      margin-bottom: 0;
+      border: none;
+    }
+  }
+
+  h6 {
+    font-size: 1.125rem;
+    font-weight: $font-weight-normal;
+    color: $txt-body;
+    margin-bottom: 10px;
+  }
+
+  .footer-social {
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
+}
+
+.list-contact {
+  display: flex;
+  flex-direction: column;
+
+  li {
+    padding: 10px 0;
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+  }
+
+  .icon {
+    font-size: 2rem;
+    opacity: 0.5;
+    line-height: 1;
+  }
+
+  .label {
+    font-size: 1.05rem;
+    font-weight: 300;
+    line-height: 2;
+  }
+}
+
+.g-map {
+  position: relative;
+  height: 490px;
+  /* z-index: 1;*/
+}
+
+.g-map iframe {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 0;
+}
+
+//addresses
+
+.grid-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 2rem;
+}
+
+.address-card {
+  @include bg-white;
+  border-radius: $card-radius;
+  padding: 1rem;
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &-title {
+    font-weight: $font-weight-boldest;
+    font-size: 1.5rem;
+  }
+
+  &-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  &-text {
+    /* font-weight: $font-weight-bold; */
+    font-size: 1rem;
+  }
+
+  .location {
+    font-weight: $font-weight-bold;
+    font-size: 1rem;
+    color: $bg-brand;
+  }
+}

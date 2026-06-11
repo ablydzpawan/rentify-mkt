@@ -1,0 +1,160 @@
+//dropdown-menu
+
+.dropdown-menu {
+  font-size: 0.85rem;
+  border: 0 !important;
+  margin: 0;
+  min-width: 14rem;
+  //box-shadow: $card-shadow;
+  box-shadow: $shadow-theme;
+  padding: 1rem 0;
+  border-radius: $card-radius;
+  #{$start-direction}: 0;
+  text-align: #{$start-direction};
+  max-height: 350px;
+  overflow-x: auto;
+
+  &-anim {
+    animation: dropdown-menu-fade-in 0.3s ease 1,
+      dropdown-menu-move-up 0.3s ease-out 1;
+  }
+
+  &-right {
+    #{$end-direction}: 0;
+    #{$start-direction}: auto;
+  }
+
+  &-item {
+    margin: 1px;
+    border: none;
+  }
+
+  &-link {
+    background-color: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 1rem;
+    color: inherit;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    width: 100%;
+    text-align: inherit;
+    position: relative;
+    @include btn-hover;
+
+    .svg {
+      width: 14px;
+      min-width: 14px;
+      height: 14px;
+    }
+  }
+
+  &-radio {
+    background-color: transparent;
+    border: none;
+    padding: 10px 1rem;
+    color: inherit;
+    border-radius: 10px;
+    width: 100%;
+    text-align: inherit;
+
+    &:is(:hover, :focus, :active) {
+      cursor: pointer;
+    }
+  }
+
+  .svg {
+    color: $txt-brand;
+  }
+}
+
+.dropdown-static {
+  position: static !important;
+}
+
+@-webkit-keyframes dropdown-menu-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes dropdown-menu-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes dropdown-menu-move-down {
+  from {
+    margin-top: -10px;
+  }
+
+  to {
+    margin-top: 0;
+  }
+}
+
+@keyframes dropdown-menu-move-down {
+  from {
+    margin-top: -10px;
+  }
+
+  to {
+    margin-top: 0;
+  }
+}
+
+@-webkit-keyframes dropdown-menu-move-up {
+  from {
+    margin-top: 10px;
+  }
+
+  to {
+    margin-top: 0;
+  }
+}
+
+@keyframes dropdown-menu-move-up {
+  from {
+    margin-top: 10px;
+  }
+
+  to {
+    margin-top: 0;
+  }
+}
+
+
+
+.nav-block {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0;
+
+  .expand-heading {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+  }
+}
+
+.box-scroller {
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+  max-height: 350px;
+}
+
+.btn-dropdown-content {
+  @include truncate(100%);
+  width: 100%;
+  display: block;
+}

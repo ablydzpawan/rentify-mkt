@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr" data-version="1">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="keyword" content="">
+        <meta name="author" content="Rentify">
+        <!--! The above 6 meta tags *must* come first in the head; any other head content must come *after* these tags !-->
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <style>
+            body {
+                min-height: calc(100% + env(safe-area-inset-top));
+                padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+            }
+        </style>
+
+        <!--! BEGIN: Apps Title-->
+        <title>Welcome to rentify! 👋🏻</title>
+        <!--! END:  Apps Title-->
+        <link rel="icon" href="/favicon.ico" sizes="32x32">
+        <link rel="icon" href="/icon.svg" type="image/svg+xml">
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png"><!-- 180×180 -->
+        <link rel="manifest" href="/manifest.webmanifest">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+            rel="stylesheet">
+
+        <link rel="stylesheet" href="/blog/css/blog-ltr.css" />
+        <style>
+            :root {
+                --brand-color: rgb(0, 0, 0);
+                --brand-color-alpha: 0, 0, 0;
+                --brand-color-inverse: rgb(255, 255, 255);
+                --secondary-color: rgb(0, 0, 0);
+                --secondary-color-alpha: 0, 0, 0;
+                --secondary-color-inverse: rgb(255, 255, 255);
+            }
+        </style>
+    </head>
+
+    <body class="">
+        <div class="wrapper">
+            <header class="header header-blog">
+                <div class="container">
+                    <div class="header-inner">
+                        <div class="header-start"> <button class="hamburger-nav" type="button"
+                                data-bs-toggle="offcanvas" data-bs-target="#blog-menu" aria-controls="blog-menu">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="svg" width="18" height="18"
+                                    fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M3 4H21V6H3V4ZM3 11H15V13H3V11ZM3 18H21V20H3V18Z" fill="currentColor">
+                                    </path>
+                                </svg>
+                            </button>
+                            <a class="logo" href="/">
+                                <img src="./images/logos/rentify.svg" alt="">
+                            </a>
+                        </div>
+                        <div class="header-center">
+                            <div class="menu-nav">
+                                <ul class="nav-blog">
+                                    <li class="nav-blog-item">
+                                        <a class="nav-blog-link" href="/Rentify-features-2">
+                                            Rentify Features </a>
+                                    </li>
+                                    <li class="nav-blog-item">
+                                        <a class="nav-blog-link" href="/multi-vendor-store-3">
+                                            Multi-Vendor Store </a>
+                                    </li>
+                                    <li class="nav-blog-item">
+                                        <a class="nav-blog-link" href="/ecommerce-marketing-9">
+                                            Ecommerce marketing </a>
+                                    </li>
+                                    <li class="nav-blog-item dropdown">
+                                        <a class="nav-blog-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                            aria-expanded="false">
+                                            More Categories</a>
+                                        <ul class="dropdown-menu">
+                                            <li class="dropdown-menu-item"><a class="dropdown-menu-link" href="#"> AI &
+                                                    Machine Learning <span class="number"> (02)</span></a>
+                                            </li>
+                                            <li class="dropdown-menu-item"><a class="dropdown-menu-link" href="#">Web
+                                                    Development </a></li>
+                                            <li class="dropdown-menu-item"><a class="dropdown-menu-link" href="#">Mobile
+                                                    Development</a></li>
+                                            <li class="dropdown-menu-item"><a class="dropdown-menu-link"
+                                                    href="#">DevOps</a></li>
+                                            <li class="dropdown-menu-item"><a class="dropdown-menu-link" href="#">Data
+                                                    Science</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="header-end">
+                            <div class="open-search">
+                                <form name="" method="get" id="" class="main-search-form" autocomplete="off">
+                                    <input class="open-search-input " aria-label="search" placeholder="Search..."
+                                        type="search" name="keyword" value=""> <button type="submit" id="" value="go"
+                                        class="open-search-submit" aria-label="search button">
+                                        <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 24 24" fill="currentColor">
+                                            <path
+                                                d="M18.031 16.6168L22.3137 20.8995L20.8995 22.3137L16.6168 18.031C15.0769 19.263 13.124 20 11 20C6.032 20 2 15.968 2 11C2 6.032 6.032 2 11 2C15.968 2 20 6.032 20 11C20 13.124 19.263 15.0769 18.031 16.6168ZM16.0247 15.8748C17.2475 14.6146 18 12.8956 18 11C18 7.1325 14.8675 4 11 4C7.1325 4 4 7.1325 4 11C4 14.8675 7.1325 18 11 18C12.8956 18 14.6146 17.2475 15.8748 16.0247L16.0247 15.8748Z">
+                                            </path>
+                                        </svg>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <main class="main">
+                <section class="">
+                    <div class="container">
+                        <div class="blog-detail post-data is-fixed">
+                            <div class="blog-detail-left">
+
+                                <div class="blog-head">
+                                    <h1 class="title"> 8 Shopping Cart Abandonment Examples and What Marketers can Learn
+                                        from Them</h1>
+                                    <div class="posted-by">
+                                        <div class="user-profile">
+                                            <div class="user-profile-photo">Y</div>
+                                            <div class="user-profile-data">
+                                                <span class="user-profile-title">
+                                                    Rentify Chef </span>
+                                                <span class="time"> 18/07/2019 </span>
+                                            </div>
+                                        </div>
+                                        <span class="tag">
+                                            In
+                                            <a href="/ecommerce-4" class="text--dark">eCommerce</a>
+                                        </span>
+                                        <div class="share-blog">
+                                            <button class="btn btn-outline-brand btn-wide btn-icon no-after"
+                                                type="button" data-bs-toggle="modal" data-bs-target="#socialSharing13">
+                                                <svg class="svg" xmlns="http://www.w3.org/2000/svg" width="16"
+                                                    height="16" fill="currentColor" class="bi bi-share"
+                                                    viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.5 2.5 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5m-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3m11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3" />
+                                                </svg>
+                                                Share </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="posted-media">
+                                    <div class="media-wrapper">
+                                        <img src="https://demo.yo-kart.com/image/blog-post-front/13/0/NORMAL/0/3881?t=1660120824"
+                                            alt="8 Shopping Cart Abandonment Examples and What Marketers can Learn from Them"
+                                            title="8 Shopping Cart Abandonment Examples and What Marketers can Learn from Them">
+                                    </div>
+                                </div>
+                                <div class="post-content">
+                                    <!-- <div class="post-meta-detail">
+                                                                </div> -->
+
+
+
+                                    <div>&nbsp;According to a report by SaleCycle, 75.60% of shopping carts are
+                                        abandoned
+                                        during online shopping. This clearly depicts that your sales could increase more
+                                        than 3/4th if you strategically improve your website's user experience.</div>
+                                    <div><br>
+                                    </div>
+                                    <div>&nbsp;Unique customer experience is the key to earn loyal and repeat customers.
+                                        Big
+                                        data is one of the major components in providing unique customer experience. It
+                                        also
+                                        helps in devise action plan to re-engage with customers who have abandoned their
+                                        cart.</div>
+                                    <div><br>
+                                    </div>
+                                    <div>&nbsp;It is not possible to persuade all customers to complete their checkout.
+                                        But,
+                                        if we used big data in the right way we can gather maximum information about the
+                                        users which can be used for personalized marketing.</div>
+                                    <div><br>
+                                    </div>
+                                    <div>&nbsp;Due to lack of resources brands and businesses are not leveraging big
+                                        data
+                                        for marketing purpose. Optimal use of data will lead to providing a personalized
+                                        experience and curating relevant content for abandoned cart email.</div>
+                                    <div><br>
+                                    </div>
+                                    <div>&nbsp;Here are some best examples of email and mobile notification for
+                                        recovering
+                                        abandoned shopping cart.</div>
+                                    <div>&nbsp;</div>
+                                    <div><br>
+                                    </div>
+                                    <div><span style="font-weight: bold;">The Email Recovery Campaign</span></div>
+                                    <div><br>
+                                    </div>
+                                    <div><span style="font-weight: bold;">Example 1</span></div>
+                                    <div><br>
+                                    </div>
+                                    <div>Some of the negative reasons why buyers abandon cart are:</div>
+                                    <div><br>
+                                    </div>
+                                    <div>- Addition of taxes during checkout</div>
+                                    <div><br>
+                                    </div>
+                                    <div>- Uncertainty about the quality of the product</div>
+                                    <div><br>
+                                    </div>
+                                    <div>- Shipping charges are high</div>
+                                    <div><br>
+                                    </div>
+                                    <div>- UX of the website is not compliant with user expectation</div>
+                                    <div><br>
+                                    </div>
+                                    <div>- Desirable payment gateway unavailable</div>
+                                    <div><br>
+                                    </div>
+                                    <div>&nbsp;For the few who abandoned their cart due to internet connectivity or
+                                        website
+                                        crash, send a reminder email.</div>
+                                    <div><br>
+                                    </div>
+                                    <div>&nbsp;The latter type will want to buy the product from your website. These
+                                        customers just want a reminder of the product they wanted to buy. Sending them
+                                        an
+                                        abandoned cart email with the product detail and link to complete their
+                                        transaction
+                                        will enable buyers to complete their purchase journey.</div>
+                                    <div><br>
+                                    </div>
+                                    <div>&nbsp;Bulkbookstore, a B2B website catering to institutions and businesses
+                                        which
+                                        want books in bulk quantity, send a reminder abandoned cart email. With a simple
+                                        content, the business is informing it's customers that they have not completed a
+                                        specific order. They also provide the customer with a link to complete the order
+                                        without registering or filling any forms. If you have noticed, they have also
+                                        given
+                                        the customers a bait which is "Price match guarantee".</div>
+                                    <div><br>
+                                    </div>
+                                    <div><br>
+                                    </div>
+                                    <div><span style="font-weight: bold;">Example 2</span></div>
+                                    <div><br>
+                                    </div>
+                                    <div>&nbsp;The abandoned cart email that you send should be carefully analyzed after
+                                        checking the buyer persona. Ecommerce business must apply more sophisticated
+                                        algorithms to analyze the mindset of people who are visiting the website. An
+                                        in-depth research to collect the data on users who abandon.</div>
+                                    <div><br>
+                                    </div>
+                                    <div>Similarly, Cratejoy a subscription-based marketplace has analyzed that their
+                                        customers usually:</div>
+                                    <div><br>
+                                    </div>
+                                    <div>- Do not make immediate decisions</div>
+                                    <div><br>
+                                    </div>
+                                    <div>- Analyze if the need is for a longer duration</div>
+                                    <div><br>
+                                    </div>
+                                    <div>&nbsp;Cratejoy has written the perfect copy according to their buyer persona. A
+                                        sense of urgency has also been introduced, as they have mentioned that the
+                                        shopping
+                                        cart will expire in a few days in the following example.</div>
+                                    <div>&nbsp;</div>
+                                    <div><br>
+                                    </div>
+                                    <div><span style="font-weight: bold;">Example 3</span></div>
+                                    <div><br>
+                                    </div>
+                                    <div>&nbsp;There are some product which can trigger the emotional quotient of a
+                                        person.
+                                        Especially if the product is related to the health and well-being of a family
+                                        member
+                                        or pet. Businesses which can use the emotional aspect, must use it wisely in the
+                                        email campaign. Email marketing should also be the same. Some factors that
+                                        compel
+                                        the users to open the email are:</div>
+                                    <div><br>
+                                    </div>
+                                    <div>- Relevant and engaging subject line</div>
+                                    <div><br>
+                                    </div>
+                                    <div>- Personalized content with powerful marketing words</div>
+                                    <div><br>
+                                    </div>
+                                    <div>- High Quality and Relevant images</div>
+                                    <div><br>
+                                    </div>
+                                    <div>&nbsp;Which brings us to our next example(also my favorite), Petplate, a
+                                        subscription-based business model, which provides pet food on weekly basis.
+                                    </div>
+                                    <div><br>
+                                    </div>
+                                    <div>&nbsp;The email starts with a witty line and image to catch the attention of
+                                        users
+                                        to the email. Moving on to put the reader on a tight spot. This email has all
+                                        the
+                                        elements which are required to complete the customers to make the transaction.
+                                        They
+                                        have mentioned the USPs of the product. Also, they have given an extra incentive
+                                        to
+                                        the customer by offering them a discount.</div>
+                                    <div><br>
+                                    </div>
+                                    <div><br>
+                                    </div>
+                                    <div><span style="font-weight: bold;">Example 4</span></div>
+                                    <div><br>
+                                    </div>
+                                    <div>&nbsp;A user can be converted into a customer if we create the FOMO effect. A
+                                        lot
+                                        of customers abandon their carts but when they realize the product will go out
+                                        of
+                                        stock, they usually want to buy the product. Just an email making your customers
+                                        realize that they will miss out on the product which is in their cart.</div>
+                                    <div><br>
+                                    </div>
+                                    <div>&nbsp;For a similar scenario, check the example below. Fab is a design-focused
+                                        company, dedicated to helping our customers discover fun and unique products.
+                                        First,
+                                        it is reminding the customers about the items they left in their cart. Then, Fab
+                                        move on to state, that complete the transaction until the product is still
+                                        available.</div>
+                                    <div><span style="font-weight: bold;"></span></div>
+                                    <div>&nbsp;</div>
+                                    <div><br>
+                                    </div>
+                                    <div><span style="font-weight: bold;">Mobile app notifications</span></div>
+                                    <div><br>
+                                    </div>
+                                    <div>&nbsp;Similar to email the basic idea remains the same but let us see how apps
+                                        are
+                                        retrieving customers who have abandoned their cart. As a customer has already
+                                        downloaded your app, they are surely planning to buy products from you.</div>
+                                    <div><br>
+                                    </div>
+                                    <div><span style="font-weight: bold;">Example 1</span></div>
+                                    <div><br>
+                                    </div>
+                                    <div>&nbsp;Zomato, the popular food ordering, and delivery app, re-engage its
+                                        customers
+                                        to order the cart they have abandoned. They send a notification to remind the
+                                        customer that they have abandoned cart and can directly order by tapping on the
+                                        notification.</div>
+                                    <div><br>
+                                    </div>
+                                    <div><span style="font-weight: bold;">Example 2</span></div>
+                                    <div><br>
+                                    </div>
+                                    <div>&nbsp;Honest Beauty is an e-commerce app/website which helps customers to
+                                        purchase
+                                        beauty product online. As they know their target audience is mostly female,
+                                        their
+                                        notifications are also targeted. Firstly, they have started by a salutation then
+                                        addressed the user as "beautiful" which will engage the customer and lead them
+                                        to
+                                        buy the product.</div>
+                                    <div><br>
+                                    </div>
+                                    <div><span style="font-weight: bold;">Example 3</span></div>
+                                    <div><br>
+                                    </div>
+                                    <div>&nbsp;Jet is an e-commerce app/website for selling furniture and home decor
+                                        products. Brands have to plan their notification perfectly as it must be limited
+                                        to
+                                        a few words. "Jet" has sent a perfect abandoned cart notification where mention
+                                        that the product which the customer has abandoned will look better in their
+                                        house.
+                                        Jet is also making sure the customer reach the checkout page directly through
+                                        notification.</div>
+                                    <div><br>
+                                    </div>
+                                    <div><span style="font-weight: bold;">Example 4</span></div>
+                                    <div><br>
+                                    </div>
+                                    <div>&nbsp;1800flowers is a floral and gourmet foods gift website from where
+                                        customers
+                                        can order bouquets for special occasions. This is one of my favorite
+                                        notification as
+                                        it includes all important elements for the user to convert. First, the brand is
+                                        reminding the user of their abandoned cart. then they are offering a 15%
+                                        discount
+                                        and also included a FOMO effect as the discount is valid only "today".</div>
+                                    <div>&nbsp;</div>
+                                    <div><br>
+                                    </div>
+                                    <div><span style="font-weight: bold;">Conclusion</span></div>
+                                    <div><br>
+                                    </div>
+                                    <div>&nbsp;Looking at the high rate of shopping cart abandonment, business want to
+                                        increase their revenue and conversion. Every business must have an abandoned
+                                        cart
+                                        email strategy in place. Learn from the examples above and create a unique
+                                        strategy
+                                        for recovering abandoned cart, depending on your target audience.</div>
+                                </div>
+
+
+                                <div class="comments" id="container--comments">
+                                    <h5> Comments </h5>
+                                    <div>
+                                        <div class="block-empty">
+                                            <p class="block-empty-desc">No Comments On This Blog Post</p>
+                                        </div>
+                                    </div>
+                                    <div class="text-center" id="loadMoreCommentsBtnDiv"></div>
+                                </div>
+                                <div class="comment-respond" id="respond">
+                                    <h4 class="mb-2">Leave a comment </h4>
+                                    <form class="form" name="" method="get">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="field-set">
+                                                    <label class="form-label">Name</label>
+                                                    <input placeholder="Name" type="text" name=""
+                                                        value="Michael Williams">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="field-set">
+                                                    <label class="form-label">Email
+                                                        Address</label>
+                                                    <input placeholder="Email Address" type="text"
+                                                        value="login@dummyid.com">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="field-set">
+                                                    <label class="form-label">Message</label>
+                                                    <textarea placeholder="Message" data-field-caption="Message"
+                                                        data-fatreq="{&quot;required&quot;:true}"
+                                                        name="bpcomment_content"></textarea>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="field-set"> <button class="btn btn-brand btn-wide"
+                                                        type="button">Post
+                                                        Comment</button>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                </div>
+
+                            </div>
+                            <div class="blog-detail-right">
+                                <div class="">
+                                    <ul class="js-tabs tabs-blog">
+                                        <li class="is-active">
+                                            <a href="#/tab-1">
+                                                Popular </a>
+                                        </li>
+                                        <li>
+                                            <a href="#/tab-2">
+                                                Featured </a>
+                                        </li>
+                                    </ul>
+                                    <div class="tabs-content">
+                                        <div id="tab-1" class="content-data" style="display: block;">
+                                            <ul>
+                                                <li>
+                                                    <div class="post">
+                                                        <div class="post-body">
+                                                            <ul class="post-category">
+                                                                <li class="post-category-tag">
+                                                                    <a class="post-category-link"
+                                                                        href="/ecommerce-4">eCommerce</a>
+                                                                </li>
+                                                            </ul>
+                                                            <h2 class="post-title">
+                                                                <a href="">
+                                                                    8 Shopping Cart Abandonment Examples and What
+                                                                    Marketers
+                                                                    can Learn from Them</a>
+                                                            </h2>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="post">
+                                                        <div class="post-body">
+                                                            <ul class="post-category">
+                                                                <li class="post-category-tag">
+                                                                    <a class="post-category-link"
+                                                                        href="/Rentify-features-2">Rentify Features</a>
+                                                                </li>
+                                                                <li class="post-category-tag">
+                                                                    <a class="post-category-link"
+                                                                        href="/ecommerce-marketing-9">Ecommerce
+                                                                        marketing</a>
+                                                                </li>
+                                                                <li class="post-category-tag dropdown">
+                                                                    <a class="post-category-link dropdown-toggle"
+                                                                        href="#" data-bs-toggle="dropdown"
+                                                                        aria-expanded="true">
+                                                                        More</a>
+                                                                    <ul class="dropdown-menu">
+                                                                        <li class="dropdown-menu-item"><a
+                                                                                class="dropdown-menu-link" href="#"> AI
+                                                                                &amp; Machine
+                                                                                Learning
+                                                                                <span class="number"> (02)</span></a>
+                                                                        </li>
+                                                                        <li class="dropdown-menu-item"><a
+                                                                                class="dropdown-menu-link" href="#">Web
+                                                                                Development </a>
+                                                                        </li>
+                                                                        <li class="dropdown-menu-item"><a
+                                                                                class="dropdown-menu-link"
+                                                                                href="#">Mobile Development</a>
+                                                                        </li>
+
+                                                                    </ul>
+                                                                </li>
+                                                            </ul>
+                                                            <h2 class="post-title">
+                                                                <a href="">
+                                                                    5 Reasons Why Startups Fail?</a>
+                                                            </h2>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="post">
+                                                        <div class="post-body">
+                                                            <ul class="post-category">
+                                                                <li class="post-category-tag">
+                                                                    <a class="post-category-link"
+                                                                        href="/multi-vendor-store-3">Multi-Vendor
+                                                                        Store</a>
+                                                                </li>
+                                                                <li class="post-category-tag">
+                                                                    <a class="post-category-link"
+                                                                        href="/ecommerce-4">eCommerce</a>
+                                                                </li>
+                                                            </ul>
+                                                            <h2 class="post-title">
+                                                                <a href="">
+                                                                    Important Factors to Consider When Selecting an
+                                                                    Ecommerce Platform</a>
+                                                            </h2>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="post">
+                                                        <div class="post-body">
+                                                            <ul class="post-category">
+                                                                <li class="post-category-tag">
+                                                                    <a class="post-category-link"
+                                                                        href="/ecommerce-4">eCommerce</a>
+                                                                </li>
+                                                            </ul>
+                                                            <h2 class="post-title">
+                                                                <a href="">
+                                                                    Importance of Product Reviews and Customer
+                                                                    Testimonials
+                                                                    in Ecommerce</a>
+                                                            </h2>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div id="tab-2" class="content-data">
+                                            <ul>
+                                                <li>
+                                                    <div class="post">
+                                                        <div class="post-body">
+                                                            <ul class="post-category">
+                                                                <li class="post-category-tag">
+                                                                    <a class="post-category-link"
+                                                                        href="/Rentify-features-2">Rentify Features </a>
+                                                                </li>
+                                                                <li class="post-category-tag">
+                                                                    <a class="post-category-link"
+                                                                        href="/multi-vendor-store-3">Multi-Vendor Store
+                                                                    </a>
+                                                                </li>
+                                                                <li class="post-category-tag">
+                                                                    <a class="post-category-link"
+                                                                        href="/ecommerce-4">eCommerce </a>
+                                                                </li>
+                                                                <li class="post-category-tag">
+                                                                    <a class="post-category-link"
+                                                                        href="/Rentify-features-Rentify-shipping-7">Rentify
+                                                                        Shipping </a>
+                                                                </li>
+                                                                <li class="post-category-tag">
+                                                                    <a class="post-category-link"
+                                                                        href="/ecommerce-marketing-9">Ecommerce
+                                                                        marketing
+                                                                    </a>
+                                                                </li>
+                                                                <li class="post-category-tag">
+                                                                    <a class="post-category-link"
+                                                                        href="/ecommerce-marketing-growth-10">Growth
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                            <h2 class="post-title">
+                                                                <a href="#">10 Startups
+                                                                    Based
+                                                                    On Ecommerce Subscription Model </a>
+                                                            </h2>
+
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="post">
+                                                        <div class="post-body">
+                                                            <ul class="post-category">
+                                                                <li class="post-category-tag">
+                                                                    <a class="post-category-link"
+                                                                        href="/Rentify-features-2">Rentify Features </a>
+                                                                </li>
+                                                                <li class="post-category-tag">
+                                                                    <a class="post-category-link"
+                                                                        href="/ecommerce-marketing-9">Ecommerce
+                                                                        marketing
+                                                                    </a>
+                                                                </li>
+                                                                <li class="post-category-tag">
+                                                                    <a class="post-category-link"
+                                                                        href="/ecommerce-marketing-growth-10">Growth
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                            <h2 class="post-title">
+                                                                <a href="">5 Reasons Why Startups
+                                                                    Fail?
+                                                                </a>
+                                                            </h2>
+
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="post">
+                                                        <div class="post-body">
+                                                            <ul class="post-category">
+                                                                <li class="post-category-tag">
+                                                                    <a class="post-category-link"
+                                                                        href="/multi-vendor-store-3">Multi-Vendor Store
+                                                                    </a>
+                                                                </li>
+                                                                <li class="post-category-tag">
+                                                                    <a class="post-category-link"
+                                                                        href="/ecommerce-4">eCommerce </a>
+                                                                </li>
+                                                            </ul>
+                                                            <h2 class="post-title">
+                                                                <a href="">Important
+                                                                    Factors to Consider When Selecting an Ecommerce
+                                                                    Platform
+                                                                </a>
+                                                            </h2>
+
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="post">
+                                                        <div class="post-body">
+                                                            <ul class="post-category">
+                                                                <li class="post-category-tag">
+                                                                    <a class="post-category-link"
+                                                                        href="/Rentify-features-2">Rentify Features </a>
+                                                                </li>
+                                                                <li class="post-category-tag">
+                                                                    <a class="post-category-link"
+                                                                        href="/multi-vendor-store-3">Multi-Vendor Store
+                                                                    </a>
+                                                                </li>
+                                                                <li class="post-category-tag">
+                                                                    <a class="post-category-link"
+                                                                        href="/ecommerce-4">eCommerce </a>
+                                                                </li>
+                                                            </ul>
+                                                            <h2 class="post-title">
+                                                                <a href="">Benefits of
+                                                                    Multi-Vendor Ecommerce Marketplace for Sellers,
+                                                                    Buyers
+                                                                    and Owner </a>
+                                                            </h2>
+
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="/blog/contribution-form"
+                                    class="btn btn-brand btn--lg btn-block ripplelink btn--contribute"> Contribute </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+            <footer class="footer">
+                <div class="container">
+                    <div class="footer-inner">
+                        <div class="copyright">
+                            Copyright © 2023 rentify</div>
+                        <ul class="footer-social">
+                            <li class="footer-social-item">
+                                <a class="footer-social-link" title="Facebook" target="_blank" rel="noopener"
+                                    href="https://en-gb.facebook.com/RentifySoftware/">
+                                    <span class="footer-social-icon">
+                                        <svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                            height="20" width="20">
+                                            <path
+                                                d="m15.997 3.985h2.191v-3.816c-.378-.052-1.678-.169-3.192-.169-3.159 0-5.323 1.987-5.323 5.639v3.361h-3.486v4.266h3.486v10.734h4.274v-10.733h3.345l.531-4.266h-3.877v-2.939c.001-1.233.333-2.077 2.051-2.077z"
+                                                fill="#fff"></path>
+                                        </svg>
+                                    </span> <span class="footer-social-text">Facebook</span>
+                                </a>
+                            </li>
+                            <li class="footer-social-item">
+                                <a class="footer-social-link" title="Instagram" target="_blank" rel="noopener"
+                                    href="https://www.instagram.com/yo_kart/?hl=en">
+                                    <span class="footer-social-icon">
+                                        <svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                            height="20" width="20">
+                                            <path
+                                                d="m12.004 5.838c-3.403 0-6.158 2.758-6.158 6.158 0 3.403 2.758 6.158 6.158 6.158 3.403 0 6.158-2.758 6.158-6.158 0-3.403-2.758-6.158-6.158-6.158zm0 10.155c-2.209 0-3.997-1.789-3.997-3.997s1.789-3.997 3.997-3.997 3.997 1.789 3.997 3.997c.001 2.208-1.788 3.997-3.997 3.997z"
+                                                fill="#fff"></path>
+                                            <path
+                                                d="m16.948.076c-2.208-.103-7.677-.098-9.887 0-1.942.091-3.655.56-5.036 1.941-2.308 2.308-2.013 5.418-2.013 9.979 0 4.668-.26 7.706 2.013 9.979 2.317 2.316 5.472 2.013 9.979 2.013 4.624 0 6.22.003 7.855-.63 2.223-.863 3.901-2.85 4.065-6.419.104-2.209.098-7.677 0-9.887-.198-4.213-2.459-6.768-6.976-6.976zm3.495 20.372c-1.513 1.513-3.612 1.378-8.468 1.378-5 0-7.005.074-8.468-1.393-1.685-1.677-1.38-4.37-1.38-8.453 0-5.525-.567-9.504 4.978-9.788 1.274-.045 1.649-.06 4.856-.06l.045.03c5.329 0 9.51-.558 9.761 4.986.057 1.265.07 1.645.07 4.847-.001 4.942.093 6.959-1.394 8.453z"
+                                                fill="#fff"></path>
+                                            <circle cx="18.406" cy="5.595" r="1.439" fill="#fff"></circle>
+                                        </svg>
+                                    </span>
+                                    <span class="footer-social-text">Instagram</span>
+                                </a>
+                            </li>
+                            <li class="footer-social-item">
+                                <a class="footer-social-link" title="Twitter Rentify" target="_blank" rel="noopener"
+                                    href="https://twitter.com/Yo_Kart?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor">
+                                    <span class="footer-social-icon">
+                                        <svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+                                            height="20" width="20">
+                                            <g>
+                                                <g>
+                                                    <path
+                                                        d="M512,97.248c-19.04,8.352-39.328,13.888-60.48,16.576c21.76-12.992,38.368-33.408,46.176-58.016    c-20.288,12.096-42.688,20.64-66.56,25.408C411.872,60.704,384.416,48,354.464,48c-58.112,0-104.896,47.168-104.896,104.992    c0,8.32,0.704,16.32,2.432,23.936c-87.264-4.256-164.48-46.08-216.352-109.792c-9.056,15.712-14.368,33.696-14.368,53.056    c0,36.352,18.72,68.576,46.624,87.232c-16.864-0.32-33.408-5.216-47.424-12.928c0,0.32,0,0.736,0,1.152    c0,51.008,36.384,93.376,84.096,103.136c-8.544,2.336-17.856,3.456-27.52,3.456c-6.72,0-13.504-0.384-19.872-1.792    c13.6,41.568,52.192,72.128,98.08,73.12c-35.712,27.936-81.056,44.768-130.144,44.768c-8.608,0-16.864-0.384-25.12-1.44    C46.496,446.88,101.6,464,161.024,464c193.152,0,298.752-160,298.752-298.688c0-4.64-0.16-9.12-0.384-13.568    C480.224,136.96,497.728,118.496,512,97.248z"
+                                                        fill="#fff"></path>
+                                                </g>
+                                            </g>
+                                        </svg>
+                                    </span> <span class="footer-social-text">Twitter
+                                        Rentify</span>
+                                </a>
+                            </li>
+                            <li class="footer-social-item">
+                                <a class="footer-social-link" title="YouTube" target="_blank" rel="noopener"
+                                    href="https://www.youtube.com/watch?v=PsxHrGIlJgQ">
+                                    <span class="footer-social-icon">
+                                        <svg class="svg" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                            viewBox="0 0 24 24">
+                                            <path
+                                                d="M19.6069 6.99482C19.5307 6.69695 19.3152 6.47221 19.0684 6.40288C18.6299 6.28062 16.501 6 12.001 6C7.50098 6 5.37252 6.28073 4.93225 6.40323C4.68776 6.47123 4.4723 6.69593 4.3951 6.99482C4.2863 7.41923 4.00098 9.19595 4.00098 12C4.00098 14.804 4.2863 16.5808 4.3954 17.0064C4.47126 17.3031 4.68676 17.5278 4.93251 17.5968C5.37252 17.7193 7.50098 18 12.001 18C16.501 18 18.6299 17.7194 19.0697 17.5968C19.3142 17.5288 19.5297 17.3041 19.6069 17.0052C19.7157 16.5808 20.001 14.8 20.001 12C20.001 9.2 19.7157 7.41923 19.6069 6.99482ZM21.5442 6.49818C22.001 8.28 22.001 12 22.001 12C22.001 12 22.001 15.72 21.5442 17.5018C21.2897 18.4873 20.547 19.2618 19.6056 19.5236C17.8971 20 12.001 20 12.001 20C12.001 20 6.10837 20 4.39637 19.5236C3.45146 19.2582 2.70879 18.4836 2.45774 17.5018C2.00098 15.72 2.00098 12 2.00098 12C2.00098 12 2.00098 8.28 2.45774 6.49818C2.71227 5.51273 3.45495 4.73818 4.39637 4.47636C6.10837 4 12.001 4 12.001 4C12.001 4 17.8971 4 19.6056 4.47636C20.5505 4.74182 21.2932 5.51636 21.5442 6.49818ZM10.001 15.5V8.5L16.001 12L10.001 15.5Z"
+                                                fill="#fff"></path>
+                                        </svg>
+                                    </span>
+                                    <span class="footer-social-text">YouTube</span>
+                                </a>
+                            </li>
+                            <li class="footer-social-item">
+                                <a class="footer-social-link" title="LinkedIn" target="_blank" rel="noopener"
+                                    href="https://in.linkedin.com/showcase/yo-kart">
+                                    <span class="footer-social-icon">
+                                        <svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                            width="20" height="20">
+                                            <path
+                                                d="M6.94048 4.99993C6.94011 5.81424 6.44608 6.54702 5.69134 6.85273C4.9366 7.15845 4.07187 6.97605 3.5049 6.39155C2.93793 5.80704 2.78195 4.93715 3.1105 4.19207C3.43906 3.44699 4.18654 2.9755 5.00048 2.99993C6.08155 3.03238 6.94097 3.91837 6.94048 4.99993ZM7.00048 8.47993H3.00048V20.9999H7.00048V8.47993ZM13.3205 8.47993H9.34048V20.9999H13.2805V14.4299C13.2805 10.7699 18.0505 10.4299 18.0505 14.4299V20.9999H22.0005V13.0699C22.0005 6.89993 14.9405 7.12993 13.2805 10.1599L13.3205 8.47993Z"
+                                                fill="#fff"></path>
+                                        </svg>
+                                    </span>
+                                    <span class="footer-social-text">LinkedIn</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </footer>
+            <!-- Offcanvas -->
+
+            <div class="offcanvas offcanvas-start" id="blog-menu" aria-labelledby="blog-menuLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="blog-menuLabel">Menu</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+
+                    <ul class="nav-blog">
+                        <li class="nav-blog-item">
+                            <a class="nav-blog-link" href="/Rentify-features-2">
+                                Rentify Features <i class="icon icon-arrow-right"></i> </a>
+                        </li>
+                        <li class="nav-blog-item">
+                            <a class="nav-blog-link" href="/multi-vendor-store-3">
+                                Multi-Vendor Store <i class="icon icon-arrow-right"></i> </a>
+                        </li>
+                        <li class="nav-blog-item">
+                            <a class="nav-blog-link" href="/ecommerce-marketing-9">
+                                Ecommerce marketing <i class="icon icon-arrow-right"></i> </a>
+                        </li>
+                        <li class="nav-blog-item">
+                            <a class="nav-blog-link" href="/ecommerce-marketing-growth-10">
+                                Growth <i class="icon icon-arrow-right"></i> </a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+
+            <!-- /Offcanvas -->
+        </div>
+        <script src="./js/min/bundle.js"></script>
+    </body>
+
+</html>

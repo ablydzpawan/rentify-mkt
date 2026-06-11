@@ -1,0 +1,115 @@
+.pagination {
+  background-color: transparent;
+  border: none;
+  border-radius: 50px;
+  // box-shadow: $shadow;
+  display: inline-flex;
+  //border-radius: $common-radius;
+  // border-radius: $card-radius;
+  overflow: hidden;
+  margin: 0;
+  padding: 5px;
+  gap: 10px;
+
+  &-center {
+    justify-content: center;
+    width: 100%;
+  }
+
+  &-end {
+    justify-content: flex-end;
+    margin-#{$start-direction}: auto;
+  }
+
+  &-item {
+    &.selected {
+      a {
+        border-color: $brand-color;
+        @include bg-brand;
+      }
+    }
+
+    &.disabled {
+      opacity: 0.4;
+
+      a {
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  [dir="rtl"] & {
+    i {
+      transform: rotate(180deg);
+    }
+  }
+
+  &-link {
+    background-color: $bg-white;
+    border-radius: 50px;
+    border: none;
+    border: $border;
+    width: 40px;
+    line-height: 38px;
+    text-align: center;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    color: $txt-body;
+    //border-radius: $common-radius;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+
+    &:is(:hover, :focus, :active, .selected) {
+      @include bg-brand;
+      border-color: $brand-color;
+    }
+  }
+
+  &-btn {
+    cursor: pointer;
+    background-color: #f1f1f1;
+    color: #000;
+    border: none;
+    border-radius: 200px;
+    padding-#{$start-direction}: 1rem;
+    padding-#{$end-direction}: 1rem;
+    width: auto;
+    font-weight: 600;
+
+    &:hover {
+      @include bg-brand;
+    }
+  }
+}
+
+.pager {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  gap: 2rem;
+
+  @include media-breakpoint-up(lg) {
+    margin-#{$start-direction}: auto;
+  }
+}
+
+//per-page
+.per-page {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+
+  &-txt {
+    font-size: 0.85rem;
+  }
+
+  &-select {
+    border: none;
+  }
+}
