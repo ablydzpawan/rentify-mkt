@@ -92,6 +92,8 @@ $bg-secondary-light: rgba(var(--secondary-color-alpha), 0.1);
 $bg-light: #f8eae1;
 $bg-gray: #f5f6f6;
 $gray-light: #f3f4f5;
+$bg-gray-lightest: #f3f4f5;
+
 $bg-black: #000;
 $bg-placeholder: rgba(0, 0, 0, 0.03);
 $bg-body: #f3f4f5;
@@ -181,6 +183,11 @@ $avatar-ratio: 1/1;
 
 @mixin bg-gray {
   background-color: $bg-gray;
+  color: $txt-body;
+}
+
+@mixin bg-gray-lightest {
+  background-color: $bg-gray-lightest;
   color: $txt-body;
 }
 

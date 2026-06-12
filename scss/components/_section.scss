@@ -147,6 +147,11 @@
 }
 
 .page-title {
-  font-size: clamp(0.5rem, 6rem, 4.5rem);
+  font-size: clamp(1.5rem, calc(2rem + 2vw), 3.5rem);
   font-weight: 400;
+
+  @include media-breakpoint-up(lg) {
+    // font-size: clamp(0.5rem, 6rem, 4.5rem);
+
+  }
 }
