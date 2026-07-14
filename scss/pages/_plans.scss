@@ -1,0 +1,316 @@
+/* ---------- PLAN GRID ---------- */
+.plans {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  padding: 36px 0 60px;
+  align-items: stretch;
+
+  @include media-breakpoint-up(lg) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .card {
+    background-color: #fff;
+    border: $border;
+    position: relative;
+    border-radius: 22px;
+    padding: 26px 22px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    transition: transform .3s var(--ease), border-color .3s var(--ease);
+
+    &:hover {}
+  }
+
+
+  .card.basic {}
+
+  .card.popular {}
+
+  .card.advanced {}
+
+  .card.enterprise {}
+
+  .badge-flag {
+    background-color: #FFD302;
+    color: #000;
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    padding: 5px 12px 5px 10px;
+    border-radius: 100px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    white-space: nowrap;
+
+    svg {
+      width: 11px;
+      height: 11px;
+    }
+  }
+
+  .card-head {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 6px;
+  }
+
+  .plan-name {
+    font-weight: 600;
+    font-size: 1.85rem;
+  }
+
+  .plan-tag {
+    color: $txt-gray;
+    font-size: 0.8rem;
+    line-height: 1.4;
+    min-height: 34px;
+  }
+
+  .price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+  }
+
+  .price {
+    font-size: 2rem;
+    font-weight: 700;
+    color: $txt-body;
+  }
+
+  .price-per {
+    font-size: 0.75rem;
+    color: $txt-gray-light;
+  }
+
+  .price-strike {
+    font-size: 0.75rem;
+    color: $txt-gray-light;
+    text-decoration: line-through;
+  }
+
+  .discount-chip {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--tier);
+    background: color-mix(in srgb, var(--tier) 16%, transparent);
+    padding: 3px 8px;
+    border-radius: 100px;
+    width: fit-content;
+  }
+
+  .billed-as {
+    font-size: 11.5px;
+    color: $txt-gray-light;
+  }
+
+  .cta {
+    &:active {
+      transform: translateY(1px);
+    }
+
+    &:hover {
+      filter: brightness(1.08);
+    }
+  }
+
+
+  .credits-row {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 13px;
+    color: var(--tier);
+    padding-top: 2px;
+  }
+
+  .credits-row b {
+    font-size: 14px;
+    color: var(--text-1);
+  }
+
+  .credits-row svg {
+    width: 14px;
+    height: 14px;
+  }
+
+
+  .h6 {
+    font-weight: 600;
+  }
+
+  .divider {
+    height: 1px;
+    background: $bg-gray-light;
+    margin: 2px 0;
+  }
+
+  .feat-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+
+    li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 0.9rem;
+      color: $txt-body;
+      line-height: 1.4;
+    }
+
+    strong {
+      font-weight: 600;
+    }
+
+    .icon {
+      flex-shrink: 0;
+      width: 1rem;
+      height: 1rem;
+
+      &.tick {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'%3E%3Cpath d='M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z'%3E%3C/path%3E%3C/svg%3E");
+      }
+    }
+  }
+
+
+  .compl {
+    font-size: 12px;
+    color: $txt-gray-light;
+    letter-spacing: .02em;
+    padding-top: 4px;
+  }
+
+  .compl span {
+    color: $txt-gray-lighest;
+  }
+}
+
+
+/* ---------- COMPARISON TABLE ---------- */
+.compare {
+  padding: 20px 0 90px;
+}
+
+.table-scroll {
+  // overflow-x: auto;
+  //border: $border;
+  //border-radius: 20px;
+
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 820px;
+}
+
+thead th {
+  position: sticky;
+  top: 80px;
+  z-index: 2;
+  background: #fff;
+  padding: 18px 1rem;
+  text-align: left;
+  font-weight: 700;
+  font-size: 1rem;
+
+  // border-bottom: $border;
+  .btn {
+    font-size: 1rem;
+    display: block;
+    width: 100%;
+    padding: 0.5rem 1rem;
+    line-height: 1.5;
+    height: auto;
+    margin: 10px 0;
+  }
+
+  .price-row {
+    font-size: 0.8rem;
+    font-weight: 400;
+  }
+}
+
+thead th:first-child {
+  min-width: 230px;
+  padding-inline-start: 0;
+}
+
+thead th.tier-col {
+  text-align: center;
+  min-width: 130px;
+}
+
+thead th.tier-col .swatch {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 6px;
+}
+
+tbody .cat-row td {
+  background: var(--surface-2);
+  font-size: 0.8rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: $txt-gray-light;
+  font-weight: 500;
+  padding: 1rem 0;
+  border-top: $border-light;
+  border-bottom: $border-light;
+}
+
+tbody td {
+  padding: 0.9rem 1rem;
+  font-size: 0.85rem;
+  color: $txt-body;
+  border-bottom: $border-light;
+}
+
+tbody td:first-child {
+  padding-inline-start: 0;
+
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+tbody td.feat-name {
+  color: var(--text-1);
+  font-weight: 500;
+}
+
+td.tier-col {
+  text-align: center;
+  font-size: 0.75rem;
+}
+
+td.tier-col.win {
+  color: var(--text-1);
+}
+
+.yes {}
+
+.no {}
+
+tbody tr:hover td {
+  background: rgba(255, 255, 255, .015);
+}

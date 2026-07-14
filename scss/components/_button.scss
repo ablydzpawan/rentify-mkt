@@ -150,6 +150,17 @@
      }
    }
 
+   &-gray {
+     background-color: rgb(237, 237, 237);
+     border-color: transparent;
+     color: $txt-body;
+
+     &:hover {
+       color: currentColor;
+     }
+   }
+
+
    &-outline-gray {
      background-color: transparent;
      border-color: $border-color;
