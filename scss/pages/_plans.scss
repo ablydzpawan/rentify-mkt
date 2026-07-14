@@ -1,10 +1,14 @@
 /* ---------- PLAN GRID ---------- */
 .plans {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   gap: 16px;
   padding: 36px 0 60px;
   align-items: stretch;
+
+  @include media-breakpoint-up(md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
   @include media-breakpoint-up(lg) {
     grid-template-columns: repeat(4, 1fr);
@@ -85,6 +89,7 @@
   .price {
     font-size: 2rem;
     font-weight: 700;
+    line-height: 1;
     color: $txt-body;
   }
 
@@ -126,24 +131,6 @@
   }
 
 
-  .credits-row {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    font-size: 13px;
-    color: var(--tier);
-    padding-top: 2px;
-  }
-
-  .credits-row b {
-    font-size: 14px;
-    color: var(--text-1);
-  }
-
-  .credits-row svg {
-    width: 14px;
-    height: 14px;
-  }
 
 
   .h6 {
@@ -208,9 +195,14 @@
 }
 
 .table-scroll {
-  // overflow-x: auto;
+  overflow-x: auto;
+
   //border: $border;
   //border-radius: 20px;
+  @include media-breakpoint-up(xl) {
+    overflow-x: visible;
+
+  }
 
 }
 
@@ -221,14 +213,18 @@ table {
 }
 
 thead th {
-  position: sticky;
-  top: 80px;
-  z-index: 2;
   background: #fff;
   padding: 18px 1rem;
   text-align: left;
   font-weight: 700;
   font-size: 1rem;
+
+  @include media-breakpoint-up(lg) {
+    position: sticky;
+    top: 80px;
+    z-index: 2;
+
+  }
 
   // border-bottom: $border;
   .btn {
@@ -294,7 +290,7 @@ tbody tr:last-child td {
 }
 
 tbody td.feat-name {
-  color: var(--text-1);
+
   font-weight: 500;
 }
 
@@ -303,13 +299,13 @@ td.tier-col {
   font-size: 0.75rem;
 }
 
-td.tier-col.win {
-  color: var(--text-1);
-}
+td.tier-col.win {}
 
 .yes {}
 
-.no {}
+.no {
+  opacity: 0.7;
+}
 
 tbody tr:hover td {
   background: rgba(255, 255, 255, .015);

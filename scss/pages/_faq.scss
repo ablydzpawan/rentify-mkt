@@ -1,7 +1,8 @@
 .faq-list-page {
   .faq-list-link {
-    font-size: 1.5rem;
-    font-weight: 400;
+    //font-size: 1.5rem;
+    font-size: clamp(1rem, 1vw, 2.5rem);
+    font-weight: 500;
   }
 
   .faq-list-item p {
