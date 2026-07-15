@@ -310,3 +310,62 @@ td.tier-col.win {}
 tbody tr:hover td {
   background: rgba(255, 255, 255, .015);
 }
+
+
+.tabs {
+  @include bg-white;
+  display: flex;
+  width: fit-content;
+  margin: 0 auto;
+  justify-content: center;
+  border: $border;
+  padding: 5px;
+  border-radius: 100px;
+  gap: 4px;
+}
+
+.tab {
+  border: none;
+  background: transparent;
+  color: $txt-gray-light;
+  font-weight: 600;
+  line-height: 1;
+  font-size: 0.85rem;
+  padding: 9px 18px;
+  border-radius: 100px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: .2s all;
+  text-transform: capitalize;
+}
+
+.tab:hover {
+  color: $txt-body;
+}
+
+.tab.active {
+  background-color: #000E20;
+  color: #fff;
+
+}
+
+.tab .save {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 100px;
+  background: #FFD302;
+  color: #000000;
+}
+
+.tab.active .save {
+  background: linear-gradient(180deg, #5a1fb0, #7530e0);
+}
+
+.billing-note {
+  font-size: 12px;
+  color: $txt-gray-lighest;
+  min-height: 16px;
+}
