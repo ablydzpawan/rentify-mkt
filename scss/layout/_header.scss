@@ -89,7 +89,7 @@
   display: none;
   align-items: center;
   gap: clamp(18px, 3vw, 38px);
-  color: #1e2a3d;
+  color: $txt-body;
   font-size: 1.125rem;
   font-weight: 600;
 
@@ -99,7 +99,7 @@
 
   a {
     padding: 0.6rem 1rem;
-    transition: color 220ms esease-in-out;
+    transition: all 0.2s ease;
     @include btn-hover;
 
 
@@ -107,12 +107,16 @@
       background-color: $bg-brand-200;
       z-index: -1;
       border-radius: 50px;
+      opacity: 0;
     }
 
-
-
     &:hover {
-      color: var(--blue);
+      color: $txt-black;
+      //  color: var(--blue);
+
+      &::after {
+        opacity: 1;
+      }
     }
   }
 }

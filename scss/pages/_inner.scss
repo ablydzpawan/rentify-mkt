@@ -16,6 +16,7 @@
      align-items: center;
      flex-direction: column;
      gap: 1rem;
+     //overflow-x: hidden;
 
      @include media-breakpoint-up(lg) {
        flex-direction: row;
@@ -23,9 +24,22 @@
      }
    }
 
+   &-img {
+     @include media-breakpoint-up(xxl) {
+       max-width: fit-content;
+       position: absolute;
+       top: 50%;
+       right: 0;
+       transform: translateY(-50%);
+     }
+   }
+
    &-start {
+     // order: 2;
+
      @include media-breakpoint-up(lg) {
-       order: 2;
+       flex: 0 0 28%;
+       max-width: 28%;
      }
    }
 
