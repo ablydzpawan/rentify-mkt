@@ -130,7 +130,8 @@
    }
 
    .bg-features {
-     background: #A0C7FE;
+     //background: #A0C7FE;
+     background-color: rgba($brand-color, 0.30);
      border-color: transparent;
 
 
@@ -139,7 +140,7 @@
    h3 {
      color: #000;
      font-size: 1.5rem;
-     font-weight: 500;
+     font-weight: 600;
      margin-bottom: 10px;
    }
 
