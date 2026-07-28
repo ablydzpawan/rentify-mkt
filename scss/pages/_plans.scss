@@ -160,6 +160,22 @@
       line-height: 1.4;
     }
 
+    .not-yet {
+      opacity: 0.6;
+      text-decoration: line-through;
+    }
+
+    .coming {
+      white-space: nowrap;
+      text-decoration: none;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 100px;
+      background: #FFD302;
+      color: #000000;
+    }
+
     strong {
       font-weight: 600;
     }

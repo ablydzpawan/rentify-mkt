@@ -79,25 +79,28 @@
      flex-flow: row wrap;
      gap: 2rem;
 
+     @include media-breakpoint-up(xl) {
 
-     // Section Number
-     &::before {
-       content: counter(section, decimal-leading-zero);
-       position: absolute;
-       top: 0;
-       right: -10%;
-       font-size: clamp(20rem, 6vw, 5rem);
-       font-weight: 800;
-       line-height: 1;
-       color: rgba($brand-color, 0.08);
-       // Large faded number
-       pointer-events: none;
-       z-index: 0;
-     }
+       // Section Number
+       &::before {
+         content: counter(section, decimal-leading-zero);
+         position: absolute;
+         top: 0;
+         right: -10%;
+         font-size: clamp(20rem, 6vw, 5rem);
+         font-weight: 800;
+         line-height: 1;
+         color: rgba($brand-color, 0.08);
+         // Large faded number
+         pointer-events: none;
+         z-index: 0;
+       }
 
-     >* {
-       position: relative;
-       z-index: 1;
+
+       >* {
+         position: relative;
+         z-index: 1;
+       }
      }
 
      @include media-breakpoint-up(xl) {
@@ -251,8 +254,9 @@
    display: flex;
    align-items: center;
    gap: 5rem;
-   justify-content: space-around;
    text-wrap-style: balance;
+   justify-content: space-around;
+
 
    &-data {
      h3 {
@@ -294,10 +298,16 @@
      border-radius: 20px;
      padding: 2rem;
      // overflow: hidden;
+
+     @include media-breakpoint-up(lg) {
+       flex: 1;
+       max-width: 700px;
+     }
    }
 
    &-content {
-     background-color: rgba(233, 241, 250, 1);
+     // background-color: rgba(233, 241, 250, 1);
+     background-color: rgba(#A0C7FE, 0.30);
      padding: 2.5rem;
      border-radius: 20px;
      display: flex;
@@ -305,6 +315,10 @@
      // align-items: center;
      justify-content: center;
      gap: 1rem;
+
+     @include media-breakpoint-up(lg) {
+       flex: 1;
+     }
 
      @include media-breakpoint-up(lg) {
        padding: 2.5rem 4rem;
