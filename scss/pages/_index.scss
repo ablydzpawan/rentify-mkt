@@ -19,13 +19,15 @@
    //width: min(760px, 100%);
    margin: 0 auto;
    text-align: center;
+   margin-bottom: 5rem;
 
    .title {
      // max-width: 760px;
      margin: 18px auto 13px;
      font-size: clamp(36px, 3vw, 68px);
-     font-weight: 600;
-     line-height: 0.95;
+     font-weight: 700;
+     letter-spacing: -1px;
+     line-height: 1.4;
 
    }
 
@@ -627,4 +629,73 @@
        opacity: 1;
      }
    }
+ }
+
+
+ // hero animation
+
+ .stage {
+   position: relative;
+   max-width: 1900px;
+   margin: 0 auto;
+   min-height: 760px;
+ }
+
+ /* ---- floating pieces need a positioning context ---- */
+ .canvas {
+   position: relative;
+   max-width: 1900px;
+   margin: 0 auto;
+   height: 600px;
+ }
+
+ /* url bar */
+ .url-bar {
+   position: absolute;
+   left: 0;
+   top: 150px;
+
+ }
+
+ /* browser mock */
+ .browser {
+   position: absolute;
+   left: 50%;
+   top: 0;
+   transform: translateX(-50%);
+   //  width: 800px;
+   //  height: 580px;
+ }
+
+ /* left floating panels */
+ .panel {
+   position: absolute;
+ }
+
+ .font-panel {
+   left: 20px;
+   top: 330px;
+   width: 180px;
+ }
+
+ .toolbar {
+   left: 214px;
+   top: 230px;
+
+ }
+
+ .color-panel {
+   right: 0;
+   top: 60px;
+ }
+
+
+ .template-panel {
+   right: 20px;
+   bottom: -10px;
+ }
+
+ /* initial hidden states so no flash before GSAP runs */
+ .gsap-init {
+   opacity: 0;
  }

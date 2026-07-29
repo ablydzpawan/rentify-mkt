@@ -4,7 +4,7 @@
  $btn-border: solid 1px transparent;
  $btn-radius: 60px;
  $btn-font-size: 1.125rem;
- $btn-font-weight: $font-weight-normal;
+ $btn-font-weight: $font-weight-bold;
  $btn-line-height: $btn-height;
  $btn-hover-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
    0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
@@ -70,6 +70,7 @@
    &-outline-brand {
      background-color: transparent;
      border-color: $brand-color;
+     border-width: 2px;
      color: $txt-brand;
 
      &:hover,
@@ -78,6 +79,77 @@
        color: currentColor;
        @include bg-brand;
      }
+   }
+
+   &-calypso {
+     pointer-events: auto;
+     cursor: pointer;
+     overflow: hidden;
+     position: relative;
+
+     span {
+       display: block;
+       position: relative;
+       mix-blend-mode: difference;
+       z-index: 10;
+     }
+
+
+     &::before {
+       content: '';
+       background: #000;
+       width: 120%;
+       height: 0;
+       padding-bottom: 120%;
+       top: -110%;
+       left: -10%;
+       border-radius: 50%;
+       transform: translate3d(0, 68%, 0) scale3d(0, 0, 0);
+     }
+
+     &:hover::before {
+       transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+       transition: transform 0.4s cubic-bezier(0.1, 0, 0.3, 1);
+     }
+
+     &::after {
+       content: '';
+       background: #000;
+       transform: translate3d(0, -100%, 0);
+       transition: transform 0.4s cubic-bezier(0.1, 0, 0.3, 1);
+     }
+
+     &::after {
+       transform: translate3d(0, 0, 0);
+       transition-duration: 0.05s;
+       transition-delay: 0.4s;
+       transition-timing-function: linear;
+     }
+
+
+     &:hover span {
+       animation: MoveScaleUpInitial 0.3s forwards, MoveScaleUpEnd 0.3s forwards 0.3s;
+     }
+
+     @keyframes MoveScaleUpInitial {
+       to {
+         transform: translate3d(0, -105%, 0) scale3d(1, 2, 1);
+         opacity: 0;
+       }
+     }
+
+     @keyframes MoveScaleUpEnd {
+       from {
+         transform: translate3d(0, 100%, 0) scale3d(1, 2, 1);
+         opacity: 0;
+       }
+
+       to {
+         transform: translate3d(0, 0, 0);
+         opacity: 1;
+       }
+     }
+
    }
 
    &-white {
