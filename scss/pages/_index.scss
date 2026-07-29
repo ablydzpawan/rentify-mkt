@@ -653,66 +653,40 @@
    overflow: visible;
  }
 
- /* --------------------------------------------------
-   Browser Window
--------------------------------------------------- */
- .browser {
-   position: absolute;
-   left: 50%;
-   top: 100px;
-   transform: translateX(-50%);
-   z-index: 2;
+ .browser-wrap {
+   position: relative;
+   width: min(1120px, 72vw);
  }
 
- /* --------------------------------------------------
-   URL Bar
--------------------------------------------------- */
+ .browser img {
+   width: 100%;
+   display: block;
+ }
+
  .url-bar {
-   position: absolute;
-   left: 52px;
-   top: 50px;
-   z-index: 5;
+   left: -34%;
+   top: -7%;
  }
 
- /* --------------------------------------------------
-   Generic Floating Panel
--------------------------------------------------- */
- .panel {
-   position: absolute;
-   z-index: 4;
- }
-
- /* --------------------------------------------------
-   Typography Panel
--------------------------------------------------- */
  .font-panel {
-   left: 8px;
-   top: 242px;
+   left: -38%;
+   top: 24%;
  }
 
- /* --------------------------------------------------
-   Vertical Toolbar
--------------------------------------------------- */
  .toolbar {
-   left: 380px;
-   top: 265px;
-   z-index: 6;
+   left: -8%;
+   top: 36%;
+   transform: translateX(-100%);
  }
 
- /* --------------------------------------------------
-   Color Picker
--------------------------------------------------- */
  .color-panel {
-   right: 20px;
-   top: 20px;
+   right: -36%;
+   top: -10%;
  }
 
- /* --------------------------------------------------
-   Template Library
--------------------------------------------------- */
  .template-panel {
-   right: 36px;
-   bottom: 125px;
+   right: -33%;
+   bottom: 18%;
  }
 
  /* initial hidden states so no flash before GSAP runs */
