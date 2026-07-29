@@ -1,0 +1,22 @@
+/*
+  Supporting styles for the GSAP/Lenis motion layer (js/motion.js).
+  Loaded after main-ltr.css so these rules can extend it without edits.
+*/
+
+/* Pre-hide only above-the-fold hero content, before JS takes over, so it
+   fades/rises in instead of popping. Everything else animates via inline
+   styles GSAP sets at setup time, so it needs no CSS pre-hide (and can't
+   get stuck invisible if a script fails). */
+.js-anim .hero-content .title,
+.js-anim .hero-content .desc,
+.js-anim .hero-content-actions .btn,
+.js-anim .hero .screens {
+  opacity: 0;
+}
+
+/* Clip containers for the image-reveal effect (clip-path + scale on the
+   image itself needs a clipped parent so the scale never bleeds out). */
+.content-block-img .image-wrap {
+  overflow: hidden;
+  border-radius: inherit;
+}

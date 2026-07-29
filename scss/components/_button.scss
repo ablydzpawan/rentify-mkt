@@ -61,8 +61,9 @@
      &:hover,
      &:active,
      &:focus {
+       box-shadow: none;
        @include bg-brand;
-       border-color: $brand-color;
+       border-color: transparent;
 
      }
    }
@@ -76,6 +77,7 @@
      &:hover,
      &:active,
      &:focus {
+       box-shadow: none;
        color: currentColor;
        @include bg-brand;
      }
@@ -86,16 +88,18 @@
      cursor: pointer;
      overflow: hidden;
      position: relative;
+     border: none;
 
      span {
        display: block;
        position: relative;
-       mix-blend-mode: difference;
+       // mix-blend-mode: difference;
        z-index: 10;
      }
 
 
      &::before {
+       position: absolute;
        content: '';
        background: #000;
        width: 120%;
@@ -113,6 +117,7 @@
      }
 
      &::after {
+       position: absolute;
        content: '';
        background: #000;
        transform: translate3d(0, -100%, 0);
@@ -127,8 +132,12 @@
      }
 
 
-     &:hover span {
-       animation: MoveScaleUpInitial 0.3s forwards, MoveScaleUpEnd 0.3s forwards 0.3s;
+     &:hover {
+       //border-color: #000;
+
+       span {
+         animation: MoveScaleUpInitial 0.3s forwards, MoveScaleUpEnd 0.3s forwards 0.3s;
+       }
      }
 
      @keyframes MoveScaleUpInitial {

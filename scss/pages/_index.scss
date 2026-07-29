@@ -19,7 +19,7 @@
    //width: min(760px, 100%);
    margin: 0 auto;
    text-align: center;
-   margin-bottom: 5rem;
+   margin-bottom: 0;
 
    .title {
      // max-width: 760px;
@@ -641,61 +641,81 @@
    min-height: 760px;
  }
 
- /* ---- floating pieces need a positioning context ---- */
+ /* --------------------------------------------------
+   Canvas
+-------------------------------------------------- */
  .canvas {
    position: relative;
-   max-width: 1900px;
+   width: 100%;
+   max-width: 1769px;
+   height: 698px;
    margin: 0 auto;
-   height: 600px;
+   overflow: visible;
  }
 
- /* url bar */
- .url-bar {
-   position: absolute;
-   left: 0;
-   top: 150px;
-
- }
-
- /* browser mock */
+ /* --------------------------------------------------
+   Browser Window
+-------------------------------------------------- */
  .browser {
    position: absolute;
    left: 50%;
-   top: 0;
+   top: 100px;
    transform: translateX(-50%);
-   //  width: 800px;
-   //  height: 580px;
+   z-index: 2;
  }
 
- /* left floating panels */
+ /* --------------------------------------------------
+   URL Bar
+-------------------------------------------------- */
+ .url-bar {
+   position: absolute;
+   left: 52px;
+   top: 50px;
+   z-index: 5;
+ }
+
+ /* --------------------------------------------------
+   Generic Floating Panel
+-------------------------------------------------- */
  .panel {
    position: absolute;
+   z-index: 4;
  }
 
+ /* --------------------------------------------------
+   Typography Panel
+-------------------------------------------------- */
  .font-panel {
-   left: 20px;
-   top: 330px;
-   width: 180px;
+   left: 8px;
+   top: 242px;
  }
 
+ /* --------------------------------------------------
+   Vertical Toolbar
+-------------------------------------------------- */
  .toolbar {
-   left: 214px;
-   top: 230px;
-
+   left: 380px;
+   top: 265px;
+   z-index: 6;
  }
 
+ /* --------------------------------------------------
+   Color Picker
+-------------------------------------------------- */
  .color-panel {
-   right: 0;
-   top: 60px;
+   right: 20px;
+   top: 20px;
  }
 
-
+ /* --------------------------------------------------
+   Template Library
+-------------------------------------------------- */
  .template-panel {
-   right: 20px;
-   bottom: -10px;
+   right: 36px;
+   bottom: 125px;
  }
 
  /* initial hidden states so no flash before GSAP runs */
  .gsap-init {
-   opacity: 0;
+   //opacity: 0;
  }
