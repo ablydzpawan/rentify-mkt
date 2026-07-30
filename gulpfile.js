@@ -12,7 +12,7 @@ import concat from "gulp-concat";
 const scss = gulpSass(sass);
 scss.compiler = nodeSass;
 
-// css 
+// css  
 function css() {
   return src("scss/*.scss")
     .pipe(sourcemaps.init({ loadMaps: true }))

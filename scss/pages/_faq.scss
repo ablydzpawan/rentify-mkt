@@ -9,3 +9,90 @@
     font-size: 1rem;
   }
 }
+
+.faq-wrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-top: 2rem;
+  flex-direction: column;
+
+  @include media-breakpoint-up(lg) {
+    flex-direction: row;
+  }
+
+  .faq-contents {
+    @include media-breakpoint-up(lg) {
+      max-width: 70%;
+      flex: 0 0 70%;
+    }
+
+    .faq-group+.faq-group {
+      margin-top: 2rem;
+    }
+  }
+}
+
+.faq-tabs {
+  position: sticky;
+  top: 70px;
+  z-index: 1;
+  @include bg-white;
+  padding: 1.8rem 0;
+
+  @include media-breakpoint-up(lg) {
+    border-radius: 12px;
+    padding: 1.5rem;
+    @include bg-brand-light;
+    top: 200px;
+    align-self: flex-start;
+  }
+
+  ul {
+    overflow-x: auto;
+    display: flex;
+    gap: 0.5rem;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    scroll-snap-type: x proximity;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    @include media-breakpoint-up(lg) {
+      flex-direction: column;
+      overflow: visible;
+
+    }
+
+    li {
+      flex: 0 0 auto;
+
+      a {
+        scroll-snap-align: center;
+        color: $txt-gray;
+        padding: .5rem 1.2rem;
+        display: block;
+        border-radius: 50px;
+        font-size: calc(clamp(1rem, .25vw + .95rem, 1rem));
+        font-weight: 600;
+        white-space: nowrap;
+
+        @include media-breakpoint-down(md) {
+          @include bg-gray;
+        }
+
+        &:hover {
+          color: $brand-color;
+        }
+
+        &.active {
+          @include bg-brand;
+
+        }
+      }
+    }
+  }
+}

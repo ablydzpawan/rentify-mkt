@@ -340,7 +340,6 @@
      }
    }
 
-
    &-head {}
 
    &-body {
@@ -416,10 +415,8 @@
 
    .h3 {
      max-width: 120px;
-
      // font-size: clamp(1rem, 0.6818rem + 1.5909vw, 1.875rem);
-     font-size: clamp(1rem,
-         calc(0.6818rem + 1.5909vw), 1.875rem);
+     font-size: clamp(1rem, calc(0.6818rem + 1.5909vw), 1.875rem);
      font-weight: 600;
      text-wrap-style: balance;
 
@@ -446,6 +443,15 @@
 
    @include media-breakpoint-down(lg) {
      max-width: none;
+   }
+
+   .faq-head {
+     display: flex;
+     align-items: center;
+     gap: 10px;
+     line-height: 1.4;
+     font-weight: 700;
+     font-size: 1.85rem;
    }
 
    &-item {
@@ -632,8 +638,12 @@
  }
 
 
- // hero animation
+ /* initial hidden states so no flash before GSAP runs */
+ .gsap-init {
+   //opacity: 0;
+ }
 
+ // hero animation
  .stage {
    position: relative;
    max-width: 1900px;
@@ -647,49 +657,49 @@
  .canvas {
    position: relative;
    width: 100%;
-   max-width: 1769px;
-   height: 698px;
+   max-width: 1900px;
+   height: 700px;
    margin: 0 auto;
    overflow: visible;
  }
 
- .browser-wrap {
-   position: relative;
-   width: min(1120px, 72vw);
- }
 
- .browser img {
-   width: 100%;
-   display: block;
- }
-
+ /* url bar */
  .url-bar {
-   left: -34%;
-   top: -7%;
+   position: absolute;
+   left: 0;
+   top: 150px;
+ }
+
+ /* browser mock */
+ .browser {
+   position: absolute;
+   left: 50%;
+   top: 0;
+   transform: translateX(-50%);
+ }
+
+ /* left floating panels */
+ .panel {
+   position: absolute;
  }
 
  .font-panel {
-   left: -38%;
-   top: 24%;
+   left: 20px;
+   top: 330px;
  }
 
  .toolbar {
-   left: -8%;
-   top: 36%;
-   transform: translateX(-100%);
+   left: 214px;
+   top: 230px;
  }
 
  .color-panel {
-   right: -36%;
-   top: -10%;
+   right: 0;
+   top: 60px;
  }
 
  .template-panel {
-   right: -33%;
-   bottom: 18%;
- }
-
- /* initial hidden states so no flash before GSAP runs */
- .gsap-init {
-   //opacity: 0;
+   right: 20px;
+   bottom: -10px;
  }
