@@ -1,55 +1,20 @@
 $section-padding: clamp(2rem, 3vw, 10rem);
 
 .footer {
-  padding: 0;
-  color: #fff;
-  background-color: #000E20;
 
-  &-top {}
+
+  &-top {
+    padding-bottom: 2rem;
+  }
 
   &-bottom {
-    padding: 2rem 0;
-    border-top: solid 1px #21334B;
-  }
-
-  .short-about {
-    padding-block: $section-padding;
-    padding-right: $section-padding;
-
-    .desc {
-      color: #94ABC9;
-      font-size: 1.5rem;
-      line-height: 1.4;
-
-      strong {
-        font-weight: 600;
-        color: #fff;
-      }
-    }
-
-    .copyrights {
-      margin-top: 5rem;
-      font-size: 1rem;
-      color: #C2D1E5;
+    &-inner {
+      padding: 2rem 0;
+      border-top: $border;
     }
   }
-
-
 
   .footer-group {
-    padding-inline: $section-padding;
-    padding-block: 2rem;
-    height: 100%;
-
-    @include media-breakpoint-down(lg) {
-      border-top: solid 1px #21334B;
-      padding: 0;
-    }
-
-    @include media-breakpoint-up(lg) {
-      border-left: solid 1px #21334B;
-    }
-
     &-head {
       color: #94ABC9;
       font-size: 1.5rem;
@@ -82,21 +47,6 @@ $section-padding: clamp(2rem, 3vw, 10rem);
     .footer-nav {
       display: block;
 
-      @include media-breakpoint-down(sm) {
-        display: none;
-
-        &.show {
-          display: block;
-        }
-      }
-
-      &-double {
-        @include media-breakpoint-up(lg) {
-          columns: 2;
-          column-gap: 2rem;
-        }
-      }
-
       &-item {
         color: currentColor;
         font-size: 0.875em;
@@ -106,9 +56,11 @@ $section-padding: clamp(2rem, 3vw, 10rem);
       }
 
       &-link {
-        opacity: 0.7;
+        font-weight: 500;
+        font-size: 1rem;
+        text-transform: uppercase;
         color: currentColor;
-        font-size: inherit;
+
         position: relative;
         text-rendering: optimizeLegibility;
         transition: color 0.3s ease-in-out;
@@ -127,6 +79,19 @@ $section-padding: clamp(2rem, 3vw, 10rem);
         }
       }
     }
+
+    .footer-social {
+      display: flex;
+      gap: 1.5rem;
+
+      &-item {}
+
+      &-link {
+
+        &:hover,
+        &:focus {}
+      }
+    }
   }
 
   .footer-cta {
@@ -139,25 +104,42 @@ $section-padding: clamp(2rem, 3vw, 10rem);
     }
   }
 
-  .contacts-info {
-    text-align: center;
+
+}
+
+.copyright {
+  color: $txt-body;
+  font-weight: 500;
+  font-size: 1rem;
+  max-width: 200px;
+}
+
+.desc {
+  max-width: 1024px;
+  margin: 0 auto;
+  font-size: 1.4rem;
+  text-align: center;
+
+  strong {
+    font-weight: 700;
+  }
+}
+
+.contacts-info {
+  display: flex;
+  flex-direction: column;
+
+  font-size: 1rem;
+  margin-top: 2rem;
+
+  @include media-breakpoint-up(lg) {}
+
+  a {
+    font-weight: 600;
     font-size: 1rem;
-
-    @include media-breakpoint-up(lg) {
-      text-align: end;
-    }
-
-    a {
-      font-size: 1rem;
-    }
   }
 }
 
-.footer-logo {
-  @include media-breakpoint-down(sm) {
-    display: none;
-  }
-}
 
 .back-top {
   position: fixed;
