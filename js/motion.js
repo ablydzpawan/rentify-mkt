@@ -133,7 +133,6 @@ function initHeroBrowserMockupAnimation() {
   const headline = document.querySelector("#headline");
   const subtext = document.querySelector("#subtext");
   const btnPrimary = document.querySelector("#btn-primary");
-  const btnSecondary = document.querySelector("#btn-secondary");
   const urlBar = document.querySelector("#url-bar");
   const fontPanel = document.querySelector("#font-panel");
   const toolbar = document.querySelector("#toolbar");
@@ -166,14 +165,7 @@ function initHeroBrowserMockupAnimation() {
       subtext ? "-=0.35" : 0
     );
   }
-  if (btnSecondary) {
-    tl.fromTo(
-      btnSecondary,
-      { opacity: 0, y: 18, scale: 0.9 },
-      { opacity: 1, y: 0, scale: 1, duration: 0.55 },
-      btnPrimary ? "-=0.45" : 0
-    );
-  }
+
 
   // 4. Web elements reveal one by one
   tl.fromTo(
