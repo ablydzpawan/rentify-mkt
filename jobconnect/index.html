@@ -8,931 +8,840 @@
     <meta name="description"
       content="Job Connectz is a two-sided digital service marketplace connecting customers with trusted artisans, freelancers and skilled professionals across Ghana.">
     <link rel="icon" href="assets/logo.jpeg">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap"
-      rel="stylesheet">
-    <style>
-      :root {
-        --red: #d90000;
-        --red-dark: #a80000;
-        --red-light: #fdeaea;
-        --ink: #15171c;
-        --ink-soft: #565a64;
-        --ink-faint: #8a8e97;
-        --bg: #ffffff;
-        --bg-soft: #f7f6f5;
-        --bg-dark: #15171c;
-        --bg-dark-soft: #1e2027;
-        --border: #e9e7e6;
-        --shadow: 0 18px 45px -20px rgba(20, 20, 25, .25);
-        --radius: 16px;
-        --maxw: 1200px;
-        font-size: 16px;
-      }
 
-      *,
-      *::before,
-      *::after {
-        box-sizing: border-box;
-      }
 
-      html {
-        scroll-behavior: smooth;
-      }
+  </head>
 
-      body {
-        margin: 0;
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-        color: var(--ink);
-        background: var(--bg);
-        line-height: 1.6;
-        -webkit-font-smoothing: antialiased;
-        overflow-x: hidden;
-      }
+  <body>
 
-      h1,
-      h2,
-      h3,
-      h4 {
-        font-family: 'Poppins', sans-serif;
-        line-height: 1.2;
-        margin: 0 0 .6em;
-        color: var(--ink);
-        letter-spacing: -.01em;
-      }
-
-      p {
-        margin: 0 0 1em;
-      }
-
-      a {
-        color: inherit;
-        text-decoration: none;
-      }
-
-      img {
-        display: block;
-        max-width: 100%;
-      }
-
-      ul {
-        margin: 0;
-        padding: 0;
-        list-style: none;
-      }
-
-      .container {
-        max-width: var(--maxw);
-        margin: 0 auto;
-        padding: 0 24px;
-      }
-
-      section {
-        position: relative;
-      }
-
-      .eyebrow {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        font-size: .78rem;
-        font-weight: 700;
-        letter-spacing: .14em;
-        text-transform: uppercase;
-        color: var(--red);
-        margin-bottom: 16px;
-      }
-
-      .eyebrow::before {
-        content: "";
-        width: 22px;
-        height: 2px;
-        background: var(--red);
-        display: inline-block;
-      }
-
-      .section-head {
-        max-width: 680px;
-        margin: 0 auto 48px;
-        text-align: center;
-      }
-
-      .section-head h2 {
-        font-size: clamp(1.7rem, 3.2vw, 2.4rem);
-      }
-
-      .section-head p {
-        color: var(--ink-soft);
-        font-size: 1.05rem;
-      }
-
-      .section-pad {
-        padding: clamp(56px, 8vw, 104px) 0;
-      }
-
-      .btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        padding: 14px 26px;
-        border-radius: 999px;
-        font-weight: 600;
-        font-size: .95rem;
-        border: 2px solid transparent;
-        cursor: pointer;
-        transition: transform .25s ease, box-shadow .25s ease, background .25s ease, color .25s ease;
-        white-space: nowrap;
-      }
-
-      .btn-primary {
-        background: var(--red);
-        color: #fff;
-        box-shadow: 0 12px 28px -10px rgba(217, 0, 0, .55);
-      }
-
-      .btn-primary:hover {
-        background: var(--red-dark);
-        transform: translateY(-2px);
-      }
-
-      .btn-ghost {
-        border-color: rgba(255, 255, 255, .55);
-        color: #fff;
-      }
-
-      .btn-ghost:hover {
-        background: rgba(255, 255, 255, .12);
-        transform: translateY(-2px);
-      }
-
-      .btn-outline {
-        border-color: var(--border);
-        color: var(--ink);
-      }
-
-      .btn-outline:hover {
-        border-color: var(--red);
-        color: var(--red);
-      }
-
-      /* ---------- Header ---------- */
-      header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 1000;
-        background: rgba(255, 255, 255, 0);
-        transition: background .3s ease, box-shadow .3s ease, padding .3s ease;
-        padding: 18px 0;
-      }
-
-      header.scrolled {
-        background: rgba(255, 255, 255, .97);
-        box-shadow: 0 6px 24px -12px rgba(0, 0, 0, .18);
-        padding: 10px 0;
-        backdrop-filter: blur(6px);
-      }
-
-      .nav-wrap {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-      }
-
-      .brand {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-      }
-
-      .brand img {
-        height: 36px;
-        width: auto;
-        border-radius: 6px;
-      }
-
-      nav.main-nav {
-        display: flex;
-        align-items: center;
-        gap: 2px;
-      }
-
-      nav.main-nav a {
-        padding: 10px 14px;
-        font-size: .9rem;
-        font-weight: 600;
-        color: var(--ink);
-        border-radius: 8px;
-        transition: color .2s ease, background .2s ease;
-      }
-
-      header:not(.scrolled) nav.main-nav a {
-        color: #fff;
-        text-shadow: 0 1px 6px rgba(0, 0, 0, .35);
-      }
-
-      header:not(.scrolled) .brand-name {
-        color: #fff;
-        text-shadow: 0 1px 6px rgba(0, 0, 0, .35);
-      }
-
-      nav.main-nav a:hover,
-      nav.main-nav a.active {
-        color: var(--red);
-      }
-
-      header:not(.scrolled) nav.main-nav a:hover,
-      header:not(.scrolled) nav.main-nav a.active {
-        color: #fff;
-        background: rgba(255, 255, 255, .16);
-      }
-
-      .brand-name {
-        font-family: 'Poppins', sans-serif;
-        font-weight: 700;
-        font-size: 1.05rem;
-        color: var(--ink);
-      }
-
-      .nav-cta {
-        display: flex;
-        align-items: center;
-        gap: 14px;
-      }
-
-      .nav-cta .btn-primary {
-        padding: 10px 20px;
-        font-size: .85rem;
-      }
-
-      .hamburger {
-        display: none;
-        flex-direction: column;
-        gap: 5px;
-        background: none;
-        border: none;
-        cursor: pointer;
-        padding: 8px;
-        z-index: 1100;
-      }
-
-      .hamburger span {
-        width: 24px;
-        height: 2.4px;
-        background: currentColor;
-        border-radius: 2px;
-        transition: .3s;
-      }
-
-      header:not(.scrolled) .hamburger {
-        color: #fff;
-      }
-
-      .hamburger.open span:nth-child(1) {
-        transform: translateY(7.5px) rotate(45deg);
-      }
-
-      .hamburger.open span:nth-child(2) {
-        opacity: 0;
-      }
-
-      .hamburger.open span:nth-child(3) {
-        transform: translateY(-7.5px) rotate(-45deg);
-      }
-
-      .mobile-nav {
-        display: none;
-        position: fixed;
-        top: 0;
-        right: -100%;
-      }
-
-      .nav-scrim {
-        display: none;
-      }
-
-      /* ---------- Hero ---------- */
-      .hero {
-        min-height: 92vh;
-        display: flex;
-        align-items: flex-end;
-        position: relative;
-        color: #fff;
-        background: linear-gradient(180deg, rgba(15, 16, 20, .35) 0%, rgba(15, 16, 20, .55) 55%, rgba(15, 16, 20, .92) 100%),
-          url('https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=1800&q=80') center/cover no-repeat;
-        padding-top: 120px;
-      }
-
-      .hero-inner {
-        padding-bottom: 64px;
-        max-width: 760px;
-      }
-
-      .hero h1 {
-        font-size: clamp(2.2rem, 5vw, 3.6rem);
-        color: #fff;
-        margin-bottom: 20px;
-      }
-
-      .hero p.lead {
-        font-size: clamp(1rem, 1.6vw, 1.2rem);
-        color: rgba(255, 255, 255, .88);
-        max-width: 640px;
-      }
-
-      .hero-actions {
-        display: flex;
-        gap: 14px;
-        flex-wrap: wrap;
-        margin-top: 28px;
-      }
-
-      .scroll-cue {
-        position: absolute;
-        bottom: 22px;
-        left: 50%;
-        transform: translateX(-50%);
-        color: rgba(255, 255, 255, .8);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 6px;
-        font-size: .72rem;
-        letter-spacing: .12em;
-        text-transform: uppercase;
-        animation: bob 2.2s ease-in-out infinite;
-      }
-
-      @keyframes bob {
-
-        0%,
-        100% {
-          transform: translate(-50%, 0);
+    <div class="div">
+      <style>
+        :root {
+          --red: #d90000;
+          --red-dark: #a80000;
+          --red-light: #fdeaea;
+          --ink: #15171c;
+          --ink-soft: #565a64;
+          --ink-faint: #8a8e97;
+          --bg: #ffffff;
+          --bg-soft: #f7f6f5;
+          --bg-dark: #15171c;
+          --bg-dark-soft: #1e2027;
+          --border: #e9e7e6;
+          --shadow: 0 18px 45px -20px rgba(20, 20, 25, .25);
+          --radius: 16px;
+          --maxw: 1200px;
+          font-size: 16px;
         }
 
-        50% {
-          transform: translate(-50%, 8px);
+
+
+
+        h1,
+        h2,
+        h3,
+        h4 {
+
+          line-height: 1.2;
+          margin: 0 0 .6em;
+          color: var(--ink);
+          letter-spacing: -.01em;
         }
-      }
-
-      /* ---------- Exec summary continuation ---------- */
-      .exec-text {
-        max-width: 820px;
-        margin: 0 auto;
-        text-align: center;
-        color: var(--ink-soft);
-        font-size: 1.08rem;
-      }
-
-      .exec-text strong {
-        color: var(--ink);
-      }
-
-      .pillars {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 24px;
-        margin-top: 56px;
-      }
-
-      .pillar-card {
-        background: var(--bg-soft);
-        border: 1px solid var(--border);
-        border-radius: var(--radius);
-        padding: 34px 26px;
-        text-align: center;
-        transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
-      }
-
-      .pillar-card:hover {
-        transform: translateY(-6px);
-        box-shadow: var(--shadow);
-        border-color: transparent;
-      }
-
-      .icon-badge {
-        width: 60px;
-        height: 60px;
-        border-radius: 16px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: var(--red-light);
-        color: var(--red);
-        margin: 0 auto 18px;
-      }
-
-      .icon-badge svg {
-        width: 28px;
-        height: 28px;
-      }
-
-      .pillar-card h3 {
-        font-size: 1.05rem;
-        margin-bottom: 8px;
-      }
-
-      .pillar-card p {
-        color: var(--ink-soft);
-        font-size: .92rem;
-        margin: 0;
-      }
-
-      /* ---------- Vision & Mission ---------- */
-      .vm-row {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 56px;
-        align-items: center;
-      }
-
-      .vm-row+.vm-row {
-        margin-top: 72px;
-      }
-
-      .vm-row .vm-img {
-        border-radius: var(--radius);
-        overflow: hidden;
-        box-shadow: var(--shadow);
-        aspect-ratio: 4/3.1;
-      }
-
-      .vm-row .vm-img img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-
-      .vm-row.reverse .vm-text {
-        order: 2;
-      }
-
-      .vm-row.reverse .vm-img {
-        order: 1;
-      }
-
-      .vm-tag {
-        display: inline-block;
-        font-size: .75rem;
-        font-weight: 700;
-        letter-spacing: .1em;
-        text-transform: uppercase;
-        color: var(--red);
-        background: var(--red-light);
-        padding: 6px 14px;
-        border-radius: 999px;
-        margin-bottom: 16px;
-      }
-
-      .vm-text h3 {
-        font-size: clamp(1.4rem, 2.6vw, 1.9rem);
-      }
-
-      .vm-text p {
-        color: var(--ink-soft);
-        font-size: 1.05rem;
-      }
-
-      /* ---------- What We Do ---------- */
-      .wwd-list {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 18px 32px;
-        max-width: 1000px;
-        margin: 0 auto;
-      }
-
-      .wwd-item {
-        display: flex;
-        gap: 16px;
-        align-items: flex-start;
-        padding: 18px 4px;
-        border-bottom: 1px solid var(--border);
-      }
-
-      .wwd-item svg {
-        width: 22px;
-        height: 22px;
-        flex-shrink: 0;
-        color: var(--red);
-        margin-top: 3px;
-      }
-
-      .wwd-item p {
-        margin: 0;
-        color: var(--ink);
-        font-size: .98rem;
-      }
-
-      /* ---------- Services strip ---------- */
-      .photo-strip {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 16px;
-        margin-bottom: 56px;
-      }
-
-      .photo-strip figure {
-        margin: 0;
-        border-radius: 14px;
-        overflow: hidden;
-        aspect-ratio: 4/3;
-        box-shadow: var(--shadow);
-        position: relative;
-      }
-
-      .photo-strip img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform .5s ease;
-      }
-
-      .photo-strip figure:hover img {
-        transform: scale(1.06);
-      }
-
-      .photo-strip figcaption {
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        padding: 14px 16px;
-        background: linear-gradient(0deg, rgba(0, 0, 0, .65), transparent);
-        color: #fff;
-        font-size: .82rem;
-        font-weight: 600;
-        letter-spacing: .02em;
-      }
-
-      .services-grid {
-        display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        gap: 20px;
-      }
-
-      .service-card {
-        background: #fff;
-        border: 1px solid var(--border);
-        border-radius: 14px;
-        padding: 26px 20px;
-        text-align: center;
-        transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
-      }
-
-      .service-card:hover {
-        transform: translateY(-5px);
-        box-shadow: var(--shadow);
-        border-color: transparent;
-      }
-
-      .service-card .icon-badge {
-        width: 52px;
-        height: 52px;
-        border-radius: 14px;
-      }
-
-      .service-card .icon-badge svg {
-        width: 24px;
-        height: 24px;
-      }
-
-      .service-card h4 {
-        font-size: .98rem;
-        margin: 4px 0 6px;
-      }
-
-      .service-card p {
-        font-size: .82rem;
-        color: var(--ink-soft);
-        margin: 0;
-      }
-
-      /* ---------- Value proposition (customer / provider) ---------- */
-      .vp-row {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 56px;
-        align-items: center;
-      }
-
-      .vp-row .vp-img {
-        border-radius: var(--radius);
-        overflow: hidden;
-        box-shadow: var(--shadow);
-        aspect-ratio: 4/3.4;
-      }
-
-      .vp-row .vp-img img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-
-      .vp-row.reverse .vp-text {
-        order: 2;
-      }
-
-      .vp-row.reverse .vp-img {
-        order: 1;
-      }
-
-      .vp-text p.lead-p {
-        color: var(--ink-soft);
-        font-size: 1.03rem;
-      }
-
-      .benefit-list {
-        margin-top: 24px;
-        display: flex;
-        flex-direction: column;
-        gap: 14px;
-      }
-
-      .benefit-item {
-        display: flex;
-        gap: 14px;
-        align-items: flex-start;
-      }
-
-      .benefit-item .mini-check {
-        width: 26px;
-        height: 26px;
-        border-radius: 50%;
-        background: var(--red);
-        color: #fff;
-        flex-shrink: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-top: 2px;
-      }
-
-      .benefit-item .mini-check svg {
-        width: 14px;
-        height: 14px;
-      }
-
-      .benefit-item span {
-        font-size: .98rem;
-        color: var(--ink);
-      }
-
-      /* ---------- Advantage ---------- */
-      .adv-banner {
-        border-radius: var(--radius);
-        overflow: hidden;
-        position: relative;
-        margin-bottom: 56px;
-        min-height: 220px;
-        display: flex;
-        align-items: center;
-        background: linear-gradient(100deg, rgba(21, 23, 28, .82) 30%, rgba(21, 23, 28, .35) 100%),
-          url('https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
-      }
-
-      .adv-banner-text {
-        color: #fff;
-        padding: 40px clamp(24px, 5vw, 56px);
-        max-width: 560px;
-      }
-
-      .adv-banner-text h3 {
-        color: #fff;
-        font-size: clamp(1.3rem, 2.4vw, 1.7rem);
-        margin-bottom: 10px;
-      }
-
-      .adv-banner-text p {
-        color: rgba(255, 255, 255, .85);
-        margin: 0;
-      }
-
-      .advantage-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 22px;
-      }
-
-      .advantage-card {
-        background: var(--bg-soft);
-        border: 1px solid var(--border);
-        border-radius: 14px;
-        padding: 28px 24px;
-        transition: transform .3s ease, box-shadow .3s ease;
-      }
-
-      .advantage-card:hover {
-        transform: translateY(-5px);
-        box-shadow: var(--shadow);
-      }
-
-      .advantage-card h4 {
-        font-size: 1.02rem;
-        margin-bottom: 8px;
-      }
-
-      .advantage-card p {
-        font-size: .9rem;
-        color: var(--ink-soft);
-        margin: 0;
-      }
-
-      /* ---------- Values (dark) ---------- */
-      .values-section {
-        background: var(--bg-dark);
-        color: #fff;
-      }
-
-      .values-section .section-head p {
-        color: rgba(255, 255, 255, .6);
-      }
-
-      .values-section .section-head h2 {
-        color: #fff;
-      }
-
-      .values-grid {
-        display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        gap: 18px;
-      }
-
-      .value-card {
-        background: var(--bg-dark-soft);
-        border: 1px solid rgba(255, 255, 255, .08);
-        border-radius: 14px;
-        padding: 26px 18px;
-        text-align: center;
-        transition: transform .3s ease, background .3s ease, border-color .3s ease;
-      }
-
-      .value-card:hover {
-        transform: translateY(-5px);
-        background: #24262f;
-        border-color: rgba(217, 0, 0, .4);
-      }
-
-      .value-card .icon-badge {
-        background: rgba(217, 0, 0, .15);
-        color: #ff5a5a;
-      }
-
-      .value-card h4 {
-        color: #fff;
-        font-size: .94rem;
-        margin: 2px 0 6px;
-      }
-
-      .value-card p {
-        color: rgba(255, 255, 255, .55);
-        font-size: .8rem;
-        margin: 0;
-      }
-
-      .values-note {
-        max-width: 760px;
-        margin: 52px auto 0;
-        text-align: center;
-        color: rgba(255, 255, 255, .65);
-        font-size: .98rem;
-      }
-
-      /* ---------- Contact ---------- */
-      .contact-section {
-        background: var(--bg-soft);
-      }
-
-      .contact-grid {
-        display: grid;
-        grid-template-columns: 1.05fr .95fr;
-        gap: 0;
-        border-radius: var(--radius);
-        overflow: hidden;
-        box-shadow: var(--shadow);
-      }
-
-      .contact-info {
-        background: var(--ink);
-        color: #fff;
-        padding: clamp(32px, 5vw, 56px);
-      }
-
-      .contact-info .brand-row {
-        display: flex;
-        align-items: center;
-        gap: 14px;
-        margin-bottom: 28px;
-      }
-
-      .contact-info .brand-row img {
-        height: 42px;
-        width: auto;
-        border-radius: 8px;
-        background: #fff;
-        padding: 4px;
-      }
-
-      .contact-info h2 {
-        color: #fff;
-        font-size: clamp(1.5rem, 2.8vw, 2rem);
-        margin-bottom: 10px;
-      }
-
-      .contact-info>p {
-        color: rgba(255, 255, 255, .7);
-        margin-bottom: 32px;
-      }
-
-      .contact-item {
-        display: flex;
-        gap: 16px;
-        align-items: flex-start;
-        margin-bottom: 22px;
-      }
-
-      .contact-item .icon-badge {
-        background: rgba(217, 0, 0, .18);
-        color: #ff5a5a;
-        width: 46px;
-        height: 46px;
-        border-radius: 12px;
-        flex-shrink: 0;
-        margin: 0;
-      }
-
-      .contact-item .icon-badge svg {
-        width: 20px;
-        height: 20px;
-      }
-
-      .contact-item h5 {
-        margin: 0 0 3px;
-        font-size: .78rem;
-        text-transform: uppercase;
-        letter-spacing: .08em;
-        color: rgba(255, 255, 255, .55);
-        font-weight: 600;
-      }
-
-      .contact-item a,
-      .contact-item span {
-        font-size: 1rem;
-        font-weight: 600;
-        color: #fff;
-      }
-
-      .contact-item a:hover {
-        color: #ff8080;
-      }
-
-      .contact-photo {
-        position: relative;
-      }
-
-      .contact-photo img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        min-height: 320px;
-      }
-
-      .contact-photo::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(0deg, rgba(0, 0, 0, .35), transparent 40%);
-      }
-
-      footer {
-        background: var(--ink);
-        color: rgba(255, 255, 255, .55);
-        padding: 28px 0;
-        border-top: 1px solid rgba(255, 255, 255, .08);
-      }
-
-      .footer-row {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 16px;
-        flex-wrap: wrap;
-        font-size: .85rem;
-      }
-
-      .footer-row .brand {
-        color: #fff;
-      }
-
-      .footer-row .brand img {
-        height: 24px;
-        border-radius: 5px;
-      }
-
-      .reveal {
+
+        p {
+          margin: 0 0 1em;
+        }
+
+        a {
+          color: inherit;
+          text-decoration: none;
+        }
+
+        img {
+          display: block;
+          max-width: 100%;
+        }
+
+        ul {
+          margin: 0;
+          padding: 0;
+          list-style: none;
+        }
+
+        .container {
+          /* max-width: var(--maxw);
+          margin: 0 auto;
+          padding: 0 24px; */
+        }
+
+        section {
+          position: relative;
+        }
+
+        .eyebrow {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          font-size: .78rem;
+          font-weight: 700;
+          letter-spacing: .14em;
+          text-transform: uppercase;
+          color: var(--red);
+          margin-bottom: 16px;
+        }
+
+        .eyebrow::before {
+          content: "";
+          width: 22px;
+          height: 2px;
+          background: var(--red);
+          display: inline-block;
+        }
+
+        .section-head {
+          max-width: 680px;
+          margin: 0 auto 48px;
+          text-align: center;
+        }
+
+        .section-head h2 {
+          font-size: clamp(1.7rem, 3.2vw, 2.4rem);
+        }
+
+        .section-head p {
+          color: var(--ink-soft);
+          font-size: 1.05rem;
+        }
+
+        .section-pad {
+          border-radius: 24px;
+          padding: clamp(56px, 8vw, 104px) 0;
+        }
+
+        .btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          padding: 14px 26px;
+          border-radius: 999px;
+          font-weight: 600;
+          font-size: .95rem;
+          border: 2px solid transparent;
+          cursor: pointer;
+          transition: transform .25s ease, box-shadow .25s ease, background .25s ease, color .25s ease;
+          white-space: nowrap;
+        }
+
+        .btn-primary {
+          background: var(--red);
+          color: #fff;
+          box-shadow: 0 12px 28px -10px rgba(217, 0, 0, .55);
+        }
+
+        .btn-primary:hover {
+          background: var(--red-dark);
+          transform: translateY(-2px);
+        }
+
+        .btn-ghost {
+          border-color: rgba(255, 255, 255, .55);
+          color: #fff;
+        }
+
+        .btn-ghost:hover {
+          background: rgba(255, 255, 255, .12);
+          transform: translateY(-2px);
+        }
+
+        .btn-outline {
+          border-color: var(--border);
+          color: var(--ink);
+        }
+
+        .btn-outline:hover {
+          border-color: var(--red);
+          color: var(--red);
+        }
+
+        /* ---------- Header ---------- */
+
+
+
+
+        .brand {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+
+        .brand img {
+          height: 36px;
+          width: auto;
+          border-radius: 6px;
+        }
+
+
+
+        .brand-name {
+          font-weight: 700;
+          font-size: 1.05rem;
+          color: var(--ink);
+        }
+
+        .nav-cta {
+          display: flex;
+          align-items: center;
+          gap: 14px;
+        }
+
+        .nav-cta .btn-primary {
+          padding: 10px 20px;
+          font-size: .85rem;
+        }
+
+        .hamburger {
+          display: none;
+          flex-direction: column;
+          gap: 5px;
+          background: none;
+          border: none;
+          cursor: pointer;
+          padding: 8px;
+          z-index: 1100;
+        }
+
+        .hamburger span {
+          width: 24px;
+          height: 2.4px;
+          background: currentColor;
+          border-radius: 2px;
+          transition: .3s;
+        }
+
+        header:not(.scrolled) .hamburger {
+          color: #fff;
+        }
+
+        .hamburger.open span:nth-child(1) {
+          transform: translateY(7.5px) rotate(45deg);
+        }
+
+        .hamburger.open span:nth-child(2) {
+          opacity: 0;
+        }
+
+        .hamburger.open span:nth-child(3) {
+          transform: translateY(-7.5px) rotate(-45deg);
+        }
+
+        .mobile-nav {
+          display: none;
+          position: fixed;
+          top: 0;
+          right: -100%;
+        }
+
+        .nav-scrim {
+          display: none;
+        }
+
+        /* ---------- Hero ---------- */
+        .hero {
+          overflow: hidden;
+          border-radius: 24px;
+          /* min-height: 92vh; */
+          display: flex;
+          align-items: center;
+          position: relative;
+          color: #fff;
+          background: linear-gradient(180deg, rgba(15, 16, 20, .35) 0%, rgba(15, 16, 20, .55) 55%, rgba(15, 16, 20, .92) 100%),
+            url('https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=1800&q=80') center/cover no-repeat;
+          padding: 4rem 0;
+        }
+
+        .hero-inner {
+          padding-top: 64px;
+          max-width: 760px;
+        }
+
+        .hero h1 {
+          font-size: clamp(2.2rem, 5vw, 3.6rem);
+          color: #fff;
+          margin-bottom: 20px;
+        }
+
+        .hero p.lead {
+          font-size: clamp(1rem, 1.6vw, 1.2rem);
+          color: rgba(255, 255, 255, .88);
+          max-width: 640px;
+        }
+
+        .hero-actions {
+          display: flex;
+          gap: 14px;
+          flex-wrap: wrap;
+          margin-top: 28px;
+        }
+
+        .scroll-cue {
+          position: absolute;
+          bottom: 22px;
+          left: 50%;
+          transform: translateX(-50%);
+          color: rgba(255, 255, 255, .8);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 6px;
+          font-size: .72rem;
+          letter-spacing: .12em;
+          text-transform: uppercase;
+          animation: bob 2.2s ease-in-out infinite;
+        }
+
+        @keyframes bob {
+
+          0%,
+          100% {
+            transform: translate(-50%, 0);
+          }
+
+          50% {
+            transform: translate(-50%, 8px);
+          }
+        }
+
+        /* ---------- Exec summary continuation ---------- */
+        .exec-text {
+          max-width: 820px;
+          margin: 0 auto;
+          text-align: center;
+          color: var(--ink-soft);
+          font-size: 1.08rem;
+        }
+
+        .exec-text strong {
+          color: var(--ink);
+        }
+
+        .pillars {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 24px;
+          margin-top: 56px;
+        }
+
+        .pillar-card {
+          background: var(--bg-soft);
+          border: 1px solid var(--border);
+          border-radius: var(--radius);
+          padding: 34px 26px;
+          text-align: center;
+          transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+        }
+
+        .pillar-card:hover {
+          transform: translateY(-6px);
+          box-shadow: var(--shadow);
+          border-color: transparent;
+        }
+
+        .icon-badge {
+          width: 60px;
+          height: 60px;
+          border-radius: 16px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: var(--red-light);
+          color: var(--red);
+          margin: 0 auto 18px;
+        }
+
+        .icon-badge svg {
+          width: 28px;
+          height: 28px;
+        }
+
+        .pillar-card h3 {
+          font-size: 1.05rem;
+          margin-bottom: 8px;
+        }
+
+        .pillar-card p {
+          color: var(--ink-soft);
+          font-size: .92rem;
+          margin: 0;
+        }
+
+        /* ---------- Vision & Mission ---------- */
+        .vm-row {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 56px;
+          align-items: center;
+        }
+
+        .vm-row+.vm-row {
+          margin-top: 72px;
+        }
+
+        .vm-row .vm-img {
+          border-radius: var(--radius);
+          overflow: hidden;
+          box-shadow: var(--shadow);
+          aspect-ratio: 4/3.1;
+        }
+
+        .vm-row .vm-img img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        .vm-row.reverse .vm-text {
+          order: 2;
+        }
+
+        .vm-row.reverse .vm-img {
+          order: 1;
+        }
+
+        .vm-tag {
+          display: inline-block;
+          font-size: .75rem;
+          font-weight: 700;
+          letter-spacing: .1em;
+          text-transform: uppercase;
+          color: var(--red);
+          background: var(--red-light);
+          padding: 6px 14px;
+          border-radius: 999px;
+          margin-bottom: 16px;
+        }
+
+        .vm-text h3 {
+          font-size: clamp(1.4rem, 2.6vw, 1.9rem);
+        }
+
+        .vm-text p {
+          color: var(--ink-soft);
+          font-size: 1.05rem;
+        }
+
+        /* ---------- What We Do ---------- */
+        .wwd-list {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 18px 32px;
+          max-width: 1000px;
+          margin: 0 auto;
+        }
+
+        .wwd-item {
+          display: flex;
+          gap: 16px;
+          align-items: flex-start;
+          padding: 18px 4px;
+          border-bottom: 1px solid var(--border);
+        }
+
+        .wwd-item svg {
+          width: 22px;
+          height: 22px;
+          flex-shrink: 0;
+          color: var(--red);
+          margin-top: 3px;
+        }
+
+        .wwd-item p {
+          margin: 0;
+          color: var(--ink);
+          font-size: .98rem;
+        }
+
+        /* ---------- Services strip ---------- */
+        .photo-strip {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 16px;
+          margin-bottom: 56px;
+        }
+
+        .photo-strip figure {
+          margin: 0;
+          border-radius: 14px;
+          overflow: hidden;
+          aspect-ratio: 4/3;
+          box-shadow: var(--shadow);
+          position: relative;
+        }
+
+        .photo-strip img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform .5s ease;
+        }
+
+        .photo-strip figure:hover img {
+          transform: scale(1.06);
+        }
+
+        .photo-strip figcaption {
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          padding: 14px 16px;
+          background: linear-gradient(0deg, rgba(0, 0, 0, .65), transparent);
+          color: #fff;
+          font-size: .82rem;
+          font-weight: 600;
+          letter-spacing: .02em;
+        }
+
+        .services-grid {
+          display: grid;
+          grid-template-columns: repeat(5, 1fr);
+          gap: 20px;
+        }
+
+        .service-card {
+          background: #fff;
+          border: 1px solid var(--border);
+          border-radius: 14px;
+          padding: 26px 20px;
+          text-align: center;
+          transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+        }
+
+        .service-card:hover {
+          transform: translateY(-5px);
+          box-shadow: var(--shadow);
+          border-color: transparent;
+        }
+
+        .service-card .icon-badge {
+          width: 52px;
+          height: 52px;
+          border-radius: 14px;
+        }
+
+        .service-card .icon-badge svg {
+          width: 24px;
+          height: 24px;
+        }
+
+        .service-card h4 {
+          font-size: .98rem;
+          margin: 4px 0 6px;
+        }
+
+        .service-card p {
+          font-size: .82rem;
+          color: var(--ink-soft);
+          margin: 0;
+        }
+
+        /* ---------- Value proposition (customer / provider) ---------- */
+        .vp-row {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 56px;
+          align-items: center;
+        }
+
+        .vp-row .vp-img {
+          border-radius: var(--radius);
+          overflow: hidden;
+          box-shadow: var(--shadow);
+          aspect-ratio: 4/3.4;
+        }
+
+        .vp-row .vp-img img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        .vp-row.reverse .vp-text {
+          order: 2;
+        }
+
+        .vp-row.reverse .vp-img {
+          order: 1;
+        }
+
+        .vp-text p.lead-p {
+          color: var(--ink-soft);
+          font-size: 1.03rem;
+        }
+
+        .benefit-list {
+          margin-top: 24px;
+          display: flex;
+          flex-direction: column;
+          gap: 14px;
+        }
+
+        .benefit-item {
+          display: flex;
+          gap: 14px;
+          align-items: flex-start;
+        }
+
+        .benefit-item .mini-check {
+          width: 26px;
+          height: 26px;
+          border-radius: 50%;
+          background: var(--red);
+          color: #fff;
+          flex-shrink: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-top: 2px;
+        }
+
+        .benefit-item .mini-check svg {
+          width: 14px;
+          height: 14px;
+        }
+
+        .benefit-item span {
+          font-size: .98rem;
+          color: var(--ink);
+        }
+
+        /* ---------- Advantage ---------- */
+        .adv-banner {
+          border-radius: var(--radius);
+          overflow: hidden;
+          position: relative;
+          margin-bottom: 56px;
+          min-height: 220px;
+          display: flex;
+          align-items: center;
+          background: linear-gradient(100deg, rgba(21, 23, 28, .82) 30%, rgba(21, 23, 28, .35) 100%),
+            url('https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+        }
+
+        .adv-banner-text {
+          color: #fff;
+          padding: 40px clamp(24px, 5vw, 56px);
+          max-width: 560px;
+        }
+
+        .adv-banner-text h3 {
+          color: #fff;
+          font-size: clamp(1.3rem, 2.4vw, 1.7rem);
+          margin-bottom: 10px;
+        }
+
+        .adv-banner-text p {
+          color: rgba(255, 255, 255, .85);
+          margin: 0;
+        }
+
+        .advantage-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 22px;
+        }
+
+        .advantage-card {
+          background: var(--bg-soft);
+          border: 1px solid var(--border);
+          border-radius: 14px;
+          padding: 28px 24px;
+          transition: transform .3s ease, box-shadow .3s ease;
+        }
+
+        .advantage-card:hover {
+          transform: translateY(-5px);
+          box-shadow: var(--shadow);
+        }
+
+        .advantage-card h4 {
+          font-size: 1.02rem;
+          margin-bottom: 8px;
+        }
+
+        .advantage-card p {
+          font-size: .9rem;
+          color: var(--ink-soft);
+          margin: 0;
+        }
+
+        /* ---------- Values (dark) ---------- */
+        .values-section {
+          background: var(--bg-dark);
+          color: #fff;
+        }
+
+        .values-section .section-head p {
+          color: rgba(255, 255, 255, .6);
+        }
+
+        .values-section .section-head h2 {
+          color: #fff;
+        }
+
+        .values-grid {
+          display: grid;
+          grid-template-columns: repeat(5, 1fr);
+          gap: 18px;
+        }
+
+        .value-card {
+          background: var(--bg-dark-soft);
+          border: 1px solid rgba(255, 255, 255, .08);
+          border-radius: 14px;
+          padding: 26px 18px;
+          text-align: center;
+          transition: transform .3s ease, background .3s ease, border-color .3s ease;
+        }
+
+        .value-card:hover {
+          transform: translateY(-5px);
+          background: #24262f;
+          border-color: rgba(217, 0, 0, .4);
+        }
+
+        .value-card .icon-badge {
+          background: rgba(217, 0, 0, .15);
+          color: #ff5a5a;
+        }
+
+        .value-card h4 {
+          color: #fff;
+          font-size: .94rem;
+          margin: 2px 0 6px;
+        }
+
+        .value-card p {
+          color: rgba(255, 255, 255, .55);
+          font-size: .8rem;
+          margin: 0;
+        }
+
+        .values-note {
+          max-width: 760px;
+          margin: 52px auto 0;
+          text-align: center;
+          color: rgba(255, 255, 255, .65);
+          font-size: .98rem;
+        }
+
+        /* ---------- Contact ---------- */
+        .contact-section {
+          background: var(--bg-soft);
+        }
+
+        .contact-grid {
+          display: grid;
+          grid-template-columns: 1.05fr .95fr;
+          gap: 0;
+          border-radius: var(--radius);
+          overflow: hidden;
+          box-shadow: var(--shadow);
+        }
+
+        .contact-info {
+          background: var(--ink);
+          color: #fff;
+          padding: clamp(32px, 5vw, 56px);
+        }
+
+        .contact-info .brand-row {
+          display: flex;
+          align-items: center;
+          gap: 14px;
+          margin-bottom: 28px;
+        }
+
+        .contact-info .brand-row img {
+          height: 42px;
+          width: auto;
+          border-radius: 8px;
+          background: #fff;
+          padding: 4px;
+        }
+
+        .contact-info h2 {
+          color: #fff;
+          font-size: clamp(1.5rem, 2.8vw, 2rem);
+          margin-bottom: 10px;
+        }
+
+        .contact-info>p {
+          color: rgba(255, 255, 255, .7);
+          margin-bottom: 32px;
+        }
+
+        .contact-item {
+          display: flex;
+          gap: 16px;
+          align-items: flex-start;
+          margin-bottom: 22px;
+        }
+
+        .contact-item .icon-badge {
+          background: rgba(217, 0, 0, .18);
+          color: #ff5a5a;
+          width: 46px;
+          height: 46px;
+          border-radius: 12px;
+          flex-shrink: 0;
+          margin: 0;
+        }
+
+        .contact-item .icon-badge svg {
+          width: 20px;
+          height: 20px;
+        }
+
+        .contact-item h5 {
+          margin: 0 0 3px;
+          font-size: .78rem;
+          text-transform: uppercase;
+          letter-spacing: .08em;
+          color: rgba(255, 255, 255, .55);
+          font-weight: 600;
+        }
+
+        .contact-item a,
+        .contact-item span {
+          font-size: 1rem;
+          font-weight: 600;
+          color: #fff;
+        }
+
+        .contact-item a:hover {
+          color: #ff8080;
+        }
+
+        .contact-photo {
+          position: relative;
+        }
+
+        .contact-photo img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          min-height: 320px;
+        }
+
+        .contact-photo::after {
+          content: "";
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(0deg, rgba(0, 0, 0, .35), transparent 40%);
+        }
+
+
+        /* .reveal {
         opacity: 0;
         transform: translateY(26px);
         transition: opacity .7s ease, transform .7s ease;
@@ -941,571 +850,497 @@
       .reveal.in-view {
         opacity: 1;
         transform: translateY(0);
-      }
+      } */
 
-      .back-to-top {
-        position: fixed;
-        right: 22px;
-        bottom: 22px;
-        width: 46px;
-        height: 46px;
-        border-radius: 50%;
-        background: var(--red);
-        color: #fff;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0 14px 30px -10px rgba(217, 0, 0, .6);
-        border: none;
-        cursor: pointer;
-        z-index: 900;
-        opacity: 0;
-        pointer-events: none;
-        transform: translateY(12px);
-        transition: opacity .3s ease, transform .3s ease;
-      }
 
-      .back-to-top.show {
-        opacity: 1;
-        pointer-events: auto;
-        transform: translateY(0);
-      }
 
-      .back-to-top svg {
-        width: 20px;
-        height: 20px;
-      }
 
-      /* ---------- Responsive ---------- */
-      @media (max-width:980px) {
-        .pillars {
-          grid-template-columns: 1fr;
+        /* ---------- Responsive ---------- */
+        @media (max-width:980px) {
+          .pillars {
+            grid-template-columns: 1fr;
+          }
+
+          .vm-row,
+          .vp-row {
+            grid-template-columns: 1fr;
+            gap: 32px;
+          }
+
+          .vm-row.reverse .vm-text,
+          .vp-row.reverse .vp-text {
+            order: 1;
+          }
+
+          .vm-row.reverse .vm-img,
+          .vp-row.reverse .vp-img {
+            order: 2;
+          }
+
+          .wwd-list {
+            grid-template-columns: 1fr;
+          }
+
+          .services-grid {
+            grid-template-columns: repeat(3, 1fr);
+          }
+
+          .photo-strip {
+            grid-template-columns: repeat(3, 1fr);
+          }
+
+          .advantage-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+
+          .values-grid {
+            grid-template-columns: repeat(3, 1fr);
+          }
+
+          .contact-grid {
+            grid-template-columns: 1fr;
+          }
+
+          .contact-photo {
+            min-height: 220px;
+          }
+
+          .contact-photo img {
+            min-height: 220px;
+          }
         }
 
-        .vm-row,
-        .vp-row {
-          grid-template-columns: 1fr;
-          gap: 32px;
+        @media (max-width:760px) {
+
+          nav.main-nav,
+          .nav-cta .btn-primary {
+            display: none;
+          }
+
+          .hamburger {
+            display: flex;
+          }
+
+          .nav-cta {
+            gap: 0;
+          }
+
+          .mobile-nav {
+            display: flex;
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 82%;
+            max-width: 340px;
+            height: 100vh;
+            background: #fff;
+            z-index: 1050;
+            box-shadow: -14px 0 40px -18px rgba(0, 0, 0, .3);
+            padding: 100px 30px 30px;
+            transition: right .35s ease;
+            flex-direction: column;
+            gap: 4px;
+          }
+
+          .mobile-nav.open {
+            right: 0;
+          }
+
+          .mobile-nav a {
+            padding: 14px 6px;
+            font-weight: 600;
+            border-bottom: 1px solid var(--border);
+            color: var(--ink);
+          }
+
+          .mobile-nav .btn-primary {
+            margin-top: 18px;
+            justify-content: center;
+          }
+
+          .nav-scrim {
+            display: block;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .4);
+            z-index: 1040;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .3s ease;
+          }
+
+          .nav-scrim.show {
+            opacity: 1;
+            pointer-events: auto;
+          }
+
+          .services-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+
+          .photo-strip {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+          }
+
+          .advantage-grid {
+            grid-template-columns: 1fr;
+          }
+
+          .values-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+
+          .hero {
+            min-height: 88vh;
+          }
         }
 
-        .vm-row.reverse .vm-text,
-        .vp-row.reverse .vp-text {
-          order: 1;
+        @media (max-width:480px) {
+          .services-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+
+          .hero-actions {
+            flex-direction: column;
+            align-items: stretch;
+          }
+
+          .hero-actions .btn {
+            justify-content: center;
+          }
         }
+      </style>
 
-        .vm-row.reverse .vm-img,
-        .vp-row.reverse .vp-img {
-          order: 2;
-        }
 
-        .wwd-list {
-          grid-template-columns: 1fr;
-        }
-
-        .services-grid {
-          grid-template-columns: repeat(3, 1fr);
-        }
-
-        .photo-strip {
-          grid-template-columns: repeat(3, 1fr);
-        }
-
-        .advantage-grid {
-          grid-template-columns: repeat(2, 1fr);
-        }
-
-        .values-grid {
-          grid-template-columns: repeat(3, 1fr);
-        }
-
-        .contact-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .contact-photo {
-          min-height: 220px;
-        }
-
-        .contact-photo img {
-          min-height: 220px;
-        }
-      }
-
-      @media (max-width:760px) {
-
-        nav.main-nav,
-        .nav-cta .btn-primary {
-          display: none;
-        }
-
-        .hamburger {
-          display: flex;
-        }
-
-        .nav-cta {
-          gap: 0;
-        }
-
-        .mobile-nav {
-          display: flex;
-          position: fixed;
-          top: 0;
-          right: -100%;
-          width: 82%;
-          max-width: 340px;
-          height: 100vh;
-          background: #fff;
-          z-index: 1050;
-          box-shadow: -14px 0 40px -18px rgba(0, 0, 0, .3);
-          padding: 100px 30px 30px;
-          transition: right .35s ease;
-          flex-direction: column;
-          gap: 4px;
-        }
-
-        .mobile-nav.open {
-          right: 0;
-        }
-
-        .mobile-nav a {
-          padding: 14px 6px;
-          font-weight: 600;
-          border-bottom: 1px solid var(--border);
-          color: var(--ink);
-        }
-
-        .mobile-nav .btn-primary {
-          margin-top: 18px;
-          justify-content: center;
-        }
-
-        .nav-scrim {
-          display: block;
-          position: fixed;
-          inset: 0;
-          background: rgba(0, 0, 0, .4);
-          z-index: 1040;
-          opacity: 0;
-          pointer-events: none;
-          transition: opacity .3s ease;
-        }
-
-        .nav-scrim.show {
-          opacity: 1;
-          pointer-events: auto;
-        }
-
-        .services-grid {
-          grid-template-columns: repeat(2, 1fr);
-        }
-
-        .photo-strip {
-          grid-template-columns: repeat(3, 1fr);
-          gap: 8px;
-        }
-
-        .advantage-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .values-grid {
-          grid-template-columns: repeat(2, 1fr);
-        }
-
-        .hero {
-          min-height: 88vh;
-        }
-      }
-
-      @media (max-width:480px) {
-        .services-grid {
-          grid-template-columns: repeat(2, 1fr);
-        }
-
-        .hero-actions {
-          flex-direction: column;
-          align-items: stretch;
-        }
-
-        .hero-actions .btn {
-          justify-content: center;
-        }
-      }
-    </style>
-  </head>
-
-  <body>
-
-    <!-- ============ ICON LIBRARY (hidden sprite) ============ -->
-    <svg style="display:none">
-      <symbol id="i-customers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
-        stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="12" cy="8" r="3.4" />
-        <path d="M5.3 20c0-3.7 3-6.3 6.7-6.3s6.7 2.6 6.7 6.3" />
-      </symbol>
-      <symbol id="i-providers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
-        stroke-linecap="round" stroke-linejoin="round">
-        <path d="M14.7 6.4a3.6 3.6 0 00-4.9 4.9L4.2 17l2.8 2.8 5.7-5.7a3.6 3.6 0 004.9-4.9l-2.4 2.4-2-2 2.4-2.4z" />
-      </symbol>
-      <symbol id="i-hub" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
-        stroke-linejoin="round">
-        <circle cx="12" cy="5" r="2.1" />
-        <circle cx="5" cy="19" r="2.1" />
-        <circle cx="19" cy="19" r="2.1" />
-        <path d="M12 7.1V13M12 13l-5.3 4.3M12 13l5.3 4.3" />
-      </symbol>
-      <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
-        stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="12" cy="12" r="9.2" />
-        <path d="M8 12.4l2.6 2.6L16 9.4" />
-      </symbol>
-      <!-- service categories -->
-      <symbol id="i-plumbing" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
-        stroke-linecap="round" stroke-linejoin="round">
-        <path d="M12 3.2c3 3.9 6 7.7 6 10.8a6 6 0 01-12 0c0-3.1 3-6.9 6-10.8z" />
-      </symbol>
-      <symbol id="i-beauty" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
-        stroke-linecap="round" stroke-linejoin="round">
-        <path d="M12 3l1.7 5.3L19 10l-5.3 1.7L12 17l-1.7-5.3L5 10l5.3-1.7L12 3z" />
-      </symbol>
-      <symbol id="i-hair" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
-        stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="6.2" cy="6.2" r="2.1" />
-        <circle cx="6.2" cy="17.8" r="2.1" />
-        <path d="M7.9 7.7L20 18M7.9 16.3L20 6" />
-      </symbol>
-      <symbol id="i-electric" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
-        stroke-linecap="round" stroke-linejoin="round">
-        <path d="M13 2.3 4.4 14h6l-1 7.7 8.6-11.7h-6l1-7.7z" />
-      </symbol>
-      <symbol id="i-paint" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
-        stroke-linecap="round" stroke-linejoin="round">
-        <rect x="3" y="4.6" width="13" height="5" rx="1.3" />
-        <path d="M11 9.6v4" />
-        <rect x="9" y="13.6" width="4" height="6.2" rx="1" />
-      </symbol>
-      <symbol id="i-auto" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
-        stroke-linecap="round" stroke-linejoin="round">
-        <path d="M4.3 16.2l1.4-4.8A2 2 0 017.6 10h8.8a2 2 0 011.9 1.4l1.4 4.8" />
-        <rect x="3" y="16.2" width="18" height="3.4" rx="1.2" />
-        <circle cx="7.4" cy="19.6" r="1.5" />
-        <circle cx="16.6" cy="19.6" r="1.5" />
-      </symbol>
-      <symbol id="i-ceiling" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
-        stroke-linecap="round" stroke-linejoin="round">
-        <rect x="3.6" y="3.6" width="16.8" height="16.8" rx="1.4" />
-        <path d="M3.6 9.6h16.8M3.6 15.6h16.8M9.6 3.6v16.8M15.6 3.6v16.8" />
-      </symbol>
-      <symbol id="i-carpentry" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
-        stroke-linecap="round" stroke-linejoin="round">
-        <path d="M14.2 3.2l6.6 6.6-2.2 2.2-6.6-6.6z" />
-        <path d="M13 8.4L4 17.4l-1 3.6 3.6-1L15.6 11" />
-      </symbol>
-      <symbol id="i-welding" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
-        stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="12" cy="12" r="3" />
-        <path
-          d="M12 2.5v4M12 17.5v4M4.4 4.4l2.8 2.8M16.8 16.8l2.8 2.8M2.5 12h4M17.5 12h4M4.4 19.6l2.8-2.8M16.8 7.2l2.8-2.8" />
-      </symbol>
-      <symbol id="i-glazing" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
-        stroke-linecap="round" stroke-linejoin="round">
-        <rect x="4" y="4" width="16" height="16" rx="1.4" />
-        <path d="M12 4v16M4 12h16" />
-      </symbol>
-      <!-- values -->
-      <symbol id="i-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
-        stroke-linecap="round" stroke-linejoin="round">
-        <path
-          d="M12 20s-7.2-4.5-9.4-9C1.2 7.8 3 4.8 6.3 4.8c2 0 3.4 1.1 4.2 2.4.8-1.3 2.2-2.4 4.2-2.4 3.3 0 5.1 3 3.7 6.2-2.2 4.5-9.4 9-9.4 9z" />
-      </symbol>
-      <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
-        stroke-linecap="round" stroke-linejoin="round">
-        <path d="M12 3.2l7 3v5.4c0 4.6-3 7.7-7 9.4-4-1.7-7-4.8-7-9.4V6.2z" />
-      </symbol>
-      <symbol id="i-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
-        stroke-linejoin="round">
-        <path d="M2.4 12S6 5.6 12 5.6 21.6 12 21.6 12 18 18.4 12 18.4 2.4 12 2.4 12z" />
-        <circle cx="12" cy="12" r="2.6" />
-      </symbol>
-      <symbol id="i-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
-        stroke-linecap="round" stroke-linejoin="round">
-        <path d="M12 3.4l2.3 4.7 5.1.7-3.7 3.6.9 5.2-4.6-2.4-4.6 2.4.9-5.2-3.7-3.6 5.1-.7L12 3.4z" />
-      </symbol>
-      <symbol id="i-briefcase" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
-        stroke-linecap="round" stroke-linejoin="round">
-        <rect x="3" y="8" width="18" height="11" rx="1.5" />
-        <path d="M8 8V6.2a2 2 0 012-2h4a2 2 0 012 2V8" />
-        <path d="M3 13.2h18" />
-      </symbol>
-      <symbol id="i-bulb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
-        stroke-linecap="round" stroke-linejoin="round">
-        <path
-          d="M9.4 18.2h5.2M10.2 21h3.6M8.2 14a4.8 4.8 0 118.4-2.8 5 5 0 01-1.7 3.9c-.7.7-1.1 1.3-1.1 2.4H9.6c0-1.1-.4-1.7-1.1-2.4A4.8 4.8 0 018.2 14z" />
-      </symbol>
-      <symbol id="i-shield-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
-        stroke-linecap="round" stroke-linejoin="round">
-        <path d="M12 3.2l7 3v5.4c0 4.6-3 7.7-7 9.4-4-1.7-7-4.8-7-9.4V6.2z" />
-        <path d="M9 12.3l2.1 2.1L15.4 10" />
-      </symbol>
-      <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
-        stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="12" cy="12" r="9" />
-        <path d="M12 7v5l3.4 2" />
-      </symbol>
-      <symbol id="i-people" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
-        stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="8.6" cy="7.8" r="2.6" />
-        <circle cx="16.2" cy="9" r="2.1" />
-        <path d="M3 19c0-3 2.5-5.1 5.6-5.1s5.6 2.1 5.6 5.1" />
-        <path d="M13.8 14.1c2.3.3 4.2 2.1 4.2 4.9" />
-      </symbol>
-      <symbol id="i-trend" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
-        stroke-linecap="round" stroke-linejoin="round">
-        <path d="M3 17l6-6 4 4 8-8" />
-        <path d="M15.4 6h6v6" />
-      </symbol>
-      <!-- advantage -->
-      <symbol id="i-flow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
-        stroke-linecap="round" stroke-linejoin="round">
-        <path d="M4 12h16" />
-        <circle cx="6.5" cy="12" r="2.1" />
-        <circle cx="12" cy="12" r="2.1" />
-        <circle cx="17.5" cy="12" r="2.1" />
-      </symbol>
-      <symbol id="i-sliders" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
-        stroke-linecap="round" stroke-linejoin="round">
-        <path d="M4 7h9M17 7h3M4 17h6M14 17h6" />
-        <circle cx="15" cy="7" r="2" />
-        <circle cx="10" cy="17" r="2" />
-      </symbol>
-      <symbol id="i-plus-circle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
-        stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="12" cy="12" r="9" />
-        <path d="M12 8v8M8 12h8" />
-      </symbol>
-      <symbol id="i-trend-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
-        stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="12" cy="12" r="9" />
-        <path d="M8 13.5l4-4 4 4M12 9.5V17" />
-      </symbol>
-      <symbol id="i-building" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
-        stroke-linecap="round" stroke-linejoin="round">
-        <rect x="4" y="3" width="9" height="18" />
-        <rect x="13" y="9.5" width="7" height="11.5" />
-        <path d="M7 7h2M7 11h2M7 15h2M16 13h2M16 17h2" />
-      </symbol>
-      <!-- contact -->
-      <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
-        stroke-linejoin="round">
-        <path d="M12 21s7-6.7 7-12.2A7 7 0 105 8.8C5 14.3 12 21 12 21z" />
-        <circle cx="12" cy="9" r="2.4" />
-      </symbol>
-      <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
-        stroke-linecap="round" stroke-linejoin="round">
-        <path
-          d="M5 4h3.4l1.4 3.8-2 1.6a13 13 0 006.2 6.2l1.6-2 3.8 1.4V19a2 2 0 01-2.2 2A16 16 0 013 6.2 2 2 0 015 4z" />
-      </symbol>
-      <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
-        stroke-linecap="round" stroke-linejoin="round">
-        <rect x="3" y="5" width="18" height="14" rx="1.5" />
-        <path d="M3.5 6.5L12 13l8.5-6.5" />
-      </symbol>
-      <symbol id="i-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
-        stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="12" cy="12" r="9" />
-        <path d="M3 12h18M12 3c2.4 2.5 3.7 5.8 3.7 9s-1.3 6.5-3.7 9c-2.4-2.5-3.7-5.8-3.7-9S9.6 5.5 12 3z" />
-      </symbol>
-      <symbol id="i-arrow-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-        stroke-linecap="round" stroke-linejoin="round">
-        <path d="M12 19V5M6 11l6-6 6 6" />
-      </symbol>
-    </svg>
-
-    <!-- ============ HEADER ============ -->
-    <header id="site-header">
-      <div class="container nav-wrap">
-        <a href="#top" class="brand">
-          <img src="assets/logo.jpeg" alt="Job Connectz logo">
-        </a>
-        <nav class="main-nav">
-          <a href="#overview">Overview</a>
-          <a href="#vision-mission">Vision &amp; Mission</a>
-          <a href="#what-we-do">What We Do</a>
-          <a href="#services">Services</a>
-          <a href="#customers">Customers</a>
-          <a href="#providers">Providers</a>
-          <a href="#advantage">Advantage</a>
-          <a href="#values">Values</a>
-        </nav>
-        <div class="nav-cta">
-          <a href="#contact" class="btn btn-primary">Contact Us</a>
-          <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-            <span></span><span></span><span></span>
-          </button>
-        </div>
-      </div>
-    </header>
-
-    <div class="nav-scrim" id="navScrim"></div>
-    <nav class="mobile-nav" id="mobileNav">
-      <a href="#overview">Overview</a>
-      <a href="#vision-mission">Vision &amp; Mission</a>
-      <a href="#what-we-do">What We Do</a>
-      <a href="#services">Services</a>
-      <a href="#customers">Customers</a>
-      <a href="#providers">Providers</a>
-      <a href="#advantage">Advantage</a>
-      <a href="#values">Values</a>
-      <a href="#contact" class="btn btn-primary">Contact Us</a>
-    </nav>
-
-    <div id="top"></div>
-
-    <!-- ============ HERO / EXECUTIVE SUMMARY ============ -->
-    <section class="hero" id="overview">
-      <div class="container hero-inner">
-        <div class="eyebrow" style="color:#ff8080;">
-          <span style="width:22px;height:2px;background:#ff8080;display:inline-block;"></span>
-          Ghana · 2026
-        </div>
-        <h1>A Trusted Digital Marketplace for Skilled Services</h1>
-        <p class="lead">Job Connectz is a two-sided digital service marketplace that connects customers, businesses and
-          institutions with artisans, freelancers and other skilled professionals — making service discovery and
-          delivery more accessible, reliable, transparent and secure.</p>
-        <div class="hero-actions">
-          <a href="#services" class="btn btn-primary">Explore Services</a>
-          <a href="#contact" class="btn btn-ghost">Get in Touch</a>
-        </div>
-      </div>
-      <div class="scroll-cue">
-        <span>Scroll</span>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+      <!-- ============ ICON LIBRARY (hidden sprite) ============ -->
+      <svg style="display:none">
+        <symbol id="i-customers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
           stroke-linecap="round" stroke-linejoin="round">
-          <path d="M6 9l6 6 6-6" />
-        </svg>
-      </div>
-    </section>
+          <circle cx="12" cy="8" r="3.4" />
+          <path d="M5.3 20c0-3.7 3-6.3 6.7-6.3s6.7 2.6 6.7 6.3" />
+        </symbol>
+        <symbol id="i-providers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14.7 6.4a3.6 3.6 0 00-4.9 4.9L4.2 17l2.8 2.8 5.7-5.7a3.6 3.6 0 004.9-4.9l-2.4 2.4-2-2 2.4-2.4z" />
+        </symbol>
+        <symbol id="i-hub" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+          stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="5" r="2.1" />
+          <circle cx="5" cy="19" r="2.1" />
+          <circle cx="19" cy="19" r="2.1" />
+          <path d="M12 7.1V13M12 13l-5.3 4.3M12 13l5.3 4.3" />
+        </symbol>
+        <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+          stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9.2" />
+          <path d="M8 12.4l2.6 2.6L16 9.4" />
+        </symbol>
+        <!-- service categories -->
+        <symbol id="i-plumbing" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3.2c3 3.9 6 7.7 6 10.8a6 6 0 01-12 0c0-3.1 3-6.9 6-10.8z" />
+        </symbol>
+        <symbol id="i-beauty" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3l1.7 5.3L19 10l-5.3 1.7L12 17l-1.7-5.3L5 10l5.3-1.7L12 3z" />
+        </symbol>
+        <symbol id="i-hair" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+          stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="6.2" cy="6.2" r="2.1" />
+          <circle cx="6.2" cy="17.8" r="2.1" />
+          <path d="M7.9 7.7L20 18M7.9 16.3L20 6" />
+        </symbol>
+        <symbol id="i-electric" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M13 2.3 4.4 14h6l-1 7.7 8.6-11.7h-6l1-7.7z" />
+        </symbol>
+        <symbol id="i-paint" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+          stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4.6" width="13" height="5" rx="1.3" />
+          <path d="M11 9.6v4" />
+          <rect x="9" y="13.6" width="4" height="6.2" rx="1" />
+        </symbol>
+        <symbol id="i-auto" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4.3 16.2l1.4-4.8A2 2 0 017.6 10h8.8a2 2 0 011.9 1.4l1.4 4.8" />
+          <rect x="3" y="16.2" width="18" height="3.4" rx="1.2" />
+          <circle cx="7.4" cy="19.6" r="1.5" />
+          <circle cx="16.6" cy="19.6" r="1.5" />
+        </symbol>
+        <symbol id="i-ceiling" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+          stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3.6" y="3.6" width="16.8" height="16.8" rx="1.4" />
+          <path d="M3.6 9.6h16.8M3.6 15.6h16.8M9.6 3.6v16.8M15.6 3.6v16.8" />
+        </symbol>
+        <symbol id="i-carpentry" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14.2 3.2l6.6 6.6-2.2 2.2-6.6-6.6z" />
+          <path d="M13 8.4L4 17.4l-1 3.6 3.6-1L15.6 11" />
+        </symbol>
+        <symbol id="i-welding" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+          stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3" />
+          <path
+            d="M12 2.5v4M12 17.5v4M4.4 4.4l2.8 2.8M16.8 16.8l2.8 2.8M2.5 12h4M17.5 12h4M4.4 19.6l2.8-2.8M16.8 7.2l2.8-2.8" />
+        </symbol>
+        <symbol id="i-glazing" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+          stroke-linecap="round" stroke-linejoin="round">
+          <rect x="4" y="4" width="16" height="16" rx="1.4" />
+          <path d="M12 4v16M4 12h16" />
+        </symbol>
+        <!-- values -->
+        <symbol id="i-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path
+            d="M12 20s-7.2-4.5-9.4-9C1.2 7.8 3 4.8 6.3 4.8c2 0 3.4 1.1 4.2 2.4.8-1.3 2.2-2.4 4.2-2.4 3.3 0 5.1 3 3.7 6.2-2.2 4.5-9.4 9-9.4 9z" />
+        </symbol>
+        <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3.2l7 3v5.4c0 4.6-3 7.7-7 9.4-4-1.7-7-4.8-7-9.4V6.2z" />
+        </symbol>
+        <symbol id="i-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M2.4 12S6 5.6 12 5.6 21.6 12 21.6 12 18 18.4 12 18.4 2.4 12 2.4 12z" />
+          <circle cx="12" cy="12" r="2.6" />
+        </symbol>
+        <symbol id="i-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3.4l2.3 4.7 5.1.7-3.7 3.6.9 5.2-4.6-2.4-4.6 2.4.9-5.2-3.7-3.6 5.1-.7L12 3.4z" />
+        </symbol>
+        <symbol id="i-briefcase" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+          stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="8" width="18" height="11" rx="1.5" />
+          <path d="M8 8V6.2a2 2 0 012-2h4a2 2 0 012 2V8" />
+          <path d="M3 13.2h18" />
+        </symbol>
+        <symbol id="i-bulb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path
+            d="M9.4 18.2h5.2M10.2 21h3.6M8.2 14a4.8 4.8 0 118.4-2.8 5 5 0 01-1.7 3.9c-.7.7-1.1 1.3-1.1 2.4H9.6c0-1.1-.4-1.7-1.1-2.4A4.8 4.8 0 018.2 14z" />
+        </symbol>
+        <symbol id="i-shield-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3.2l7 3v5.4c0 4.6-3 7.7-7 9.4-4-1.7-7-4.8-7-9.4V6.2z" />
+          <path d="M9 12.3l2.1 2.1L15.4 10" />
+        </symbol>
+        <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+          stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9" />
+          <path d="M12 7v5l3.4 2" />
+        </symbol>
+        <symbol id="i-people" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+          stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="8.6" cy="7.8" r="2.6" />
+          <circle cx="16.2" cy="9" r="2.1" />
+          <path d="M3 19c0-3 2.5-5.1 5.6-5.1s5.6 2.1 5.6 5.1" />
+          <path d="M13.8 14.1c2.3.3 4.2 2.1 4.2 4.9" />
+        </symbol>
+        <symbol id="i-trend" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 17l6-6 4 4 8-8" />
+          <path d="M15.4 6h6v6" />
+        </symbol>
+        <!-- advantage -->
+        <symbol id="i-flow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 12h16" />
+          <circle cx="6.5" cy="12" r="2.1" />
+          <circle cx="12" cy="12" r="2.1" />
+          <circle cx="17.5" cy="12" r="2.1" />
+        </symbol>
+        <symbol id="i-sliders" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 7h9M17 7h3M4 17h6M14 17h6" />
+          <circle cx="15" cy="7" r="2" />
+          <circle cx="10" cy="17" r="2" />
+        </symbol>
+        <symbol id="i-plus-circle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+          stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9" />
+          <path d="M12 8v8M8 12h8" />
+        </symbol>
+        <symbol id="i-trend-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+          stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9" />
+          <path d="M8 13.5l4-4 4 4M12 9.5V17" />
+        </symbol>
+        <symbol id="i-building" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+          stroke-linecap="round" stroke-linejoin="round">
+          <rect x="4" y="3" width="9" height="18" />
+          <rect x="13" y="9.5" width="7" height="11.5" />
+          <path d="M7 7h2M7 11h2M7 15h2M16 13h2M16 17h2" />
+        </symbol>
+        <!-- contact -->
+        <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 21s7-6.7 7-12.2A7 7 0 105 8.8C5 14.3 12 21 12 21z" />
+          <circle cx="12" cy="9" r="2.4" />
+        </symbol>
+        <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path
+            d="M5 4h3.4l1.4 3.8-2 1.6a13 13 0 006.2 6.2l1.6-2 3.8 1.4V19a2 2 0 01-2.2 2A16 16 0 013 6.2 2 2 0 015 4z" />
+        </symbol>
+        <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+          stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="5" width="18" height="14" rx="1.5" />
+          <path d="M3.5 6.5L12 13l8.5-6.5" />
+        </symbol>
+        <symbol id="i-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+          stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9" />
+          <path d="M3 12h18M12 3c2.4 2.5 3.7 5.8 3.7 9s-1.3 6.5-3.7 9c-2.4-2.5-3.7-5.8-3.7-9S9.6 5.5 12 3z" />
+        </symbol>
+        <symbol id="i-arrow-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 19V5M6 11l6-6 6 6" />
+        </symbol>
+      </svg>
 
-    <section class="section-pad">
-      <div class="container">
-        <p class="exec-text reveal">The marketplace module expands Job Connectz from a service-hailing experience into a
-          more flexible service economy platform. <strong>Customers</strong> can post service requests, propose prices,
-          suggest new service categories and choose providers that best match their needs. <strong>Providers</strong>
-          can create service categories, publish offers and receive bookings — while the platform supports verification,
-          job management, payments, service completion and customer feedback.</p>
 
-        <div class="pillars">
-          <div class="pillar-card reveal">
-            <div class="icon-badge"><svg>
-                <use href="#i-customers" />
-              </svg></div>
-            <h3>Customers</h3>
-            <p>Convenient access to trusted skilled services.</p>
+
+      <!-- ============ HERO / EXECUTIVE SUMMARY ============ -->
+      <section class="hero" id="overview">
+        <div class="container hero-inner">
+          <div class="eyebrow" style="color:#ff8080;">
+            <span style="width:22px;height:2px;background:#ff8080;display:inline-block;"></span>
+            Ghana · 2026
           </div>
-          <div class="pillar-card reveal">
-            <div class="icon-badge"><svg>
-                <use href="#i-providers" />
-              </svg></div>
-            <h3>Providers</h3>
-            <p>Visibility, bookings and digital business growth.</p>
-          </div>
-          <div class="pillar-card reveal">
-            <div class="icon-badge"><svg>
-                <use href="#i-hub" />
-              </svg></div>
-            <h3>Job Connectz</h3>
-            <p>Trust, transaction management and marketplace governance.</p>
+          <h1>A Trusted Digital Marketplace for Skilled Services</h1>
+          <p class="lead">Job Connectz is a two-sided digital service marketplace that connects customers, businesses
+            and
+            institutions with artisans, freelancers and other skilled professionals — making service discovery and
+            delivery more accessible, reliable, transparent and secure.</p>
+
+        </div>
+
+      </section>
+
+      <section class="section-pad">
+        <div class="container">
+          <p class="exec-text reveal">The marketplace module expands Job Connectz from a service-hailing experience into
+            a
+            more flexible service economy platform. <strong>Customers</strong> can post service requests, propose
+            prices,
+            suggest new service categories and choose providers that best match their needs. <strong>Providers</strong>
+            can create service categories, publish offers and receive bookings — while the platform supports
+            verification,
+            job management, payments, service completion and customer feedback.</p>
+
+          <div class="pillars">
+            <div class="pillar-card reveal">
+              <div class="icon-badge"><svg>
+                  <use href="#i-customers" />
+                </svg></div>
+              <h3>Customers</h3>
+              <p>Convenient access to trusted skilled services.</p>
+            </div>
+            <div class="pillar-card reveal">
+              <div class="icon-badge"><svg>
+                  <use href="#i-providers" />
+                </svg></div>
+              <h3>Providers</h3>
+              <p>Visibility, bookings and digital business growth.</p>
+            </div>
+            <div class="pillar-card reveal">
+              <div class="icon-badge"><svg>
+                  <use href="#i-hub" />
+                </svg></div>
+              <h3>Job Connectz</h3>
+              <p>Trust, transaction management and marketplace governance.</p>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- ============ VISION & MISSION ============ -->
-    <section class="section-pad" id="vision-mission" style="background:var(--bg-soft);">
-      <div class="container">
-        <div class="section-head reveal">
-          <div class="eyebrow" style="justify-content:center;">Purpose</div>
-          <h2>Vision &amp; Mission</h2>
-          <p>The principles that guide how we build Africa's skilled-services economy.</p>
-        </div>
+      <!-- ============ VISION & MISSION ============ -->
+      <section class="section-pad" id="vision-mission" style="background:var(--bg-soft);">
+        <div class="container">
+          <div class="section-head reveal">
+            <div class="eyebrow" style="justify-content:center;">Purpose</div>
+            <h2>Vision &amp; Mission</h2>
+            <p>The principles that guide how we build Africa's skilled-services economy.</p>
+          </div>
 
-        <div class="vm-row reveal">
-          <div class="vm-img">
-            <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1000&q=80"
-              alt="Team collaborating around a table representing a trusted, connected platform" loading="lazy">
+          <div class="vm-row reveal">
+            <div class="vm-img">
+              <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1000&q=80"
+                alt="Team collaborating around a table representing a trusted, connected platform" loading="lazy">
+            </div>
+            <div class="vm-text">
+              <span class="vm-tag">Vision</span>
+              <h3>The most trusted platform for skilled services in Africa</h3>
+              <p>To be the most trusted and accessible platform for skilled services in Africa, starting with Ghana.</p>
+            </div>
           </div>
-          <div class="vm-text">
-            <span class="vm-tag">Vision</span>
-            <h3>The most trusted platform for skilled services in Africa</h3>
-            <p>To be the most trusted and accessible platform for skilled services in Africa, starting with Ghana.</p>
-          </div>
-        </div>
 
-        <div class="vm-row reverse reveal">
-          <div class="vm-img">
-            <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1000&q=80"
-              alt="Professionals in a training and mentoring session" loading="lazy">
-          </div>
-          <div class="vm-text">
-            <span class="vm-tag">Mission</span>
-            <h3>Formalizing the artisan economy</h3>
-            <p>To formalize the artisan economy by empowering skilled professionals with the tools, training, branding
-              and digital infrastructure to deliver exceptional service experiences.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ WHAT JOB CONNECTZ DOES ============ -->
-    <section class="section-pad" id="what-we-do">
-      <div class="container">
-        <div class="section-head reveal">
-          <div class="eyebrow" style="justify-content:center;">01 · Platform</div>
-          <h2>What Job Connectz Does</h2>
-          <p>A simple, transparent flow from discovery to a job well done.</p>
-        </div>
-
-        <div class="wwd-list reveal">
-          <div class="wwd-item"><svg>
-              <use href="#i-check" />
-            </svg>
-            <p>Connects customers with artisans, freelancers and skilled professionals.</p>
-          </div>
-          <div class="wwd-item"><svg>
-              <use href="#i-check" />
-            </svg>
-            <p>Allows customers to create service requests and propose the price they are willing to pay.</p>
-          </div>
-          <div class="wwd-item"><svg>
-              <use href="#i-check" />
-            </svg>
-            <p>Allows customers to suggest new service categories, subject to administrative approval before activation.
-            </p>
-          </div>
-          <div class="wwd-item"><svg>
-              <use href="#i-check" />
-            </svg>
-            <p>Enables customers to compare and choose the provider who best matches the posted service.</p>
-          </div>
-          <div class="wwd-item"><svg>
-              <use href="#i-check" />
-            </svg>
-            <p>Enables providers to create categories, publish service offers and receive customer bookings.</p>
-          </div>
-          <div class="wwd-item"><svg>
-              <use href="#i-check" />
-            </svg>
-            <p>Supports the full service lifecycle — discovery, request, pricing, assignment, payment, completion and
-              feedback.</p>
+          <div class="vm-row reverse reveal">
+            <div class="vm-img">
+              <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1000&q=80"
+                alt="Professionals in a training and mentoring session" loading="lazy">
+            </div>
+            <div class="vm-text">
+              <span class="vm-tag">Mission</span>
+              <h3>Formalizing the artisan economy</h3>
+              <p>To formalize the artisan economy by empowering skilled professionals with the tools, training, branding
+                and digital infrastructure to deliver exceptional service experiences.</p>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- ============ CORE SERVICE CATEGORIES ============ -->
-    <section class="section-pad" id="services" style="background:var(--bg-soft);">
-      <div class="container">
-        <div class="photo-strip reveal">
+      <!-- ============ WHAT JOB CONNECTZ DOES ============ -->
+      <section class="section-pad" id="what-we-do">
+        <div class="container">
+          <div class="section-head reveal">
+            <div class="eyebrow" style="justify-content:center;">01 · Platform</div>
+            <h2>What Job Connectz Does</h2>
+            <p>A simple, transparent flow from discovery to a job well done.</p>
+          </div>
+
+          <div class="wwd-list reveal">
+            <div class="wwd-item"><svg>
+                <use href="#i-check" />
+              </svg>
+              <p>Connects customers with artisans, freelancers and skilled professionals.</p>
+            </div>
+            <div class="wwd-item"><svg>
+                <use href="#i-check" />
+              </svg>
+              <p>Allows customers to create service requests and propose the price they are willing to pay.</p>
+            </div>
+            <div class="wwd-item"><svg>
+                <use href="#i-check" />
+              </svg>
+              <p>Allows customers to suggest new service categories, subject to administrative approval before
+                activation.
+              </p>
+            </div>
+            <div class="wwd-item"><svg>
+                <use href="#i-check" />
+              </svg>
+              <p>Enables customers to compare and choose the provider who best matches the posted service.</p>
+            </div>
+            <div class="wwd-item"><svg>
+                <use href="#i-check" />
+              </svg>
+              <p>Enables providers to create categories, publish service offers and receive customer bookings.</p>
+            </div>
+            <div class="wwd-item"><svg>
+                <use href="#i-check" />
+              </svg>
+              <p>Supports the full service lifecycle — discovery, request, pricing, assignment, payment, completion and
+                feedback.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ CORE SERVICE CATEGORIES ============ -->
+      <section class="section-pad" id="services" style="background:var(--bg-soft);">
+        <div class="container">
+          <!-- <div class="photo-strip reveal">
           <figure><img
               src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=700&q=75"
               alt="Welder at work with sparks flying" loading="lazy">
@@ -1521,445 +1356,315 @@
               alt="Skilled professional reviewing technical drawings" loading="lazy">
             <figcaption>Skilled Craftsmanship</figcaption>
           </figure>
-        </div>
+        </div> -->
 
-        <div class="section-head reveal">
-          <div class="eyebrow" style="justify-content:center;">02 · Categories</div>
-          <h2>Core Service Categories</h2>
-          <p>Verified professionals across the trades customers rely on most — with new categories added as demand
-            grows.</p>
-        </div>
+          <div class="section-head reveal">
+            <div class="eyebrow" style="justify-content:center;">02 · Categories</div>
+            <h2>Core Service Categories</h2>
+            <p>Verified professionals across the trades customers rely on most — with new categories added as demand
+              grows.</p>
+          </div>
 
-        <div class="services-grid">
-          <div class="service-card reveal">
-            <div class="icon-badge"><svg>
-                <use href="#i-plumbing" />
-              </svg></div>
-            <h4>Plumbing</h4>
-            <p>Verified plumbing professionals ready to book.</p>
-          </div>
-          <div class="service-card reveal">
-            <div class="icon-badge"><svg>
-                <use href="#i-beauty" />
-              </svg></div>
-            <h4>Beauty Care</h4>
-            <p>Trusted beauty specialists at your convenience.</p>
-          </div>
-          <div class="service-card reveal">
-            <div class="icon-badge"><svg>
-                <use href="#i-hair" />
-              </svg></div>
-            <h4>Hairdressing</h4>
-            <p>Skilled stylists for every occasion.</p>
-          </div>
-          <div class="service-card reveal">
-            <div class="icon-badge"><svg>
-                <use href="#i-electric" />
-              </svg></div>
-            <h4>Electricals</h4>
-            <p>Certified electricians for safe, reliable work.</p>
-          </div>
-          <div class="service-card reveal">
-            <div class="icon-badge"><svg>
-                <use href="#i-paint" />
-              </svg></div>
-            <h4>Painting</h4>
-            <p>Professional finishing for homes and offices.</p>
-          </div>
-          <div class="service-card reveal">
-            <div class="icon-badge"><svg>
-                <use href="#i-auto" />
-              </svg></div>
-            <h4>Auto Mechanic</h4>
-            <p>Dependable vehicle repair and maintenance.</p>
-          </div>
-          <div class="service-card reveal">
-            <div class="icon-badge"><svg>
-                <use href="#i-ceiling" />
-              </svg></div>
-            <h4>POP / Ceiling Works</h4>
-            <p>Quality ceiling and interior finishing.</p>
-          </div>
-          <div class="service-card reveal">
-            <div class="icon-badge"><svg>
-                <use href="#i-carpentry" />
-              </svg></div>
-            <h4>Carpentry</h4>
-            <p>Custom woodwork and furniture craftsmanship.</p>
-          </div>
-          <div class="service-card reveal">
-            <div class="icon-badge"><svg>
-                <use href="#i-welding" />
-              </svg></div>
-            <h4>Welding &amp; Fabrication</h4>
-            <p>Durable metalwork from trusted fabricators.</p>
-          </div>
-          <div class="service-card reveal">
-            <div class="icon-badge"><svg>
-                <use href="#i-glazing" />
-              </svg></div>
-            <h4>Glazing</h4>
-            <p>Expert glass installation and repair.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ CUSTOMER VALUE PROPOSITION ============ -->
-    <section class="section-pad" id="customers">
-      <div class="container">
-        <div class="vp-row reveal">
-          <div class="vp-img">
-            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1000&q=80"
-              alt="Customer browsing and booking services on a laptop" loading="lazy">
-          </div>
-          <div class="vp-text">
-            <div class="eyebrow">03 · For Customers</div>
-            <h2>Customer Value Proposition</h2>
-            <p class="lead-p">Job Connectz reduces the friction of finding, evaluating and managing skilled service
-              providers. Customers gain one place to discover services, request work, choose providers, manage timing
-              and pricing, pay and provide feedback.</p>
-            <div class="benefit-list">
-              <div class="benefit-item"><span class="mini-check"><svg>
-                    <use href="#i-check" />
-                  </svg></span><span>One place to discover, request and manage services.</span></div>
-              <div class="benefit-item"><span class="mini-check"><svg>
-                    <use href="#i-check" />
-                  </svg></span><span>Compare and choose the provider that best matches your job.</span></div>
-              <div class="benefit-item"><span class="mini-check"><svg>
-                    <use href="#i-check" />
-                  </svg></span><span>Set timing, propose pricing and pay with confidence.</span></div>
-              <div class="benefit-item"><span class="mini-check"><svg>
-                    <use href="#i-check" />
-                  </svg></span><span>Verified providers backed by dedicated customer support.</span></div>
-              <div class="benefit-item"><span class="mini-check"><svg>
-                    <use href="#i-check" />
-                  </svg></span><span>Feedback-driven trust throughout the service journey.</span></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ PROVIDER VALUE PROPOSITION ============ -->
-    <section class="section-pad" id="providers" style="background:var(--bg-soft);">
-      <div class="container">
-        <div class="vp-row reverse reveal">
-          <div class="vp-img">
-            <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=1000&q=80"
-              alt="Service provider delivering professional work at a client's home" loading="lazy">
-          </div>
-          <div class="vp-text">
-            <div class="eyebrow">04 · For Providers</div>
-            <h2>Provider Value Proposition</h2>
-            <p class="lead-p">Artisans and freelancers gain a digital storefront and demand channel. They can publish
-              offers, receive bookings, and build reputation through completed jobs and feedback.</p>
-            <div class="benefit-list">
-              <div class="benefit-item"><span class="mini-check"><svg>
-                    <use href="#i-check" />
-                  </svg></span><span>A digital storefront and steady demand channel.</span></div>
-              <div class="benefit-item"><span class="mini-check"><svg>
-                    <use href="#i-check" />
-                  </svg></span><span>Publish offers and receive bookings directly.</span></div>
-              <div class="benefit-item"><span class="mini-check"><svg>
-                    <use href="#i-check" />
-                  </svg></span><span>Build reputation through completed jobs and feedback.</span></div>
-              <div class="benefit-item"><span class="mini-check"><svg>
-                    <use href="#i-check" />
-                  </svg></span><span>Job Connectz branding, training and marketplace visibility.</span></div>
-              <div class="benefit-item"><span class="mini-check"><svg>
-                    <use href="#i-check" />
-                  </svg></span><span>Access to technology infrastructure that supports growth.</span></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ COMPETITIVE ADVANTAGE ============ -->
-    <section class="section-pad" id="advantage">
-      <div class="container">
-        <div class="section-head reveal">
-          <div class="eyebrow" style="justify-content:center;">05 · Why Job Connectz</div>
-          <h2>Competitive Advantage</h2>
-          <p>What sets Job Connectz apart as Ghana's skilled-services marketplace.</p>
-        </div>
-
-        <div class="adv-banner reveal">
-          <div class="adv-banner-text">
-            <h3>Built on trust, end to end</h3>
-            <p>Every job moves through one accountable, verified journey — from discovery to completed work.</p>
-          </div>
-        </div>
-
-        <div class="advantage-grid">
-          <div class="advantage-card reveal">
-            <div class="icon-badge"><svg>
-                <use href="#i-flow" />
-              </svg></div>
-            <h4>End-to-End Marketplace</h4>
-            <p>Discovery, requests, matching, pricing, booking, payment, completion and feedback in one experience.</p>
-          </div>
-          <div class="advantage-card reveal">
-            <div class="icon-badge"><svg>
-                <use href="#i-shield-check" />
-              </svg></div>
-            <h4>Trust-Led Positioning</h4>
-            <p>Built around provider verification, customer support, transparency and service accountability.</p>
-          </div>
-          <div class="advantage-card reveal">
-            <div class="icon-badge"><svg>
-                <use href="#i-sliders" />
-              </svg></div>
-            <h4>Flexible Commercial Model</h4>
-            <p>Accommodates standardized regular services and custom-rated premium services alike.</p>
-          </div>
-          <div class="advantage-card reveal">
-            <div class="icon-badge"><svg>
-                <use href="#i-plus-circle" />
-              </svg></div>
-            <h4>Demand-Led Expansion</h4>
-            <p>Customers can suggest new categories, while administrators retain full approval control.</p>
-          </div>
-          <div class="advantage-card reveal">
-            <div class="icon-badge"><svg>
-                <use href="#i-trend-up" />
-              </svg></div>
-            <h4>Provider-Led Supply Growth</h4>
-            <p>Skilled professionals can publish offers and help broaden marketplace coverage.</p>
-          </div>
-          <div class="advantage-card reveal">
-            <div class="icon-badge"><svg>
-                <use href="#i-building" />
-              </svg></div>
-            <h4>Individual &amp; B2B Ready</h4>
-            <p>Built to serve both individual customers and recurring institutional service needs.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ COMPANY VALUES ============ -->
-    <section class="section-pad values-section" id="values">
-      <div class="container">
-        <div class="section-head reveal">
-          <div class="eyebrow" style="justify-content:center;color:#ff8080;">06 · Culture</div>
-          <h2>Company Values</h2>
-          <p>The values that guide how Job Connectz builds a trusted marketplace.</p>
-        </div>
-
-        <div class="values-grid">
-          <div class="value-card reveal">
-            <div class="icon-badge"><svg>
-                <use href="#i-heart" />
-              </svg></div>
-            <h4>Customer-Centricity</h4>
-            <p>Every decision starts with the customer's need.</p>
-          </div>
-          <div class="value-card reveal">
-            <div class="icon-badge"><svg>
-                <use href="#i-shield" />
-              </svg></div>
-            <h4>Integrity</h4>
-            <p>We act honestly and hold ourselves accountable.</p>
-          </div>
-          <div class="value-card reveal">
-            <div class="icon-badge"><svg>
-                <use href="#i-eye" />
-              </svg></div>
-            <h4>Transparency</h4>
-            <p>Clear pricing, terms and communication, always.</p>
-          </div>
-          <div class="value-card reveal">
-            <div class="icon-badge"><svg>
-                <use href="#i-star" />
-              </svg></div>
-            <h4>Quality</h4>
-            <p>We hold every job to a high standard of work.</p>
-          </div>
-          <div class="value-card reveal">
-            <div class="icon-badge"><svg>
-                <use href="#i-briefcase" />
-              </svg></div>
-            <h4>Professionalism</h4>
-            <p>Consistent, respectful service at every touchpoint.</p>
-          </div>
-          <div class="value-card reveal">
-            <div class="icon-badge"><svg>
-                <use href="#i-bulb" />
-              </svg></div>
-            <h4>Innovation</h4>
-            <p>Continuously improving how services are delivered.</p>
-          </div>
-          <div class="value-card reveal">
-            <div class="icon-badge"><svg>
-                <use href="#i-shield-check" />
-              </svg></div>
-            <h4>Safety</h4>
-            <p>Protecting customers and providers on every job.</p>
-          </div>
-          <div class="value-card reveal">
-            <div class="icon-badge"><svg>
-                <use href="#i-clock" />
-              </svg></div>
-            <h4>Reliability</h4>
-            <p>Dependable service people can count on.</p>
-          </div>
-          <div class="value-card reveal">
-            <div class="icon-badge"><svg>
-                <use href="#i-people" />
-              </svg></div>
-            <h4>Inclusivity</h4>
-            <p>Opportunity for professionals from every background.</p>
-          </div>
-          <div class="value-card reveal">
-            <div class="icon-badge"><svg>
-                <use href="#i-trend" />
-              </svg></div>
-            <h4>Continuous Improvement</h4>
-            <p>Always learning, refining and growing together.</p>
-          </div>
-        </div>
-
-        <p class="values-note reveal">These values guide Job Connectz in building a trusted digital marketplace where
-          customers can access quality services and skilled professionals can grow sustainable businesses.</p>
-      </div>
-    </section>
-
-    <!-- ============ CONTACT ============ -->
-    <section class="section-pad contact-section" id="contact">
-      <div class="container">
-        <div class="contact-grid reveal">
-          <div class="contact-info">
-            <div class="brand-row">
-              <img src="assets/logo.jpeg" alt="Job Connectz logo">
-            </div>
-            <h2>Let's Connect</h2>
-            <p>Reach out to learn more about Job Connectz, partner with us, or get support with the platform.</p>
-
-            <div class="contact-item">
+          <div class="services-grid">
+            <div class="service-card reveal">
               <div class="icon-badge"><svg>
-                  <use href="#i-pin" />
+                  <use href="#i-plumbing" />
                 </svg></div>
-              <div>
-                <h5>Address</h5><span>7 Sunkwa Road, Accra, Ghana</span>
-              </div>
+              <h4>Plumbing</h4>
+              <p>Verified plumbing professionals ready to book.</p>
             </div>
-            <div class="contact-item">
+            <div class="service-card reveal">
               <div class="icon-badge"><svg>
-                  <use href="#i-phone" />
+                  <use href="#i-beauty" />
                 </svg></div>
-              <div>
-                <h5>Phone</h5><a href="tel:0800533996">0800 533 996</a>
-              </div>
+              <h4>Beauty Care</h4>
+              <p>Trusted beauty specialists at your convenience.</p>
             </div>
-            <div class="contact-item">
+            <div class="service-card reveal">
               <div class="icon-badge"><svg>
-                  <use href="#i-mail" />
+                  <use href="#i-hair" />
                 </svg></div>
-              <div>
-                <h5>Email</h5><a href="mailto:info@jobconnectz.com">info@jobconnectz.com</a>
-              </div>
+              <h4>Hairdressing</h4>
+              <p>Skilled stylists for every occasion.</p>
             </div>
-            <div class="contact-item">
+            <div class="service-card reveal">
               <div class="icon-badge"><svg>
-                  <use href="#i-globe" />
+                  <use href="#i-electric" />
                 </svg></div>
-              <div>
-                <h5>Website</h5><a href="https://www.jobconnectz.com" target="_blank"
-                  rel="noopener">www.jobconnectz.com</a>
+              <h4>Electricals</h4>
+              <p>Certified electricians for safe, reliable work.</p>
+            </div>
+            <div class="service-card reveal">
+              <div class="icon-badge"><svg>
+                  <use href="#i-paint" />
+                </svg></div>
+              <h4>Painting</h4>
+              <p>Professional finishing for homes and offices.</p>
+            </div>
+            <div class="service-card reveal">
+              <div class="icon-badge"><svg>
+                  <use href="#i-auto" />
+                </svg></div>
+              <h4>Auto Mechanic</h4>
+              <p>Dependable vehicle repair and maintenance.</p>
+            </div>
+            <div class="service-card reveal">
+              <div class="icon-badge"><svg>
+                  <use href="#i-ceiling" />
+                </svg></div>
+              <h4>POP / Ceiling Works</h4>
+              <p>Quality ceiling and interior finishing.</p>
+            </div>
+            <div class="service-card reveal">
+              <div class="icon-badge"><svg>
+                  <use href="#i-carpentry" />
+                </svg></div>
+              <h4>Carpentry</h4>
+              <p>Custom woodwork and furniture craftsmanship.</p>
+            </div>
+            <div class="service-card reveal">
+              <div class="icon-badge"><svg>
+                  <use href="#i-welding" />
+                </svg></div>
+              <h4>Welding &amp; Fabrication</h4>
+              <p>Durable metalwork from trusted fabricators.</p>
+            </div>
+            <div class="service-card reveal">
+              <div class="icon-badge"><svg>
+                  <use href="#i-glazing" />
+                </svg></div>
+              <h4>Glazing</h4>
+              <p>Expert glass installation and repair.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ CUSTOMER VALUE PROPOSITION ============ -->
+      <section class="section-pad" id="customers">
+        <div class="container">
+          <div class="vp-row reveal">
+            <div class="vp-img">
+              <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1000&q=80"
+                alt="Customer browsing and booking services on a laptop" loading="lazy">
+            </div>
+            <div class="vp-text">
+              <div class="eyebrow">03 · For Customers</div>
+              <h2>Customer Value Proposition</h2>
+              <p class="lead-p">Job Connectz reduces the friction of finding, evaluating and managing skilled service
+                providers. Customers gain one place to discover services, request work, choose providers, manage timing
+                and pricing, pay and provide feedback.</p>
+              <div class="benefit-list">
+                <div class="benefit-item"><span class="mini-check"><svg>
+                      <use href="#i-check" />
+                    </svg></span><span>One place to discover, request and manage services.</span></div>
+                <div class="benefit-item"><span class="mini-check"><svg>
+                      <use href="#i-check" />
+                    </svg></span><span>Compare and choose the provider that best matches your job.</span></div>
+                <div class="benefit-item"><span class="mini-check"><svg>
+                      <use href="#i-check" />
+                    </svg></span><span>Set timing, propose pricing and pay with confidence.</span></div>
+                <div class="benefit-item"><span class="mini-check"><svg>
+                      <use href="#i-check" />
+                    </svg></span><span>Verified providers backed by dedicated customer support.</span></div>
+                <div class="benefit-item"><span class="mini-check"><svg>
+                      <use href="#i-check" />
+                    </svg></span><span>Feedback-driven trust throughout the service journey.</span></div>
               </div>
             </div>
           </div>
-          <div class="contact-photo">
-            <img src="https://images.unsplash.com/photo-1521791055366-0d553872125f?auto=format&fit=crop&w=900&q=80"
-              alt="Signing an agreement, representing trust and verified transactions" loading="lazy">
+        </div>
+      </section>
+
+      <!-- ============ PROVIDER VALUE PROPOSITION ============ -->
+      <section class="section-pad" id="providers" style="background:var(--bg-soft);">
+        <div class="container">
+          <div class="vp-row reverse reveal">
+            <div class="vp-img">
+              <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=1000&q=80"
+                alt="Service provider delivering professional work at a client's home" loading="lazy">
+            </div>
+            <div class="vp-text">
+              <div class="eyebrow">04 · For Providers</div>
+              <h2>Provider Value Proposition</h2>
+              <p class="lead-p">Artisans and freelancers gain a digital storefront and demand channel. They can publish
+                offers, receive bookings, and build reputation through completed jobs and feedback.</p>
+              <div class="benefit-list">
+                <div class="benefit-item"><span class="mini-check"><svg>
+                      <use href="#i-check" />
+                    </svg></span><span>A digital storefront and steady demand channel.</span></div>
+                <div class="benefit-item"><span class="mini-check"><svg>
+                      <use href="#i-check" />
+                    </svg></span><span>Publish offers and receive bookings directly.</span></div>
+                <div class="benefit-item"><span class="mini-check"><svg>
+                      <use href="#i-check" />
+                    </svg></span><span>Build reputation through completed jobs and feedback.</span></div>
+                <div class="benefit-item"><span class="mini-check"><svg>
+                      <use href="#i-check" />
+                    </svg></span><span>Job Connectz branding, training and marketplace visibility.</span></div>
+                <div class="benefit-item"><span class="mini-check"><svg>
+                      <use href="#i-check" />
+                    </svg></span><span>Access to technology infrastructure that supports growth.</span></div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <footer>
-      <div class="container footer-row">
-        <div class="brand"><img src="assets/logo.jpeg" alt="Job Connectz"> </div>
-        <span>© 2026 Job Connectz. All rights reserved. · Accra, Ghana</span>
-      </div>
-    </footer>
+      <!-- ============ COMPETITIVE ADVANTAGE ============ -->
+      <section class="section-pad" id="advantage">
+        <div class="container">
+          <div class="section-head reveal">
+            <div class="eyebrow" style="justify-content:center;">05 · Why Job Connectz</div>
+            <h2>Competitive Advantage</h2>
+            <p>What sets Job Connectz apart as Ghana's skilled-services marketplace.</p>
+          </div>
 
-    <button class="back-to-top" id="backToTop" aria-label="Back to top">
-      <svg>
-        <use href="#i-arrow-up" />
-      </svg>
-    </button>
+          <div class="adv-banner reveal">
+            <div class="adv-banner-text">
+              <h3>Built on trust, end to end</h3>
+              <p>Every job moves through one accountable, verified journey — from discovery to completed work.</p>
+            </div>
+          </div>
 
-    <script>
-      (function () {
-        var header = document.getElementById('site-header');
-        var hamburger = document.getElementById('hamburger');
-        var mobileNav = document.getElementById('mobileNav');
-        var scrim = document.getElementById('navScrim');
-        var backToTop = document.getElementById('backToTop');
+          <div class="advantage-grid">
+            <div class="advantage-card reveal">
+              <div class="icon-badge"><svg>
+                  <use href="#i-flow" />
+                </svg></div>
+              <h4>End-to-End Marketplace</h4>
+              <p>Discovery, requests, matching, pricing, booking, payment, completion and feedback in one experience.
+              </p>
+            </div>
+            <div class="advantage-card reveal">
+              <div class="icon-badge"><svg>
+                  <use href="#i-shield-check" />
+                </svg></div>
+              <h4>Trust-Led Positioning</h4>
+              <p>Built around provider verification, customer support, transparency and service accountability.</p>
+            </div>
+            <div class="advantage-card reveal">
+              <div class="icon-badge"><svg>
+                  <use href="#i-sliders" />
+                </svg></div>
+              <h4>Flexible Commercial Model</h4>
+              <p>Accommodates standardized regular services and custom-rated premium services alike.</p>
+            </div>
+            <div class="advantage-card reveal">
+              <div class="icon-badge"><svg>
+                  <use href="#i-plus-circle" />
+                </svg></div>
+              <h4>Demand-Led Expansion</h4>
+              <p>Customers can suggest new categories, while administrators retain full approval control.</p>
+            </div>
+            <div class="advantage-card reveal">
+              <div class="icon-badge"><svg>
+                  <use href="#i-trend-up" />
+                </svg></div>
+              <h4>Provider-Led Supply Growth</h4>
+              <p>Skilled professionals can publish offers and help broaden marketplace coverage.</p>
+            </div>
+            <div class="advantage-card reveal">
+              <div class="icon-badge"><svg>
+                  <use href="#i-building" />
+                </svg></div>
+              <h4>Individual &amp; B2B Ready</h4>
+              <p>Built to serve both individual customers and recurring institutional service needs.</p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-        function onScroll() {
-          var y = window.scrollY || document.documentElement.scrollTop;
-          header.classList.toggle('scrolled', y > 40);
-          backToTop.classList.toggle('show', y > 500);
-        }
-        document.addEventListener('scroll', onScroll, { passive: true });
-        onScroll();
+      <!-- ============ COMPANY VALUES ============ -->
+      <section class="section-pad values-section" id="values">
+        <div class="container">
+          <div class="section-head reveal">
+            <div class="eyebrow" style="justify-content:center;color:#ff8080;">06 · Culture</div>
+            <h2>Company Values</h2>
+            <p>The values that guide how Job Connectz builds a trusted marketplace.</p>
+          </div>
 
-        function closeMenu() {
-          hamburger.classList.remove('open');
-          mobileNav.classList.remove('open');
-          scrim.classList.remove('show');
-        }
-        hamburger.addEventListener('click', function () {
-          var isOpen = mobileNav.classList.toggle('open');
-          hamburger.classList.toggle('open', isOpen);
-          scrim.classList.toggle('show', isOpen);
-        });
-        scrim.addEventListener('click', closeMenu);
-        mobileNav.querySelectorAll('a').forEach(function (a) {
-          a.addEventListener('click', closeMenu);
-        });
+          <div class="values-grid">
+            <div class="value-card reveal">
+              <div class="icon-badge"><svg>
+                  <use href="#i-heart" />
+                </svg></div>
+              <h4>Customer-Centricity</h4>
+              <p>Every decision starts with the customer's need.</p>
+            </div>
+            <div class="value-card reveal">
+              <div class="icon-badge"><svg>
+                  <use href="#i-shield" />
+                </svg></div>
+              <h4>Integrity</h4>
+              <p>We act honestly and hold ourselves accountable.</p>
+            </div>
+            <div class="value-card reveal">
+              <div class="icon-badge"><svg>
+                  <use href="#i-eye" />
+                </svg></div>
+              <h4>Transparency</h4>
+              <p>Clear pricing, terms and communication, always.</p>
+            </div>
+            <div class="value-card reveal">
+              <div class="icon-badge"><svg>
+                  <use href="#i-star" />
+                </svg></div>
+              <h4>Quality</h4>
+              <p>We hold every job to a high standard of work.</p>
+            </div>
+            <div class="value-card reveal">
+              <div class="icon-badge"><svg>
+                  <use href="#i-briefcase" />
+                </svg></div>
+              <h4>Professionalism</h4>
+              <p>Consistent, respectful service at every touchpoint.</p>
+            </div>
+            <div class="value-card reveal">
+              <div class="icon-badge"><svg>
+                  <use href="#i-bulb" />
+                </svg></div>
+              <h4>Innovation</h4>
+              <p>Continuously improving how services are delivered.</p>
+            </div>
+            <div class="value-card reveal">
+              <div class="icon-badge"><svg>
+                  <use href="#i-shield-check" />
+                </svg></div>
+              <h4>Safety</h4>
+              <p>Protecting customers and providers on every job.</p>
+            </div>
+            <div class="value-card reveal">
+              <div class="icon-badge"><svg>
+                  <use href="#i-clock" />
+                </svg></div>
+              <h4>Reliability</h4>
+              <p>Dependable service people can count on.</p>
+            </div>
+            <div class="value-card reveal">
+              <div class="icon-badge"><svg>
+                  <use href="#i-people" />
+                </svg></div>
+              <h4>Inclusivity</h4>
+              <p>Opportunity for professionals from every background.</p>
+            </div>
+            <div class="value-card reveal">
+              <div class="icon-badge"><svg>
+                  <use href="#i-trend" />
+                </svg></div>
+              <h4>Continuous Improvement</h4>
+              <p>Always learning, refining and growing together.</p>
+            </div>
+          </div>
 
-        backToTop.addEventListener('click', function () {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
+          <p class="values-note reveal">These values guide Job Connectz in building a trusted digital marketplace where
+            customers can access quality services and skilled professionals can grow sustainable businesses.</p>
+        </div>
+      </section>
 
-        // scroll reveal
-        var revealEls = document.querySelectorAll('.reveal');
-        if ('IntersectionObserver' in window) {
-          var io = new IntersectionObserver(function (entries) {
-            entries.forEach(function (entry) {
-              if (entry.isIntersecting) {
-                entry.target.classList.add('in-view');
-                io.unobserve(entry.target);
-              }
-            });
-          }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-          revealEls.forEach(function (el) { io.observe(el); });
-        } else {
-          revealEls.forEach(function (el) { el.classList.add('in-view'); });
-        }
 
-        // active nav link highlighting
-        var sections = document.querySelectorAll('section[id]');
-        var navLinks = document.querySelectorAll('.main-nav a');
-        function updateActiveLink() {
-          var scrollPos = window.scrollY + 140;
-          var currentId = null;
-          sections.forEach(function (sec) {
-            if (sec.offsetTop <= scrollPos) { currentId = sec.id; }
-          });
-          navLinks.forEach(function (link) {
-            link.classList.toggle('active', link.getAttribute('href') === '#' + currentId);
-          });
-        }
-        document.addEventListener('scroll', updateActiveLink, { passive: true });
-        updateActiveLink();
-      })();
-    </script>
+    </div>
+
   </body>
 
 </html>

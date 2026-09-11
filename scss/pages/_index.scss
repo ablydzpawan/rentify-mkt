@@ -4,6 +4,7 @@
    visibility: hidden;
  }
 
+ //Hero
  .hero {
    //  height: 100vh;
    // background-image: url("../images/bg-lines.svg");
@@ -94,7 +95,66 @@
 
  //features
  .features {
-   display: flex;
+   width: 100%;
+   overflow: visible;
+
+   .swiper-wrapper {
+     align-items: flex-start;
+   }
+
+   .features-item {
+     width: 550px;
+     flex-shrink: 0;
+
+     opacity: .45;
+     transform: scale(.90);
+
+     transition:
+       transform .6s ease,
+       opacity .6s ease;
+
+     // Your existing styles
+     .refeatures-img {
+       width: 100%;
+       height: 345px;
+       border-radius: 26px;
+       overflow: hidden;
+
+       img {
+         width: 100%;
+         height: 100%;
+         display: block;
+         object-fit: cover;
+       }
+     }
+
+     .features-data {
+       padding: 26px 10px 0;
+       text-align: center;
+
+       h3 {
+         margin: 0 0 10px;
+         font-size: 18px;
+         line-height: 1.4;
+         font-weight: 600;
+       }
+
+       p {
+         max-width: 380px;
+         margin: 0 auto;
+
+         color: #777;
+         font-size: 14px;
+         line-height: 1.5;
+       }
+     }
+   }
+
+   // Center/active slide
+   .features-item.swiper-slide-active {
+     opacity: 1;
+     transform: scale(1);
+   }
  }
 
 
@@ -590,72 +650,158 @@
    }
  }
 
+ //stage
 
- /* initial hidden states so no flash before GSAP runs */
- .gsap-init {
-   // opacity: 0;
- }
-
- // hero animation
  .stage {
-   position: relative;
-   max-width: 1900px;
+   max-width: 1780px;
    margin: 0 auto;
-   min-height: 760px;
+   padding: 0;
+
+   .desc {
+     font-size: clamp(15px, 1.4vw, 19px);
+     line-height: 1.6;
+     color: rgba(11, 11, 15, .62);
+     margin: 0 0 36px;
+   }
  }
 
- /* --------------------------------------------------
-   Canvas
--------------------------------------------------- */
+ /* ---------- Headline ---------- */
+ .headline-wrap {
+   text-align: center;
+   margin-bottom: 90px;
+   perspective: 900px;
+ }
+
+ .title {
+   font-size: clamp(34px, 5.2vw, 68px);
+   line-height: 1.08;
+   font-weight: 700;
+   letter-spacing: -0.01em;
+   margin: 0 0 24px;
+ }
+
+ .letter {
+   display: inline-block;
+   will-change: transform, filter, opacity;
+ }
+
+
+
+ .cta-row {
+   display: flex;
+   gap: 16px;
+   justify-content: center;
+ }
+
+
+
+
+ /* ---------- Canvas: exact-position panel group ---------- */
  .canvas {
    position: relative;
    width: 100%;
-   max-width: 1760px;
-   height: 698px;
+   aspect-ratio: 1780 / 700;
+   /* locks every panel's relative position */
+   max-width: 1780px;
    margin: 0 auto;
-   overflow: visible;
  }
 
-
- /* url bar */
- .url-bar {
-   position: absolute;
-   left: 0;
-   top: 150px;
- }
-
- /* browser mock */
- .browser {
-   position: absolute;
-   left: 50%;
-   top: 0;
-   transform: translateX(-50%);
- }
-
- /* left floating panels */
  .panel {
    position: absolute;
+   will-change: transform, filter, opacity;
  }
 
- .font-panel {
-   left: 20px;
-   top: 330px;
+ .panel img {
+   display: block;
+   width: 100%;
+   height: 100%;
+   object-fit: contain;
+ }
+
+ /* Placeholder chrome so the layout is visible before real PNGs are dropped in.
+     Delete the "ph-*" rules once ./images/*.png are in place — the .panel
+     positioning rules above are the ones that matter and can stay as-is. */
+ .panel.ph {
+   border-radius: 14px;
+   background: #f4f4f6;
+   border: 1px solid var(--line);
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-size: 12px;
+   letter-spacing: .04em;
+   color: rgba(11, 11, 15, .4);
+ }
+
+ /* Exact coordinates lifted from the reference screenshot (1780×700 canvas) */
+ .url-bar {
+   left: 2.98%;
+   top: 7.43%;
+   width: 15.73%;
+   height: 5.86%;
+   z-index: 4;
+ }
+
+ .browser {
+   left: 21.63%;
+   top: 14.04%;
+   width: 57.02%;
+   height: 85.24%;
+   z-index: 1;
  }
 
  .toolbar {
-   left: 214px;
-   top: 230px;
+   left: 19.6%;
+   top: 37.68%;
+   width: 4.21%;
+   height: 48.28%;
+   z-index: 3;
+ }
+
+ .font-panel {
+   left: 0.5%;
+   top: 35.14%;
+   width: 12.75%;
+   height: 35.14%;
+   z-index: 2;
  }
 
  .color-panel {
-   right: 0;
-   top: 60px;
+   left: 86.24%;
+   top: 0%;
+   width: 12.64%;
+   height: 37.28%;
+   z-index: 2;
  }
 
  .template-panel {
-   right: 20px;
-   bottom: -10px;
+   left: 73.43%;
+   top: 57%;
+   width: 22.02%;
+   height: 25.07%;
+   z-index: 2;
  }
+
+ .url-bar.ph {
+   border-radius: 100px;
+ }
+
+ .font-panel.ph {
+   background: var(--lime);
+   border: none;
+ }
+
+ @media (max-width:900px) {
+   .canvas {
+     aspect-ratio: 1780/900;
+   }
+
+   .toolbar {
+     transform-origin: left center;
+   }
+ }
+
+ //
 
  .cta-gradient {
    background: transparent linear-gradient(115deg, #A0CBFC 0%, #E9FF9C 100%) 0% 0% no-repeat;
@@ -688,6 +834,138 @@
        margin-left: 2rem;
        line-height: 1;
        font-size: clamp(36px, 16vw, 15rem);
+     }
+   }
+ }
+
+
+ //
+
+ .calendar-stage {
+   max-width: 1765px;
+   margin: 0 auto;
+   padding: 0;
+ }
+
+ /* ---------- Canvas: exact-position panel group ---------- */
+ .calendar-canvas {
+   position: relative;
+   width: 100%;
+   aspect-ratio: 1765 / 797;
+   /* locks every panel's relative position */
+   max-width: 1765px;
+   margin: 0 auto;
+ }
+
+ .cal-panel {
+   position: absolute;
+   will-change: transform, filter, opacity;
+ }
+
+ .cal-panel img {
+   display: block;
+   width: 100%;
+   height: 100%;
+   object-fit: contain;
+ }
+
+ /* Placeholder chrome — delete .ph rules once ./images/*.png are dropped in.
+     The .panel position rules below are the ones that matter; leave those. */
+ .cal-panel.ph {
+   border-radius: 16px;
+   background: #f4f4f6;
+   border: 1px solid var(--line);
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-size: 12px;
+   letter-spacing: .04em;
+   color: rgba(11, 11, 15, .4);
+   overflow: hidden;
+ }
+
+ /* Exact coordinates, detected from the source PNG's alpha channel (1765×797 canvas) */
+ .calendar-panel {
+   left: 17.74%;
+   top: 12.42%;
+   width: 64.81%;
+   height: 87.58%;
+   z-index: 1;
+ }
+
+ .toggle {
+   left: 83.23%;
+   top: 6.15%;
+   width: 12.07%;
+   height: 4.27%;
+   z-index: 3;
+ }
+
+ .product-card {
+   left: 0%;
+   top: 0%;
+   width: 9.35%;
+   height: 20.70%;
+   z-index: 2;
+ }
+
+ .shoe-image {
+   left: 4.65%;
+   top: 62.11%;
+   width: 8.95%;
+   height: 14.81%;
+   z-index: 2;
+ }
+
+ .model-image {
+   left: 90.65%;
+   top: 43.79%;
+   width: 9.35%;
+   height: 24.84%;
+   z-index: 2;
+ }
+
+ .calendar-panel.ph {
+   background: #dbe8fe;
+   border-radius: 28px;
+ }
+
+ .product-card.ph {
+   background: #fbdcc3;
+   border-radius: 20px;
+ }
+
+
+ .calendar-check {
+   margin-top: 1.5rem;
+   display: flex;
+
+   gap: 0.5rem;
+
+   li {
+     padding-top: clamp(2rem, 3vw, 10rem);
+     font-size: 1.5rem;
+     line-height: 1.4;
+     font-weight: 600;
+     position: relative;
+     display: flex;
+     flex-direction: column;
+     gap: 1rem;
+
+     .icon {
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       background-color: #CFE2FF;
+       border-radius: 50%;
+       padding: 0.5rem;
+       width: 2.9rem;
+       height: 2.9rem;
+       aspect-ratio: 1/1;
+
+       img {
+         width: 100%;
+       }
      }
    }
  }
