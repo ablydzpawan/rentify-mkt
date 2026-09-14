@@ -35,7 +35,7 @@
     }
 
     &-start {
-      flex: 1;
+      flex: 1.8;
     }
 
     &-end {
@@ -75,6 +75,7 @@
 
   .section-text {
     &-h2 {
+      color: #000;
       //font-size: 3.5rem;
       //font-size: clamp(1.5rem, 2.105vw + 0.974rem, 3.5rem);
       //font-size: clamp(1.375rem, 0.95rem + 2.125vw, 3.5rem);
@@ -113,7 +114,7 @@
 
       // font-weight: $font-weight-regular;
       @include media-breakpoint-up(lg) {
-        font-size: clamp(1rem, 1.2rem, 2rem);
+        font-size: 1.5rem;
 
       }
     }

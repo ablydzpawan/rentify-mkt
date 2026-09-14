@@ -114,7 +114,7 @@ const featuresSwiper = new Swiper(".featuresSwiper", {
     centeredSlides: true,
     loop: true,
 
-    spaceBetween: 60,
+    spaceBetween: 30,
 
     speed: 700,
 
@@ -124,15 +124,133 @@ const featuresSwiper = new Swiper(".featuresSwiper", {
 
     breakpoints: {
         0: {
-            spaceBetween: 20
+            spaceBetween: 10
         },
 
         768: {
-            spaceBetween: 35
+            spaceBetween: 20
         },
 
         1200: {
-            spaceBetween: 60
+            spaceBetween: 30
         }
     }
+});
+
+
+//
+
+
+
+const expoSwiper = new Swiper('.swiper-expo', {
+    direction: 'horizontal',
+    slidesPerView: 'auto',
+    centeredSlides: true,
+    spaceBetween: 30,
+    loop: true,
+    speed: 750,
+    parallax: true,
+    grabCursor: true,
+
+    navigation: {
+        nextEl: '.btn-next',
+        prevEl: '.btn-prev',
+    },
+    pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+    },
+
+    /* 3D Dynamic Transformation Logic */
+    on: {
+        progress(s) {
+            s.slides.forEach((slide) => {
+                const progress = slide.progress; // Offset from active slide: -1 (left), 0 (center), 1 (right)
+                const absProgress = Math.abs(progress);
+
+                // 1. Perspective 3D rotation around Y axis
+                const rotateY = progress * -25;
+
+                // 2. Scale & translateZ depth matrix calculation
+                const scale = 1 - Math.min(absProgress * 0.15, 0.35);
+                const translateZ = -absProgress * 150;
+                const translateX = progress * -30;
+
+                // 3. Opacity & depth blur curve
+                const opacity = 1 - Math.min(absProgress * 0.45, 0.7);
+
+                // Apply calculated 3D Matrix
+                slide.style.transform = `
+              translate3d(${translateX}px, 0px, ${translateZ}px) 
+              rotateY(${rotateY}deg) 
+              scale(${scale})
+            `;
+                slide.style.opacity = opacity;
+                slide.style.zIndex = 10 - Math.round(absProgress * 5);
+            });
+        },
+        setTransition(s, duration) {
+            s.slides.forEach((slide) => {
+                slide.style.transitionDuration = `${duration}ms`;
+            });
+        }
+    }
+});
+
+//
+
+
+const cards = document.querySelectorAll('.accordion-card');
+
+cards.forEach(card => {
+    card.addEventListener('click', () => {
+        // Remove active class from all cards
+        cards.forEach(c => c.classList.remove('active'));
+
+        // Add active class to clicked card
+        card.classList.add('active');
+    });
+});
+
+
+//
+
+document.addEventListener("DOMContentLoaded", () => {
+    const svg = document.querySelector(".svg-draw");
+
+    if (!svg) return;
+
+    const paths = svg.querySelectorAll("path");
+
+    // Calculate each path's length
+    paths.forEach((path) => {
+        try {
+            const length = path.getTotalLength();
+
+            path.style.setProperty("--path-length", `${length}`);
+            path.style.strokeDasharray = length;
+            path.style.strokeDashoffset = length;
+        } catch (error) {
+            // Ignore paths that don't support getTotalLength()
+        }
+    });
+
+    // Observe SVG entering viewport
+    const observer = new IntersectionObserver(
+        (entries, observer) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    svg.classList.add("is-visible");
+
+                    // Run only once
+                    observer.unobserve(svg);
+                }
+            });
+        },
+        {
+            threshold: 0.2
+        }
+    );
+
+    observer.observe(svg);
 });

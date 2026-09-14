@@ -96,17 +96,16 @@
  //features
  .features {
    width: 100%;
-   overflow: visible;
+   overflow: hidden;
 
    .swiper-wrapper {
      align-items: flex-start;
    }
 
    .features-item {
-     width: 550px;
+     width: 650px;
      flex-shrink: 0;
-
-     opacity: .45;
+     // opacity: .45;
      transform: scale(.90);
 
      transition:
@@ -116,7 +115,7 @@
      // Your existing styles
      .refeatures-img {
        width: 100%;
-       height: 345px;
+       // height: 345px;
        border-radius: 26px;
        overflow: hidden;
 
@@ -134,7 +133,7 @@
 
        h3 {
          margin: 0 0 10px;
-         font-size: 18px;
+         font-size: 1.5rem;
          line-height: 1.4;
          font-weight: 600;
        }
@@ -142,9 +141,9 @@
        p {
          max-width: 380px;
          margin: 0 auto;
-
-         color: #777;
-         font-size: 14px;
+         opacity: 0;
+         color: $txt-body;
+         font-size: 1rem;
          line-height: 1.5;
        }
      }
@@ -154,81 +153,18 @@
    .features-item.swiper-slide-active {
      opacity: 1;
      transform: scale(1);
+
+     p {
+       opacity: 1;
+     }
    }
  }
 
 
- .get-started {
-   display: flex;
-   gap: 2rem;
-   flex-direction: column;
-   counter-reset: step-counter;
-
-   @include media-breakpoint-up(lg) {
-     flex-direction: row;
-   }
-
-   &-item {
-     display: flex;
-     flex-direction: column;
-     gap: 1rem;
-     text-align: center;
-
-     @include media-breakpoint-down(lg) {
-       flex-direction: column-reverse;
-     }
-
-     &:nth-child(even) {
-       @include media-breakpoint-up(lg) {
-         flex-direction: column-reverse;
-       }
-     }
-   }
-
-   &-data {
-     counter-increment: step-counter;
-     position: relative;
-
-     &::before {
-       content: counter(step-counter);
-       width: 2.125rem;
-       height: 2.125rem;
-       border-radius: 50%;
-       background: #EEF0F9;
-       color: #000;
-       font-size: 1.125rem;
-       font-weight: 600;
-       margin: 0 auto;
-       margin-bottom: 1.5rem;
-       display: flex;
-       align-items: center;
-       justify-content: center;
-
-     }
-   }
-
-   h3 {
-     color: #000;
-     font-size: 1.5rem;
-     font-weight: 500;
-     margin-bottom: 10px;
-   }
-
-   p {
-     text-align: center;
-     font-size: 1rem;
-
-     color: #000000;
-     opacity: 0.7;
-   }
- }
 
  //pricings
  .bg-pricing {
    background: transparent radial-gradient(closest-side at 50% 50%, #BADBFF 0%, #FFFFFF 100%) 0% 0%;
-   // background-color: #000E20;
-   // background-image: url("../images/bg-pricing.svg");
-   // background-size: 100%;
 
  }
 
@@ -236,6 +172,7 @@
    display: flex;
    flex-direction: column;
    gap: 2rem;
+   margin: 2rem 0;
 
    @include media-breakpoint-up(lg) {
      flex-direction: row;
@@ -243,44 +180,107 @@
 
    &-item {
      @include bg-white;
-     border-radius: 1.5rem;
-     padding: 2rem;
+     // border: 1px solid #B9D8FB;
+     border-radius: 30px;
+     padding: 2.5rem 3rem;
      display: flex;
      flex-direction: column;
      gap: 1rem;
      flex: 1;
+     position: relative;
+     isolation: isolate;
+     transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+       box-shadow 0.35s ease;
+     will-change: transform;
+
+     // Animated gradient border layer
+     &::before {
+       content: "";
+       position: absolute;
+       inset: 0;
+       border-radius: 30px;
+       padding: 2px;
+       // border thickness
+       background: linear-gradient(120deg, #166AEA, #77ACFC, #DDFB76, #166AEA);
+       background-size: 300% 300%;
+       -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+       -webkit-mask-composite: xor;
+       mask-composite: exclude;
+       opacity: 0;
+       transition: opacity 0.35s ease;
+       pointer-events: none;
+       z-index: -1;
+     }
+
+     &:hover {
+       transform: translateY(-10px);
+       //box-shadow: 0 20px 40px rgba(22, 106, 234, 0.15);
+
+       &::before {
+         opacity: 1;
+         animation: borderFlow 4s ease infinite;
+       }
+     }
+
+
+   }
+
+   @keyframes borderFlow {
+     0% {
+       background-position: 0% 50%;
+     }
+
+     50% {
+       background-position: 100% 50%;
+     }
+
+     100% {
+       background-position: 0% 50%;
+     }
+
+
+   }
+
+   .most {
+     background: #DDFB76;
+     color: #000;
+     border-radius: 23px;
+     padding: 0.35rem 0.56rem;
+     font-size: 0.8rem;
+     font-weight: 600;
+     position: absolute;
+     top: 1rem;
+     right: 1rem;
    }
 
    &-icon {
-     margin-bottom: 1rem;
+     margin-bottom: 1.5rem;
    }
 
    .h3 {
      font-weight: 600;
-     font-size: clamp(1.5rem, calc(1.25rem + 1.250vw), 3.5rem);
+     font-size: 2rem;
    }
 
    p {
-     font-size: 0.9rem;
-     opacity: 0.7;
+     font-size: 1rem;
+     font-weight: 500;
+
    }
 
    &-price {
-     font-weight: 600;
+     font-weight: 700;
      font-size: clamp(1.5rem, calc(1.25rem + 1.250vw), 3.5rem);
      margin: 1rem 0;
+
+     span {
+       font-size: 1.5rem;
+       font-weight: 400;
+       color: $txt-gray;
+     }
    }
 
-   &-action {
-     // @include bg-brand-light;
-     background-color: rgba(#2D85FE, 0.2);
-     border-radius: 50px;
-     color: #000;
-     padding: 10px 1.5rem;
-     font-weight: 600;
-     display: inline-flex;
-     margin-bottom: 2rem;
-   }
+   &-action {}
 
    h6 {
      font-weight: 500;
@@ -968,4 +968,330 @@
        }
      }
    }
+ }
+
+
+ //
+
+
+
+
+ /* Swiper Base Styling */
+ .swiper-expo.swiper-3d {
+   width: 100%;
+   height: 480px;
+   overflow: visible;
+ }
+
+ /* Individual Slide Card */
+ .swiper-expo .swiper-slide {
+   position: relative;
+   width: 746px;
+   /* Matches your DOM structure */
+   height: 100%;
+   border-radius: 24px;
+   overflow: hidden;
+   transform-style: preserve-3d;
+   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease, filter 0.6s ease;
+   will-change: transform, opacity, filter;
+   background-color: #1a1d24;
+ }
+
+ /* Slide Card Content Setup */
+ .slide-card {
+   width: 100%;
+   height: 100%;
+   position: relative;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   padding: 40px;
+   overflow: hidden;
+ }
+
+ .slide-bg {
+   position: absolute;
+   inset: 0;
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+   z-index: 1;
+   filter: brightness(0.85);
+   transition: transform 0.6s ease;
+ }
+
+ .slide-overlay {
+   position: absolute;
+   inset: 0;
+   background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.8) 100%);
+   z-index: 2;
+ }
+
+ .slide-content {
+   position: relative;
+   z-index: 3;
+   max-width: 80%;
+ }
+
+ .slide-tag {
+   display: inline-block;
+   font-size: 0.8rem;
+   font-weight: 700;
+   text-transform: uppercase;
+   letter-spacing: 2px;
+   color: #38bdf8;
+   margin-bottom: 12px;
+ }
+
+ .slide-title {
+   font-size: 2.5rem;
+   font-weight: 800;
+   line-height: 1.1;
+   margin-bottom: 12px;
+ }
+
+ .slide-desc {
+   font-size: 1rem;
+   color: #94a3b8;
+   line-height: 1.5;
+ }
+
+ /* Custom Navigation Buttons */
+ .controls {
+   display: flex;
+   justify-content: center;
+   gap: 16px;
+   margin-top: 40px;
+ }
+
+ .nav-btn {
+   width: 52px;
+   height: 52px;
+   border-radius: 50%;
+   background: rgba(255, 255, 255, 0.08);
+   border: 1px solid rgba(255, 255, 255, 0.15);
+   color: #fff;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   cursor: pointer;
+   backdrop-filter: blur(12px);
+   transition: all 0.3s ease;
+ }
+
+ .nav-btn:hover {
+   background: #ffffff;
+   color: #000000;
+   transform: translateY(-2px);
+ }
+
+ .nav-btn svg {
+   width: 22px;
+   height: 22px;
+   fill: none;
+   stroke: currentColor;
+   stroke-width: 2.5;
+ }
+
+ /* Pagination Styling */
+ .swiper-pagination-bullets {
+   bottom: -35px !important;
+ }
+
+ .swiper-pagination-bullet {
+   background: #ffffff;
+   opacity: 0.25;
+   width: 8px;
+   height: 8px;
+   transition: all 0.3s ease;
+ }
+
+ .swiper-pagination-bullet-active {
+   opacity: 1;
+   width: 24px;
+   border-radius: 4px;
+   background: #38bdf8;
+ }
+
+
+ .black-cta {
+   background-color: #000;
+   color: #fff;
+   border-radius: 30px;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding: 5rem 5.5rem;
+
+   .h3 {
+     font-size: 2.5rem;
+     font-weight: 500;
+     line-height: 1.4;
+   }
+ }
+
+
+
+
+ /* Accordion Container */
+ .accordion-container {
+   display: flex;
+   gap: 16px;
+   width: 100%;
+   height: 526px;
+   margin-bottom: 2.5rem;
+ }
+
+ /* Individual Card Styles */
+ .accordion-card {
+   position: relative;
+   flex: 1;
+   /* Default collapsed width ratio */
+   border-radius: 20px;
+   overflow: hidden;
+   cursor: pointer;
+   transition: flex 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+   background-size: cover;
+   background-position: center;
+   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+
+
+   /* Active Expanded Card */
+   &.active {
+     flex: 2.5;
+     /* Expanded width ratio */
+     cursor: default;
+
+     &::after {
+       background: #0062ff;
+     }
+
+     .card-description {
+       opacity: 1;
+       max-height: 100px;
+     }
+
+
+   }
+
+
+ }
+
+
+ /* Gradient Overlay for Text Readability */
+ .accordion-card::after {
+   content: '';
+   position: absolute;
+   z-index: 1;
+   inset: 0;
+   background: linear-gradient(to top, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.1) 60%, rgba(0, 0, 0, 0.3) 100%);
+   z-index: 1;
+ }
+
+ /* Number Badge */
+ .badge {
+   position: absolute;
+   top: 24px;
+   left: 24px;
+   width: 36px;
+   height: 36px;
+   background-color: #ffffff;
+   color: #000000;
+   font-weight: 700;
+   font-size: 16px;
+   border-radius: 50%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   z-index: 2;
+   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+ }
+
+ /* Content Overlay */
+ .card-content {
+   position: absolute;
+   bottom: 3.125rem;
+   left: 3.125rem;
+   right: 3.125rem;
+   z-index: 2;
+   color: #ffffff;
+ }
+
+ .card-title {
+   font-size: 2rem;
+   font-weight: 600;
+   line-height: 1.2;
+   margin-bottom: 8px;
+   white-space: nowrap;
+ }
+
+ .card-description {
+   font-size: 15px;
+   line-height: 1.5;
+   color: rgba(255, 255, 255, 0.9);
+   opacity: 0;
+   max-height: 0;
+   overflow: hidden;
+   transition: opacity 0.4s ease 0.2s, max-height 0.4s ease 0.2s;
+ }
+
+ /* Mock UI Element Inside Blue Card */
+ .ui-mockup {
+   margin: 3rem auto;
+   width: 100%;
+   max-width: 320px;
+   opacity: 0;
+   transform: translateY(10px);
+   z-index: 2;
+   position: relative;
+   transition: opacity 0.4s ease, transform 0.4s ease;
+ }
+
+ .accordion-card.active .ui-mockup {
+   opacity: 1;
+   transform: translateY(0);
+   transition-delay: 0.2s;
+ }
+
+ /* Responsive adjustment for small screens */
+ @media (max-width: 768px) {
+   .accordion-container {
+     flex-direction: column;
+     height: auto;
+   }
+
+   .accordion-card {
+     height: 120px;
+     width: 100%;
+   }
+
+   .accordion-card.active {
+     height: 300px;
+   }
+ }
+
+ //
+ /* SVG drawing animation */
+ .svg-draw path {
+   opacity: 0;
+   stroke-dasharray: var(--path-length);
+   stroke-dashoffset: var(--path-length);
+ }
+
+ /* Start drawing when visible */
+ .svg-draw.is-visible path {
+   opacity: 1;
+   animation: svgDraw 1.8s ease forwards;
+ }
+
+ @keyframes svgDraw {
+   to {
+     stroke-dashoffset: 0;
+   }
+ }
+
+ /* Optional: draw connector lines slightly slower */
+ .svg-draw.is-visible .connector {
+   animation-duration: 2.5s;
  }
