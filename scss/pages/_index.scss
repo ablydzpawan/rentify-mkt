@@ -70,6 +70,8 @@
    }
  }
 
+
+ //Bussinesses
  .bussinesses {
    display: flex;
    gap: 2rem;
@@ -93,7 +95,7 @@
    }
  }
 
- //features
+ //Features
  .features {
    width: 100%;
    overflow: hidden;
@@ -162,7 +164,341 @@
 
 
 
- //pricings
+ //Calendar
+
+ .calendar-stage {
+   max-width: 1765px;
+   margin: 0 auto;
+   padding: 0;
+ }
+
+ /* ---------- Canvas: exact-position panel group ---------- */
+ .calendar-canvas {
+   position: relative;
+   width: 100%;
+   aspect-ratio: 1765 / 797;
+   /* locks every panel's relative position */
+   max-width: 1765px;
+   margin: 0 auto;
+ }
+
+ .cal-panel {
+   position: absolute;
+   will-change: transform, filter, opacity;
+ }
+
+ .cal-panel img {
+   display: block;
+   width: 100%;
+   height: 100%;
+   object-fit: contain;
+ }
+
+ /* Placeholder chrome — delete .ph rules once ./images/*.png are dropped in.
+     The .panel position rules below are the ones that matter; leave those. */
+ .cal-panel.ph {
+   border-radius: 16px;
+   background: #f4f4f6;
+   border: 1px solid var(--line);
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-size: 12px;
+   letter-spacing: .04em;
+   color: rgba(11, 11, 15, .4);
+   overflow: hidden;
+ }
+
+ /* Exact coordinates, detected from the source PNG's alpha channel (1765×797 canvas) */
+ .calendar-panel {
+   left: 17.74%;
+   top: 12.42%;
+   width: 64.81%;
+   height: 87.58%;
+   z-index: 1;
+ }
+
+ .toggle {
+   left: 83.23%;
+   top: 6.15%;
+   width: 12.07%;
+   height: 4.27%;
+   z-index: 3;
+ }
+
+ .product-card {
+   left: 0%;
+   top: 0%;
+   width: 9.35%;
+   height: 20.70%;
+   z-index: 2;
+ }
+
+ .shoe-image {
+   left: 4.65%;
+   top: 62.11%;
+   width: 8.95%;
+   height: 14.81%;
+   z-index: 2;
+ }
+
+ .model-image {
+   left: 90.65%;
+   top: 43.79%;
+   width: 9.35%;
+   height: 24.84%;
+   z-index: 2;
+ }
+
+ .calendar-panel.ph {
+   background: #dbe8fe;
+   border-radius: 28px;
+ }
+
+ .product-card.ph {
+   background: #fbdcc3;
+   border-radius: 20px;
+ }
+
+
+ .calendar-check {
+   margin-top: 1.5rem;
+   display: flex;
+
+   gap: 0.5rem;
+
+   li {
+     padding-top: clamp(2rem, 3vw, 10rem);
+     font-size: 1.5rem;
+     line-height: 1.4;
+     font-weight: 600;
+     position: relative;
+     display: flex;
+     flex-direction: column;
+     gap: 1rem;
+
+     .icon {
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       background-color: #CFE2FF;
+       border-radius: 50%;
+       padding: 0.5rem;
+       width: 2.9rem;
+       height: 2.9rem;
+       aspect-ratio: 1/1;
+
+       img {
+         width: 100%;
+       }
+     }
+   }
+ }
+
+
+
+ //Expo-slider
+ .expo-slider-wrapper {
+   //overflow-x: hidden;
+ }
+
+ /* Swiper Base Styling */
+ .swiper-expo.swiper-3d {
+   width: 100%;
+   height: 558px;
+   overflow: visible;
+ }
+
+ /* Individual Slide Card */
+ .swiper-expo .swiper-slide {
+   position: relative;
+   width: 846px;
+   /* Matches your DOM structure */
+   height: 100%;
+   border-radius: 24px;
+   overflow: hidden;
+   transform-style: preserve-3d;
+   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease, filter 0.6s ease;
+   will-change: transform, opacity, filter;
+
+ }
+
+ /* Slide Card Content Setup */
+ .slide-card {
+   width: 100%;
+   height: 100%;
+   position: relative;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   padding: 40px;
+   overflow: hidden;
+ }
+
+ .slide-bg {
+   position: absolute;
+   inset: 0;
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+   z-index: 1;
+   filter: brightness(0.85);
+   transition: transform 0.6s ease;
+ }
+
+ .slide-overlay {
+   position: absolute;
+   inset: 0;
+   background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.8) 100%);
+   z-index: 2;
+ }
+
+ .slide-content {
+   position: relative;
+   z-index: 3;
+   max-width: 80%;
+ }
+
+ //Accordion
+ .accordion-container {
+   display: flex;
+   gap: 16px;
+   width: 100%;
+   height: 526px;
+   margin-bottom: 2.5rem;
+ }
+
+ /* Individual Card Styles */
+ .accordion-card {
+   position: relative;
+   flex: 1;
+   /* Default collapsed width ratio */
+   border-radius: 20px;
+   overflow: hidden;
+   cursor: pointer;
+   transition: flex 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+   background-size: cover;
+   background-position: center;
+   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+
+
+   /* Active Expanded Card */
+   &.active {
+     flex: 2.5;
+     /* Expanded width ratio */
+     cursor: default;
+
+     &::after {
+       background: #0062ff;
+     }
+
+     .card-description {
+       opacity: 1;
+       max-height: 100px;
+     }
+
+
+   }
+
+
+ }
+
+
+ /* Gradient Overlay for Text Readability */
+ .accordion-card::after {
+   content: '';
+   position: absolute;
+   z-index: 1;
+   inset: 0;
+   background: linear-gradient(to top, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.1) 60%, rgba(0, 0, 0, 0.3) 100%);
+   z-index: 1;
+ }
+
+ /* Number Badge */
+ .badge {
+   position: absolute;
+   top: 24px;
+   left: 24px;
+   width: 36px;
+   height: 36px;
+   background-color: #ffffff;
+   color: #000000;
+   font-weight: 700;
+   font-size: 16px;
+   border-radius: 50%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   z-index: 2;
+   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+ }
+
+ /* Content Overlay */
+ .card-content {
+   position: absolute;
+   bottom: 3.125rem;
+   left: 3.125rem;
+   right: 3.125rem;
+   z-index: 2;
+   color: #ffffff;
+ }
+
+ .card-title {
+   font-size: 2rem;
+   font-weight: 600;
+   line-height: 1.2;
+   margin-bottom: 8px;
+   white-space: nowrap;
+ }
+
+ .card-description {
+   font-size: 15px;
+   line-height: 1.5;
+   color: rgba(255, 255, 255, 0.9);
+   opacity: 0;
+   max-height: 0;
+   overflow: hidden;
+   transition: opacity 0.4s ease 0.2s, max-height 0.4s ease 0.2s;
+ }
+
+ /* Mock UI Element Inside Blue Card */
+ .ui-mockup {
+   margin: 3rem auto;
+   width: 100%;
+   max-width: 320px;
+   opacity: 0;
+   transform: translateY(10px);
+   z-index: 2;
+   position: relative;
+   transition: opacity 0.4s ease, transform 0.4s ease;
+ }
+
+ .accordion-card.active .ui-mockup {
+   opacity: 1;
+   transform: translateY(0);
+   transition-delay: 0.2s;
+ }
+
+ /* Responsive adjustment for small screens */
+ @media (max-width: 768px) {
+   .accordion-container {
+     flex-direction: column;
+     height: auto;
+   }
+
+   .accordion-card {
+     height: 120px;
+     width: 100%;
+   }
+
+   .accordion-card.active {
+     height: 300px;
+   }
+ }
+
+
+ //Pricings
  .bg-pricing {
    background: transparent radial-gradient(closest-side at 50% 50%, #BADBFF 0%, #FFFFFF 100%) 0% 0%;
 
@@ -354,6 +690,40 @@
    background: transparent radial-gradient(closest-side at 50% 50%, #BADBFF 0%, #FFFFFF 100%) 0% 0%;
  }
 
+
+ //Integrates
+ .integrates {
+   .svg-draw {
+     height: auto;
+     width: 100%;
+   }
+
+   /* SVG drawing animation */
+   .svg-draw path {
+     opacity: 0;
+     stroke-dasharray: var(--path-length);
+     stroke-dashoffset: var(--path-length);
+   }
+
+   /* Start drawing when visible */
+   .svg-draw.is-visible path {
+     opacity: 1;
+     animation: svgDraw 1.8s ease forwards;
+   }
+
+   @keyframes svgDraw {
+     to {
+       stroke-dashoffset: 0;
+     }
+   }
+
+   /* Optional: draw connector lines slightly slower */
+   .svg-draw.is-visible .connector {
+     animation-duration: 2.5s;
+   }
+ }
+
+
  //
  .why-us {
    display: flex;
@@ -367,8 +737,8 @@
    }
 
    &-item {
-     flex: 0 0 calc(50% - 0.5rem);
-     max-width: calc(50% - 0.5rem);
+     flex: 0 0 calc(50% - 2rem);
+     max-width: calc(50% - 2rem);
      padding: 2rem 1.5rem;
      display: flex;
      flex-direction: column;
@@ -436,7 +806,7 @@
  }
 
 
- //
+ //FAQs
  .bg-faqs {
    background-color: #fff;
 
@@ -668,7 +1038,7 @@
  /* ---------- Headline ---------- */
  .headline-wrap {
    text-align: center;
-   margin-bottom: 90px;
+   // margin-bottom: 90px;
    perspective: 900px;
  }
 
@@ -684,8 +1054,6 @@
    display: inline-block;
    will-change: transform, filter, opacity;
  }
-
-
 
  .cta-row {
    display: flex;
@@ -801,8 +1169,7 @@
    }
  }
 
- //
-
+ //CTA
  .cta-gradient {
    background: transparent linear-gradient(115deg, #A0CBFC 0%, #E9FF9C 100%) 0% 0% no-repeat;
 
@@ -820,8 +1187,22 @@
    }
  }
 
+ //marquee
  .marquee {
+   width: 100%;
+   overflow: hidden;
+   white-space: nowrap;
+
+   &-track {
+     display: flex;
+     width: max-content;
+     animation: marquee 15s linear infinite;
+   }
+
    &-item {
+     flex: 0 0 auto;
+     margin: 0;
+     padding: 0;
      line-height: 1;
      margin: 0 2rem;
      text-transform: uppercase;
@@ -838,460 +1219,39 @@
    }
  }
 
+ @keyframes marquee {
+   from {
+     transform: translateX(0);
+   }
 
- //
-
- .calendar-stage {
-   max-width: 1765px;
-   margin: 0 auto;
-   padding: 0;
- }
-
- /* ---------- Canvas: exact-position panel group ---------- */
- .calendar-canvas {
-   position: relative;
-   width: 100%;
-   aspect-ratio: 1765 / 797;
-   /* locks every panel's relative position */
-   max-width: 1765px;
-   margin: 0 auto;
- }
-
- .cal-panel {
-   position: absolute;
-   will-change: transform, filter, opacity;
- }
-
- .cal-panel img {
-   display: block;
-   width: 100%;
-   height: 100%;
-   object-fit: contain;
- }
-
- /* Placeholder chrome — delete .ph rules once ./images/*.png are dropped in.
-     The .panel position rules below are the ones that matter; leave those. */
- .cal-panel.ph {
-   border-radius: 16px;
-   background: #f4f4f6;
-   border: 1px solid var(--line);
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   font-size: 12px;
-   letter-spacing: .04em;
-   color: rgba(11, 11, 15, .4);
-   overflow: hidden;
- }
-
- /* Exact coordinates, detected from the source PNG's alpha channel (1765×797 canvas) */
- .calendar-panel {
-   left: 17.74%;
-   top: 12.42%;
-   width: 64.81%;
-   height: 87.58%;
-   z-index: 1;
- }
-
- .toggle {
-   left: 83.23%;
-   top: 6.15%;
-   width: 12.07%;
-   height: 4.27%;
-   z-index: 3;
- }
-
- .product-card {
-   left: 0%;
-   top: 0%;
-   width: 9.35%;
-   height: 20.70%;
-   z-index: 2;
- }
-
- .shoe-image {
-   left: 4.65%;
-   top: 62.11%;
-   width: 8.95%;
-   height: 14.81%;
-   z-index: 2;
- }
-
- .model-image {
-   left: 90.65%;
-   top: 43.79%;
-   width: 9.35%;
-   height: 24.84%;
-   z-index: 2;
- }
-
- .calendar-panel.ph {
-   background: #dbe8fe;
-   border-radius: 28px;
- }
-
- .product-card.ph {
-   background: #fbdcc3;
-   border-radius: 20px;
- }
-
-
- .calendar-check {
-   margin-top: 1.5rem;
-   display: flex;
-
-   gap: 0.5rem;
-
-   li {
-     padding-top: clamp(2rem, 3vw, 10rem);
-     font-size: 1.5rem;
-     line-height: 1.4;
-     font-weight: 600;
-     position: relative;
-     display: flex;
-     flex-direction: column;
-     gap: 1rem;
-
-     .icon {
-       display: flex;
-       align-items: center;
-       justify-content: center;
-       background-color: #CFE2FF;
-       border-radius: 50%;
-       padding: 0.5rem;
-       width: 2.9rem;
-       height: 2.9rem;
-       aspect-ratio: 1/1;
-
-       img {
-         width: 100%;
-       }
-     }
+   to {
+     transform: translateX(-50%);
    }
  }
 
-
  //
-
-
-
-
- /* Swiper Base Styling */
- .swiper-expo.swiper-3d {
-   width: 100%;
-   height: 480px;
-   overflow: visible;
- }
-
- /* Individual Slide Card */
- .swiper-expo .swiper-slide {
-   position: relative;
-   width: 746px;
-   /* Matches your DOM structure */
-   height: 100%;
-   border-radius: 24px;
-   overflow: hidden;
-   transform-style: preserve-3d;
-   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
-   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease, filter 0.6s ease;
-   will-change: transform, opacity, filter;
-   background-color: #1a1d24;
- }
-
- /* Slide Card Content Setup */
- .slide-card {
-   width: 100%;
-   height: 100%;
-   position: relative;
-   display: flex;
-   flex-direction: column;
-   justify-content: space-between;
-   padding: 40px;
-   overflow: hidden;
- }
-
- .slide-bg {
-   position: absolute;
-   inset: 0;
-   width: 100%;
-   height: 100%;
-   object-fit: cover;
-   z-index: 1;
-   filter: brightness(0.85);
-   transition: transform 0.6s ease;
- }
-
- .slide-overlay {
-   position: absolute;
-   inset: 0;
-   background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.8) 100%);
-   z-index: 2;
- }
-
- .slide-content {
-   position: relative;
-   z-index: 3;
-   max-width: 80%;
- }
-
- .slide-tag {
-   display: inline-block;
-   font-size: 0.8rem;
-   font-weight: 700;
-   text-transform: uppercase;
-   letter-spacing: 2px;
-   color: #38bdf8;
-   margin-bottom: 12px;
- }
-
- .slide-title {
-   font-size: 2.5rem;
-   font-weight: 800;
-   line-height: 1.1;
-   margin-bottom: 12px;
- }
-
- .slide-desc {
-   font-size: 1rem;
-   color: #94a3b8;
-   line-height: 1.5;
- }
-
- /* Custom Navigation Buttons */
- .controls {
-   display: flex;
-   justify-content: center;
-   gap: 16px;
-   margin-top: 40px;
- }
-
- .nav-btn {
-   width: 52px;
-   height: 52px;
-   border-radius: 50%;
-   background: rgba(255, 255, 255, 0.08);
-   border: 1px solid rgba(255, 255, 255, 0.15);
-   color: #fff;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   cursor: pointer;
-   backdrop-filter: blur(12px);
-   transition: all 0.3s ease;
- }
-
- .nav-btn:hover {
-   background: #ffffff;
-   color: #000000;
-   transform: translateY(-2px);
- }
-
- .nav-btn svg {
-   width: 22px;
-   height: 22px;
-   fill: none;
-   stroke: currentColor;
-   stroke-width: 2.5;
- }
-
- /* Pagination Styling */
- .swiper-pagination-bullets {
-   bottom: -35px !important;
- }
-
- .swiper-pagination-bullet {
-   background: #ffffff;
-   opacity: 0.25;
-   width: 8px;
-   height: 8px;
-   transition: all 0.3s ease;
- }
-
- .swiper-pagination-bullet-active {
-   opacity: 1;
-   width: 24px;
-   border-radius: 4px;
-   background: #38bdf8;
- }
-
-
  .black-cta {
    background-color: #000;
    color: #fff;
    border-radius: 30px;
    display: flex;
-   justify-content: space-between;
+   flex-direction: column;
+   justify-content: center;
+   text-align: center;
    align-items: center;
-   padding: 5rem 5.5rem;
+   padding: 1.5rem;
+   gap: 2rem;
+
+   @include media-breakpoint-up(lg) {
+     flex-direction: row;
+     text-align: start;
+     justify-content: space-between;
+     padding: 5rem 5.5rem;
+   }
 
    .h3 {
      font-size: 2.5rem;
      font-weight: 500;
      line-height: 1.4;
    }
- }
-
-
-
-
- /* Accordion Container */
- .accordion-container {
-   display: flex;
-   gap: 16px;
-   width: 100%;
-   height: 526px;
-   margin-bottom: 2.5rem;
- }
-
- /* Individual Card Styles */
- .accordion-card {
-   position: relative;
-   flex: 1;
-   /* Default collapsed width ratio */
-   border-radius: 20px;
-   overflow: hidden;
-   cursor: pointer;
-   transition: flex 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-   background-size: cover;
-   background-position: center;
-   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-
-
-   /* Active Expanded Card */
-   &.active {
-     flex: 2.5;
-     /* Expanded width ratio */
-     cursor: default;
-
-     &::after {
-       background: #0062ff;
-     }
-
-     .card-description {
-       opacity: 1;
-       max-height: 100px;
-     }
-
-
-   }
-
-
- }
-
-
- /* Gradient Overlay for Text Readability */
- .accordion-card::after {
-   content: '';
-   position: absolute;
-   z-index: 1;
-   inset: 0;
-   background: linear-gradient(to top, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.1) 60%, rgba(0, 0, 0, 0.3) 100%);
-   z-index: 1;
- }
-
- /* Number Badge */
- .badge {
-   position: absolute;
-   top: 24px;
-   left: 24px;
-   width: 36px;
-   height: 36px;
-   background-color: #ffffff;
-   color: #000000;
-   font-weight: 700;
-   font-size: 16px;
-   border-radius: 50%;
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   z-index: 2;
-   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
- }
-
- /* Content Overlay */
- .card-content {
-   position: absolute;
-   bottom: 3.125rem;
-   left: 3.125rem;
-   right: 3.125rem;
-   z-index: 2;
-   color: #ffffff;
- }
-
- .card-title {
-   font-size: 2rem;
-   font-weight: 600;
-   line-height: 1.2;
-   margin-bottom: 8px;
-   white-space: nowrap;
- }
-
- .card-description {
-   font-size: 15px;
-   line-height: 1.5;
-   color: rgba(255, 255, 255, 0.9);
-   opacity: 0;
-   max-height: 0;
-   overflow: hidden;
-   transition: opacity 0.4s ease 0.2s, max-height 0.4s ease 0.2s;
- }
-
- /* Mock UI Element Inside Blue Card */
- .ui-mockup {
-   margin: 3rem auto;
-   width: 100%;
-   max-width: 320px;
-   opacity: 0;
-   transform: translateY(10px);
-   z-index: 2;
-   position: relative;
-   transition: opacity 0.4s ease, transform 0.4s ease;
- }
-
- .accordion-card.active .ui-mockup {
-   opacity: 1;
-   transform: translateY(0);
-   transition-delay: 0.2s;
- }
-
- /* Responsive adjustment for small screens */
- @media (max-width: 768px) {
-   .accordion-container {
-     flex-direction: column;
-     height: auto;
-   }
-
-   .accordion-card {
-     height: 120px;
-     width: 100%;
-   }
-
-   .accordion-card.active {
-     height: 300px;
-   }
- }
-
- //
- /* SVG drawing animation */
- .svg-draw path {
-   opacity: 0;
-   stroke-dasharray: var(--path-length);
-   stroke-dashoffset: var(--path-length);
- }
-
- /* Start drawing when visible */
- .svg-draw.is-visible path {
-   opacity: 1;
-   animation: svgDraw 1.8s ease forwards;
- }
-
- @keyframes svgDraw {
-   to {
-     stroke-dashoffset: 0;
-   }
- }
-
- /* Optional: draw connector lines slightly slower */
- .svg-draw.is-visible .connector {
-   animation-duration: 2.5s;
  }

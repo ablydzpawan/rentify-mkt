@@ -1,5 +1,8 @@
+gsap.registerPlugin(ScrollTrigger);
 
-gsap.registerPlugin();
+/* =========================================================
+   HERO SECTION — letters, subtext, CTAs
+   ========================================================= */
 
 // ---------- Split heading letters ----------
 var heading = document.querySelector("#headline");
@@ -10,26 +13,31 @@ heading.innerHTML = html.replace(/(<[^>]+>)|([^<\s])/g, function (m, tag, ch) {
 });
 var letters = document.querySelectorAll(".letter");
 
-var master = gsap.timeline({ defaults: { ease: "power3.out" } });
+var heroTl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
 // Letters cascade in with a soft 3D rotation + blur
-master.from(letters, {
+heroTl.from(letters, {
     y: 60, opacity: 0, rotateX: -90, filter: "blur(8px)",
     duration: 1, ease: "power2.out",
     stagger: { each: 0.025, from: "start" }
 }, 0);
 
 // Subtitle
-master.from("#subtext", { y: 20, opacity: 0, duration: 0.6 }, "-=0.5");
+heroTl.from("#subtext", { y: 20, opacity: 0, duration: 0.6 }, "-=0.5");
 
 // CTAs
-master.from(".btn-calypso", {
+heroTl.from(".btn-hero-cta", {
     y: 16, opacity: 0, scale: 0.9, duration: 0.5, ease: "back.out(1.7)", stagger: 0.08
 }, "-=0.35");
 
-// ---------- Panel group reveal ----------
+/* =========================================================
+   PANEL GROUP #1 — Browser / editor scene
+   ========================================================= */
+
+var browserTl = gsap.timeline({ defaults: { ease: "power3.out" } });
+
 // 1. Browser (the main artboard) settles in first — it anchors the whole scene.
-master.from("#browser", {
+browserTl.from("#browser", {
     opacity: 0,
     scale: 0.94,
     y: 40,
@@ -40,39 +48,40 @@ master.from("#browser", {
 
 // 2. Satellite panels fly to their exact resting position from a slight
 //    outward offset, softly blurred, staggered so they feel orchestrated
-//    rather than simultaneous. Direction of the offset is toward the
-//    panel's own side of the canvas, so the motion reads as "settling in".
-master.from("#url-bar", {
+//    rather than simultaneous.
+browserTl.from("#url-bar", {
     opacity: 0, y: -24, x: -10, scale: 0.9, filter: "blur(10px)", duration: 0.85
 }, "-=0.75");
 
-master.from("#toolbar", {
+browserTl.from("#toolbar", {
     opacity: 0, x: -36, scale: 0.92, filter: "blur(10px)", duration: 0.85
 }, "-=0.7");
 
-master.from("#font-panel", {
+browserTl.from("#font-panel", {
     opacity: 0, x: -40, y: 20, scale: 0.9, filter: "blur(10px)", duration: 0.85
 }, "-=0.75");
 
-master.from("#color-panel", {
+browserTl.from("#color-panel", {
     opacity: 0, x: 40, y: -20, scale: 0.9, filter: "blur(10px)", duration: 0.85
 }, "-=0.75");
 
-master.from("#template-panel", {
+browserTl.from("#template-panel", {
     opacity: 0, x: 36, y: 24, scale: 0.9, filter: "blur(10px)", duration: 0.9
 }, "-=0.7");
 
-// 3. Tiny settle — everything nudges to rest, killing any residual blur/scale
-master.to(".panel", {
+// 3. Tiny settle — kills any residual blur/scale
+browserTl.to(".panel", {
     filter: "blur(0px)", scale: 1, duration: 0.4, ease: "power1.out"
 }, "-=0.2");
 
+/* =========================================================
+   PANEL GROUP #2 — Calendar / product scene
+   ========================================================= */
 
-
-var master = gsap.timeline({ defaults: { ease: "power3.out" } });
+var calendarTl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
 // 1. Calendar panel (the main artboard) settles in first — it anchors the scene.
-master.from("#calendar-panel", {
+calendarTl.from("#calendar-panel", {
     opacity: 0,
     scale: 0.94,
     y: 40,
@@ -81,33 +90,68 @@ master.from("#calendar-panel", {
     ease: "power3.out"
 }, 0);
 
-// 2. Satellite panels fly to their exact resting position from a slight
-//    outward offset, softly blurred, staggered so it reads as one
-//    orchestrated moment. Offset direction matches each panel's side
-//    of the canvas so the motion feels like it's "settling in".
-master.from("#product-card", {
+// 2. Satellite panels fly to their exact resting position, offset direction
+//    matching each panel's side of the canvas so it feels like "settling in".
+calendarTl.from("#product-card", {
     opacity: 0, x: -30, y: -24, scale: 0.9, filter: "blur(10px)", duration: 0.85
 }, "-=0.75");
 
-master.from("#toggle", {
+calendarTl.from("#toggle", {
     opacity: 0, y: -20, scale: 0.9, filter: "blur(8px)", duration: 0.7
 }, "-=0.7");
 
-master.from("#shoe-image", {
+calendarTl.from("#shoe-image", {
     opacity: 0, x: -36, y: 24, scale: 0.9, filter: "blur(10px)", duration: 0.85
 }, "-=0.65");
 
-master.from("#model-image", {
+calendarTl.from("#model-image", {
     opacity: 0, x: 40, y: 20, scale: 0.9, filter: "blur(10px)", duration: 0.9
 }, "-=0.7");
 
 // 3. Tiny settle — kills any residual blur/scale so everything lands crisp
-master.to(".cal-panel", {
+calendarTl.to(".cal-panel", {
     filter: "blur(0px)", scale: 1, duration: 0.4, ease: "power1.out"
 }, "-=0.2");
 
+/* =========================================================
+   SCROLL-TRIGGERED SECTION REVEALS
+   Each .section (heading + its description text) gets its
+   own ScrollTrigger so multiple sections down the page all
+   animate independently as they enter the viewport.
+   ========================================================= */
 
-// 
+document.querySelectorAll(".section").forEach((section) => {
+    const sectionHeading = section.querySelector(".section-heading");
+    const sectionDescs = section.querySelectorAll(".section-text-desc");
+
+    const sectionTl = gsap.timeline({
+        scrollTrigger: {
+            trigger: section,
+            start: "top 80%",
+            toggleActions: "play none none reverse",
+            // markers: true, // uncomment while debugging trigger points
+        }
+    });
+
+    if (sectionHeading) {
+        sectionTl.from(sectionHeading, {
+            opacity: 0, filter: "blur(20px)", y: 20,
+            duration: 1, ease: "power2.out"
+        });
+    }
+
+    if (sectionDescs.length) {
+        sectionTl.from(sectionDescs, {
+            y: 30,
+            opacity: 0,
+            duration: 0.8,
+            stagger: 0.2,
+            ease: "power2.out",
+        }, "-=0.8");
+    }
+});
+
+// Swiper
 
 const featuresSwiper = new Swiper(".featuresSwiper", {
     slidesPerView: "auto",
@@ -138,9 +182,7 @@ const featuresSwiper = new Swiper(".featuresSwiper", {
 });
 
 
-//
-
-
+//Swiper
 
 const expoSwiper = new Swiper('.swiper-expo', {
     direction: 'horizontal',
@@ -169,7 +211,7 @@ const expoSwiper = new Swiper('.swiper-expo', {
                 const absProgress = Math.abs(progress);
 
                 // 1. Perspective 3D rotation around Y axis
-                const rotateY = progress * -25;
+                const rotateY = progress * 30;
 
                 // 2. Scale & translateZ depth matrix calculation
                 const scale = 1 - Math.min(absProgress * 0.15, 0.35);
@@ -197,7 +239,7 @@ const expoSwiper = new Swiper('.swiper-expo', {
     }
 });
 
-//
+//accordion
 
 
 const cards = document.querySelectorAll('.accordion-card');
