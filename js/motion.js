@@ -188,7 +188,7 @@ const expoSwiper = new Swiper('.swiper-expo', {
     direction: 'horizontal',
     slidesPerView: 'auto',
     centeredSlides: true,
-    spaceBetween: 30,
+    spaceBetween: -200,
     loop: true,
     speed: 750,
     parallax: true,
@@ -211,15 +211,15 @@ const expoSwiper = new Swiper('.swiper-expo', {
                 const absProgress = Math.abs(progress);
 
                 // 1. Perspective 3D rotation around Y axis
-                const rotateY = progress * 30;
+                const rotateY = progress * 80;
 
                 // 2. Scale & translateZ depth matrix calculation
-                const scale = 1 - Math.min(absProgress * 0.15, 0.35);
-                const translateZ = -absProgress * 150;
-                const translateX = progress * -30;
+                const scale = 1 - Math.min(absProgress * 0.0, 1);
+                const translateZ = -absProgress * 50;
+                const translateX = progress * -80;
 
                 // 3. Opacity & depth blur curve
-                const opacity = 1 - Math.min(absProgress * 0.45, 0.7);
+                const opacity = 1 - Math.min(absProgress * 0, 1);
 
                 // Apply calculated 3D Matrix
                 slide.style.transform = `

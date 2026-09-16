@@ -24,6 +24,7 @@
    margin-bottom: 0;
 
    .title {
+     color: #000;
      // max-width: 760px;
      margin: 18px auto 13px;
      font-size: clamp(36px, 4.5vw, 88px);
@@ -78,6 +79,7 @@
    flex-flow: row wrap;
    align-items: center;
    justify-content: space-between;
+   mask-image: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 12.5%, rgb(0, 0, 0) 87.5%, rgba(0, 0, 0, 0) 100%);
 
    @include media-breakpoint-up(lg) {
      flex-flow: row nowrap;
@@ -264,7 +266,6 @@
  .calendar-check {
    margin-top: 1.5rem;
    display: flex;
-
    gap: 0.5rem;
 
    li {
@@ -295,6 +296,9 @@
    }
  }
 
+ .swiper-3d {
+   //perspective: 1900px;
+ }
 
 
  //Expo-slider
@@ -305,20 +309,20 @@
  /* Swiper Base Styling */
  .swiper-expo.swiper-3d {
    width: 100%;
-   height: 558px;
+   height: 643px;
    overflow: visible;
  }
 
  /* Individual Slide Card */
  .swiper-expo .swiper-slide {
    position: relative;
-   width: 846px;
+   width: 975px;
    /* Matches your DOM structure */
    height: 100%;
    border-radius: 24px;
    overflow: hidden;
    transform-style: preserve-3d;
-   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+   // box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease, filter 0.6s ease;
    will-change: transform, opacity, filter;
 
@@ -363,7 +367,7 @@
  //Accordion
  .accordion-container {
    display: flex;
-   gap: 16px;
+   gap: 2.625rem;
    width: 100%;
    height: 526px;
    margin-bottom: 2.5rem;
@@ -857,7 +861,7 @@
 
      p {
        line-height: 1.7;
-       font-size: 0.9rem;
+       font-size: 1rem;
        font-weight: $font-weight-regular;
        color: $txt-gray;
        margin-top: 1rem;
@@ -870,7 +874,7 @@
      position: relative;
      // display: inline-flex;
      width: 100%;
-     font-size: 1.125rem;
+     font-size: 1.375rem;
      font-weight: 600;
      color: $txt-body;
      margin: 0;
