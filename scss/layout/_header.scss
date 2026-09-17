@@ -22,7 +22,7 @@
   &.is-scrolled {
     background: rgba(255, 255, 255, 0.92);
     border-bottom-color: #eeeeee;
-    box-shadow: $shadow6;
+    //  box-shadow: $shadow6;
 
     .site-header-inner {
       padding: 0.65rem 0;
@@ -101,8 +101,8 @@
   display: none;
   align-items: center;
   gap: clamp(2px, 1vw, 10px);
-  color: $txt-body;
-  font-size: 1.125rem;
+  color: $txt-black;
+  font-size: 1rem;
   font-weight: 600;
   position: relative;
 
