@@ -24,7 +24,7 @@
    margin-bottom: 0;
 
    .title {
-     color: #000;
+     color: $txt-black;
      // max-width: 760px;
      margin: 18px auto 13px;
      font-size: clamp(36px, 4.5vw, 88px);
@@ -52,7 +52,7 @@
 
      .btn-outline-brand {
        background: #fff;
-       color: #000;
+       color: $txt-black;
      }
    }
  }
@@ -167,7 +167,6 @@
 
 
  //Calendar
-
  .calendar-stage {
    max-width: 1765px;
    margin: 0 auto;
@@ -583,7 +582,7 @@
 
    .most {
      background: #DDFB76;
-     color: #000;
+     color: $txt-black;
      border-radius: 23px;
      padding: 0.35rem 0.56rem;
      font-size: 0.8rem;
@@ -625,7 +624,7 @@
    h6 {
      font-weight: 500;
      font-size: 1.125rem;
-     color: #000;
+     color: $txt-black;
      margin-bottom: 1rem;
    }
 
@@ -700,30 +699,6 @@
    .svg-draw {
      height: auto;
      width: 100%;
-   }
-
-   /* SVG drawing animation */
-   .svg-draw path {
-     opacity: 0;
-     stroke-dasharray: var(--path-length);
-     stroke-dashoffset: var(--path-length);
-   }
-
-   /* Start drawing when visible */
-   .svg-draw.is-visible path {
-     opacity: 1;
-     animation: svgDraw 1.8s ease forwards;
-   }
-
-   @keyframes svgDraw {
-     to {
-       stroke-dashoffset: 0;
-     }
-   }
-
-   /* Optional: draw connector lines slightly slower */
-   .svg-draw.is-visible .connector {
-     animation-duration: 2.5s;
    }
  }
 
@@ -1184,7 +1159,7 @@
    }
 
    &-title {
-     color: #000;
+     color: $txt-black;
      font-size: clamp(36px, 4.5vw, 88px);
      font-weight: 700;
      margin-bottom: 2rem;

@@ -1,5 +1,89 @@
 gsap.registerPlugin(ScrollTrigger);
 
+var prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* =========================================================
+   LENIS — smooth scroll, wired into GSAP's ticker so
+   ScrollTrigger reads the eased scroll position instead of
+   the raw (stepped) native one. This is what gives scroll
+   reveals that buttery, "Framer site" glide.
+   ========================================================= */
+
+var lenis = null;
+
+if (!prefersReducedMotion && window.Lenis) {
+    lenis = new Lenis({
+        duration: 1.15,
+        easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
+        smoothWheel: true,
+    });
+
+    lenis.on("scroll", ScrollTrigger.update);
+
+    gsap.ticker.add(function (time) {
+        lenis.raf(time * 1000);
+    });
+
+    // Lenis already smooths the frame timing; let GSAP defer to it.
+    gsap.ticker.lagSmoothing(0);
+}
+
+/* =========================================================
+   STICKY HEADER — smooth shrink/shadow transition once the
+   page has scrolled past the top. The CSS transition on
+   .site-header does the actual easing; this just flips the
+   state class in sync with the (Lenis-smoothed) scroll pos.
+   ========================================================= */
+
+ScrollTrigger.create({
+    start: "top -80",
+    end: 99999,
+    toggleClass: { targets: ".site-header", className: "is-scrolled" },
+});
+
+/* =========================================================
+   DESKTOP NAV — tab-bar hover pill (CSS anchor positioning).
+   Each nav link carries a permanent --nav-tab-N anchor-name
+   (set in scss/layout/_header.scss); this just tracks which
+   one is currently hovered/focused and writes it into the
+   --nav-active-tab custom property so the pill (the nav's
+   ::before) re-anchors to it. Leaving the nav keeps the last
+   anchor in place and only fades the pill out, so it never
+   has to snap to an invalid position.
+   ========================================================= */
+
+(function () {
+    var nav = document.querySelector(".desktop-nav");
+    if (!nav) return;
+
+    var links = nav.querySelectorAll("a");
+
+    links.forEach(function (link, i) {
+        var activate = function () {
+            nav.style.setProperty("--nav-active-tab", "--nav-tab-" + (i + 1));
+            nav.classList.add("is-tab-active");
+        };
+        link.addEventListener("mouseenter", activate);
+        link.addEventListener("focus", activate);
+    });
+
+    nav.addEventListener("mouseleave", function () {
+        nav.classList.remove("is-tab-active");
+    });
+
+    nav.addEventListener("focusout", function (e) {
+        if (!nav.contains(e.relatedTarget)) nav.classList.remove("is-tab-active");
+    });
+})();
+
+// A softened expo-out — the signature "ease" behind most Framer-built
+// scroll reveals. Falls back to power3 if CustomEase failed to load.
+var revealEase = "power3.out";
+if (window.CustomEase) {
+    CustomEase.create("framerReveal", "0.16, 1, 0.3, 1");
+    revealEase = "framerReveal";
+}
+
 /* =========================================================
    HERO SECTION — letters, subtext, CTAs
    ========================================================= */
@@ -75,10 +159,49 @@ browserTl.to(".panel", {
 }, "-=0.2");
 
 /* =========================================================
+   BROWSER PANEL FLOATING EFFECT
+   Same idle float treatment as the calendar scene, applied to
+   every satellite panel around the browser once it's settled.
+   The browser itself is the main artboard, so it stays anchored
+   and is excluded here.
+   ========================================================= */
+
+if (!prefersReducedMotion) {
+    browserTl.eventCallback("onComplete", function () {
+        document.querySelectorAll(".panel:not(#browser)").forEach(function (panel, i) {
+            gsap.timeline({
+                repeat: -1,
+                yoyo: true,
+                delay: i * 0.2,
+                defaults: { duration: 2.6 + (i % 3) * 0.45, ease: "sine.inOut" },
+            }).to(panel, {
+                y: i % 2 === 0 ? "-=12" : "+=12",
+                x: i % 2 === 0 ? "+=4" : "-=4",
+                rotate: i % 2 === 0 ? 0.6 : -0.6,
+            });
+        });
+    });
+}
+
+/* =========================================================
    PANEL GROUP #2 — Calendar / product scene
    ========================================================= */
 
-var calendarTl = gsap.timeline({ defaults: { ease: "power3.out" } });
+var calendarFloatTweens = [];
+
+var calendarTl = gsap.timeline({
+    defaults: { ease: "power3.out" },
+    scrollTrigger: {
+        trigger: ".calendar-stage",
+        start: "top 80%",
+        toggleActions: "play none none reverse",
+        // markers: true, // uncomment while debugging trigger points
+        onLeaveBack: function () {
+            calendarFloatTweens.forEach(function (tw) { tw.kill(); });
+            calendarFloatTweens = [];
+        },
+    },
+});
 
 // 1. Calendar panel (the main artboard) settles in first — it anchors the scene.
 calendarTl.from("#calendar-panel", {
@@ -114,42 +237,137 @@ calendarTl.to(".cal-panel", {
 }, "-=0.2");
 
 /* =========================================================
+   CAL-PANEL FLOATING EFFECT
+   Once each panel has settled into place, give it a gentle,
+   perpetual bob so the calendar scene reads as if it's
+   floating rather than sitting static. Amplitude/duration are
+   varied per panel so they drift out of phase with each other.
+   The calendar panel itself is the main artboard, so it stays
+   anchored and is excluded here.
+   ========================================================= */
+
+if (!prefersReducedMotion) {
+    calendarTl.eventCallback("onComplete", function () {
+        document.querySelectorAll(".cal-panel:not(#calendar-panel)").forEach(function (panel, i) {
+            // Alternate direction per panel and drift a touch horizontally +
+            // rotate a fraction of a degree so the group floats out of sync
+            // and doesn't read as a uniform, mechanical bob.
+            var floatTl = gsap.timeline({
+                repeat: -1,
+                yoyo: true,
+                delay: i * 0.2,
+                defaults: { duration: 2.6 + (i % 3) * 0.45, ease: "sine.inOut" },
+            }).to(panel, {
+                y: i % 2 === 0 ? "-=12" : "+=12",
+                x: i % 2 === 0 ? "+=4" : "-=4",
+                rotate: i % 2 === 0 ? 0.6 : -0.6,
+            });
+
+            calendarFloatTweens.push(floatTl);
+        });
+    });
+}
+
+/* =========================================================
    SCROLL-TRIGGERED SECTION REVEALS
    Each .section (heading + its description text) gets its
    own ScrollTrigger so multiple sections down the page all
    animate independently as they enter the viewport.
    ========================================================= */
 
-document.querySelectorAll(".section").forEach((section) => {
-    const sectionHeading = section.querySelector(".section-heading");
-    const sectionDescs = section.querySelectorAll(".section-text-desc");
+if (!prefersReducedMotion) {
+    document.querySelectorAll(".section").forEach((section) => {
+        const sectionHeading = section.querySelector(".section-heading");
+        const sectionDescs = section.querySelectorAll(".section-text-desc");
 
-    const sectionTl = gsap.timeline({
-        scrollTrigger: {
-            trigger: section,
-            start: "top 80%",
-            toggleActions: "play none none reverse",
-            // markers: true, // uncomment while debugging trigger points
+        const sectionTl = gsap.timeline({
+            scrollTrigger: {
+                trigger: section,
+                start: "top 80%",
+                toggleActions: "play none none reverse",
+                // markers: true, // uncomment while debugging trigger points
+            }
+        });
+
+        if (sectionHeading) {
+            sectionTl.from(sectionHeading, {
+                opacity: 0, filter: "blur(20px)", y: 20,
+                duration: 1, ease: "power2.out"
+            });
+        }
+
+        if (sectionDescs.length) {
+            sectionTl.from(sectionDescs, {
+                y: 30,
+                opacity: 0,
+                duration: 0.8,
+                stagger: 0.2,
+                ease: "power2.out",
+            }, "-=0.8");
         }
     });
 
-    if (sectionHeading) {
-        sectionTl.from(sectionHeading, {
-            opacity: 0, filter: "blur(20px)", y: 20,
-            duration: 1, ease: "power2.out"
-        });
-    }
+    /* =====================================================
+       GENERIC GRID / LIST REVEALS
+       Every repeating card group on the page (logo strip,
+       "why us" tiles, pricing cards, FAQ rows, get-started
+       steps, footer columns, ...) fades + rises into place,
+       staggered, the moment its container crosses into view.
+       Swiper-driven carousels and elements that already have
+       a bespoke entrance timeline (hero panels, calendar
+       panels, the integrations SVG draw) are intentionally
+       left out so they aren't double-animated.
+       ===================================================== */
 
-    if (sectionDescs.length) {
-        sectionTl.from(sectionDescs, {
-            y: 30,
-            opacity: 0,
-            duration: 0.8,
-            stagger: 0.2,
-            ease: "power2.out",
-        }, "-=0.8");
-    }
-});
+    const revealGroup = (containerSelector, itemSelector, vars = {}) => {
+        document.querySelectorAll(containerSelector).forEach((container) => {
+            const items = container.querySelectorAll(itemSelector);
+            if (!items.length) return;
+
+            gsap.from(items, Object.assign({
+                opacity: 0,
+                y: 40,
+                duration: 0.9,
+                ease: revealEase,
+                stagger: 0.08,
+                scrollTrigger: {
+                    trigger: container,
+                    start: "top 85%",
+                    toggleActions: "play none none reverse",
+                },
+            }, vars));
+        });
+    };
+
+    revealGroup(".bussinesses", ".bussinesses-item", { y: 20, scale: 0.9, duration: 0.7, stagger: 0.05 });
+    revealGroup(".why-us", ".why-us-item", { y: 50 });
+
+    // Why-us icons get their own bouncy pop on top of the item's fade/rise,
+    // so the icon reads as a distinct little flourish rather than just
+    // riding along with the card.
+    revealGroup(".why-us", ".why-us-icon svg", {
+        opacity: 0,
+        y: 0,
+        scale: 0.4,
+        rotate: -18,
+        transformOrigin: "50% 50%",
+        duration: 0.75,
+        delay: 0.15,
+        ease: "back.out(2.2)",
+        stagger: 0.12,
+    });
+    revealGroup(".pricings", ".pricings-item", { y: 50, scale: 0.95 });
+    revealGroup(".calendar-check", "li", { x: -30, y: 0, stagger: 0.1 });
+    revealGroup(".accordion-container", ".accordion-card", { y: 50, stagger: 0.12 });
+    revealGroup(".faq-list", ".faq-list-item", { y: 25, stagger: 0.1 });
+    revealGroup(".footer-top .row", ".col-auto", { y: 30, stagger: 0.12 });
+    revealGroup(".black-cta", ":scope > *", { y: 30, stagger: 0.1, duration: 0.8 });
+
+    // Layout-affecting widgets (Swiper, footer collapses, images loading)
+    // shift section positions after their own setup runs, so re-measure
+    // the trigger points once everything has settled.
+    window.addEventListener("load", () => ScrollTrigger.refresh());
+}
 
 // Swiper
 
@@ -239,6 +457,31 @@ const expoSwiper = new Swiper('.swiper-expo', {
     }
 });
 
+/* =========================================================
+   SWIPER PREV/NEXT-ON-CLICK
+   With centeredSlides, the not-quite-active slides peeking in
+   on either side of the active one carry Swiper's own
+   "swiper-slide-prev" / "swiper-slide-next" classes. Clicking
+   the left-side peek steps back a slide, clicking the
+   right-side peek steps forward — no extra nav buttons needed.
+   ========================================================= */
+
+function bindAdjacentSlideNav(swiperInstance) {
+    swiperInstance.on("click", function (s, event) {
+        const slide = event.target.closest(".swiper-slide");
+        if (!slide) return;
+
+        if (slide.classList.contains("swiper-slide-prev")) {
+            s.slidePrev();
+        } else if (slide.classList.contains("swiper-slide-next")) {
+            s.slideNext();
+        }
+    });
+}
+
+bindAdjacentSlideNav(featuresSwiper);
+bindAdjacentSlideNav(expoSwiper);
+
 //accordion
 
 
@@ -255,21 +498,28 @@ cards.forEach(card => {
 });
 
 
-//
+/* =========================================================
+   INTEGRATIONS SVG — draw the connector lines first, then pop
+   the icon bubbles into place once the lines have (mostly)
+   finished drawing, so the diagram "populates" outward from
+   the center the way an SVGator scroll-reveal would.
+   ========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
     const svg = document.querySelector(".svg-draw");
 
     if (!svg) return;
 
-    const paths = svg.querySelectorAll("path");
+    const connectors = svg.querySelectorAll(".connector path");
+    const hub = svg.querySelector(".hub");
+    const bubbles = svg.querySelectorAll(".icon-bubble:not(.hub)");
 
-    // Calculate each path's length
-    paths.forEach((path) => {
+    if (prefersReducedMotion) return; // leave the diagram fully visible, no animation
+
+    // Calculate each connector path's length so it can be drawn via dash-offset.
+    connectors.forEach((path) => {
         try {
             const length = path.getTotalLength();
-
-            path.style.setProperty("--path-length", `${length}`);
             path.style.strokeDasharray = length;
             path.style.strokeDashoffset = length;
         } catch (error) {
@@ -277,22 +527,37 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Observe SVG entering viewport
-    const observer = new IntersectionObserver(
-        (entries, observer) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    svg.classList.add("is-visible");
+    gsap.set(bubbles, { opacity: 0, scale: 0.3, transformOrigin: "50% 50%" });
+    if (hub) gsap.set(hub, { opacity: 0, scale: 0.4, transformOrigin: "50% 50%" });
 
-                    // Run only once
-                    observer.unobserve(svg);
-                }
-            });
+    const svgTl = gsap.timeline({
+        scrollTrigger: {
+            trigger: svg,
+            start: "top 75%",
+            toggleActions: "play none none reverse",
         },
-        {
-            threshold: 0.2
-        }
-    );
+    });
 
-    observer.observe(svg);
+    // 1. The center hub appears first — everything else radiates from it.
+    if (hub) {
+        svgTl.to(hub, { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(2)" });
+    }
+
+    // 2. Connector lines draw outward from the hub.
+    svgTl.to(connectors, {
+        strokeDashoffset: 0,
+        duration: 1.1,
+        ease: "power2.inOut",
+        stagger: 0.08,
+    }, hub ? "-=0.15" : 0);
+
+    // 3. Icon bubbles pop in at the end of each line, staggered, once the
+    //    drawing is nearly complete.
+    svgTl.to(bubbles, {
+        opacity: 1,
+        scale: 1,
+        duration: 0.6,
+        ease: "back.out(2.4)",
+        stagger: 0.08,
+    }, "-=0.35");
 });

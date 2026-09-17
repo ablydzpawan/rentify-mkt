@@ -7,14 +7,26 @@
   margin: 0 auto;
   background: rgba(255, 255, 255, 0.82);
   backdrop-filter: blur(18px);
-  border-bottom: solid 1px #eeeeee;
+  border-bottom: solid 1px transparent;
   padding: 0;
+  transition: background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
 
   &-inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 1rem 0;
+    transition: padding 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  &.is-scrolled {
+    background: rgba(255, 255, 255, 0.92);
+    border-bottom-color: #eeeeee;
+    box-shadow: $shadow6;
+
+    .site-header-inner {
+      padding: 0.65rem 0;
+    }
   }
 
 
@@ -88,62 +100,33 @@
 .desktop-nav {
   display: none;
   align-items: center;
-  gap: clamp(18px, 3vw, 38px);
+  gap: clamp(2px, 1vw, 10px);
   color: $txt-body;
   font-size: 1.125rem;
   font-weight: 600;
+  position: relative;
 
   @include media-breakpoint-up(lg) {
     display: flex;
   }
 
   a {
-    padding: 0;
-    line-height: 1;
-    transition: all 0.2s ease;
     position: relative;
+    z-index: 1;
+    padding: 0.6rem 1.1rem;
+    line-height: 1;
     white-space: nowrap;
-    //   @include btn-hover;
+    border-radius: 999px;
+    transition: color 0.25s ease;
 
-    &:before {
-      position: absolute;
-      width: 100%;
-      background: currentColor;
-      top: 100%;
-      left: 0;
-      right: 0;
-      pointer-events: none;
-      content: '';
-      height: 1px;
-      transform-origin: 100% 50%;
-      transform: scale3d(0, 1, 1);
-      transition: transform 0.3s cubic-bezier(0.4, 1, 0.8, 1);
-    }
-
-    &:hover::before {
-      transform-origin: 0% 50%;
-      transform: scale3d(1, 1, 1);
-    }
-
-    & span {
-      display: inline-block;
-      transition: transform 0.3s cubic-bezier(0.4, 1, 0.8, 1);
-    }
-
-    &:hover span {
-      transform: scale3d(1.1, 1.1, 1.1);
-    }
-
-
-    &::before {
-      transform-origin: 50% 100%;
-      transition: clip-path 0.3s, transform 0.3s cubic-bezier(0.2, 1, 0.8, 1);
-      clip-path: polygon(0% 0%, 0% 100%, 0 100%, 0 0, 100% 0, 100% 100%, 0 100%, 0 100%, 100% 100%, 100% 0%);
-    }
-
-    &:hover::before {
-      transform: translate3d(0, 2px, 0) scale3d(1.08, 3, 1);
-      clip-path: polygon(0% 0%, 0% 100%, 50% 100%, 50% 0, 50% 0, 50% 100%, 50% 100%, 0 100%, 100% 100%, 100% 0%);
+    // Every link gets its own permanent anchor-name (rather than only the
+    // hovered one) so the pill below never loses its anchor mid-transition —
+    // that's what lets it glide smoothly and fade out in place on
+    // mouse-leave instead of snapping to an invalid position.
+    @for $i from 1 through 8 {
+      &:nth-child(#{$i}) {
+        anchor-name: --nav-tab-#{$i};
+      }
     }
 
     & span {
@@ -151,21 +134,46 @@
       transition: transform 0.3s cubic-bezier(0.2, 1, 0.8, 1);
     }
 
-    &:hover span {
-      transform: translate3d(0, -2px, 0);
+    &:hover,
+    &:focus-visible {
+      color: $txt-black;
     }
 
+    &:hover span,
+    &:focus-visible span {
+      transform: translate3d(0, -2px, 0);
+    }
+  }
 
-    // &:after {
-    //   background-color: $bg-brand-200;
-    //   z-index: -1;
-    //   border-radius: 50px;
-    //   opacity: 0;
-    // }
+  // Floating pill that glides between links using CSS anchor positioning.
+  // js/motion.js tracks which link is hovered/focused and writes its anchor
+  // name into --nav-active-tab + toggles .is-tab-active; this pseudo-element
+  // just re-anchors and smoothly tweens position/size to match. Browsers
+  // without anchor-positioning support never match the @supports query, so
+  // links simply fall back to the plain color hover above.
+  @supports (anchor-name: --nav-tab-1) {
+    &::before {
+      content: '';
+      position: absolute;
+      position-anchor: var(--nav-active-tab, --nav-tab-1);
+      top: anchor(top);
+      left: anchor(left);
+      width: anchor-size(width);
+      height: anchor-size(height);
+      z-index: 0;
+      pointer-events: none;
+      background: $bg-brand-100;
+      border-radius: 999px;
+      opacity: 0;
+      transition: top 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+        left 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+        width 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+        height 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+        opacity 0.2s ease;
+    }
 
-    &:hover {
-      color: $txt-black;
-      //  color: var(--blue);
+    &.is-tab-active::before {
+      opacity: 1;
     }
   }
 }
