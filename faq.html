@@ -26,11 +26,12 @@
               <img src="images/logos/rentify.svg" width="100%" alt="">
             </a>
             <nav class="desktop-nav" aria-label="Primary navigation">
-              <a href="how-to-start.html">How to start</a> <a href="features.html">Features</a> <a
-                href="pricing.html">Pricing</a>
-              <a href="demo-videos.html">Watch Demo </a>
-              <a href="faq.html">FAQs</a>
-              <a href="blog/index.html" target="_blank">Blog</a>
+              <a href="how-to-start.html"><span>How to start</span></a>
+              <a href="features.html"><span>Features</span></a>
+              <a href="pricing.html"><span>Pricing</span></a>
+              <a href="demo-videos.html"><span>Watch Demo</span> </a>
+              <a href="faq.html"><span>FAQs</span></a>
+              <a href="blog/index.html" target="_blank"><span>Blog</span></a>
             </nav>
             <div class="d-flex gap-3">
               <button class="menu-button" type="button" data-fade-in="down" data-bs-toggle="offcanvas"
@@ -42,576 +43,408 @@
                     <path d="M3 4H21V6H3V4ZM3 11H15V13H3V11ZM3 18H21V20H3V18Z"></path>
                   </svg>
                 </span> <span class="button-txt">Menu</span> </button>
-              <a class="btn btn-pill btn-black cta-btn" href="contact-us.html">Contact Us</a>
+
+              <button class="btn-theme cta-btn"> <span class="">Contact Us</span> </button>
             </div>
           </div>
         </div>
       </header>
       <main class="main" id="main">
-        <section class="section">
+
+        <section class="section first-fold faq-hero" id="faq-hero" aria-labelledby="faq-hero"
+          style="background: transparent radial-gradient(closest-side at 50% 45%, #FEF9AD 0%, #FFFFFF 100%) 0% 0% no-repeat;">
+          <div class="faq-hero-inner">
+            <div class="faq-hero-float float-1"><img src="images/faq-hero-chair.png" alt="Furniture rental"></div>
+            <div class="faq-hero-float float-2"><img src="images/faq-hero-watch.png" alt="Watch rental"></div>
+            <div class="faq-hero-float float-3"><img src="images/faq-hero-car.png" alt="Car rental"></div>
+            <div class="faq-hero-float float-4"><img src="images/faq-hero-camera.png" alt="Camera rental"></div>
+            <div class="faq-hero-float float-5"><img src="images/faq-hero-console.png" alt="Console rental"></div>
+
+            <div class="faq-hero-content">
+              <h1 class="title">Frequently <br> Asked Questions</h1>
+              <p class="desc">Learn everything about Rentify and the most frequently asked questions.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="section curved-marquee-strip" id="curved-marquee-strip" aria-hidden="true">
+          <svg class="curved-marquee" viewBox="0 0 1600 320" preserveAspectRatio="xMidYMid meet">
+            <path id="curvedMarqueePath" d="M -400,260 Q 800,-40 2000,260" fill="none"></path>
+            <text class="curved-marquee-text">
+              <textPath id="curvedMarqueeTextPath" href="#curvedMarqueePath" startOffset="0%">
+                Frequently Asked Questions &#160;&#160;&#160; Frequently Asked Questions &#160;&#160;&#160; Frequently
+                Asked Questions &#160;&#160;&#160; Frequently Asked Questions &#160;&#160;&#160;
+              </textPath>
+            </text>
+          </svg>
+        </section>
+
+        <section class="section faq-section">
           <div class="container">
             <div class="row justify-content-center">
-              <div class="col-lg-10">
-                <header class="section-head section-head-center">
-                  <div class="section-head-start">
-                    <h1 class="page-title">Frequently asked questions</h1>
-                    <!-- <p>Lorem ipsum dolor, sit amet Vel perferendis repellendus tempore
-                      voluptatum, ipsa ex laboriosam. </p> -->
-                  </div>
-                </header>
+              <div class="col-lg-11">
                 <div class="section-body">
                   <div class="faq-wrapper">
                     <div class="faq-tabs">
-                      <ul class="sticky-tabs">
-                        <li><a href="#Rentify" class="active">Rentify FAQs</a></li>
-                        <li><a href="#GettingStarted" class="">Getting Started FAQs</a></li>
-                        <li><a href="#StoreManagement" class="">Store Management FAQs</a></li>
-                        <li><a href="#Pricing" class="">Pricing FAQs</a></li>
-                        <li><a href="#Support" class="">Support FAQs</a></li>
-                        <li><a href="#Integrations" class="">Integrations FAQs</a></li>
+                      <ul class="pill-tabs" role="tablist">
+                        <li><button type="button" class="active" data-target="Rentify">Rentify FAQs</button></li>
+                        <li><button type="button" data-target="GettingStarted">Getting Started</button></li>
+                        <li><button type="button" data-target="StoreManagement">Store Management</button></li>
+                        <li><button type="button" data-target="Pricing">Pricing</button></li>
+                        <li><button type="button" data-target="Support">Support</button></li>
+                        <li><button type="button" data-target="Integrations">Integrations</button></li>
                       </ul>
                     </div>
+
                     <div class="faq-contents">
-                      <div class="faq-group" id="Rentify">
-                        <ul class="faq-list faq-list-page">
-
-                          <li class="faq-head">
-                            <img width="24" src="images/symbol.png" alt="">
-                            Rentify
-                          </li>
-
-                          <!-- FAQ 1 -->
-                          <li class="faq-list-item">
-                            <button class="faq-list-link faqHeading collapsed" type="button" data-bs-toggle="collapse"
-                              data-bs-target="#faqCollapse1" aria-expanded="false" aria-controls="faqCollapse1">
-
-                              What is Rentify?
+                      <div class="faq-group active" id="Rentify">
+                        <ul class="faq-list faq-list-numbered">
+                          <li class="faq-list-item active">
+                            <button class="faq-list-link" type="button" data-bs-toggle="collapse"
+                              data-bs-target="#faqCollapse1" aria-expanded="true" aria-controls="faqCollapse1">
+                              <span class="faq-num">/ 01</span>
+                              <span class="faq-question">Can I try a Rentify Premium plan for free?</span>
                             </button>
-
-                            <div class="collapse" id="faqCollapse1">
-                              <p class="faq_data faqText">
-                                Rentify is a purpose-built rental management software. It allows businesses to build and
-                                manage their online rental stores. From product listing to managing inventory, bookings
-                                and returns, it offers all the required features to successfully operate an online
-                                rental business.
-                              </p>
+                            <div class="collapse show" id="faqCollapse1">
+                              <p class="faq_data faqText">Yes. Try any Rentify Premium plan and if you decide it's
+                                not for you, you can cancel within 14 days and receive a full refund—no questions
+                                asked. This applies to the initial upgrade to a Premium plan.</p>
                             </div>
                           </li>
-
-                          <!-- FAQ 2 -->
                           <li class="faq-list-item">
-                            <button class="faq-list-link faqHeading collapsed" type="button" data-bs-toggle="collapse"
+                            <button class="faq-list-link collapsed" type="button" data-bs-toggle="collapse"
                               data-bs-target="#faqCollapse2" aria-expanded="false" aria-controls="faqCollapse2">
-
-                              Is Rentify a secure rental platform?
+                              <span class="faq-num">/ 02</span>
+                              <span class="faq-question">What is Rentify?</span>
                             </button>
-
                             <div class="collapse" id="faqCollapse2">
-                              <p class="faq_data faqText">
-                                Yes, Rentify is a secure rental platform. It encrypts data, protects sensitive
-                                information and secures online transactions while maintaining global regulatory
-                                standards.
-                              </p>
+                              <p class="faq_data faqText">Rentify is a purpose-built rental management platform that
+                                lets you build and run an online rental store — from listings and inventory to
+                                bookings and returns — all from one dashboard.</p>
                             </div>
                           </li>
-
-                          <!-- FAQ 3 -->
                           <li class="faq-list-item">
-                            <button class="faq-list-link faqHeading collapsed" type="button" data-bs-toggle="collapse"
+                            <button class="faq-list-link collapsed" type="button" data-bs-toggle="collapse"
                               data-bs-target="#faqCollapse3" aria-expanded="false" aria-controls="faqCollapse3">
-
-                              How does Rentify work?
+                              <span class="faq-num">/ 03</span>
+                              <span class="faq-question">Is Rentify a secure rental platform?</span>
                             </button>
-
                             <div class="collapse" id="faqCollapse3">
-                              <p class="faq_data faqText">
-                                Rentify is a SaaS-based rental platform that enables businesses to build online rental
-                                stores, list rental items, manage inventory, payments, bookings and returns from a
-                                centralized dashboard. It provides all the essential tools needed to operate a rental
-                                business efficiently.
-                              </p>
+                              <p class="faq_data faqText">Yes. Rentify encrypts data, protects sensitive information
+                                and secures online transactions while meeting global regulatory standards.</p>
                             </div>
                           </li>
-
-                          <!-- FAQ 4 -->
                           <li class="faq-list-item">
-                            <button class="faq-list-link faqHeading collapsed" type="button" data-bs-toggle="collapse"
+                            <button class="faq-list-link collapsed" type="button" data-bs-toggle="collapse"
                               data-bs-target="#faqCollapse4" aria-expanded="false" aria-controls="faqCollapse4">
-
-                              Is Rentify a white-label solution?
+                              <span class="faq-num">/ 04</span>
+                              <span class="faq-question">Do I get free web hosting when I open an online store?</span>
                             </button>
-
                             <div class="collapse" id="faqCollapse4">
-                              <p class="faq_data faqText">
-                                Yes, Rentify is a 100% white-label rental software. It empowers businesses to build and
-                                operate their rental stores under their own brand name, helping establish credibility,
-                                recognition and customer trust.
-                              </p>
+                              <p class="faq_data faqText">Yes. Every Rentify plan includes free, secure hosting for
+                                your storefront — no separate hosting provider or setup required.</p>
                             </div>
                           </li>
-
-                          <!-- FAQ 5 -->
                           <li class="faq-list-item">
-                            <button class="faq-list-link faqHeading collapsed" type="button" data-bs-toggle="collapse"
+                            <button class="faq-list-link collapsed" type="button" data-bs-toggle="collapse"
                               data-bs-target="#faqCollapse5" aria-expanded="false" aria-controls="faqCollapse5">
-
-                              Does Rentify support multiple languages and currencies?
+                              <span class="faq-num">/ 05</span>
+                              <span class="faq-question">Can I use my own custom domain?</span>
                             </button>
-
                             <div class="collapse" id="faqCollapse5">
-                              <p class="faq_data faqText">
-                                Yes. Rentify is built for global businesses and supports multiple languages and
-                                currencies. Businesses can choose their preferred language and currency to provide a
-                                localized and seamless customer experience.
-                              </p>
+                              <p class="faq_data faqText">Yes. You can connect a custom domain on any plan, or use a
+                                free Rentify subdomain to get started right away.</p>
                             </div>
                           </li>
-
-                          <!-- FAQ 6 -->
                           <li class="faq-list-item">
-                            <button class="faq-list-link faqHeading collapsed" type="button" data-bs-toggle="collapse"
+                            <button class="faq-list-link collapsed" type="button" data-bs-toggle="collapse"
                               data-bs-target="#faqCollapse6" aria-expanded="false" aria-controls="faqCollapse6">
-
-                              Is Rentify a single-vendor rental management software?
+                              <span class="faq-num">/ 06</span>
+                              <span class="faq-question">Does Rentify work for any rental niche?</span>
                             </button>
-
                             <div class="collapse" id="faqCollapse6">
-                              <p class="faq_data faqText">
-                                Yes. Rentify is a single-vendor rental management software designed for businesses that
-                                want to launch and manage their own branded online rental stores.
-                              </p>
+                              <p class="faq_data faqText">Yes. From furniture and electronics to vehicles and event
+                                equipment, Rentify is flexible enough to power almost any rental business.</p>
                             </div>
                           </li>
-
-                          <!-- FAQ 7 -->
-                          <li class="faq-list-item">
-                            <button class="faq-list-link faqHeading collapsed" type="button" data-bs-toggle="collapse"
-                              data-bs-target="#faqCollapse7" aria-expanded="false" aria-controls="faqCollapse7">
-
-                              What niches does Rentify support?
-                            </button>
-
-                            <div class="collapse" id="faqCollapse7">
-                              <p class="faq_data faqText">
-                                Rentify supports a wide range of rental businesses, including heavy equipment, medical
-                                equipment, dresses, cars, boats, jewelry, furniture, cameras, musical instruments,
-                                sports equipment, photo booths, audio/video equipment, agricultural equipment, property
-                                rentals and many more.
-                              </p>
-                            </div>
-                          </li>
-
-                          <!-- FAQ 8 -->
-                          <li class="faq-list-item">
-                            <button class="faq-list-link faqHeading collapsed" type="button" data-bs-toggle="collapse"
-                              data-bs-target="#faqCollapse8" aria-expanded="false" aria-controls="faqCollapse8">
-
-                              Is Rentify a scalable rental management software?
-                            </button>
-
-                            <div class="collapse" id="faqCollapse8">
-                              <p class="faq_data faqText">
-                                Yes. Rentify is built on a scalable infrastructure that supports business growth. As
-                                your rental business expands, the platform can handle increased users, inventory,
-                                bookings and transactions while maintaining optimal performance.
-                              </p>
-                            </div>
-                          </li>
-
                         </ul>
                       </div>
+
                       <div class="faq-group" id="GettingStarted">
-                        <ul class="faq-list faq-list-page">
-
-                          <li class="faq-head">
-                            <img width="24" src="images/symbol.png" alt="">
-                            Getting Started
+                        <ul class="faq-list faq-list-numbered">
+                          <li class="faq-list-item active">
+                            <button class="faq-list-link" type="button" data-bs-toggle="collapse"
+                              data-bs-target="#faqCollapse7" aria-expanded="true" aria-controls="faqCollapse7">
+                              <span class="faq-num">/ 01</span>
+                              <span class="faq-question">How do I create my Rentify account?</span>
+                            </button>
+                            <div class="collapse show" id="faqCollapse7">
+                              <p class="faq_data faqText">Choose a plan, enter your first & last name, email and a
+                                secure password, then verify your account with the authentication code we send you.
+                              </p>
+                            </div>
                           </li>
-
-                          <!-- FAQ 9 -->
                           <li class="faq-list-item">
-                            <button class="faq-list-link faqHeading collapsed" type="button" data-bs-toggle="collapse"
+                            <button class="faq-list-link collapsed" type="button" data-bs-toggle="collapse"
+                              data-bs-target="#faqCollapse8" aria-expanded="false" aria-controls="faqCollapse8">
+                              <span class="faq-num">/ 02</span>
+                              <span class="faq-question">How long does it take to launch my store?</span>
+                            </button>
+                            <div class="collapse" id="faqCollapse8">
+                              <p class="faq_data faqText">Most stores are ready to go live within minutes — choose a
+                                theme, add your first products, and publish.</p>
+                            </div>
+                          </li>
+                          <li class="faq-list-item">
+                            <button class="faq-list-link collapsed" type="button" data-bs-toggle="collapse"
                               data-bs-target="#faqCollapse9" aria-expanded="false" aria-controls="faqCollapse9">
-
-                              How can I launch an online rental store using Rentify?
+                              <span class="faq-num">/ 03</span>
+                              <span class="faq-question">Do I need any technical or design skills?</span>
                             </button>
-
                             <div class="collapse" id="faqCollapse9">
-                              <p class="faq_data faqText">
-                                Rentify offers a seamless start. You can launch your online rental store within minutes
-                                by choosing a subscription plan, registering your business, customizing your storefront,
-                                listing rental products, and starting to accept bookings online.
-                              </p>
+                              <p class="faq_data faqText">No. Rentify's storefront builder is fully no-code — pick a
+                                theme, customize it visually, and you're ready to sell.</p>
                             </div>
                           </li>
-
-                          <!-- FAQ 10 -->
                           <li class="faq-list-item">
-                            <button class="faq-list-link faqHeading collapsed" type="button" data-bs-toggle="collapse"
+                            <button class="faq-list-link collapsed" type="button" data-bs-toggle="collapse"
                               data-bs-target="#faqCollapse10" aria-expanded="false" aria-controls="faqCollapse10">
-
-                              Who can launch online rental stores using Rentify?
+                              <span class="faq-num">/ 04</span>
+                              <span class="faq-question">Can I import my existing product catalog?</span>
                             </button>
-
                             <div class="collapse" id="faqCollapse10">
-                              <p class="faq_data faqText">
-                                Entrepreneurs, retailers, rental companies, and businesses looking to expand their
-                                rental operations can use Rentify to launch, manage, and grow their own branded online
-                                rental stores.
-                              </p>
+                              <p class="faq_data faqText">Yes. You can bulk import products via CSV, or add them one
+                                by one from your admin dashboard.</p>
                             </div>
                           </li>
-
-                          <!-- FAQ 11 -->
                           <li class="faq-list-item">
-                            <button class="faq-list-link faqHeading collapsed" type="button" data-bs-toggle="collapse"
+                            <button class="faq-list-link collapsed" type="button" data-bs-toggle="collapse"
                               data-bs-target="#faqCollapse11" aria-expanded="false" aria-controls="faqCollapse11">
-
-                              Can I get started with Rentify for free?
+                              <span class="faq-num">/ 05</span>
+                              <span class="faq-question">What is a free trial and how does it work?</span>
                             </button>
-
                             <div class="collapse" id="faqCollapse11">
-                              <p class="faq_data faqText">
-                                Yes. Rentify offers a 90-day free trial, allowing you to explore the platform, configure
-                                your rental store, and evaluate its features before choosing a subscription plan.
-                              </p>
+                              <p class="faq_data faqText">Every plan comes with a free trial period so you can explore
+                                Rentify's features before committing — no credit card required to start.</p>
                             </div>
                           </li>
-
-                          <!-- FAQ 12 -->
-                          <li class="faq-list-item">
-                            <button class="faq-list-link faqHeading collapsed" type="button" data-bs-toggle="collapse"
-                              data-bs-target="#faqCollapse12" aria-expanded="false" aria-controls="faqCollapse12">
-
-                              Do I need my own server infrastructure to get started with Rentify?
-                            </button>
-
-                            <div class="collapse" id="faqCollapse12">
-                              <p class="faq_data faqText">
-                                No. Rentify is a fully managed Software-as-a-Service (SaaS) platform. It manages
-                                hosting, infrastructure, security, maintenance, and software updates, allowing you to
-                                focus entirely on running your rental business.
-                              </p>
-                            </div>
-                          </li>
-
-                          <!-- FAQ 13 -->
-                          <li class="faq-list-item">
-                            <button class="faq-list-link faqHeading collapsed" type="button" data-bs-toggle="collapse"
-                              data-bs-target="#faqCollapse13" aria-expanded="false" aria-controls="faqCollapse13">
-
-                              Do I get a free domain with Rentify?
-                            </button>
-
-                            <div class="collapse" id="faqCollapse13">
-                              <p class="faq_data faqText">
-                                Yes. Rentify provides a free basic domain (web address) when you create your rental
-                                store. You can also connect your own custom domain if you prefer a branded web address.
-                              </p>
-                            </div>
-                          </li>
-
-                          <!-- FAQ 14 -->
-                          <li class="faq-list-item">
-                            <button class="faq-list-link faqHeading collapsed" type="button" data-bs-toggle="collapse"
-                              data-bs-target="#faqCollapse14" aria-expanded="false" aria-controls="faqCollapse14">
-
-                              Can I create and manage a Rentify store without coding knowledge?
-                            </button>
-
-                            <div class="collapse" id="faqCollapse14">
-                              <p class="faq_data faqText">
-                                Absolutely. Rentify is designed for non-technical users. You can build, customize, and
-                                manage your online rental store without writing code, making it easy to launch and
-                                operate your business.
-                              </p>
-                            </div>
-                          </li>
-
-                          <!-- FAQ 15 -->
-                          <li class="faq-list-item">
-                            <button class="faq-list-link faqHeading collapsed" type="button" data-bs-toggle="collapse"
-                              data-bs-target="#faqCollapse15" aria-expanded="false" aria-controls="faqCollapse15">
-
-                              Can I use my own domain for my rental store?
-                            </button>
-
-                            <div class="collapse" id="faqCollapse15">
-                              <p class="faq_data faqText">
-                                Yes. You can connect your own custom domain to your Rentify store, giving your business
-                                a personalized web address. Availability depends on the subscription plan you choose.
-                              </p>
-                            </div>
-                          </li>
-
                         </ul>
                       </div>
+
                       <div class="faq-group" id="StoreManagement">
-                        <ul class="faq-list faq-list-page">
-
-                          <li class="faq-head">
-                            <img width="24" src="images/symbol.png" alt="">
-                            Store Management
-                          </li>
-
-                          <!-- FAQ 16 -->
-                          <li class="faq-list-item">
-                            <button class="faq-list-link faqHeading collapsed" type="button" data-bs-toggle="collapse"
-                              data-bs-target="#faqCollapse16" aria-expanded="false" aria-controls="faqCollapse16">
-
-                              Can I customize my store built with Rentify?
+                        <ul class="faq-list faq-list-numbered">
+                          <li class="faq-list-item active">
+                            <button class="faq-list-link" type="button" data-bs-toggle="collapse"
+                              data-bs-target="#faqCollapse12" aria-expanded="true" aria-controls="faqCollapse12">
+                              <span class="faq-num">/ 01</span>
+                              <span class="faq-question">How do I manage inventory across multiple warehouses?</span>
                             </button>
-
-                            <div class="collapse" id="faqCollapse16">
-                              <p class="faq_data faqText">
-                                Yes. Rentify allows you to fully customize your online rental store. You can modify
-                                themes, menus, banners, fonts, colors, pages, and other storefront elements to match
-                                your brand. If you require functionality beyond the built-in customization options, you
-                                can also contact the Rentify team for custom development services.
-                              </p>
+                            <div class="collapse show" id="faqCollapse12">
+                              <p class="faq_data faqText">Rentify's inventory calendar tracks stock across every
+                                warehouse automatically, so every booking stays organized in real time.</p>
                             </div>
                           </li>
-
-                          <!-- FAQ 17 -->
                           <li class="faq-list-item">
-                            <button class="faq-list-link faqHeading collapsed" type="button" data-bs-toggle="collapse"
-                              data-bs-target="#faqCollapse17" aria-expanded="false" aria-controls="faqCollapse17">
-
-                              Does Rentify offer readymade themes?
+                            <button class="faq-list-link collapsed" type="button" data-bs-toggle="collapse"
+                              data-bs-target="#faqCollapse13" aria-expanded="false" aria-controls="faqCollapse13">
+                              <span class="faq-num">/ 02</span>
+                              <span class="faq-question">Can I add multiple staff accounts?</span>
                             </button>
-
-                            <div class="collapse" id="faqCollapse17">
-                              <p class="faq_data faqText">
-                                Yes. Rentify offers several professionally designed, pre-built themes suitable for
-                                different rental industries. You can choose a theme that best matches your rental niche
-                                and quickly launch your online rental store using free or premium theme options.
-                              </p>
+                            <div class="collapse" id="faqCollapse13">
+                              <p class="faq_data faqText">Yes. Higher-tier plans let you add sub-staff accounts with
+                                role-based permissions to help manage your store.</p>
                             </div>
                           </li>
-
+                          <li class="faq-list-item">
+                            <button class="faq-list-link collapsed" type="button" data-bs-toggle="collapse"
+                              data-bs-target="#faqCollapse14" aria-expanded="false" aria-controls="faqCollapse14">
+                              <span class="faq-num">/ 03</span>
+                              <span class="faq-question">How do I handle bookings and returns?</span>
+                            </button>
+                            <div class="collapse" id="faqCollapse14">
+                              <p class="faq_data faqText">Every booking, pickup and return is tracked automatically in
+                                your admin panel, with reminders for upcoming due dates.</p>
+                            </div>
+                          </li>
                         </ul>
                       </div>
-
-
-
-
 
                       <div class="faq-group" id="Pricing">
-                        <ul class="faq-list faq-list-page">
-
-                          <li class="faq-head">
-                            <img width="24" src="images/symbol.png" alt="">
-                            Pricing
+                        <ul class="faq-list faq-list-numbered">
+                          <li class="faq-list-item active">
+                            <button class="faq-list-link" type="button" data-bs-toggle="collapse"
+                              data-bs-target="#faqCollapse15" aria-expanded="true" aria-controls="faqCollapse15">
+                              <span class="faq-num">/ 01</span>
+                              <span class="faq-question">How do I accept payments with Rentify Payments?</span>
+                            </button>
+                            <div class="collapse show" id="faqCollapse15">
+                              <p class="faq_data faqText">Enable Rentify Payments from your dashboard and start
+                                accepting cards and popular wallets — no separate merchant account needed.</p>
+                            </div>
                           </li>
-
-                          <!-- FAQ 18 -->
                           <li class="faq-list-item">
-                            <button class="faq-list-link faqHeading collapsed" type="button" data-bs-toggle="collapse"
+                            <button class="faq-list-link collapsed" type="button" data-bs-toggle="collapse"
+                              data-bs-target="#faqCollapse16" aria-expanded="false" aria-controls="faqCollapse16">
+                              <span class="faq-num">/ 02</span>
+                              <span class="faq-question">What payment options can I use to purchase a Rentify
+                                subscription?</span>
+                            </button>
+                            <div class="collapse" id="faqCollapse16">
+                              <p class="faq_data faqText">We accept all major credit and debit cards, along with
+                                select regional payment methods at checkout.</p>
+                            </div>
+                          </li>
+                          <li class="faq-list-item">
+                            <button class="faq-list-link collapsed" type="button" data-bs-toggle="collapse"
+                              data-bs-target="#faqCollapse17" aria-expanded="false" aria-controls="faqCollapse17">
+                              <span class="faq-num">/ 03</span>
+                              <span class="faq-question">Is there a commission on every rental?</span>
+                            </button>
+                            <div class="collapse" id="faqCollapse17">
+                              <p class="faq_data faqText">No. Rentify charges zero commission on every plan — you keep
+                                100% of what you earn from your rentals.</p>
+                            </div>
+                          </li>
+                          <li class="faq-list-item">
+                            <button class="faq-list-link collapsed" type="button" data-bs-toggle="collapse"
                               data-bs-target="#faqCollapse18" aria-expanded="false" aria-controls="faqCollapse18">
-
-                              How much does it cost to build an online rental store with Rentify?
+                              <span class="faq-num">/ 04</span>
+                              <span class="faq-question">Can I switch plans later?</span>
                             </button>
-
                             <div class="collapse" id="faqCollapse18">
-                              <p class="faq_data faqText">
-                                Building an online rental store with Rentify typically costs between <strong>$20 and $99
-                                  per month</strong>. You can choose from monthly or yearly subscription plans, or
-                                request a custom enterprise quote. Pricing may vary depending on your business
-                                requirements, transaction volume, integrations, and selected plan.
-                              </p>
+                              <p class="faq_data faqText">Yes. You can upgrade or downgrade your plan at any time from
+                                your billing settings, with changes applied on your next cycle.</p>
                             </div>
                           </li>
-
-                          <!-- FAQ 19 -->
-                          <li class="faq-list-item">
-                            <button class="faq-list-link faqHeading collapsed" type="button" data-bs-toggle="collapse"
-                              data-bs-target="#faqCollapse19" aria-expanded="false" aria-controls="faqCollapse19">
-
-                              Does Rentify charge additional costs for updates and upgrades?
-                            </button>
-
-                            <div class="collapse" id="faqCollapse19">
-                              <p class="faq_data faqText">
-                                No. Rentify does not charge additional fees for software updates or platform upgrades.
-                                Your subscription includes feature updates, security patches, performance improvements,
-                                and infrastructure maintenance.
-                              </p>
-                            </div>
-                          </li>
-
-                          <!-- FAQ 20 -->
-                          <li class="faq-list-item">
-                            <button class="faq-list-link faqHeading collapsed" type="button" data-bs-toggle="collapse"
-                              data-bs-target="#faqCollapse20" aria-expanded="false" aria-controls="faqCollapse20">
-
-                              Does Rentify charge commission on sales?
-                            </button>
-
-                            <div class="collapse" id="faqCollapse20">
-                              <p class="faq_data faqText">
-                                No. Rentify does not charge any commission on your rental bookings or sales. You retain
-                                the revenue generated through your online rental business.
-                              </p>
-                            </div>
-                          </li>
-
-                          <!-- FAQ 21 -->
-                          <li class="faq-list-item">
-                            <button class="faq-list-link faqHeading collapsed" type="button" data-bs-toggle="collapse"
-                              data-bs-target="#faqCollapse21" aria-expanded="false" aria-controls="faqCollapse21">
-
-                              Does Rentify charge any additional fees?
-                            </button>
-
-                            <div class="collapse" id="faqCollapse21">
-                              <p class="faq_data faqText">
-                                No. With Rentify, you only pay the subscription fee associated with your selected plan.
-                                There are no hidden platform fees or additional charges.
-                              </p>
-                            </div>
-                          </li>
-
-                          <!-- FAQ 22 -->
-                          <li class="faq-list-item">
-                            <button class="faq-list-link faqHeading collapsed" type="button" data-bs-toggle="collapse"
-                              data-bs-target="#faqCollapse22" aria-expanded="false" aria-controls="faqCollapse22">
-
-                              Can I upgrade or cancel my subscription plan?
-                            </button>
-
-                            <div class="collapse" id="faqCollapse22">
-                              <p class="faq_data faqText">
-                                Yes. You can upgrade, downgrade, or cancel your Rentify subscription at any time. This
-                                allows your plan to grow alongside your business needs.
-                              </p>
-                            </div>
-                          </li>
-
-                          <!-- FAQ 23 -->
-                          <li class="faq-list-item">
-                            <button class="faq-list-link faqHeading collapsed" type="button" data-bs-toggle="collapse"
-                              data-bs-target="#faqCollapse23" aria-expanded="false" aria-controls="faqCollapse23">
-
-                              Do I need to pay for hosting?
-                            </button>
-
-                            <div class="collapse" id="faqCollapse23">
-                              <p class="faq_data faqText">
-                                No. Rentify is a fully hosted SaaS solution. Hosting, servers, maintenance, security,
-                                backups, and infrastructure management are included in your subscription, so you don't
-                                need to purchase separate hosting services.
-                              </p>
-                            </div>
-                          </li>
-
                         </ul>
                       </div>
-
-
 
                       <div class="faq-group" id="Support">
-                        <ul class="faq-list faq-list-page">
-
-                          <li class="faq-head">
-                            <img width="24" src="images/symbol.png" alt="">
-                            Support
-                          </li>
-
-                          <!-- FAQ 24 -->
-                          <li class="faq-list-item">
-                            <button class="faq-list-link faqHeading collapsed" type="button" data-bs-toggle="collapse"
-                              data-bs-target="#faqCollapse24" aria-expanded="false" aria-controls="faqCollapse24">
-
-                              Does Rentify offer technical support?
+                        <ul class="faq-list faq-list-numbered">
+                          <li class="faq-list-item active">
+                            <button class="faq-list-link" type="button" data-bs-toggle="collapse"
+                              data-bs-target="#faqCollapse19" aria-expanded="true" aria-controls="faqCollapse19">
+                              <span class="faq-num">/ 01</span>
+                              <span class="faq-question">How do you support builds for large-scale projects?</span>
                             </button>
-
-                            <div class="collapse" id="faqCollapse24">
-                              <p class="faq_data faqText">
-                                Yes. Rentify provides dedicated technical support through live chat, email, and phone.
-                                Our support team helps resolve unexpected bugs, technical issues, performance concerns,
-                                and other platform-related queries to ensure your rental business runs smoothly.
-                              </p>
+                            <div class="collapse show" id="faqCollapse19">
+                              <p class="faq_data faqText">Our technical support team offers dedicated onboarding and
+                                scaling guidance for high-volume and enterprise rental businesses.</p>
                             </div>
                           </li>
-
-                          <!-- FAQ 25 -->
                           <li class="faq-list-item">
-                            <button class="faq-list-link faqHeading collapsed" type="button" data-bs-toggle="collapse"
-                              data-bs-target="#faqCollapse25" aria-expanded="false" aria-controls="faqCollapse25">
-
-                              Can I get custom development services from the Rentify team?
+                            <button class="faq-list-link collapsed" type="button" data-bs-toggle="collapse"
+                              data-bs-target="#faqCollapse20" aria-expanded="false" aria-controls="faqCollapse20">
+                              <span class="faq-num">/ 02</span>
+                              <span class="faq-question">What support channels are available?</span>
                             </button>
-
-                            <div class="collapse" id="faqCollapse25">
-                              <p class="faq_data faqText">
-                                Yes. Rentify offers custom development services for businesses with unique requirements.
-                                Whether you need custom features, third-party integrations, workflow enhancements, or
-                                other tailored solutions, our development team can help build functionality specific to
-                                your rental business.
-                              </p>
+                            <div class="collapse" id="faqCollapse20">
+                              <p class="faq_data faqText">Live chat, email and phone support are available on every
+                                plan, with priority support on higher tiers.</p>
                             </div>
                           </li>
                         </ul>
                       </div>
+
                       <div class="faq-group" id="Integrations">
-                        <ul class="faq-list faq-list-page">
-                          <li class="faq-head">
-                            <img width="24" src="images/symbol.png" alt="">
-                            Integrations
-                          </li>
-
-                          <!-- FAQ 26 -->
-                          <li class="faq-list-item">
-                            <button class="faq-list-link faqHeading collapsed" type="button" data-bs-toggle="collapse"
-                              data-bs-target="#faqCollapse26" aria-expanded="false" aria-controls="faqCollapse26">
-
-                              Does Rentify support integration with APIs and Plugins?
+                        <ul class="faq-list faq-list-numbered">
+                          <li class="faq-list-item active">
+                            <button class="faq-list-link" type="button" data-bs-toggle="collapse"
+                              data-bs-target="#faqCollapse21" aria-expanded="true" aria-controls="faqCollapse21">
+                              <span class="faq-num">/ 01</span>
+                              <span class="faq-question">Does Rentify support integration with APIs and
+                                plugins?</span>
                             </button>
-
-                            <div class="collapse" id="faqCollapse26">
-                              <p class="faq_data faqText">
-                                Yes. Rentify supports integration with APIs and third-party plugins, allowing you to
-                                extend your rental store's capabilities. You can connect payment gateways, shipping
-                                providers, CRM systems, marketing tools, analytics platforms, accounting software, and
-                                other business applications to streamline operations and meet your specific business
-                                requirements.
-                              </p>
+                            <div class="collapse show" id="faqCollapse21">
+                              <p class="faq_data faqText">Yes. Connect payment gateways, shipping providers, CRMs,
+                                marketing tools and more through Rentify's APIs and plugin marketplace.</p>
                             </div>
                           </li>
-
+                          <li class="faq-list-item">
+                            <button class="faq-list-link collapsed" type="button" data-bs-toggle="collapse"
+                              data-bs-target="#faqCollapse22" aria-expanded="false" aria-controls="faqCollapse22">
+                              <span class="faq-num">/ 02</span>
+                              <span class="faq-question">How do i get my free domain?</span>
+                            </button>
+                            <div class="collapse" id="faqCollapse22">
+                              <p class="faq_data faqText">Free domains are available on select annual plans — connect
+                                yours from the Domains section of your admin dashboard.</p>
+                            </div>
+                          </li>
+                          <li class="faq-list-item">
+                            <button class="faq-list-link collapsed" type="button" data-bs-toggle="collapse"
+                              data-bs-target="#faqCollapse23" aria-expanded="false" aria-controls="faqCollapse23">
+                              <span class="faq-num">/ 03</span>
+                              <span class="faq-question">How can i get my own personalized email address?</span>
+                            </button>
+                            <div class="collapse" id="faqCollapse23">
+                              <p class="faq_data faqText">Connect a custom domain and set up a branded email address
+                                through our supported email provider integrations.</p>
+                            </div>
+                          </li>
                         </ul>
                       </div>
                     </div>
-
                   </div>
-
                 </div>
               </div>
             </div>
           </div>
         </section>
 
+        <section class="section cta-gradient" id="cta">
+          <div class="container">
+            <div class="cta-gradient-data">
+              <h2 class="cta-gradient-title section-heading">Build, Customize & Launch <br> Your Landing Page Free
+              </h2>
+
+              <a class="animated-button" href="contact-us.html">
+                <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
+                  </path>
+                </svg>
+                <span class="text">Get Started</span>
+                <span class="circle"></span>
+                <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
+                  </path>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </section>
+        <section class="section" id="marquee-strip">
+          <div class="container container-fluid">
+            <marquee class="marquee">
+              <div class="marquee-track">
+                <span class="marquee-item">RENTIFY</span>
+                <span class="marquee-item">RENTIFY</span>
+                <span class="marquee-item">RENTIFY</span>
+                <span class="marquee-item">RENTIFY</span>
+
+                <!-- Duplicate for seamless loop -->
+                <span class="marquee-item">RENTIFY</span>
+                <span class="marquee-item">RENTIFY</span>
+                <span class="marquee-item">RENTIFY</span>
+                <span class="marquee-item">RENTIFY</span>
+              </div>
+            </marquee>
+          </div>
+        </section>
       </main>
       <footer class="footer" id="footer" data-collection="footer">
         <div class="footer-top">
           <div class="container">
-            <div class="row">
-              <div class="col-lg-6">
-                <div class="short-about">
-                  <p class="desc">Rentify is designed by FATbit Technologies, the team behind leading multi-vendor
-                    eCommerce
-                    solutions Yo!Rent, <strong> Yo!Kart, Yo!Coach, Yo!Yumm, Yo!Gigs, Growcer, Vivo Cabs</strong> and
-                    more.</p>
-                  <p class="copyrights">© Rentify - A product of FATbit Technologies.</p>
-                </div>
+            <div class="row justify-content-between">
+              <div class="col-auto">
+                <p class="copyright">Copyright © <br> Rentify - A product of FATbit Technologies.</p>
               </div>
-              <div class="col-lg-3">
+
+              <div class="col-auto">
                 <div class="footer-group">
-                  <h4 class="footer-group-head dropdown-toggle-custom" data-bs-toggle="collapse" data-bs-target="#Quick"
-                    role="button" aria-expanded="false" aria-controls="collapseExample">
-                    Explore
-                  </h4>
-                  <ul class="footer-nav footer-nav-double" id="Quick">
+                  <ul class="footer-nav" id="Quick">
                     <li class="footer-nav-item">
                       <a class="footer-nav-link" href="how-to-start.html">How to start</a>
                     </li>
@@ -636,50 +469,88 @@
                   </ul>
                 </div>
               </div>
-              <div class="col-lg-3">
+
+              <div class="col-auto">
                 <div class="footer-group">
                   <h4 class="footer-group-head dropdown-toggle-custom" data-bs-toggle="collapse"
                     data-bs-target="#Follow" role="button" aria-expanded="false" aria-controls="collapseExample">
-                    Follow
+                    SOCIAL
                   </h4>
-                  <ul class="footer-nav" id="Follow">
-                    <li class="footer-nav-item">
-                      <a class="footer-nav-link" href="#"> Facebook </a>
+                  <ul class="footer-social" id="Follow">
+                    <li class="footer-social-item">
+                      <a class="footer-social-link" href="#"><svg class="footer-social-svg" width="20" height="20"
+                          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                          <path
+                            d="M12.001 2C6.47813 2 2.00098 6.47715 2.00098 12C2.00098 16.9913 5.65783 21.1283 10.4385 21.8785V14.8906H7.89941V12H10.4385V9.79688C10.4385 7.29063 11.9314 5.90625 14.2156 5.90625C15.3097 5.90625 16.4541 6.10156 16.4541 6.10156V8.5625H15.1931C13.9509 8.5625 13.5635 9.33334 13.5635 10.1242V12H16.3369L15.8936 14.8906H13.5635V21.8785C18.3441 21.1283 22.001 16.9913 22.001 12C22.001 6.47715 17.5238 2 12.001 2Z">
+                          </path>
+                        </svg> </a>
                     </li>
-                    <li class="footer-nav-item">
-                      <a class="footer-nav-link" href="#">Instagram</a>
+                    <li class="footer-social-item">
+                      <a class="footer-social-link" href="#"><svg class="footer-social-svg" width="20" height="20"
+                          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                          <path
+                            d="M6.94048 4.99993C6.94011 5.81424 6.44608 6.54702 5.69134 6.85273C4.9366 7.15845 4.07187 6.97605 3.5049 6.39155C2.93793 5.80704 2.78195 4.93715 3.1105 4.19207C3.43906 3.44699 4.18654 2.9755 5.00048 2.99993C6.08155 3.03238 6.94097 3.91837 6.94048 4.99993ZM7.00048 8.47993H3.00048V20.9999H7.00048V8.47993ZM13.3205 8.47993H9.34048V20.9999H13.2805V14.4299C13.2805 10.7699 18.0505 10.4299 18.0505 14.4299V20.9999H22.0005V13.0699C22.0005 6.89993 14.9405 7.12993 13.2805 10.1599L13.3205 8.47993Z">
+                          </path>
+                        </svg> </a>
                     </li>
-                    <li class="footer-nav-item">
-                      <a class="footer-nav-link" href="#"> X </a>
+                    <li class="footer-social-item">
+                      <a class="footer-social-link" href="#"> <svg class="footer-social-svg" width="20" height="20"
+                          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                          <path
+                            d="M17.6874 3.0625L12.6907 8.77425L8.37045 3.0625H2.11328L9.58961 12.8387L2.50378 20.9375H5.53795L11.0068 14.6886L15.7863 20.9375H21.8885L14.095 10.6342L20.7198 3.0625H17.6874ZM16.6232 19.1225L5.65436 4.78217H7.45745L18.3034 19.1225H16.6232Z">
+                          </path>
+                        </svg></a>
                     </li>
-                    <li class="footer-nav-item">
-                      <a class="footer-nav-link" href="#">
-                        LinkedIn</a>
+                    <li class="footer-social-item">
+                      <a class="footer-social-link" href="#"> <svg class="footer-social-svg" width="20" height="20"
+                          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                          <path
+                            d="M12.2439 4C12.778 4.00294 14.1143 4.01586 15.5341 4.07273L16.0375 4.09468C17.467 4.16236 18.8953 4.27798 19.6037 4.4755C20.5486 4.74095 21.2913 5.5155 21.5423 6.49732C21.942 8.05641 21.992 11.0994 21.9982 11.8358L21.9991 11.9884L21.9991 11.9991C21.9991 11.9991 21.9991 12.0028 21.9991 12.0099L21.9982 12.1625C21.992 12.8989 21.942 15.9419 21.5423 17.501C21.2878 18.4864 20.5451 19.261 19.6037 19.5228C18.8953 19.7203 17.467 19.8359 16.0375 19.9036L15.5341 19.9255C14.1143 19.9824 12.778 19.9953 12.2439 19.9983L12.0095 19.9991L11.9991 19.9991C11.9991 19.9991 11.9956 19.9991 11.9887 19.9991L11.7545 19.9983C10.6241 19.9921 5.89772 19.941 4.39451 19.5228C3.4496 19.2573 2.70692 18.4828 2.45587 17.501C2.0562 15.9419 2.00624 12.8989 2 12.1625V11.8358C2.00624 11.0994 2.0562 8.05641 2.45587 6.49732C2.7104 5.51186 3.45308 4.73732 4.39451 4.4755C5.89772 4.05723 10.6241 4.00622 11.7545 4H12.2439ZM9.99911 8.49914V15.4991L15.9991 11.9991L9.99911 8.49914Z">
+                          </path>
+                        </svg></a>
                     </li>
                   </ul>
+
+                  <div class="contacts-info">
+                    <a href="">+1 256 792 5883</a>
+                    <a href="">sales@fatbit.com</a>
+                  </div>
+
                 </div>
               </div>
+
+              <div class="col-auto">
+                <div class="footer-group">
+                  <h4 class="footer-group-head dropdown-toggle-custom" data-bs-toggle="collapse"
+                    data-bs-target="#newsletter" role="button" aria-expanded="false" aria-controls="collapseExample">
+                    GET VALUABLE INSIGHTS
+                  </h4>
+
+                  <form class="form-newsletter" action="" id="newsletter">
+                    <input class="form-newsletter-input" type="text" placeholder="Your email here">
+                    <button class="form-newsletter-btn" type="button">
+                      <svg class="svg" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                        fill="currentColor">
+                        <path
+                          d="M13.1717 12.0007L8.22192 7.05093L9.63614 5.63672L16.0001 12.0007L9.63614 18.3646L8.22192 16.9504L13.1717 12.0007Z">
+                        </path>
+                      </svg></button>
+                  </form>
+
+                </div>
+              </div>
+
             </div>
+
           </div>
         </div>
         <div class="footer-bottom">
           <div class="container">
-            <div class="footer-cta">
-              <h3>Need Help to Take Your Rental Business Online?</h3>
-              <a href="contact-us.html" class="btn btn-brand">Talk to Our Experts</a>
-            </div>
-            <div class="row justify-content-between">
-              <div class="col-lg-6">
-                <div class="footer-logo">
-                  <img src="images/footer-logo.png" width="200" alt="">
-                </div>
-              </div>
-              <div class="col-lg-6">
-                <div class="contacts-info">
-                  <a href="">+1 256 792 5883</a> |
-                  <a href="">sales@fatbit.com</a>
-                </div>
-              </div>
+            <div class="footer-bottom-inner">
+              <p class="desc">Rentify is designed by FATbit Technologies, the team behind leading multi-vendor
+                eCommerce
+                solutions Yo!Rent, <strong> Yo!Kart, Yo!Coach, Yo!Yumm, Yo!Gigs, Growcer, Vivo Cabs</strong> and
+                more.</p>
             </div>
           </div>
         </div>
@@ -744,106 +615,13 @@
       </div>
     </div>
 
-    <!-- <script src='./js/j1gsap.min.js'></script>
+    <script src='./js/j1gsap.min.js'></script>
     <script src='./js/j2ScrollTrigger.min.js'></script>
-    <script src='./js/j3lenis.min.js'></script>
+    <script src='./js/lenis.min.js'></script>
     <script src='./js/j4CustomEase.min.js'></script>
-    <script src='./js/j5SplitText.min.js'></script> -->
     <script src='./js/j6bootstrap.js'></script>
+    <script type="module" src="./js/page-js/faq.js"></script>
     <script src="./js/j7zscript.js"></script>
-    <!-- <script src="./js/min/bundle.js"></script> -->
-
-
-
-    <script>
-
-      document.addEventListener("DOMContentLoaded", () => {
-
-        const tabs = [...document.querySelectorAll(".sticky-tabs a")];
-        const sections = [...document.querySelectorAll(".faq-group")];
-
-        if (!tabs.length || !sections.length) return;
-
-        const getOffset = () => window.innerWidth >= 992 ? 200 : 90;
-
-        function setActive(id) {
-
-          tabs.forEach(tab => {
-
-            const active = tab.hash === "#" + id;
-
-            tab.classList.toggle("active", active);
-
-            if (active && window.innerWidth < 992) {
-              tab.scrollIntoView({
-                behavior: "smooth",
-                inline: "center",
-                block: "nearest"
-              });
-            }
-          });
-
-        }
-
-        tabs.forEach(tab => {
-
-          tab.addEventListener("click", e => {
-
-            e.preventDefault();
-
-            const target = document.querySelector(tab.hash);
-
-            if (!target) return;
-
-            window.scrollTo({
-              top: target.offsetTop - getOffset(),
-              behavior: "smooth"
-            });
-
-            history.replaceState(null, "", tab.hash);
-
-            setActive(target.id);
-
-          });
-
-        });
-
-        let ticking = false;
-
-        function onScroll() {
-
-          if (ticking) return;
-
-          requestAnimationFrame(() => {
-
-            const scroll = window.scrollY + getOffset() + 30;
-
-            let current = sections[0];
-
-            sections.forEach(section => {
-              if (scroll >= section.offsetTop) {
-                current = section;
-              }
-            });
-
-            setActive(current.id);
-
-            ticking = false;
-
-          });
-
-          ticking = true;
-
-        }
-
-        window.addEventListener("scroll", onScroll, {
-          passive: true
-        });
-
-        onScroll();
-
-      });
-    </script>
 
   </body>
 

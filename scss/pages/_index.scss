@@ -28,6 +28,9 @@
    margin: 0 auto;
    text-align: center;
    margin-bottom: 0;
+   text-align: center;
+   // margin-bottom: 90px;
+   perspective: 900px;
 
    .title {
      color: $txt-black;
@@ -42,7 +45,7 @@
 
    .desc {
      line-height: 1.6;
-     color: #000;
+     color: $txt-black;
      margin: 0 0 36px;
      //max-width: 650px;
      margin: 0 auto;
@@ -72,20 +75,114 @@
    }
  }
 
-
-
- //Screens
- .screens {
-   margin: 0 auto;
-   margin-top: -2.5rem;
-   text-align: center;
-
-   &-item {
-     margin: 0 auto;
-     text-align: center;
-   }
+ .letter {
+   display: inline-block;
+   will-change: transform, filter, opacity;
  }
 
+
+ .canvas {
+   position: relative;
+   width: 100%;
+   aspect-ratio: 1780 / 700;
+   /* locks every panel's relative position */
+   max-width: 1780px;
+   margin: 0 auto;
+
+   .panel {
+     position: absolute;
+     will-change: transform, filter, opacity;
+   }
+
+   .panel img {
+     display: block;
+     width: 100%;
+     height: 100%;
+     object-fit: contain;
+   }
+
+   /* Placeholder chrome so the layout is visible before real PNGs are dropped in.
+     Delete the "ph-*" rules once ./images/*.png are in place — the .panel
+     positioning rules above are the ones that matter and can stay as-is. */
+   .panel.ph {
+     border-radius: 14px;
+     background: #f4f4f6;
+     border: 1px solid var(--line);
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     font-size: 12px;
+     letter-spacing: .04em;
+     color: rgba(11, 11, 15, .4);
+   }
+
+   .url-bar {
+     left: 2.98%;
+     top: 7.43%;
+     width: 15.73%;
+     height: 5.86%;
+     z-index: 4;
+   }
+
+   .browser {
+     left: 21.63%;
+     top: 14.04%;
+     width: 57.02%;
+     height: 85.24%;
+     z-index: 1;
+   }
+
+   .toolbar {
+     left: 19.6%;
+     top: 37.68%;
+     width: 4.21%;
+     height: 48.28%;
+     z-index: 3;
+   }
+
+   .font-panel {
+     left: 0.5%;
+     top: 35.14%;
+     width: 12.75%;
+     height: 35.14%;
+     z-index: 2;
+   }
+
+   .color-panel {
+     left: 86.24%;
+     top: 0%;
+     width: 12.64%;
+     height: 37.28%;
+     z-index: 2;
+   }
+
+   .template-panel {
+     left: 73.43%;
+     top: 57%;
+     width: 22.02%;
+     height: 25.07%;
+     z-index: 2;
+   }
+
+   .url-bar.ph {
+     border-radius: 100px;
+   }
+
+   .font-panel.ph {
+     background: var(--lime);
+     border: none;
+   }
+
+   @media (max-width:900px) {
+     & {
+       aspect-ratio: 1780/900;
+     }
+
+     .toolbar {
+       transform-origin: left center;
+     }
+   }
+ }
 
  //Bussinesses
  .bussinesses {
@@ -718,7 +815,7 @@
  }
 
 
- //
+ //Why Us
  .why-us {
    display: flex;
    flex-flow: row wrap;
@@ -803,12 +900,12 @@
  //FAQs
  .bg-faqs {
    background-color: #fff;
-
    border-bottom-left-radius: 66px;
    border-bottom-right-radius: 66px;
    position: relative;
    z-index: 2;
    bottom: -66px;
+   margin-top: -66px;
  }
 
  .faq-list {
@@ -1015,125 +1112,8 @@
  }
 
 
- /* ---------- Headline ---------- */
- .headline-wrap {
-   text-align: center;
-   // margin-bottom: 90px;
-   perspective: 900px;
- }
 
 
-
- .letter {
-   display: inline-block;
-   will-change: transform, filter, opacity;
- }
-
-
- /* ---------- Canvas: exact-position panel group ---------- */
- .canvas {
-   position: relative;
-   width: 100%;
-   aspect-ratio: 1780 / 700;
-   /* locks every panel's relative position */
-   max-width: 1780px;
-   margin: 0 auto;
- }
-
- .panel {
-   position: absolute;
-   will-change: transform, filter, opacity;
- }
-
- .panel img {
-   display: block;
-   width: 100%;
-   height: 100%;
-   object-fit: contain;
- }
-
- /* Placeholder chrome so the layout is visible before real PNGs are dropped in.
-     Delete the "ph-*" rules once ./images/*.png are in place — the .panel
-     positioning rules above are the ones that matter and can stay as-is. */
- .panel.ph {
-   border-radius: 14px;
-   background: #f4f4f6;
-   border: 1px solid var(--line);
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   font-size: 12px;
-   letter-spacing: .04em;
-   color: rgba(11, 11, 15, .4);
- }
-
- /* Exact coordinates lifted from the reference screenshot (1780×700 canvas) */
- .url-bar {
-   left: 2.98%;
-   top: 7.43%;
-   width: 15.73%;
-   height: 5.86%;
-   z-index: 4;
- }
-
- .browser {
-   left: 21.63%;
-   top: 14.04%;
-   width: 57.02%;
-   height: 85.24%;
-   z-index: 1;
- }
-
- .toolbar {
-   left: 19.6%;
-   top: 37.68%;
-   width: 4.21%;
-   height: 48.28%;
-   z-index: 3;
- }
-
- .font-panel {
-   left: 0.5%;
-   top: 35.14%;
-   width: 12.75%;
-   height: 35.14%;
-   z-index: 2;
- }
-
- .color-panel {
-   left: 86.24%;
-   top: 0%;
-   width: 12.64%;
-   height: 37.28%;
-   z-index: 2;
- }
-
- .template-panel {
-   left: 73.43%;
-   top: 57%;
-   width: 22.02%;
-   height: 25.07%;
-   z-index: 2;
- }
-
- .url-bar.ph {
-   border-radius: 100px;
- }
-
- .font-panel.ph {
-   background: var(--lime);
-   border: none;
- }
-
- @media (max-width:900px) {
-   .canvas {
-     aspect-ratio: 1780/900;
-   }
-
-   .toolbar {
-     transform-origin: left center;
-   }
- }
 
  //CTA
  .cta-gradient {
@@ -1173,7 +1153,8 @@
      margin: 0 2rem;
      text-transform: uppercase;
      font-size: clamp(36px, 14vw, 15rem);
-     font-weight: 800;
+     color: $txt-black;
+     font-weight: 700;
      position: relative;
 
      &::after {
@@ -1182,6 +1163,40 @@
        line-height: 1;
        font-size: clamp(36px, 16vw, 15rem);
      }
+   }
+
+   &-contact {
+     .marquee-item {
+       font-weight: 500;
+       font-size: clamp(36px, 14vw, 11rem);
+
+       &::after {
+         content: normal;
+       }
+     }
+   }
+
+   &-glyph {
+     display: inline-flex;
+     align-items: center;
+     line-height: 1;
+
+     svg {
+       font-size: 0.7em;
+       display: inline-flex;
+       transform-origin: center;
+       animation: rotate360 3s linear infinite;
+     }
+   }
+ }
+
+ @keyframes rotate360 {
+   from {
+     transform: rotate(0deg);
+   }
+
+   to {
+     transform: rotate(360deg);
    }
  }
 

@@ -1,98 +1,275 @@
-.faq-list-page {
-  .faq-list-link {
-    //font-size: 1.5rem;
-    font-size: clamp(1rem, 1vw, 2.5rem);
-    font-weight: 500;
+/* ---------- HERO — heading + floating product images ---------- */
+.faq-hero {
+  padding-bottom: clamp(40px, 6vw, 90px);
+
+  &-inner {
+    position: relative;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: clamp(24px, 4vw, 48px) 20px 0;
+
+    @include media-breakpoint-up(md) {
+      aspect-ratio: 2000 / 820;
+    }
   }
 
-  .faq-list-item p {
-    font-size: 1rem;
+  &-content {
+    position: relative;
+    z-index: 2;
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: center;
+
+    @include media-breakpoint-up(md) {
+      position: absolute;
+      top: 18%;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .title {
+      color: $txt-black;
+      font-size: clamp(32px, 4.5vw, 64px);
+      font-weight: 700;
+      line-height: 1.1;
+      margin: 0 0 16px;
+    }
+
+    .desc {
+      font-size: clamp(15px, 1.2vw, 1.15rem);
+      color: $txt-body;
+      margin: 0;
+    }
   }
+
+  &-float {
+    display: none;
+
+    @include media-breakpoint-up(md) {
+      display: block;
+      position: absolute;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px -16px rgba(0, 0, 0, .25);
+      will-change: transform;
+
+      img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        will-change: clip-path, transform;
+      }
+    }
+
+    &.float-1 {
+      left: 8%;
+      top: 20%;
+      width: 12%;
+      aspect-ratio: 1/1;
+    }
+
+    &.float-2 {
+      left: 57%;
+      top: 10%;
+      width: 6.5%;
+      aspect-ratio: 1/1;
+    }
+
+    &.float-3 {
+      right: 8%;
+      top: 34%;
+      width: 17%;
+      aspect-ratio: 340/210;
+    }
+
+    &.float-4 {
+      left: 16%;
+      bottom: 6%;
+      width: 12%;
+      aspect-ratio: 230/190;
+    }
+
+    &.float-5 {
+      left: 41%;
+      bottom: 2%;
+      width: 11%;
+      aspect-ratio: 220/240;
+    }
+  }
+}
+
+
+/* ---------- CURVED MARQUEE ---------- */
+.curved-marquee-strip {
+  overflow: hidden;
+  padding: 0;
+  margin-top: clamp(-40px, -4vw, -10px);
+}
+
+.curved-marquee {
+  display: block;
+  width: 100%;
+  height: clamp(140px, 20vw, 320px);
+  overflow: visible;
+}
+
+.curved-marquee-text {
+  font-size: clamp(28px, 5.4vw, 96px);
+  font-weight: 700;
+  fill: $txt-black;
+  text-transform: capitalize;
+}
+
+
+/* ---------- FAQ SECTION ---------- */
+.faq-section {
+  padding-top: clamp(24px, 4vw, 56px);
 }
 
 .faq-wrapper {
-  display: flex;
-  justify-content: space-between;
-  gap: 2rem;
-  margin-top: 2rem;
-  flex-direction: column;
-
-  @include media-breakpoint-up(lg) {
-    flex-direction: row;
-  }
-
-  .faq-contents {
-    @include media-breakpoint-up(lg) {
-      max-width: 70%;
-      flex: 0 0 70%;
-    }
-
-    .faq-group+.faq-group {
-      margin-top: 2rem;
-    }
-  }
+  margin-top: 1.5rem;
 }
 
 .faq-tabs {
-  position: sticky;
-  top: 70px;
-  z-index: 1;
-  @include bg-white;
-  padding: 1.8rem 0;
+  margin-bottom: 2rem;
 
-  @include media-breakpoint-up(lg) {
-    border-radius: 12px;
-    padding: 1.5rem;
-    @include bg-brand-light;
-    top: 200px;
-    align-self: flex-start;
-  }
-
-  ul {
-    overflow-x: auto;
+  .pill-tabs {
     display: flex;
-    gap: 0.5rem;
-    scroll-behavior: smooth;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 0.4rem;
     scrollbar-width: none;
     -ms-overflow-style: none;
-    scroll-snap-type: x proximity;
 
     &::-webkit-scrollbar {
       display: none;
     }
 
-    @include media-breakpoint-up(lg) {
-      flex-direction: column;
-      overflow: visible;
-
-    }
-
     li {
       flex: 0 0 auto;
+    }
 
-      a {
-        scroll-snap-align: center;
-        color: $txt-gray;
-        padding: .5rem 1.2rem;
-        display: block;
-        border-radius: 50px;
-        font-size: calc(clamp(1rem, .25vw + .95rem, 1rem));
-        font-weight: 600;
-        white-space: nowrap;
+    button {
+      border: none;
+      background: transparent;
+      color: $txt-gray-light;
+      font-size: 0.85rem;
+      font-weight: 600;
+      white-space: nowrap;
+      padding: 0.6rem 1.1rem;
+      border-radius: 100px;
+      cursor: pointer;
+      transition: background-color .2s ease, color .2s ease;
 
-        @include media-breakpoint-down(md) {
-          @include bg-gray;
-        }
+      &:hover {
+        color: $txt-body;
+      }
 
-        &:hover {
-          color: $brand-color;
-        }
+      &.active {
+        background: $bg-gray;
+        color: $txt-black;
+      }
 
-        &.active {
-          @include bg-brand;
-
-        }
+      &:focus-visible {
+        outline: 2px solid $brand-color;
+        outline-offset: 2px;
       }
     }
+  }
+}
+
+.faq-contents {
+  .faq-group {
+    display: none;
+
+    &.active {
+      display: block;
+    }
+  }
+}
+
+.faq-list-numbered {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  .faq-list-item {
+    border-top: 1px solid rgba(0, 0, 0, .12);
+
+    &:last-child {
+      border-bottom: 1px solid rgba(0, 0, 0, .12);
+    }
+  }
+
+  .faq-list-link {
+    width: 100%;
+    background: transparent;
+    border: none;
+    display: flex;
+    align-items: baseline;
+    gap: clamp(0.75rem, 2vw, 2rem);
+    padding: 1.4rem 0;
+    text-align: #{$start-direction};
+    cursor: pointer;
+
+    &:focus-visible {
+      outline: 2px solid $brand-color;
+      outline-offset: 4px;
+    }
+  }
+
+  .faq-num {
+    flex-shrink: 0;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: $txt-gray-lighest;
+    min-width: 40px;
+  }
+
+  .faq-question {
+    flex: 1;
+    font-size: clamp(1rem, 1.2vw, 1.25rem);
+    font-weight: 500;
+    color: $txt-black;
+  }
+
+  // Plus / close icon — same rotate trick as the shared .faq-list component.
+  .faq-list-link {
+    position: relative;
+    padding-#{$end-direction}: 2rem;
+
+    &:after,
+    &:before {
+      content: "";
+      background-color: $txt-black;
+      height: 2px;
+      width: 12px;
+      position: absolute;
+      #{$end-direction}: 0;
+      top: 1.85rem;
+    }
+
+    &:before {
+      transform: rotate(90deg);
+      transition: transform .2s ease-in-out;
+    }
+
+    &[aria-expanded="true"]:before {
+      transform: rotate(0deg);
+    }
+  }
+
+  .collapse {
+    padding-#{$start-direction}: calc(40px + clamp(0.75rem, 2vw, 2rem));
+  }
+
+  .faq_data {
+    color: $txt-gray;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    padding-bottom: 1.4rem;
+    padding-#{$end-direction}: 2rem;
+    margin: 0;
   }
 }

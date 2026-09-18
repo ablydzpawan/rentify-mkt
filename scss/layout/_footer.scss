@@ -3,6 +3,20 @@ $section-padding: clamp(2rem, 5vw, 10rem);
 .footer {
   &-top {
     padding-bottom: 2rem;
+
+    // Columns are `.col-auto` (content-width, no built-in responsive
+    // stacking), which lets them overflow the viewport on narrow phones
+    // once combined with the newsletter form's own min-width below.
+    // Stack them full-width until there's room for them side by side.
+    .row {
+      @include media-breakpoint-down(md) {
+        >.col-auto {
+          flex: 0 0 100%;
+          max-width: 100%;
+          width: 100%;
+        }
+      }
+    }
   }
 
   &-bottom {
@@ -145,6 +159,11 @@ $section-padding: clamp(2rem, 5vw, 10rem);
 .form-newsletter {
   position: relative;
   min-width: 320px;
+
+  @include media-breakpoint-down(sm) {
+    min-width: 0;
+    width: 100%;
+  }
 
   &-input {
     background-color: transparent;

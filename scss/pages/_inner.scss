@@ -5,142 +5,105 @@
 .first-fold {
   max-width: 1780px;
   margin: 0 auto;
-  padding: 0;
+
+
+  &-content {
+    position: relative;
+    z-index: 2;
+    margin: 0 auto;
+    text-align: center;
+    margin-bottom: 0;
+    text-align: center;
+    perspective: 900px;
+  }
+
+  .title {
+    color: $txt-black;
+    // max-width: 760px;
+    margin: 18px auto 13px;
+    font-size: clamp(36px, 4.5vw, 88px);
+    font-weight: 700;
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    margin: 0 0 24px;
+  }
 
   .desc {
-    font-size: clamp(15px, 1.4vw, 19px);
     line-height: 1.6;
-    color: rgba(11, 11, 15, .62);
+    color: $txt-black;
     margin: 0 0 36px;
-  }
-}
-
-
-
-
-
-
-
-
-
-
-/* ---------- Canvas: exact-position panel group ---------- */
-.canvas {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 1780 / 700;
-  /* locks every panel's relative position */
-  max-width: 1780px;
-  margin: 0 auto;
-}
-
-.panel {
-  position: absolute;
-  will-change: transform, filter, opacity;
-}
-
-.panel img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-/* Placeholder chrome so the layout is visible before real PNGs are dropped in.
-     Delete the "ph-*" rules once ./images/*.png are in place — the .panel
-     positioning rules above are the ones that matter and can stay as-is. */
-.panel.ph {
-  border-radius: 14px;
-  background: #f4f4f6;
-  border: 1px solid var(--line);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 12px;
-  letter-spacing: .04em;
-  color: rgba(11, 11, 15, .4);
-}
-
-/* Exact coordinates lifted from the reference screenshot (1780×700 canvas) */
-.url-bar {
-  left: 2.98%;
-  top: 7.43%;
-  width: 15.73%;
-  height: 5.86%;
-  z-index: 4;
-}
-
-.browser {
-  left: 21.63%;
-  top: 14.04%;
-  width: 57.02%;
-  height: 85.24%;
-  z-index: 1;
-}
-
-.toolbar {
-  left: 19.6%;
-  top: 37.68%;
-  width: 4.21%;
-  height: 48.28%;
-  z-index: 3;
-}
-
-.font-panel {
-  left: 0.5%;
-  top: 35.14%;
-  width: 12.75%;
-  height: 35.14%;
-  z-index: 2;
-}
-
-.color-panel {
-  left: 86.24%;
-  top: 0%;
-  width: 12.64%;
-  height: 37.28%;
-  z-index: 2;
-}
-
-.template-panel {
-  left: 73.43%;
-  top: 57%;
-  width: 22.02%;
-  height: 25.07%;
-  z-index: 2;
-}
-
-.url-bar.ph {
-  border-radius: 100px;
-}
-
-.font-panel.ph {
-  background: var(--lime);
-  border: none;
-}
-
-@media (max-width:900px) {
-  .canvas {
-    aspect-ratio: 1780/900;
+    //max-width: 650px;
+    margin: 0 auto;
+    font-weight: 500;
+    font-size: clamp(15px, 1.7vw, 1.5rem);
+    margin-bottom: 1.5rem;
   }
 
-  .toolbar {
-    transform-origin: left center;
-  }
-}
+  /* ---------- Canvas: exact-position panel group ---------- */
+  .first-fold-canvas {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1799 / 602;
+    /* locks every panel's relative position */
+    max-width: 1780px;
+    margin: 0 auto;
 
+    .panel {
+      position: absolute;
+      will-change: transform, filter, opacity;
+    }
 
+    .panel img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
 
-////////
-.content-wrap {
-  counter-reset: section;
+    /* main artboard — theme editor preview, centered */
+    #browser {
+      left: 23%;
+      top: 0;
+      width: 55%;
+      height: 100%;
+      z-index: 2;
+      overflow: hidden;
+    }
 
-  &-nocounter {
-    .content-block::before {
-      content: normal !important;
+    /* satellites — positioned to match the design's floating card group */
+    #sales-panel {
+      left: 0;
+      top: 0;
+      width: 20%;
+      height: 25%;
+    }
+
+    #product-panel {
+      left: 0;
+      bottom: 0;
+      width: 20%;
+      height: 67%;
+    }
+
+    #social-panel {
+      right: 0;
+      top: 0;
+      width: 20%;
+      height: 73%;
+    }
+
+    #url-bar {
+      right: 0;
+      bottom: 0;
+      width: 20%;
+      height: 19%;
     }
   }
 
+}
+
+////////
+.content-wrap {
   .content-block {
     counter-increment: section;
     position: relative;
@@ -151,29 +114,7 @@
     flex-flow: row wrap;
     gap: 2rem;
 
-    @include media-breakpoint-up(xl) {
-
-      // Section Number
-      &::before {
-        content: counter(section, decimal-leading-zero);
-        position: absolute;
-        top: 0;
-        right: -10%;
-        font-size: clamp(20rem, 6vw, 5rem);
-        font-weight: 800;
-        line-height: 1;
-        color: rgba($brand-color, 0.08);
-        // Large faded number
-        pointer-events: none;
-        z-index: 0;
-      }
-
-
-      >* {
-        position: relative;
-        z-index: 1;
-      }
-    }
+    @include media-breakpoint-up(xl) {}
 
     @include media-breakpoint-up(xl) {
       //  flex-direction: row-reverse;
@@ -249,6 +190,13 @@
         font-size: 1.125rem;
       }
 
+      hr {
+        margin: 1.75rem 0;
+        border: none;
+        border-top: 1px solid rgba(0, 0, 0, 0.15);
+        opacity: 1;
+      }
+
       .step {
         color: $txt-body;
         font-size: 1rem;
@@ -303,20 +251,261 @@
         gap: 1rem;
 
         li {
-          font-size: 0.95rem;
-          font-weight: 600;
-          padding-left: 1.5rem;
+          font-size: 1rem;
+          font-weight: 500;
+          line-height: 1.5;
+          padding-left: 2rem;
           position: relative;
           background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgZmlsbD0iY3VycmVudENvbG9yIiBjbGFzcz0iYmkgYmktY2hlY2stY2lyY2xlIiB2aWV3Qm94PSIwIDAgMTYgMTYiPgogIDxwYXRoIGQ9Ik04IDE1QTcgNyAwIDEgMSA4IDFhNyA3IDAgMCAxIDAgMTRtMCAxQTggOCAwIDEgMCA4IDBhOCA4IDAgMCAwIDAgMTYiLz4KICA8cGF0aCBkPSJtMTAuOTcgNC45Ny0uMDIuMDIyLTMuNDczIDQuNDI1LTIuMDkzLTIuMDk0YS43NS43NSAwIDAgMC0xLjA2IDEuMDZMNi45NyAxMS4wM2EuNzUuNzUgMCAwIDAgMS4wNzktLjAybDMuOTkyLTQuOTlhLjc1Ljc1IDAgMCAwLTEuMDcxLTEuMDUiLz4KPC9zdmc+);
           background-repeat: no-repeat;
-          background-position: 0 3px;
+          background-position: 0 2px;
+          background-size: 20px 20px;
 
         }
       }
     }
 
+    /* Colored full-row card variant — steps 2 & 4, where the block's own
+       background spans both the text and image columns. */
+    &-panel {
+      padding: clamp(1.75rem, 3vw, 3.5rem);
+
+      &-cms p {
+        color: rgba(0, 0, 0, 0.65);
+      }
+    }
+  }
+
+  /* ---------- Step visuals: layered product/UI cards, positioned like
+     the hero canvas so each element can animate in independently. ---------- */
+  .content-block-img {
+    .reveal,
+    .image-wrap {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .image-wrap .layer {
+      position: absolute;
+      height: auto;
+      will-change: transform, filter, opacity;
+    }
+  }
+
+  // Step 1 — Choose Your Plan (PS5 console scene)
+  .content-block-step1 {
+    .content-block-img {
+      aspect-ratio: 19 / 20;
+    }
+
+    .layer-console {
+      left: 0;
+      top: 9%;
+      width: 86%;
+    }
+
+    .layer-plans {
+      left: 8%;
+      top: 38%;
+      width: 42%;
+      filter: drop-shadow(0 16px 30px rgba(0, 0, 0, 0.3));
+    }
+
+    .layer-tag {
+      right: 8%;
+      top: 8%;
+      width: 26%;
+      filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.25));
+    }
+  }
+
+  // Step 2 — Set Up Your Business (camera scene)
+  .content-block-step2 {
+    .content-block-img {
+      aspect-ratio: 865 / 925;
+    }
+
+    .layer-camera {
+      left: 0;
+      bottom: 0;
+      width: 74%;
+    }
+
+    .layer-form {
+      left: 16%;
+      top: 16%;
+      width: 38%;
+      filter: drop-shadow(0 16px 30px rgba(0, 0, 0, 0.15));
+    }
+
+    .layer-avatar {
+      right: 4%;
+      top: 27%;
+      width: 15%;
+      filter: drop-shadow(0 12px 20px rgba(0, 0, 0, 0.15));
+    }
+
+    .layer-product {
+      right: 4%;
+      top: 52%;
+      width: 23%;
+      filter: drop-shadow(0 12px 20px rgba(0, 0, 0, 0.15));
+    }
+  }
+
+  // Step 3 — Personalize Store Appearance (projector scene)
+  .content-block-step3 {
+    .content-block-img {
+      aspect-ratio: 19 / 19.7;
+    }
+
+    .layer-projector {
+      left: 8%;
+      top: 0;
+      width: 60%;
+    }
+
+    .layer-editor {
+      left: 15%;
+      top: 40%;
+      width: 70%;
+      filter: drop-shadow(0 16px 30px rgba(0, 0, 0, 0.25));
+    }
+
+    .layer-font {
+      right: 6%;
+      top: 51%;
+      width: 25%;
+      filter: drop-shadow(0 12px 20px rgba(0, 0, 0, 0.2));
+    }
+  }
+
+  // Step 4 — List Products & Go Live (calendar scene)
+  .content-block-step4 {
+    .content-block-img {
+      aspect-ratio: 920 / 895;
+    }
+
+    .layer-calendar {
+      left: 12%;
+      top: 21%;
+      width: 76%;
+    }
+
+    .layer-console-card {
+      left: 23%;
+      top: 2%;
+      width: 29%;
+      filter: drop-shadow(0 12px 20px rgba(0, 0, 0, 0.2));
+    }
+
+    .layer-palette {
+      right: 4%;
+      top: 8%;
+      width: 24%;
+      filter: drop-shadow(0 12px 20px rgba(0, 0, 0, 0.15));
+    }
+
+    .layer-speaker {
+      right: 4%;
+      top: 44%;
+      width: 25%;
+      filter: drop-shadow(0 12px 20px rgba(0, 0, 0, 0.2));
+    }
+
+    .layer-logo {
+      left: 33%;
+      top: 66%;
+      width: 16%;
+      filter: drop-shadow(0 12px 20px rgba(0, 0, 0, 0.15));
+    }
   }
 }
+
+//Page: Pricing
+.bg-blue {
+  background-color: #CDE2FB;
+
+  .first-fold {
+    background-color: transparent;
+  }
+}
+
+.bg-pricing-page {
+  background-color: #fff;
+  border-radius: 100px 100px 0px 0px;
+}
+
+.section-num {
+  flex-flow: row;
+  flex: none;
+  place-content: center;
+  align-items: center;
+  gap: 0;
+  width: min-content;
+  height: min-content;
+  padding: 24px 0 0;
+  margin: 0 auto;
+  display: flex;
+  position: relative;
+  overflow: visible;
+
+  .num {
+    transform: translate(-50%, -50%) rotate(-7deg);
+    background-color: #efefef;
+    z-index: 1;
+    border-radius: 8px;
+    flex-flow: row;
+    flex: none;
+    place-content: center;
+    align-items: center;
+    gap: 16px;
+    width: min-content;
+    height: 24px;
+    padding: 0.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    display: flex;
+    position: absolute;
+    top: 25%;
+    left: 60%;
+    overflow: visible;
+
+    span {
+      transform: none;
+    }
+  }
+
+  .caption {
+    transform: rotate(15deg);
+    background-color: #525252;
+    color: #fff;
+    z-index: 1;
+    border-radius: 20px;
+    flex-flow: row;
+    flex: none;
+    place-content: center;
+    align-items: center;
+    gap: 16px;
+    width: max-content;
+    white-space: nowrap;
+    height: 24px;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 2px 1rem;
+    display: flex;
+    position: relative;
+    overflow: visible;
+
+    span {
+      text-transform: uppercase;
+      white-space: nowrap;
+      transform: none;
+    }
+  }
+}
+
 
 .cta-page {
   background-color: #000E20;
