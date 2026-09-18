@@ -1135,9 +1135,9 @@
 
  //marquee
  .marquee {
+   white-space: nowrap;
    width: 100%;
    overflow: hidden;
-   white-space: nowrap;
 
    &-track {
      display: flex;
