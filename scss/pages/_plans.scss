@@ -56,7 +56,7 @@
 }
 
 //Page: Pricing
-.bg-blue {
+.page-pricing {
   background-color: #CDE2FB;
 
   .first-fold {
@@ -162,7 +162,8 @@
     border: none;
     background: linear-gradient(180deg, #EEF4FE 0%, #E7EEFC 100%);
     position: relative;
-    padding: 32px 28px 36px;
+    padding: 3rem 3rem;
+    padding-right: 6rem;
     display: flex;
     flex-direction: column;
     gap: 14px;
@@ -331,10 +332,12 @@
 .compare {
   padding: clamp(28px, 4vw, 56px) 0 clamp(28px, 5vw, 90px);
   background: #0A0A0A;
+  padding: 4rem;
   border-radius: clamp(24px, 4vw, 64px);
 
   .compareTable {
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 2rem;
     width: 100%;
     min-width: 760px;
     color: #fff;
@@ -362,16 +365,19 @@
 
       .tier-name {
         color: $txt-black;
-        font-size: 1.1rem;
+        font-size: 2rem;
         font-weight: 600;
       }
 
       .price {
+        font-size: 3.5rem;
+        font-weight: 600;
         color: $txt-black;
       }
 
       .price-per {
-        color: $txt-gray;
+        font-size: 1.4rem;
+        color: $txt-gray-light;
       }
     }
 
@@ -383,19 +389,20 @@
       justify-content: center;
       font-size: 0.85rem;
       font-weight: 400;
-      margin-top: 6px;
+
     }
 
     tbody .cat-row td {
       background: #1A1A1A;
-      font-size: 1rem;
+      font-size: 2rem;
       color: #fff;
       font-weight: 600;
       padding: 1rem 1.25rem;
       border-radius: 14px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
+      text-align: start;
+      // display: flex;
+      // align-items: center;
+      // gap: 14px;
     }
 
     tbody .cat-row {
@@ -422,9 +429,8 @@
 
     tbody td {
       padding: 0.9rem 1rem;
-      font-size: 0.9rem;
+      font-size: 1.5rem;
       color: rgba(255, 255, 255, .85);
-      border-bottom: 1px solid rgba(255, 255, 255, .08);
       text-align: center;
     }
 
@@ -443,7 +449,7 @@
     }
 
     td.tier-col.win {
-      background: rgba(183, 195, 255, .08);
+      // background: rgba(183, 195, 255, .08);
     }
 
     // Rendered as CSS icons (not the literal ✓ / ✕ glyphs) since the

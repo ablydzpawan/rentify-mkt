@@ -45,7 +45,7 @@
   position: relative;
   width: 100%;
   aspect-ratio: 1600 / 827;
-  max-width: 1780px;
+  max-width: 1600px;
   margin: 0 auto;
   border-radius: 50px;
   background-color: #116dff33;
@@ -175,7 +175,7 @@
 
   &-media {
     flex: 1 1 100%;
-    max-width: 620px;
+    max-width: 550px;
     aspect-ratio: 16/10;
     border-radius: 20px;
     overflow: hidden;
@@ -223,10 +223,11 @@
   &-visual {
     position: relative;
     flex: 1 1 100%;
-    aspect-ratio: 1 / 0.92;
-    border-radius: 24px;
+    aspect-ratio: 798 / 760;
+
     overflow: hidden;
-    background: linear-gradient(160deg, #eef3ff 0%, #dfe8ff 100%);
+    background: transparent linear-gradient(133deg, #A9A9FE 0%, #93CAFB 44%, #F0F6B6 100%);
+    border-radius: 30px;
 
     @include media-breakpoint-up(lg) {
       flex: 0 1 48%;
@@ -259,87 +260,119 @@
   }
 }
 
+// Chevron variant of .faq-list-numbered (Order Management accordion) —
+// drop the "/ 01" index number and swap the plus/minus bars for a
+// rotating chevron. Scoped to this modifier class only so the real
+// FAQ page's numbered list is untouched.
+.faq-list-chevron {
+  .faq-list-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+
+    &:before,
+    &:after {
+      content: none;
+    }
+  }
+
+  .chevron {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    color: $txt-black;
+    transition: transform 0.25s ease;
+  }
+
+  .faq-list-link[aria-expanded="true"] .chevron {
+    transform: rotate(180deg);
+  }
+}
+
 // per-state layer coordinates — left/top/right only (no width/height:
 // every layer renders at its native size, see .image-wrap .layer above).
+// Measured directly off the reference screenshot's five accordion-state
+// panels (each ~798×760px at native scale, matching these PNGs 1:1).
 // Order Management states
 .state-order-calendar .layer-main {
-  left: 6%;
-  top: 0;
+  left: 42%;
+  top: 8%;
 }
 
 .state-order-calendar .layer-sat-1 {
-  right: 6%;
-  top: 36%;
+  left: 8%;
+  top: 8%;
 }
 
 .state-order-calendar .layer-sat-2 {
-  right: 8%;
-  top: 2%;
-}
-
-.state-order-tracking .layer-main {
-  left: 2%;
-  top: 22%;
-}
-
-.state-order-tracking .layer-sat-1 {
-  left: 4%;
-  top: 64%;
-}
-
-.state-order-tracking .layer-sat-2 {
-  right: 4%;
-  top: 4%;
-}
-
-.state-order-confirmation .layer-main {
-  left: 38%;
-  top: 6%;
-}
-
-.state-order-confirmation .layer-sat-1 {
-  left: 2%;
-  top: 2%;
-}
-
-.state-order-confirmation .layer-sat-2 {
-  left: 0;
+  left: 8%;
   top: 66%;
 }
 
+.state-order-tracking .layer-main {
+  left: 8%;
+  top: 8%;
+}
+
+.state-order-tracking .layer-sat-1 {
+  left: 8%;
+  top: 66%;
+}
+
+.state-order-tracking .layer-sat-2 {
+  left: 48%;
+  top: 66%;
+}
+
+.state-order-confirmation .layer-main {
+  left: 47%;
+  top: 8%;
+}
+
+.state-order-confirmation .layer-sat-1 {
+  left: 8%;
+  top: 8%;
+}
+
+.state-order-confirmation .layer-sat-2 {
+  left: 8%;
+  top: 68%;
+}
+
 .state-order-buffer .layer-main {
-  left: 0;
-  top: 2%;
+  left: 9%;
+  top: 9%;
 }
 
 .state-order-buffer .layer-sat-1 {
-  left: 8%;
-  top: 40%;
+  left: 14%;
+  top: 52%;
 }
 
 .state-order-buffer .layer-sat-2 {
-  right: 4%;
-  top: 74%;
+  right: 10%;
+  top: 70%;
 }
 
 .state-order-return .layer-main {
-  left: 10%;
+  left: 27%;
   top: 8%;
 }
 
 .state-order-return .layer-sat-1 {
-  left: 2%;
-  top: 2%;
+  left: 9%;
+  top: 22%;
 }
 
 .state-order-return .layer-sat-2 {
-  right: 2%;
-  top: 4%;
+  left: 9%;
+  top: 45%;
 }
 
 .state-order-return .layer-sat-3 {
-  right: 2%;
-  top: 70%;
+  left: 59%;
+  top: 78%;
 }
 
 // SEO states
@@ -519,13 +552,17 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
-  @include media-breakpoint-up(xl) {
-    grid-template-columns: repeat(4, 1fr);
+  @include media-breakpoint-up(lg) {
+    grid-template-columns: repeat(3, 1fr);
   }
 
   &-item {
+    // grid items default to min-width: auto, which lets a large image's
+    // intrinsic size force the track wider than the grid container —
+    // this lets the item actually shrink to fit its column.
+    min-width: 0;
     border-radius: 20px;
-    padding: 1.5rem;
+    padding: 3.5rem;
     display: flex;
     flex-direction: column;
   }
@@ -538,8 +575,7 @@
     margin-bottom: 1.25rem;
 
     img {
-      width: 100%;
-      height: 100%;
+
       object-fit: cover;
       display: block;
     }
