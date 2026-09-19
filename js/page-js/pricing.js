@@ -142,17 +142,64 @@ if (!prefersReducedMotion) {
         });
     };
 
-    /* ---------- Section badge ("01 pricing" / "02 plan compare") ---------- */
+    /* ---------- Section badge ("01 pricing" / "02 plan compare") —
+       the two rotated tags fly in from opposite angles and settle
+       with a bouncy overshoot, instead of a flat fade. ---------- */
 
-    revealGroup(".section-body", ".section-num", { y: -14, scale: 0.85, duration: 0.6, stagger: 0 });
+    document.querySelectorAll(".section-num").forEach(function (badge) {
+        var num = badge.querySelector(".num");
+        var caption = badge.querySelector(".caption");
+        if (!num || !caption) return;
+
+        gsap.timeline({
+            scrollTrigger: { trigger: badge, start: "top 88%", toggleActions: "play none none reverse" },
+        })
+            .from(num, {
+                opacity: 0, scale: 0.4, rotate: -60,
+                duration: 0.7, ease: "back.out(1.9)",
+            }, 0)
+            .from(caption, {
+                opacity: 0, scale: 0.4, rotate: 60, x: -20,
+                duration: 0.7, ease: "back.out(1.9)",
+            }, 0.12);
+    });
 
     /* ---------- Billing toggle row ---------- */
 
     revealGroup(".bg-pricing-page .text-center", ".billing-toggle", { y: 16, duration: 0.6, stagger: 0 });
 
-    /* ---------- Pricing cards ---------- */
+    /* ---------- Pricing cards — the four cards already overlap in a
+       fanned stack (each one shifted left, rising z-index). The
+       entrance plays that up: they fly in from below at alternating
+       angles and settle into the stack. A second, continuous
+       scroll-scrubbed tween then gently fans them further apart the
+       whole time the section is in view, and pulls them back together
+       as it leaves — using `x`, so it never fights the entrance
+       tween's y/rotate/scale. ---------- */
 
-    revealGroup(".plans", ".card", { y: 50, scale: 0.96, duration: 0.7, stagger: 0.1 });
+    document.querySelectorAll(".plans").forEach(function (plans) {
+        var cards = plans.querySelectorAll(".card");
+        if (!cards.length) return;
+
+        gsap.from(cards, {
+            opacity: 0, y: 60, scale: 0.94,
+            rotate: function (i) { return i % 2 === 0 ? -6 : 6; },
+            duration: 0.8, stagger: 0.12, ease: "back.out(1.4)",
+            scrollTrigger: { trigger: plans, start: "top 85%", toggleActions: "play none none reverse" },
+        });
+
+        cards.forEach(function (card, i) {
+            // each card already sits at its own translateX(...) offset
+            // in CSS (the overlapping stack) — "+=" adds this spread
+            // relative to that base instead of replacing it, so the
+            // stack fans out further without snapping back together
+            var spread = (i - (cards.length - 1) / 2) * 26;
+            gsap.to(card, {
+                x: "+=" + spread, ease: "none",
+                scrollTrigger: { trigger: plans, start: "top bottom", end: "bottom top", scrub: 0.8 },
+            });
+        });
+    });
 
     /* ---------- Comparison table: header cards, category rows, and
        each row of the body stagger in as the table scrolls into view. ---------- */
@@ -171,6 +218,44 @@ if (!prefersReducedMotion) {
     });
 
     revealGroup(".compareTable tfoot", ".btn", { y: 16, duration: 0.6, stagger: 0.08 });
+
+    /* ---------- Featured column: one-time light sweep across the
+       "Business Pro" header as it scrolls into view. ---------- */
+
+    document.querySelectorAll(".compareTable .shine").forEach(function (shine) {
+        gsap.fromTo(shine, { xPercent: -120 }, {
+            xPercent: 120, duration: 1.1, ease: "power2.inOut",
+            scrollTrigger: { trigger: shine, start: "top 80%", toggleActions: "play none none none" },
+        });
+    });
+
+    /* ---------- Comparison table: hovering any cell highlights the
+       whole column (header, body and footer) it belongs to. ---------- */
+
+    document.querySelectorAll(".compareTable").forEach(function (table) {
+        var rows = table.querySelectorAll("tr");
+
+        rows.forEach(function (row) {
+            var cells = row.querySelectorAll(".tier-col");
+            cells.forEach(function (cell) {
+                var colIndex = Array.prototype.indexOf.call(row.children, cell);
+
+                cell.addEventListener("mouseenter", function () {
+                    rows.forEach(function (r) {
+                        var match = r.children[colIndex];
+                        if (match && match.classList.contains("tier-col")) match.classList.add("is-col-hover");
+                    });
+                });
+
+                cell.addEventListener("mouseleave", function () {
+                    rows.forEach(function (r) {
+                        var match = r.children[colIndex];
+                        if (match) match.classList.remove("is-col-hover");
+                    });
+                });
+            });
+        });
+    });
 
     /* ---------- FAQ + footer ---------- */
 

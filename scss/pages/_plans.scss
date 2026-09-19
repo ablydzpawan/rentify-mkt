@@ -103,6 +103,8 @@
     top: 25%;
     left: 60%;
     overflow: visible;
+    animation: num-drift 5s ease-in-out infinite;
+    transition: transform .35s cubic-bezier(0.34, 1.56, 0.64, 1);
 
     span {
       transform: none;
@@ -129,12 +131,40 @@
     display: flex;
     position: relative;
     overflow: visible;
+    transition: transform .35s cubic-bezier(0.34, 1.56, 0.64, 1);
 
     span {
       text-transform: uppercase;
       white-space: nowrap;
       transform: none;
     }
+  }
+
+  // playful wiggle on hover — the two rotated badges "unstick" from
+  // each other a touch, like a stamp lifting off the page.
+  &:hover {
+    .num {
+      transform: translate(-50%, -50%) rotate(-14deg) scale(1.08);
+      animation-play-state: paused;
+    }
+
+    .caption {
+      transform: rotate(20deg) scale(1.06);
+    }
+  }
+}
+
+// gentle idle sway so the badge never feels fully static, even before
+// it's scrolled into hover range
+@keyframes num-drift {
+
+  0%,
+  100% {
+    transform: translate(-50%, -50%) rotate(-7deg);
+  }
+
+  50% {
+    transform: translate(-50%, -50%) rotate(-3deg);
   }
 }
 
@@ -169,9 +199,13 @@
     gap: 14px;
     isolation: isolate;
 
+    // shifted via transform (not left) so they compose cleanly with
+    // the GSAP scroll-scrub translateX in pricing.js — left would
+    // fight transform for the same visual axis and, unlike transform,
+    // isn't GPU-accelerated, so the layered stack pans less smoothly.
     &.basic {
       z-index: 1;
-      left: 0;
+      transform: translateX(0);
       background: #166aea12;
       border-radius: 100px 0 0 100px;
 
@@ -179,14 +213,14 @@
 
     &.popular {
       z-index: 2;
-      left: -44px;
+      transform: translateX(-44px);
       background: transparent linear-gradient(152deg, #8080FE80 0%, #60B4FF80 44%, #EDFF3EB3 100%) 0% 0% no-repeat padding-box;
       border-radius: 50px 0 0 50px;
     }
 
     &.advanced {
       z-index: 3;
-      left: -88px;
+      transform: translateX(-88px);
       background: #FFFFFF;
       border: 1px solid #D8E6FC;
       border-radius: 50px 0 0 50px;
@@ -194,7 +228,7 @@
 
     &.enterprise {
       z-index: 4;
-      left: -132px;
+      transform: translateX(-132px);
       background: #166aea12;
       border-radius: 50px 100px 100px 50px;
     }
@@ -356,12 +390,22 @@
     }
 
     thead th.tier-col {
+      position: relative;
       min-width: 150px;
       background: #fff;
       border-radius: 20px;
       padding: 20px 1rem;
       transform: translateY(-46px);
       box-shadow: 0 18px 40px rgba(0, 0, 0, .35);
+      transition: transform .35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow .35s ease;
+
+      // lift the whole header card on hover, or whenever any cell in
+      // its column is hovered (see .is-col-hover, toggled by JS)
+      &:hover,
+      &.is-col-hover {
+        transform: translateY(-54px) scale(1.035);
+        box-shadow: 0 26px 52px rgba(0, 0, 0, .45);
+      }
 
       .tier-name {
         color: $txt-black;
@@ -382,7 +426,49 @@
     }
 
     thead th.tier-col.win {
-      background: linear-gradient(150deg, #B7C3FF 0%, #A7D2FD 45%, #CBE9B7 100%);
+      background: transparent linear-gradient(126deg, #A8A8FC 0%, #60B4FF 44%, #EDFF3E 100%) 0% 0% no-repeat padding-box;
+      box-shadow: 0 18px 46px rgba(96, 180, 255, .45);
+      animation: win-glow 3.2s ease-in-out infinite;
+
+      &:hover,
+      &.is-col-hover {
+        box-shadow: 0 28px 60px rgba(96, 180, 255, .6);
+      }
+    }
+
+    // "Most Popular" ribbon floating above the featured column
+    .badge-popular {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: $txt-black;
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 999px;
+      white-space: nowrap;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, .35);
+      z-index: 2;
+      animation: badge-bob 2.4s ease-in-out infinite;
+    }
+
+    // diagonal light sweep across the featured header — played once
+    // by JS (see pricing.js) as the table scrolls into view
+    .shine {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      // its own rounded clip (rather than the header's overflow:hidden)
+      // so the "Most Popular" badge above the card isn't cut off too
+      border-radius: inherit;
+      overflow: hidden;
+      background: linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, .55) 45%, transparent 70%);
+      transform: translateX(-120%);
     }
 
     .price-row {
@@ -394,11 +480,11 @@
 
     tbody .cat-row td {
       background: #1A1A1A;
-      font-size: 2rem;
+      font-size: 1.8rem;
       color: #fff;
       font-weight: 600;
       padding: 1rem 1.25rem;
-      border-radius: 14px;
+      border-radius: 30px;
       text-align: start;
       // display: flex;
       // align-items: center;
@@ -409,17 +495,24 @@
       td {
         border: none;
       }
+
+      &:hover .cat-icon {
+        transform: rotate(-12deg) scale(1.12);
+        box-shadow: 0 6px 16px rgba($brand-color, .55);
+      }
     }
 
     .cat-icon {
       width: 36px;
       height: 36px;
       border-radius: 50%;
+      margin-right: 0.8rem;
       background: $brand-color;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
+      transition: transform .3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow .3s ease;
 
       svg {
         width: 18px;
@@ -427,9 +520,32 @@
       }
     }
 
+    // every non-category row: a soft highlight + lift on hover, so
+    // scanning a plan's row across the table feels tactile
+    tbody tr:not(.cat-row) {
+      transition: background-color .25s ease;
+      border-radius: 16px;
+
+      td {
+        transition: transform .25s cubic-bezier(0.16, 1, 0.3, 1), color .25s ease;
+      }
+
+      &:hover td {
+        transform: translateY(-2px);
+      }
+
+      &:hover td.feat-name {
+        color: $brand-color;
+      }
+
+      &:hover .mark {
+        transform: scale(1.25);
+      }
+    }
+
     tbody td {
-      padding: 0.9rem 1rem;
-      font-size: 1.5rem;
+      padding: 0.1rem 1rem;
+      font-size: 1.25rem;
       color: rgba(255, 255, 255, .85);
       text-align: center;
     }
@@ -446,10 +562,22 @@
 
     td.tier-col {
       text-align: center;
+      border-radius: 12px;
+      transition: background-color .25s ease;
+    }
+
+    // column-wide highlight, toggled on every cell sharing a column
+    // index by the mouseenter/mouseleave listener in pricing.js
+    td.tier-col.is-col-hover {
+      background-color: rgba(96, 180, 255, .12);
     }
 
     td.tier-col.win {
       // background: rgba(183, 195, 255, .08);
+
+      &.is-col-hover {
+        background-color: rgba(237, 255, 62, .12);
+      }
     }
 
     // Rendered as CSS icons (not the literal ✓ / ✕ glyphs) since the
@@ -465,6 +593,7 @@
       background-repeat: no-repeat;
       background-position: center;
       background-size: contain;
+      transition: transform .25s cubic-bezier(0.34, 1.56, 0.64, 1);
 
       &.yes {
         background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffff'%3E%3Cpath d='M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z'%3E%3C/path%3E%3C/svg%3E");
@@ -488,12 +617,42 @@
       width: 100%;
       max-width: 220px;
       height: auto;
+      transition: transform .3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow .3s ease;
 
       span {
         padding: 12px 1rem;
         font-size: 0.95rem;
       }
+
+      &:hover {
+        transform: translateY(-4px) scale(1.04);
+        box-shadow: 0 16px 32px rgba(0, 0, 0, .3);
+      }
     }
+  }
+}
+
+@keyframes win-glow {
+
+  0%,
+  100% {
+    box-shadow: 0 18px 46px rgba(96, 180, 255, .45);
+  }
+
+  50% {
+    box-shadow: 0 18px 52px rgba(237, 255, 62, .4);
+  }
+}
+
+@keyframes badge-bob {
+
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  50% {
+    transform: translateX(-50%) translateY(-5px);
   }
 }
 
