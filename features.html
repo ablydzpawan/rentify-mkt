@@ -26,11 +26,12 @@
               <img src="images/logos/rentify.svg" width="100%" alt="">
             </a>
             <nav class="desktop-nav" aria-label="Primary navigation">
-              <a href="how-to-start.html">How to start</a> <a href="features.html">Features</a> <a
-                href="pricing.html">Pricing</a>
-              <a href="demo-videos.html">Watch Demo </a>
-              <a href="faq.html">FAQs</a>
-              <a href="blog/index.html" target="_blank">Blog</a>
+              <a href="how-to-start.html"><span>How to start</span></a>
+              <a href="features.html"><span>Features</span></a>
+              <a href="pricing.html"><span>Pricing</span></a>
+              <a href="demo-videos.html"><span>Watch Demo</span> </a>
+              <a href="faq.html"><span>FAQs</span></a>
+              <a href="blog/index.html" target="_blank"><span>Blog</span></a>
             </nav>
             <div class="d-flex gap-3">
               <button class="menu-button" type="button" data-fade-in="down" data-bs-toggle="offcanvas"
@@ -42,45 +43,943 @@
                     <path d="M3 4H21V6H3V4ZM3 11H15V13H3V11ZM3 18H21V20H3V18Z"></path>
                   </svg>
                 </span> <span class="button-txt">Menu</span> </button>
-              <a class="btn btn-pill btn-black cta-btn" href="contact-us.html">Contact Us</a>
+
+              <a class="btn-theme cta-btn" href="contact-us.html"> <span class="">Contact Us</span> </a>
+
             </div>
 
           </div>
         </div>
       </header>
       <main class="main" id="main">
-        <section class="section" data-section="section">
-          <div class="container">
-            <header class="section-head">
-              <div class="section-head-start">
-                <h1 class="section-text-h2">Coming Soon</h1>
+        <!-- 1. Hero -->
+        <section class="section first-fold" id="first-fold" aria-labelledby="first-fold"
+          style="background: transparent radial-gradient(closest-side at 50% 50%, #DCEBFF 0%, #FFFFFF 100%) 0% 0% no-repeat;">
+          <div class="first-fold-inner">
+            <div class="first-fold-content">
+              <h1 class="title">One Platform. Every Rental Need.</h1>
+              <p class="desc">Launch your branded rental store and manage listings, bookings, payments, and analytics
+                from one dashboard.</p>
+              <button class="animated-button btn-hero-cta">
+                <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
+                  </path>
+                </svg>
+                <span class="text">Start for Free</span>
+                <span class="circle"></span>
+                <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
+                  </path>
+                </svg>
+              </button>
+            </div>
+            <div class="features-hero-canvas">
+              <div class="panel" id="hero-phone">
+                <img src="./images/feature-hero-top-rental-items-phone.png" alt="Top rental items on a phone screen">
+              </div>
+              <div class="panel" id="hero-total-spent">
+                <img src="./images/feature-hero-total-spent-chart.png" alt="Total spent chart">
+              </div>
+              <div class="panel" id="hero-daily-traffic">
+                <img src="./images/feature-hero-daily-traffic-chart.png" alt="Daily traffic chart">
+              </div>
+              <div class="panel" id="hero-date-picker">
+                <img src="./images/feature-hero-date-picker.png" alt="Date picker widget">
+              </div>
+              <div class="panel" id="hero-pie-chart">
+                <img src="./images/feature-hero-pie-chart.png" alt="Pie chart widget">
+              </div>
+            </div>
+          </div>
+        </section>
 
+        <!-- 2. Rental Businesses Empowered by Us -->
+        <section class="section" id="brands">
+          <div class="container container-fluid">
+            <header class="section-head section-head-align-center">
+              <h3 class="h3">Rental Businesses Empowered by Us</h3>
+            </header>
+            <div class="bussinesses">
+              <div class="bussinesses-item"><img src="images/brands-1.png" alt=""></div>
+              <div class="bussinesses-item"><img src="images/brands-2.png" alt=""></div>
+              <div class="bussinesses-item"><img src="images/brands-3.png" alt=""></div>
+              <div class="bussinesses-item"><img src="images/brands-4.png" alt=""></div>
+              <div class="bussinesses-item"><img src="images/brands-6.png" alt=""></div>
+              <div class="bussinesses-item"><img src="images/brands-7.png" alt=""></div>
+              <div class="bussinesses-item"><img src="images/brands-8.png" alt=""></div>
+              <div class="bussinesses-item"><img src="images/brands-5.png" alt=""></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 3. Listing & Inventory Management -->
+        <section class="section" id="listing">
+          <div class="container">
+            <header class="section-head section-head-coloumn">
+              <div class="section-head-start">
+                <h2 class="section-text-h2 section-heading">Listing &amp; Inventory Management</h2>
+              </div>
+              <div class="section-head-end">
+                <p class="section-text-desc">Rentify makes renting out your equipment simple and hassle-free. Build
+                  your online rental store in just 5 quick steps and start accepting bookings with confidence.</p>
               </div>
             </header>
 
+            <div class="section-body">
+              <div class="listing-block" style="background-color: #1F6FFB;">
+                <div class="listing-block-content">
+                  <h3>Rental Listing</h3>
+                  <p>Businesses can flexibly list rental items on the platform. The listing includes adding
+                    descriptions, photos, videos, pricing, security deposits and other specifications of the rental
+                    items. The store admin can also add product variants and separate images by size, model, type,
+                    etc.</p>
+                </div>
+                <div class="listing-block-media reveal">
+                  <div class="image-wrap">
+                    <img class="layer" data-clip src="./images/feature-listing-rental-listing-card.png"
+                      alt="Rental listing card showing a luxury car, dress and watch">
+                  </div>
+                </div>
+              </div>
+
+              <div class="listing-block listing-block--light" style="background-color: #FCE9A6;">
+                <div class="listing-block-content">
+                  <h3>Rental Checklist</h3>
+                  <p>This feature enables the store admin to create a checklist of their rental items. They can
+                    inspect rental items before renting and cross-check them upon return to verify damages and
+                    missing accessories. It protects product owners and renters from disputes.</p>
+                </div>
+                <div class="listing-block-media reveal">
+                  <div class="image-wrap">
+                    <img class="layer" data-clip src="./images/feature-listing-rental-checklist-photo.png"
+                      alt="Store owner reviewing a rental checklist">
+                  </div>
+                </div>
+              </div>
+
+              <div class="listing-block" style="background-color: #232B3D;">
+                <div class="listing-block-content">
+                  <h3>Tiered Pricing</h3>
+                  <p>The tiered pricing feature allows businesses to define a varied pricing structure and offer
+                    options on an hourly, daily, weekly and monthly basis. It enables rental businesses to maximize
+                    revenue by providing more value to customers through increased rental duration.</p>
+                </div>
+                <div class="listing-block-media reveal">
+                  <div class="image-wrap">
+                    <img class="layer" data-clip src="./images/feature-listing-tiered-pricing-card.png"
+                      alt="Tiered pricing card for a cushion sofa">
+                  </div>
+                </div>
+              </div>
+
+              <div class="listing-block listing-block--light" style="background-color: #AFC8FF;">
+                <div class="listing-block-content">
+                  <h3>Custom Pricing</h3>
+                  <p>Custom pricing features provide flexibility to define pricing by rental items and different
+                    versions (variants) of the same product. Instead of a flat rate, they can define pricing by size,
+                    model, type, and more under a single product listing.</p>
+                </div>
+                <div class="listing-block-media reveal">
+                  <div class="image-wrap">
+                    <img class="layer" data-clip src="./images/feature-listing-custom-pricing-camera-card.png"
+                      alt="Custom pricing card for a camera">
+                  </div>
+                </div>
+              </div>
+
+              <div class="listing-block" style="background-color: #FB9561;">
+                <div class="listing-block-content">
+                  <h3>Interactive Calendar View</h3>
+                  <p>The interactive calendar view provides a centralized visual dashboard. The store admin can view
+                    the last 90 days' rental booking history, current booking status, slot availability, overdue
+                    returns, buffer periods, and more, enabling them to avoid double booking and manage inventory
+                    accordingly.</p>
+                </div>
+                <div class="listing-block-media reveal">
+                  <div class="image-wrap">
+                    <img class="layer" data-clip src="./images/feature-listing-interactive-calendar-card.png"
+                      alt="Interactive calendar card">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 4. Simplify Your Order Management -->
+        <section class="section" id="order-management">
+          <div class="container">
+            <header class="section-head section-head-coloumn">
+              <div class="section-head-start">
+                <h2 class="section-text-h2 section-heading">Simplify Your <br> Order Management</h2>
+              </div>
+              <div class="section-head-end">
+                <p class="section-text-desc">Manage bookings, track order status, handle returns, process
+                  cancellations, and keep every rental organized from a single, easy-to-use dashboard.</p>
+              </div>
+            </header>
+
+            <div class="section-body">
+              <div class="sync-accordion" id="order-mgmt-accordion">
+                <div class="sync-accordion-visual">
+                  <div class="state state-order-calendar is-active" data-state="order-calendar">
+                    <div class="reveal">
+                      <div class="image-wrap">
+                        <img class="layer layer-main" src="./images/feature-order-calendar-adventure-gear-mockup.png"
+                          alt="Storefront preview showing adventure gear">
+                        <img class="layer layer-sat-1" src="./images/feature-order-calendar-excavator-photo.png"
+                          alt="Heavy equipment photo">
+                        <img class="layer layer-sat-2" src="./images/feature-order-calendar-tent-photo.png"
+                          alt="Camping tent photo">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="state state-order-tracking" data-state="order-tracking">
+                    <div class="reveal">
+                      <div class="image-wrap">
+                        <img class="layer layer-main" src="./images/feature-order-tracking-order-management-table.png"
+                          alt="Order management table">
+                        <img class="layer layer-sat-1" src="./images/feature-order-tracking-search-orders.png"
+                          alt="Search orders bar">
+                        <img class="layer layer-sat-2" src="./images/feature-order-tracking-console-menu.png"
+                          alt="Order status menu">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="state state-order-confirmation" data-state="order-confirmation">
+                    <div class="reveal">
+                      <div class="image-wrap">
+                        <img class="layer layer-main" src="./images/feature-order-confirmation-armchair-room-photo.png"
+                          alt="Armchair in a living room">
+                        <img class="layer layer-sat-1" src="./images/feature-order-confirmation-armchair-card.png"
+                          alt="Armchair rental product card">
+                        <img class="layer layer-sat-2" src="./images/feature-order-confirmation-inventory-table.png"
+                          alt="Inventory table">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="state state-order-buffer" data-state="order-buffer">
+                    <div class="reveal">
+                      <div class="image-wrap">
+                        <img class="layer layer-main" src="./images/feature-order-buffer-rentcar-mockup.png"
+                          alt="Car rental storefront mockup">
+                        <img class="layer layer-sat-1" src="./images/feature-order-buffer-calendar-august2026.png"
+                          alt="August 2026 calendar">
+                        <img class="layer layer-sat-2" src="./images/feature-order-buffer-select-dates-card.png"
+                          alt="Select dates total cost card">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="state state-order-return" data-state="order-return">
+                    <div class="reveal">
+                      <div class="image-wrap">
+                        <img class="layer layer-main" src="./images/feature-order-return-delivery-photo.png"
+                          alt="Delivery handoff photo">
+                        <img class="layer layer-sat-1" src="./images/feature-order-return-arrow-icon.png"
+                          alt="Arrow icon">
+                        <img class="layer layer-sat-2" src="./images/feature-order-return-requested-card.png"
+                          alt="Return requested card">
+                        <img class="layer layer-sat-3" src="./images/feature-order-return-in-progress-card.png"
+                          alt="Return in progress card">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="sync-accordion-list">
+                  <ul class="faq-list-numbered">
+                    <li class="faq-list-item active">
+                      <button class="faq-list-link" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#omCollapse1" aria-expanded="true" data-image-state="order-calendar">
+                        <span class="faq-num">/ 01</span><span class="faq-question">Order Calendar</span>
+                      </button>
+                      <div class="collapse show" id="omCollapse1">
+                        <p class="faq_data">Rentify provides a robust interactive calendar so store admins can view
+                          booking history, current status, and slot availability at a glance.</p>
+                      </div>
+                    </li>
+                    <li class="faq-list-item">
+                      <button class="faq-list-link collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#omCollapse2" aria-expanded="false" data-image-state="order-tracking">
+                        <span class="faq-num">/ 02</span><span class="faq-question">Order List/Tracking</span>
+                      </button>
+                      <div class="collapse" id="omCollapse2">
+                        <p class="faq_data">This feature enables admins to track active, pending and fulfilled
+                          orders. They can search orders using ID, name, email and product, and apply filters
+                          available in the order status, order stage, and by date menu.</p>
+                      </div>
+                    </li>
+                    <li class="faq-list-item">
+                      <button class="faq-list-link collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#omCollapse3" aria-expanded="false" data-image-state="order-confirmation">
+                        <span class="faq-num">/ 03</span><span class="faq-question">Manual Order Confirmation</span>
+                      </button>
+                      <div class="collapse" id="omCollapse3">
+                        <p class="faq_data">The store admin can process walk-in offline orders and update records on
+                          the platform. Manual order creation features help businesses maintain data and stock in a
+                          central database, preventing inventory discrepancies.</p>
+                      </div>
+                    </li>
+                    <li class="faq-list-item">
+                      <button class="faq-list-link collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#omCollapse4" aria-expanded="false" data-image-state="order-buffer">
+                        <span class="faq-num">/ 04</span><span class="faq-question">Rental Buffer Period</span>
+                      </button>
+                      <div class="collapse" id="omCollapse4">
+                        <p class="faq_data">The rental buffer period restricts booking the rental item during this
+                          period. It provides admins the flexibility to inspect, maintain, and prepare rental items
+                          before renting them out again.</p>
+                      </div>
+                    </li>
+                    <li class="faq-list-item">
+                      <button class="faq-list-link collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#omCollapse5" aria-expanded="false" data-image-state="order-return">
+                        <span class="faq-num">/ 05</span><span class="faq-question">Return &amp; Refund
+                          Management</span>
+                      </button>
+                      <div class="collapse" id="omCollapse5">
+                        <p class="faq_data">Rental order return processing manages the end-to-end process. It
+                          automates customer returns, manages shipping, controls inventory restocking, adjusts
+                          security deposits and ensures refunds.</p>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 5. Buyer-Specific Feature -->
+        <section class="section" id="buyer-features">
+          <div class="container">
+            <header class="section-head section-head-coloumn">
+              <div class="section-head-start">
+                <h2 class="section-text-h2 section-heading">Buyer-Specific <br> Feature</h2>
+              </div>
+              <div class="section-head-end">
+                <p class="section-text-desc">Personalize every aspect of your rental storefront with flexible
+                  themes, layouts, branding, and domain options to create a unique customer experience.</p>
+              </div>
+            </header>
+
+            <div class="section-body">
+              <div class="buyer-grid">
+                <div class="buyer-grid-item">
+                  <img src="./images/icon-buyer-registration.png" alt="">
+                  <h4>Renter/(Buyer) Registration</h4>
+                  <p>Rentify enables a streamlined and quick onboarding process. Users can register seamlessly using
+                    existing accounts and authenticate instantly via OTP verification.</p>
+                </div>
+                <div class="buyer-grid-item">
+                  <img src="./images/icon-profile-management.png" alt="">
+                  <h4>Profile Management</h4>
+                  <p>Customers can seamlessly manage their profiles by accessing a centralized dashboard, updating
+                    contact details, shipping address, and other necessary documents.</p>
+                </div>
+                <div class="buyer-grid-item">
+                  <img src="./images/icon-advanced-search-filtering.png" alt="">
+                  <h4>Advanced Search and Filtering</h4>
+                  <p>Advanced search &amp; filtering options allow renters to find rental items quickly, applying
+                    filters to find the most precise results according to their requirements.</p>
+                </div>
+                <div class="buyer-grid-item">
+                  <img src="./images/icon-rfq-management.png" alt="">
+                  <h4>RFQ Management</h4>
+                  <p>RFQ (Request for Quote) features allow renters to request rental pricing and negotiate directly
+                    via the RFQ module, counteroffering the proposed rental fees.</p>
+                </div>
+                <div class="buyer-grid-item">
+                  <img src="./images/icon-wishlist.png" alt="">
+                  <h4>Wishlist</h4>
+                  <p>A save-for-later feature that lets renters bookmark items they are interested in for future
+                    rentals or repeat events instead of booking them immediately.</p>
+                </div>
+                <div class="buyer-grid-item">
+                  <img src="./images/icon-realtime-calendar-availability.png" alt="">
+                  <h4>Real-time Calendar Availability</h4>
+                  <p>An interactive calendar on the product detail page that lets customers check real-time
+                    availability of rental items and helps prevent double or false bookings.</p>
+                </div>
+                <div class="buyer-grid-item">
+                  <img src="./images/icon-reviews-and-ratings.png" alt="">
+                  <h4>Reviews and Ratings</h4>
+                  <p>Trust-building features that help businesses foster trust &amp; transparency, allowing users to
+                    leave feedback and rate their rental experience.</p>
+                </div>
+                <div class="buyer-grid-item">
+                  <img src="./images/icon-flexible-fulfilment-method.png" alt="">
+                  <h4>Flexible Fulfilment Method</h4>
+                  <p>Customers can choose the rental order fulfilment method, flexibly choosing between home delivery
+                    and self-pickup, subject to options enabled by the admin.</p>
+                </div>
+                <div class="buyer-grid-item">
+                  <img src="./images/icon-bar-chart-integration.png" alt="">
+                  <h4>Flexible Payment Option</h4>
+                  <p>Rentify allows integrations with multiple payment gateways that enable renters to pay securely
+                    using their preferred method, including cards, digital wallets, or deferred payments.</p>
+                </div>
+                <div class="buyer-grid-item">
+                  <img src="./images/icon-order-confirmation-notification.png" alt="">
+                  <h4>Order Confirmation Notification</h4>
+                  <p>This feature initiates automated emails or SMS alerts to the buyer confirming the successful
+                    booking or quotation of their rental.</p>
+                </div>
+                <div class="buyer-grid-item">
+                  <img src="./images/icon-rental-tracking.png" alt="">
+                  <h4>Rental Tracking</h4>
+                  <p>Helps customers keep track of their rental items, providing the live status of their booked and
+                    returned rental items and checking return due dates.</p>
+                </div>
+                <div class="buyer-grid-item">
+                  <img src="./images/icon-rental-cancellation.png" alt="">
+                  <h4>Rental Cancellation</h4>
+                  <p>Customers can flexibly cancel rental bookings — a self-service feature that lets renters cancel
+                    items according to the store's specific cancellation policy.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Customization & Appearance -->
+        <section class="section bg-gray" id="customization">
+          <div class="container">
+            <header class="section-head section-head-coloumn">
+              <div class="section-head-start">
+                <h2 class="section-text-h2 section-heading">Customization &amp; Appearance</h2>
+              </div>
+              <div class="section-head-end">
+                <p class="section-text-desc">Personalize every aspect of your rental storefront with flexible
+                  themes, layouts, branding, and domain options to create a unique customer experience.</p>
+              </div>
+            </header>
+
+            <div class="section-body">
+              <div class="customization-intro">
+                <div>
+                  <h4>Theme Selection</h4>
+                  <p>Rentify offers free and premium themes for every rental niche. Choose, save, and switch themes
+                    anytime.</p>
+                </div>
+                <div>
+                  <h4>Customization</h4>
+                  <p>Customize your homepage with flexible layouts, banners, themes, menus, headers, and footers to
+                    match your brand.</p>
+                </div>
+                <div>
+                  <h4>Code Editor</h4>
+                  <p>The built-in code editor lets store admins implement advanced customizations with complete
+                    design &amp; functionality control.</p>
+                </div>
+                <div>
+                  <h4>Custom Domain</h4>
+                  <p>Connect your own domain or use a free default domain to build a branded rental storefront.</p>
+                </div>
+              </div>
+
+              <div class="customization-panel reveal">
+                <div class="image-wrap">
+                  <img class="layer layer-code-editor" src="./images/feature-customization-code-editor.png"
+                    alt="Code editor preview">
+                  <img class="layer layer-theme-card" src="./images/feature-customization-theme-selection-card.png"
+                    alt="Theme selection card">
+                  <img class="layer layer-storefront"
+                    src="./images/feature-customization-storefront-headphones-mockup.png"
+                    alt="Storefront editor with headphones product">
+                  <img class="layer layer-dress-card" src="./images/feature-customization-ribbed-mini-dress-card.png"
+                    alt="Ribbed mini dress product card">
+                  <img class="layer layer-domain-bar" src="./images/feature-customization-custom-domain-bar.png"
+                    alt="Custom domain address bar">
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 7. SEO and Marketing -->
+        <section class="section" id="seo-marketing">
+          <div class="container">
+            <header class="section-head section-head-coloumn">
+              <div class="section-head-start">
+                <h2 class="section-text-h2 section-heading">SEO and <br> Marketing</h2>
+              </div>
+              <div class="section-head-end">
+                <p class="section-text-desc">Rentify provides a robust Search Engine Optimization (SEO) foundation to
+                  ensure better visibility and wider reach, with marketing features out of the box.</p>
+              </div>
+            </header>
+
+            <div class="section-body">
+              <div class="sync-accordion" id="seo-accordion">
+                <div class="sync-accordion-visual">
+                  <div class="state state-seo-default is-active" data-state="seo-default">
+                    <div class="reveal">
+                      <div class="image-wrap">
+                        <img class="layer layer-main" src="./images/feature-seo-google-search-sparkle.png"
+                          alt="Google search bar with AI sparkle">
+                        <img class="layer layer-sat-1" src="./images/feature-seo-jetski-photo.png"
+                          alt="Jet ski action photo">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="state state-seo-blog" data-state="seo-blog">
+                    <div class="reveal">
+                      <div class="image-wrap">
+                        <img class="layer layer-main" src="./images/feature-seo-blog-management-card-alt.png"
+                          alt="Blog post card">
+                        <img class="layer layer-sat-1" src="./images/feature-seo-blog-management-phone-mockup.png"
+                          alt="Blog post preview on a phone">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="state state-seo-faqs" data-state="seo-faqs">
+                    <div class="reveal">
+                      <div class="image-wrap">
+                        <img class="layer layer-main" src="./images/feature-seo-faqs-preview-card.png"
+                          alt="FAQ preview card">
+                        <img class="layer layer-sat-1" src="./images/graphic-faqs-wordmark.png" alt="FAQs wordmark">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="state state-seo-analytics" data-state="seo-analytics">
+                    <div class="reveal">
+                      <div class="image-wrap">
+                        <img class="layer layer-main" src="./images/feature-seo-google-analytics-card.png"
+                          alt="Google Analytics revenue chart">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="state state-seo-social" data-state="seo-social">
+                    <div class="reveal">
+                      <div class="image-wrap">
+                        <img class="layer layer-main" src="./images/feature-seo-social-media-post-card.png"
+                          alt="Social media post card">
+                        <img class="layer layer-sat-1" src="./images/feature-seo-active-users-badge.png"
+                          alt="Active users badge">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="state state-seo-email" data-state="seo-email">
+                    <div class="reveal">
+                      <div class="image-wrap">
+                        <img class="layer layer-main" src="./images/feature-seo-email-marketing-card.png"
+                          alt="Email marketing tracking card">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="sync-accordion-list">
+                  <ul class="faq-list-numbered">
+                    <li class="faq-list-item active">
+                      <button class="faq-list-link" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#seoCollapse1" aria-expanded="true" data-image-state="seo-default">
+                        <span class="faq-num">/ 01</span><span class="faq-question">SEO Feature</span>
+                      </button>
+                      <div class="collapse show" id="seoCollapse1">
+                        <p class="faq_data">Rentify provides a robust SEO foundation to ensure better visibility and
+                          wider reach. The store admin can optimize titles, meta descriptions, and images, making it
+                          highly optimized for search engines.</p>
+                      </div>
+                    </li>
+                    <li class="faq-list-item">
+                      <button class="faq-list-link collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#seoCollapse2" aria-expanded="false" data-image-state="seo-blog">
+                        <span class="faq-num">/ 02</span><span class="faq-question">Blog Management</span>
+                      </button>
+                      <div class="collapse" id="seoCollapse2">
+                        <p class="faq_data">Publish and manage blog content directly from the admin panel to drive
+                          organic traffic and share rental guides with your customers.</p>
+                      </div>
+                    </li>
+                    <li class="faq-list-item">
+                      <button class="faq-list-link collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#seoCollapse3" aria-expanded="false" data-image-state="seo-faqs">
+                        <span class="faq-num">/ 03</span><span class="faq-question">FAQs Management</span>
+                      </button>
+                      <div class="collapse" id="seoCollapse3">
+                        <p class="faq_data">Create and organize FAQ content to answer common customer questions and
+                          reduce support load, right from the storefront editor.</p>
+                      </div>
+                    </li>
+                    <li class="faq-list-item">
+                      <button class="faq-list-link collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#seoCollapse4" aria-expanded="false" data-image-state="seo-analytics">
+                        <span class="faq-num">/ 04</span><span class="faq-question">Google Analytics</span>
+                      </button>
+                      <div class="collapse" id="seoCollapse4">
+                        <p class="faq_data">Connect Google Analytics to track visitors, revenue, and store
+                          performance in real time from a single dashboard.</p>
+                      </div>
+                    </li>
+                    <li class="faq-list-item">
+                      <button class="faq-list-link collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#seoCollapse5" aria-expanded="false" data-image-state="seo-social">
+                        <span class="faq-num">/ 05</span><span class="faq-question">Social Media Integration</span>
+                      </button>
+                      <div class="collapse" id="seoCollapse5">
+                        <p class="faq_data">Share products directly to social channels and keep your storefront
+                          connected with your audience wherever they are.</p>
+                      </div>
+                    </li>
+                    <li class="faq-list-item">
+                      <button class="faq-list-link collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#seoCollapse6" aria-expanded="false" data-image-state="seo-email">
+                        <span class="faq-num">/ 06</span><span class="faq-question">Email Marketing</span>
+                      </button>
+                      <div class="collapse" id="seoCollapse6">
+                        <p class="faq_data">Run targeted email campaigns and track engagement to keep customers
+                          coming back to your rental store.</p>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 8. System Feature -->
+        <section class="section" id="system-feature">
+          <div class="container">
+            <header class="section-head section-head-coloumn">
+              <div class="section-head-start">
+                <h2 class="section-text-h2 section-heading">System <br> Feature</h2>
+              </div>
+              <div class="section-head-end">
+                <p class="section-text-desc">Personalize every aspect of your rental storefront with flexible
+                  themes, layouts, branding, and domain options to create a unique customer experience.</p>
+              </div>
+            </header>
+
+            <div class="section-body">
+              <div class="system-grid">
+                <div class="system-grid-item" style="background-color: #DCEBFF;">
+                  <div class="system-grid-media reveal">
+                    <div class="image-wrap">
+                      <img class="layer" data-clip src="./images/feature-system-plugins-integrations-diagram.png"
+                        alt="Plugins and integrations diagram">
+                    </div>
+                  </div>
+                  <h4>Plugins and Integrations</h4>
+                  <p>Connect your rental store with third-party plugins and APIs to add powerful features and
+                    automate workflows — without custom coding.</p>
+                </div>
+                <div class="system-grid-item" style="background-color: #E4E0FB;">
+                  <div class="system-grid-media reveal">
+                    <div class="image-wrap">
+                      <img class="layer" data-clip src="./images/feature-system-staff-account-management-card.png"
+                        alt="Staff account permissions card">
+                    </div>
+                  </div>
+                  <h4>Staff Account Management</h4>
+                  <p>Create secure staff accounts with custom roles and permissions, giving each team member access
+                    only to what they need.</p>
+                </div>
+                <div class="system-grid-item" style="background-color: #F4DFF5;">
+                  <div class="system-grid-media reveal">
+                    <div class="image-wrap">
+                      <img class="layer" data-clip src="./images/feature-order-inventory-elegant-dress-card.png"
+                        alt="Multi-currency storefront card">
+                    </div>
+                  </div>
+                  <h4>Multi-Lingual &amp; Multi-Currency Support</h4>
+                  <p>Rentify supports multiple languages and currencies, automatically adapting to each user's
+                    location for a seamless rental experience.</p>
+                </div>
+                <div class="system-grid-item" style="background-color: #FCE4D6;">
+                  <div class="system-grid-media reveal">
+                    <div class="image-wrap">
+                      <img class="layer" data-clip src="./images/feature-system-security-game-console-card.png"
+                        alt="Secure checkout with game console card">
+                    </div>
+                  </div>
+                  <h4>Real-Time Security</h4>
+                  <p>Every transaction runs behind SSL-secured checkout, keeping customer data and payments
+                    protected end to end.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 9. Checkout and Pricing -->
+        <section class="section bg-gray" id="checkout-pricing">
+          <div class="container">
+            <header class="section-head section-head-coloumn">
+              <div class="section-head-start">
+                <h2 class="section-text-h2 section-heading">Checkout and <br> Pricing</h2>
+              </div>
+              <div class="section-head-end">
+                <p class="section-text-desc">Personalize every aspect of your rental storefront with flexible
+                  themes, layouts, branding, and domain options to create a unique customer experience.</p>
+              </div>
+            </header>
+
+            <div class="section-body">
+              <div class="checkout-tabs faq-tabs">
+                <ul class="pill-tabs" role="tablist">
+                  <li><button type="button" class="active" data-target="checkout">Checkout</button></li>
+                  <li><button type="button" data-target="esigning">eSigning</button></li>
+                  <li><button type="button" data-target="document">Document Attachment</button></li>
+                  <li><button type="button" data-target="delivery">Delivery &amp; Pickup</button></li>
+                  <li><button type="button" data-target="charges">Delivery Charges</button></li>
+                  <li><button type="button" data-target="nonop">Non-Operational</button></li>
+                </ul>
+              </div>
+
+              <div class="checkout-panel is-active" id="checkout" style="background-color: #3D4FE0;">
+                <div class="checkout-panel-content">
+                  <h3>Checkout Workflow</h3>
+                  <p>The store owner can flexibly decide on the checkout workflow. They can configure and decide
+                    between standard checkout &amp; RFQ-based checkout based on their unique business model &amp;
+                    preferences, ensuring maximum profit and sales.</p>
+                </div>
+                <div class="checkout-panel-visual reveal">
+                  <div class="image-wrap">
+                    <img class="layer layer-main" src="./images/feature-checkout-sportswear-shoe-card.png"
+                      alt="Sportswear shoe rent card">
+                    <img class="layer layer-sat-1" src="./images/feature-checkout-order-summary-card.png"
+                      alt="Order summary card">
+                  </div>
+                </div>
+              </div>
+
+              <div class="checkout-panel" id="esigning" style="background-color: #223B73;">
+                <div class="checkout-panel-content">
+                  <h3>eSigning/Digital Signature</h3>
+                  <p>The digital or electronic signatures option allows rental store owners to securely capture
+                    customer agreements &amp; contracts remotely. Customers simply review the rental terms on their
+                    device &amp; sign digitally.</p>
+                </div>
+                <div class="checkout-panel-visual reveal">
+                  <div class="image-wrap">
+                    <img class="layer layer-main" src="./images/feature-checkout-luxury-car-card.png"
+                      alt="Luxury car rent card">
+                    <img class="layer layer-sat-1" src="./images/feature-checkout-rental-agreement-signature.png"
+                      alt="Rental agreement signature card">
+                    <img class="layer layer-sat-2" src="./images/feature-checkout-profile-photo-circle.png"
+                      alt="Customer profile photo">
+                  </div>
+                </div>
+              </div>
+
+              <div class="checkout-panel" id="document" style="background-color: #2B2B2E;">
+                <div class="checkout-panel-content">
+                  <h3>Document Attachment</h3>
+                  <p>The document attachment feature fosters trust, legal compliance, and identity verification. It
+                    enables store owners to specify documents that are essential when listing rental products.</p>
+                </div>
+                <div class="checkout-panel-visual reveal">
+                  <div class="image-wrap">
+                    <img class="layer layer-main" src="./images/feature-checkout-heavy-equipment-card.png"
+                      alt="Heavy equipment rental card">
+                    <img class="layer layer-sat-2" src="./images/icon-pdf-file.png" alt="PDF icon">
+                    <img class="layer layer-sat-3" src="./images/icon-google-docs.png" alt="Google Docs icon">
+                    <img class="layer layer-sat-1" src="./images/feature-checkout-upload-files-card.png"
+                      alt="Upload files card">
+                  </div>
+                </div>
+              </div>
+
+              <div class="checkout-panel" id="delivery" style="background-color: #0E7C66;">
+                <div class="checkout-panel-content">
+                  <h3>Delivery &amp; Pickup Management</h3>
+                  <p>This feature empowers store owners to define the fulfilment method. They can either toggle
+                    between doorstep delivery and in-store pickup or enable both, offering flexibility to
+                    customers.</p>
+                </div>
+                <div class="checkout-panel-visual reveal">
+                  <div class="image-wrap">
+                    <img class="layer layer-main" src="./images/feature-checkout-delivery-pickup-card.png"
+                      alt="Delivery and pickup toggle card">
+                    <img class="layer layer-sat-1" src="./images/feature-system-delivery-pickup-toggle.png"
+                      alt="Delivery pickup pill buttons">
+                    <img class="layer layer-sat-2" src="./images/feature-system-delivery-pickup-vehicle-icon.png"
+                      alt="Delivery vehicle icon">
+                  </div>
+                </div>
+              </div>
+
+              <div class="checkout-panel" id="charges" style="background-color: #9A6B1F;">
+                <div class="checkout-panel-content">
+                  <h3>Delivery Charges Configuration</h3>
+                  <p>The store owner can also configure delivery charges seamlessly. The system supports both flat
+                    charges or dynamic distance-based delivery charges. Once configured, the system automatically
+                    calculates pricing and reflects it on the rental bill.</p>
+                </div>
+                <div class="checkout-panel-visual reveal">
+                  <div class="image-wrap">
+                    <img class="layer layer-main" src="./images/feature-checkout-delivery-charges-card.png"
+                      alt="Distance-based delivery pricing card">
+                    <img class="layer layer-sat-1" src="./images/feature-checkout-dropshipping-badge.png"
+                      alt="Dropshipping badge">
+                  </div>
+                </div>
+              </div>
+
+              <div class="checkout-panel" id="nonop" style="background-color: #48596B;">
+                <div class="checkout-panel-content">
+                  <h3>Non-Operational Days Management</h3>
+                  <p>This feature enables store owners to define holidays and non-working days in the calendar. It
+                    automatically blocks bookings during the selected date or period.</p>
+                </div>
+                <div class="checkout-panel-visual reveal">
+                  <div class="image-wrap">
+                    <img class="layer layer-main" src="./images/feature-checkout-motorcycle-rentals-card.png"
+                      alt="Motorcycle rentals card">
+                    <img class="layer layer-sat-1" src="./images/feature-checkout-weekly-availability-card.png"
+                      alt="Weekly availability card">
+                    <img class="layer layer-sat-2" src="./images/feature-checkout-holiday-list-card.png"
+                      alt="Holiday list card">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section bg-faqs" id="faqs">
+          <div class="container">
+            <div class="row justify-content-between">
+              <div class="col-lg-4">
+                <header class="">
+                  <h2 class="section-text-h2 section-heading">Frequently asked questions</h2>
+                  <div class="mt-4">
+                    <a class="animated-button" href="faq.html">
+                      <svg class="arr-2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
+                        </path>
+                      </svg>
+                      <span class="text">View All</span>
+                      <span class="circle"></span>
+                      <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
+                        </path>
+                      </svg>
+                    </a>
+                  </div>
+                </header>
+              </div>
+              <div class="col-lg-8">
+                <div class="">
+                  <ul class="faq-list" id="listing">
+                    <li class="faq-list-item">
+                      <button class="faq-list-link faqHeading collapsed" type="button" data-cat-id="1"
+                        data-bs-toggle="collapse" data-bs-target="#faqCollapse1" data-id="1" aria-expanded="false">Can I
+                        try a Rentify Premium plan for free?</button>
+                      <div class="collapse" id="faqCollapse1">
+                        <p class="faq_data faqText">Yes. Try any Rentify Premium plan and if you decide it's not for
+                          you, you can cancel within 14 days and receive a full refund—no questions asked. This applies
+                          to the initial upgrade to a Premium plan.</p>
+                      </div>
+                    </li>
+                    <li class="faq-list-item">
+                      <button class="faq-list-link faqHeading" type="button" data-cat-id="1" data-bs-toggle="collapse"
+                        data-bs-target="#faqCollapse2" data-id="2"> Do I get free web hosting when I open an online
+                        store? </button>
+                      <div class="collapse" id="faqCollapse2">
+                        <p class="faq_data faqText">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam
+                          earum necessitatibus nisi, reiciendis nostrum itaque eius veritatis ratione temporibus, ullam
+                          iste maiores cumque repudiandae, molestiae nobis blanditiis nesciunt dolorum fugit.</p>
+                      </div>
+                    </li>
+                    <li class="faq-list-item">
+                      <button class="faq-list-link faqHeading" type="button" data-cat-id="1" data-bs-toggle="collapse"
+                        data-bs-target="#faqCollapse3" data-id="3"> How do you support builds for large-scale projects?
+                      </button>
+                      <div class="collapse" id="faqCollapse3">
+                        <p class="faq_data faqText">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam
+                          earum necessitatibus nisi, reiciendis nostrum itaque eius veritatis ratione temporibus, ullam
+                          iste maiores cumque repudiandae, molestiae nobis blanditiis nesciunt dolorum fugit.</p>
+                      </div>
+                    </li>
+                    <li class="faq-list-item">
+                      <button class="faq-list-link faqHeading" type="button" data-cat-id="1" data-bs-toggle="collapse"
+                        data-bs-target="#faqCollapse4" data-id="4"> How do i get my free domain? </button>
+                      <div class="collapse" id="faqCollapse4">
+                        <p class="faq_data faqText">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam
+                          earum necessitatibus nisi, reiciendis nostrum itaque eius veritatis ratione temporibus, ullam
+                          iste maiores cumque repudiandae, molestiae nobis blanditiis nesciunt dolorum fugit.</p>
+                      </div>
+                    </li>
+                    <li class="faq-list-item">
+                      <button class="faq-list-link faqHeading" type="button" data-cat-id="1" data-bs-toggle="collapse"
+                        data-bs-target="#faqCollapse5" data-id="5"> How can i get my own personalized email address?
+                      </button>
+                      <div class="collapse" id="faqCollapse5">
+                        <p class="faq_data faqText">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam
+                          earum necessitatibus nisi, reiciendis nostrum itaque eius veritatis ratione temporibus, ullam
+                          iste maiores cumque repudiandae, molestiae nobis blanditiis nesciunt dolorum fugit.</p>
+                      </div>
+                    </li>
+
+
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="section cta-gradient" id="cta">
+          <div class="container">
+            <div class="cta-gradient-data">
+              <h2 class="cta-gradient-title section-heading">Build, Customize & Launch <br> Your Landing Page Free
+              </h2>
+
+              <a class="animated-button" href="contact-us.html">
+                <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
+                  </path>
+                </svg>
+                <span class="text">Get Started</span>
+                <span class="circle"></span>
+                <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
+                  </path>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="marquee-strip">
+          <div class="container container-fluid">
+            <marquee class="marquee">
+              <div class="marquee-track">
+                <span class="marquee-item">RENTIFY</span>
+                <span class="marquee-item">RENTIFY</span>
+                <span class="marquee-item">RENTIFY</span>
+                <span class="marquee-item">RENTIFY</span>
+
+                <!-- Duplicate for seamless loop -->
+                <span class="marquee-item">RENTIFY</span>
+                <span class="marquee-item">RENTIFY</span>
+                <span class="marquee-item">RENTIFY</span>
+                <span class="marquee-item">RENTIFY</span>
+              </div>
+            </marquee>
           </div>
         </section>
       </main>
       <footer class="footer" id="footer" data-collection="footer">
         <div class="footer-top">
           <div class="container">
-            <div class="row">
-              <div class="col-lg-6">
-                <div class="short-about">
-                  <p class="desc">Rentify is designed by FATbit Technologies, the team behind leading multi-vendor
-                    eCommerce
-                    solutions Yo!Rent, <strong> Yo!Kart, Yo!Coach, Yo!Yumm, Yo!Gigs, Growcer, Vivo Cabs</strong> and
-                    more.</p>
-                  <p class="copyrights">© Rentify - A product of FATbit Technologies.</p>
-                </div>
+            <div class="row justify-content-between">
+              <div class="col-auto">
+                <p class="copyright">Copyright © <br> Rentify - A product of FATbit Technologies.</p>
               </div>
-              <div class="col-lg-3">
+
+              <div class="col-auto">
                 <div class="footer-group">
-                  <h4 class="footer-group-head dropdown-toggle-custom" data-bs-toggle="collapse" data-bs-target="#Quick"
-                    role="button" aria-expanded="false" aria-controls="collapseExample">
-                    Explore
-                  </h4>
-                  <ul class="footer-nav footer-nav-double" id="Quick">
+                  <ul class="footer-nav" id="Quick">
                     <li class="footer-nav-item">
                       <a class="footer-nav-link" href="how-to-start.html">How to start</a>
                     </li>
@@ -105,50 +1004,90 @@
                   </ul>
                 </div>
               </div>
-              <div class="col-lg-3">
+
+              <div class="col-auto">
                 <div class="footer-group">
                   <h4 class="footer-group-head dropdown-toggle-custom" data-bs-toggle="collapse"
                     data-bs-target="#Follow" role="button" aria-expanded="false" aria-controls="collapseExample">
-                    Follow
+                    SOCIAL
                   </h4>
-                  <ul class="footer-nav" id="Follow">
-                    <li class="footer-nav-item">
-                      <a class="footer-nav-link" href="#"> Facebook </a>
+                  <ul class="footer-social" id="Follow">
+                    <li class="footer-social-item">
+                      <a class="footer-social-link" href="#"><svg class="footer-social-svg" width="20" height="20"
+                          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                          <path
+                            d="M12.001 2C6.47813 2 2.00098 6.47715 2.00098 12C2.00098 16.9913 5.65783 21.1283 10.4385 21.8785V14.8906H7.89941V12H10.4385V9.79688C10.4385 7.29063 11.9314 5.90625 14.2156 5.90625C15.3097 5.90625 16.4541 6.10156 16.4541 6.10156V8.5625H15.1931C13.9509 8.5625 13.5635 9.33334 13.5635 10.1242V12H16.3369L15.8936 14.8906H13.5635V21.8785C18.3441 21.1283 22.001 16.9913 22.001 12C22.001 6.47715 17.5238 2 12.001 2Z">
+                          </path>
+                        </svg> </a>
                     </li>
-                    <li class="footer-nav-item">
-                      <a class="footer-nav-link" href="#">Instagram</a>
+                    <li class="footer-social-item">
+                      <a class="footer-social-link" href="#"><svg class="footer-social-svg" width="20" height="20"
+                          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                          <path
+                            d="M6.94048 4.99993C6.94011 5.81424 6.44608 6.54702 5.69134 6.85273C4.9366 7.15845 4.07187 6.97605 3.5049 6.39155C2.93793 5.80704 2.78195 4.93715 3.1105 4.19207C3.43906 3.44699 4.18654 2.9755 5.00048 2.99993C6.08155 3.03238 6.94097 3.91837 6.94048 4.99993ZM7.00048 8.47993H3.00048V20.9999H7.00048V8.47993ZM13.3205 8.47993H9.34048V20.9999H13.2805V14.4299C13.2805 10.7699 18.0505 10.4299 18.0505 14.4299V20.9999H22.0005V13.0699C22.0005 6.89993 14.9405 7.12993 13.2805 10.1599L13.3205 8.47993Z">
+                          </path>
+                        </svg> </a>
                     </li>
-                    <li class="footer-nav-item">
-                      <a class="footer-nav-link" href="#"> X </a>
+                    <li class="footer-social-item">
+                      <a class="footer-social-link" href="#"> <svg class="footer-social-svg" width="20" height="20"
+                          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                          <path
+                            d="M17.6874 3.0625L12.6907 8.77425L8.37045 3.0625H2.11328L9.58961 12.8387L2.50378 20.9375H5.53795L11.0068 14.6886L15.7863 20.9375H21.8885L14.095 10.6342L20.7198 3.0625H17.6874ZM16.6232 19.1225L5.65436 4.78217H7.45745L18.3034 19.1225H16.6232Z">
+                          </path>
+                        </svg></a>
                     </li>
-                    <li class="footer-nav-item">
-                      <a class="footer-nav-link" href="#">
-                        LinkedIn</a>
+                    <li class="footer-social-item">
+                      <a class="footer-social-link" href="#"> <svg class="footer-social-svg" width="20" height="20"
+                          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                          <path
+                            d="M12.2439 4C12.778 4.00294 14.1143 4.01586 15.5341 4.07273L16.0375 4.09468C17.467 4.16236 18.8953 4.27798 19.6037 4.4755C20.5486 4.74095 21.2913 5.5155 21.5423 6.49732C21.942 8.05641 21.992 11.0994 21.9982 11.8358L21.9991 11.9884L21.9991 11.9991C21.9991 11.9991 21.9991 12.0028 21.9991 12.0099L21.9982 12.1625C21.992 12.8989 21.942 15.9419 21.5423 17.501C21.2878 18.4864 20.5451 19.261 19.6037 19.5228C18.8953 19.7203 17.467 19.8359 16.0375 19.9036L15.5341 19.9255C14.1143 19.9824 12.778 19.9953 12.2439 19.9983L12.0095 19.9991L11.9991 19.9991C11.9991 19.9991 11.9956 19.9991 11.9887 19.9991L11.7545 19.9983C10.6241 19.9921 5.89772 19.941 4.39451 19.5228C3.4496 19.2573 2.70692 18.4828 2.45587 17.501C2.0562 15.9419 2.00624 12.8989 2 12.1625V11.8358C2.00624 11.0994 2.0562 8.05641 2.45587 6.49732C2.7104 5.51186 3.45308 4.73732 4.39451 4.4755C5.89772 4.05723 10.6241 4.00622 11.7545 4H12.2439ZM9.99911 8.49914V15.4991L15.9991 11.9991L9.99911 8.49914Z">
+                          </path>
+                        </svg></a>
                     </li>
                   </ul>
+
+                  <div class="contacts-info">
+                    <a href="">+1 256 792 5883</a>
+                    <a href="">sales@fatbit.com</a>
+                  </div>
+
                 </div>
               </div>
+
+              <div class="col-auto">
+                <div class="footer-group">
+                  <h4 class="footer-group-head dropdown-toggle-custom" data-bs-toggle="collapse"
+                    data-bs-target="#newsletter" role="button" aria-expanded="false" aria-controls="collapseExample">
+                    GET VALUABLE INSIGHTS
+                  </h4>
+
+                  <form class="form-newsletter" action="" id="newsletter">
+                    <input class="form-newsletter-input" type="text" placeholder="Your email here">
+                    <button class="form-newsletter-btn" type="button">
+                      <svg class="svg" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                        fill="currentColor">
+                        <path
+                          d="M13.1717 12.0007L8.22192 7.05093L9.63614 5.63672L16.0001 12.0007L9.63614 18.3646L8.22192 16.9504L13.1717 12.0007Z">
+                        </path>
+                      </svg></button>
+                  </form>
+
+
+
+                </div>
+              </div>
+
             </div>
+
           </div>
         </div>
         <div class="footer-bottom">
           <div class="container">
-            <div class="footer-cta">
-              <h3>Need Help to Take Your Rental Business Online?</h3>
-              <a href="contact-us.html" class="btn btn-brand">Talk to Our Experts</a>
-            </div>
-            <div class="row justify-content-between">
-              <div class="col-lg-6">
-                <div class="footer-logo">
-                  <img src="images/footer-logo.png" width="200" alt="">
-                </div>
-              </div>
-              <div class="col-lg-6">
-                <div class="contacts-info">
-                  <a href="">+1 256 792 5883</a> |
-                  <a href="">sales@fatbit.com</a>
-                </div>
-              </div>
+            <div class="footer-bottom-inner">
+              <p class="desc">Rentify is designed by FATbit Technologies, the team behind leading multi-vendor
+                eCommerce
+                solutions Yo!Rent, <strong> Yo!Kart, Yo!Coach, Yo!Yumm, Yo!Gigs, Growcer, Vivo Cabs</strong> and
+                more.</p>
             </div>
           </div>
         </div>
@@ -213,14 +1152,13 @@
       </div>
     </div>
 
-    <!-- <script src='./js/j1gsap.min.js'></script>
+    <script src='./js/j1gsap.min.js'></script>
     <script src='./js/j2ScrollTrigger.min.js'></script>
-    <script src='./js/j3lenis.min.js'></script>
+    <script src='./js/lenis.min.js'></script>
     <script src='./js/j4CustomEase.min.js'></script>
-    <script src='./js/j5SplitText.min.js'></script> -->
     <script src='./js/j6bootstrap.js'></script>
+    <script type="module" src="./js/page-js/features.js"></script>
     <script src="./js/j7zscript.js"></script>
-    <!-- <script src="./js/min/bundle.js"></script> -->
 
 
   </body>

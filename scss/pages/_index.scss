@@ -101,21 +101,6 @@
      object-fit: contain;
    }
 
-   /* Placeholder chrome so the layout is visible before real PNGs are dropped in.
-     Delete the "ph-*" rules once ./images/*.png are in place — the .panel
-     positioning rules above are the ones that matter and can stay as-is. */
-   .panel.ph {
-     border-radius: 14px;
-     background: #f4f4f6;
-     border: 1px solid var(--line);
-     display: flex;
-     align-items: center;
-     justify-content: center;
-     font-size: 12px;
-     letter-spacing: .04em;
-     color: rgba(11, 11, 15, .4);
-   }
-
    .url-bar {
      left: 2.98%;
      top: 7.43%;
@@ -162,15 +147,6 @@
      width: 22.02%;
      height: 25.07%;
      z-index: 2;
-   }
-
-   .url-bar.ph {
-     border-radius: 100px;
-   }
-
-   .font-panel.ph {
-     background: var(--lime);
-     border: none;
    }
 
    @media (max-width:900px) {
@@ -307,21 +283,6 @@
    object-fit: contain;
  }
 
- /* Placeholder chrome — delete .ph rules once ./images/*.png are dropped in.
-     The .panel position rules below are the ones that matter; leave those. */
- .cal-panel.ph {
-   border-radius: 16px;
-   background: #f4f4f6;
-   border: 1px solid var(--line);
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   font-size: 12px;
-   letter-spacing: .04em;
-   color: rgba(11, 11, 15, .4);
-   overflow: hidden;
- }
-
  /* Exact coordinates, detected from the source PNG's alpha channel (1765×797 canvas) */
  .calendar-panel {
    left: 17.74%;
@@ -362,17 +323,6 @@
    height: 24.84%;
    z-index: 2;
  }
-
- .calendar-panel.ph {
-   background: #dbe8fe;
-   border-radius: 28px;
- }
-
- .product-card.ph {
-   background: #fbdcc3;
-   border-radius: 20px;
- }
-
 
  .calendar-check {
    margin-top: 1.5rem;
@@ -416,6 +366,7 @@
  .expo-slider-wrapper {
    //overflow-x: hidden;
  }
+
 
  /* Swiper Base Styling */
  .swiper-expo.swiper-3d {

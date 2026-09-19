@@ -184,67 +184,7 @@
   }
 }
 
-.content-wrap {
-  .content-block {
-    padding: calc(1rem + 1.5vw) 0;
-    display: flex;
-    align-items: center;
-    flex-flow: row wrap;
-    gap: 2rem;
 
-    @include media-breakpoint-up(xl) {
-      flex-direction: row-reverse;
-      gap: 5rem;
-    }
-
-    h2 {
-      font-weight: 700;
-    }
-
-    p {
-      font-size: 1rem;
-    }
-
-    &-img {
-      border-radius: $card-radius * 2;
-      overflow: hidden;
-      aspect-ratio: 16/9;
-      background-color: $bg-placeholder;
-
-      @include media-breakpoint-up(md) {
-        flex: 0 1 50%;
-      }
-
-      img {
-        object-fit: fill;
-        border-radius: $card-radius * 2;
-        //color: #000fff;
-      }
-    }
-
-    .bento-block {
-      @include media-breakpoint-up(md) {
-        flex: 0 1 50%;
-      }
-    }
-
-    &-cms {
-      flex: 1;
-    }
-
-    &:nth-child(even) {
-      @include media-breakpoint-up(md) {
-        flex-direction: row;
-      }
-    }
-
-    &-even {
-      @include media-breakpoint-up(md) {
-        flex-direction: row;
-      }
-    }
-  }
-}
 
 .list-vertical {
   margin: 0;
