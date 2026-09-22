@@ -6,6 +6,7 @@
    ========================================================= */
 
 import { revealHeading, revealSection } from "../text-effects.js";
+import { hideCollapse } from "../collapse-offcanvas.js";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -96,11 +97,9 @@ ScrollTrigger.create({
 
 (function () {
     document.querySelectorAll(".faq-list-numbered").forEach(function (list) {
-        list.addEventListener("show.bs.collapse", function (e) {
+        list.addEventListener("collapse:show", function (e) {
             list.querySelectorAll(".collapse.show").forEach(function (open) {
-                if (open !== e.target && window.bootstrap) {
-                    bootstrap.Collapse.getOrCreateInstance(open).hide();
-                }
+                if (open !== e.target) hideCollapse(open);
             });
 
             var item = e.target.closest(".faq-list-item");
