@@ -25,6 +25,7 @@
   transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s, background-color 0.2s ease;
 
   svg {
+    fill: transparent;
     width: 20px;
     height: 20px;
   }

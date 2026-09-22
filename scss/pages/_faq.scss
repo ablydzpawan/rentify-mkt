@@ -240,7 +240,7 @@
   // Plus / close icon — same rotate trick as the shared .faq-list component.
   .faq-list-link {
     position: relative;
-    padding-#{$end-direction}: 2rem;
+    // padding-#{$end-direction}: 2rem;
 
     &:after,
     &:before {
