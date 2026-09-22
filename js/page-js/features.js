@@ -328,6 +328,22 @@ if (prefersReducedMotion) {
 
     revealGroup(".bussinesses", ".bussinesses-item", { y: 20, stagger: 0.06 });
     revealGroup(".buyer-grid", ".buyer-grid-item", { y: 24, stagger: 0.06 });
+
+    // Buyer-feature icons get their own bouncy pop on top of the card's
+    // fade/rise, same language as the homepage's .why-us-icon svg reveal,
+    // so each icon reads as a distinct flourish rather than riding along.
+    revealGroup(".buyer-grid", ".buyer-grid-item svg", {
+        opacity: 0,
+        y: 0,
+        scale: 0.4,
+        rotate: -18,
+        transformOrigin: "50% 50%",
+        duration: 0.75,
+        delay: 0.15,
+        ease: "back.out(2.2)",
+        stagger: 0.06,
+    });
+
     revealGroup(".customization-intro", "div", { y: 20, stagger: 0.08 });
     revealGroup(".system-grid", ".system-grid-item", { y: 30, stagger: 0.1 });
 
