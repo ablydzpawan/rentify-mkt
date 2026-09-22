@@ -1,4 +1,14 @@
 //page: Features
+//
+// Organized to mirror features.html's own numbered section comments
+// (<!-- 1. Hero -->, <!-- 2. ... -->, etc.) in the same order, one
+// block per section, so a rule for "SEO and Marketing" is never
+// sitting in the middle of "Customization & Appearance" the way this
+// file used to drift after enough incremental edits. Section 2
+// (Rental Businesses Empowered by Us) and the FAQs/CTA/marquee
+// sections near the bottom of the page have no entry here because
+// they're shared components styled elsewhere (_index.scss, _faq.scss,
+// components/_section.scss) with nothing features.html overrides.
 
 /* ---------- shared "reveal" mechanics for every layered composite on
    this page (hero canvas panels, listing cards, accordion visuals,
@@ -205,14 +215,17 @@
 }
 
 /* =========================================================
-   4. SYNCED ACCORDION — "Simplify Your Order Management" only.
-   A shared image panel on the left with one .state per accordion
-   item (only one visible at a time), and a numbered accordion
-   list on the right. SEO and Marketing has its own, separate
-   .seo-panel/.seo-panel-visual/.seo-panel-state classes below —
-   the two sections used to share these classes, which meant a
-   tweak meant for one silently changed the other. Keep them
-   apart even if a future edit makes them look similar again.
+   4. SIMPLIFY YOUR ORDER MANAGEMENT — a shared image panel on
+   the left with one .state per accordion item (only one visible
+   at a time), and a numbered, click-to-expand accordion list on
+   the right (js/page-js/features.js's initSyncedAccordion).
+
+   SEO and Marketing (section 7) used to share these
+   .sync-accordion/.sync-accordion-visual/.state classes — a tweak
+   meant for one was silently landing on both. It now has its own
+   .seo-panel/.seo-panel-visual/.seo-panel-state classes instead;
+   keep them apart even if a future edit makes the two sections
+   look similar again.
    ========================================================= */
 .sync-accordion {
   display: flex;
@@ -264,63 +277,6 @@
   }
 }
 
-/* =========================================================
-   7. SEO PANEL — "SEO and Marketing" only. Same idea as
-   .sync-accordion above (shared image panel + a list that
-   controls which state shows), but its own class names so
-   nothing here can leak into or be leaked into by Order
-   Management's accordion.
-   ========================================================= */
-.seo-panel {
-  display: flex;
-  flex-flow: row wrap;
-  gap: 4rem;
-  align-items: flex-start;
-
-  @include media-breakpoint-up(lg) {
-    gap: 6rem;
-    flex-wrap: nowrap;
-  }
-
-  &-visual {
-    position: relative;
-    flex: 1 1 100%;
-    aspect-ratio: 798 / 760;
-    overflow: hidden;
-    background: transparent linear-gradient(133deg, #A9A9FE 0%, #93CAFB 44%, #F0F6B6 100%);
-    border-radius: 30px;
-
-    @include media-breakpoint-up(lg) {
-      flex: 0 1 58%;
-      position: sticky;
-      top: 6rem;
-    }
-  }
-
-  &-state {
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transition: opacity 0.25s ease;
-
-    &.is-active {
-      opacity: 1;
-      visibility: visible;
-      pointer-events: auto;
-    }
-  }
-}
-
-.seo-reveal-list {
-  flex: 1 1 100%;
-
-  @include media-breakpoint-up(lg) {
-    flex: 0 1 46%;
-  }
-}
-
 // Chevron variant of .faq-list-numbered (Order Management accordion) —
 // drop the "/ 01" index number and swap the plus/minus bars for a
 // rotating chevron. Scoped to this modifier class only so the real
@@ -359,86 +315,11 @@
   }
 }
 
-// "SEO and Marketing" hover-reveal list — no accordion, no numbers:
-// every item is its own big heading-sized label. The inactive ones
-// sit muted with nothing below them; hovering (or keyboard-focusing)
-// one darkens its label and smoothly opens its description, while
-// the previously active one closes back down. The open/close height
-// is pure CSS (grid-template-rows 0fr -> 1fr), not the JS height
-// measuring collapse-offcanvas.js uses elsewhere on this site.
-.seo-reveal-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.seo-reveal-item {
-  border-top: 1px solid rgba(0, 0, 0, .12);
-
-  &:last-child {
-    border-bottom: 1px solid rgba(0, 0, 0, .12);
-  }
-}
-
-.seo-reveal-trigger {
-  display: block;
-  width: 100%;
-  background: transparent;
-  border: none;
-  text-align: #{$start-direction};
-  cursor: pointer;
-  padding: 1.35rem 0;
-  font-size: clamp(1.75rem, calc(1.15rem + 2.4vw), 3.25rem);
-  font-weight: 500;
-  line-height: 1.15;
-  color: $txt-gray-lighest;
-  transition: color 0.35s ease;
-
-  &:focus-visible {
-    outline: 2px solid $brand-color;
-    outline-offset: 4px;
-  }
-}
-
-.seo-reveal-item.active .seo-reveal-trigger {
-  color: $txt-black;
-  font-weight: 600;
-}
-
-.seo-reveal-panel {
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: grid-template-rows 0.45s cubic-bezier(0.16, 1, 0.3, 1);
-
-  >p {
-    // grid items default to min-height: auto, which would ignore the
-    // 0fr track and never fully collapse — this is what lets it.
-    min-height: 0;
-    overflow: hidden;
-    margin: 0;
-    color: $txt-gray;
-    font-size: clamp(1rem, calc(0.9rem + 0.3vw), 1.15rem);
-    line-height: 1.7;
-    opacity: 0;
-    transition: opacity 0.3s ease, padding-bottom 0.45s ease;
-  }
-}
-
-.seo-reveal-item.active .seo-reveal-panel {
-  grid-template-rows: 1fr;
-
-  >p {
-    opacity: 1;
-    padding-bottom: 1.75rem;
-    transition-delay: 0.05s;
-  }
-}
-
 // per-state layer coordinates — left/top/right only (no width/height:
-// every layer renders at its native size, see .image-wrap .layer above).
-// Measured directly off the reference screenshot's five accordion-state
-// panels (each ~798×760px at native scale, matching these PNGs 1:1).
-// Order Management states
+// every layer renders at its native size, see .image-wrap .layer
+// above). Measured directly off the reference screenshot's five
+// accordion-state panels (each ~798×760px at native scale, matching
+// these PNGs 1:1).
 .state-order-calendar .layer-main {
   left: 42%;
   top: 8%;
@@ -519,59 +400,45 @@
   top: 78%;
 }
 
-// SEO states
-.state-seo-default .layer-main {
-  left: 14%;
-  top: 10%;
-}
+/* =========================================================
+   5. BUYER-SPECIFIC FEATURE — icon grid
+   ========================================================= */
+.buyer-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 2.5rem 2rem;
 
-.state-seo-default .layer-sat-1 {
-  left: 6%;
-  top: 46%;
-}
+  @include media-breakpoint-up(md) {
+    grid-template-columns: repeat(3, 1fr);
+  }
 
-.state-seo-blog .layer-main {
-  left: 8%;
-  top: 6%;
-}
+  &-item {
 
-.state-seo-blog .layer-sat-1 {
-  right: 8%;
-  top: 8%;
-}
+    img,
+    svg {
+      display: block;
+      width: 44px;
+      height: 44px;
+      object-fit: contain;
+      margin-bottom: 1rem;
+    }
 
-.state-seo-faqs .layer-main {
-  left: 10%;
-  top: 14%;
-}
+    h4 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
 
-.state-seo-faqs .layer-sat-1 {
-  left: 6%;
-  top: 70%;
-}
-
-.state-seo-analytics .layer-main {
-  left: 20%;
-  top: 14%;
-}
-
-.state-seo-social .layer-main {
-  left: 14%;
-  top: 10%;
-}
-
-.state-seo-social .layer-sat-1 {
-  right: 12%;
-  top: 30%;
-}
-
-.state-seo-email .layer-main {
-  left: 28%;
-  top: 36%;
+    p {
+      color: $txt-body;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+  }
 }
 
 /* =========================================================
-   Customization & Appearance — 4 text blurbs above one big
+   6. CUSTOMIZATION & APPEARANCE — 4 text blurbs above one big
    layered composite panel (code editor, theme picker, storefront
    preview, custom domain bar, product card).
    ========================================================= */
@@ -654,40 +521,183 @@
 }
 
 /* =========================================================
-   5. BUYER-SPECIFIC FEATURE — icon grid
+   7. SEO AND MARKETING — its own image panel (.seo-panel /
+   .seo-panel-visual / .seo-panel-state), deliberately not
+   sharing classes with section 4's .sync-accordion (see that
+   section's comment for why). The list on the right is a
+   different interaction entirely — no accordion, no numbers:
+   every item is its own big heading-sized label. The inactive
+   ones sit muted with nothing below them; hovering (or
+   keyboard-focusing) one darkens its label and smoothly opens
+   its description (js/page-js/features.js's initHoverReveal),
+   while the previously active one closes back down. The
+   open/close height is pure CSS (grid-template-rows 0fr -> 1fr)
+   here, not the JS height-measuring collapse-offcanvas.js uses
+   for the real accordions elsewhere on this site.
    ========================================================= */
-.buyer-grid {
+.seo-panel {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 4rem;
+  align-items: flex-start;
+
+  @include media-breakpoint-up(lg) {
+    gap: 6rem;
+    flex-wrap: nowrap;
+  }
+
+  &-visual {
+    position: relative;
+    flex: 1 1 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+
+    @include media-breakpoint-up(lg) {
+      flex: 0 1 38%;
+      position: sticky;
+      top: 6rem;
+    }
+  }
+
+  &-state {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+
+    &.is-active {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+  }
+}
+
+.seo-reveal-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex: 1 1 100%;
+
+  @include media-breakpoint-up(lg) {
+    flex: 0 1 46%;
+  }
+}
+
+.seo-reveal-item {
+  border-top: 1px solid rgba(0, 0, 0, .12);
+
+  &:last-child {
+    border-bottom: 1px solid rgba(0, 0, 0, .12);
+  }
+}
+
+.seo-reveal-trigger {
+  display: block;
+  width: 100%;
+  background: transparent;
+  border: none;
+  text-align: #{$start-direction};
+  cursor: pointer;
+  padding: 1.35rem 0;
+  font-size: clamp(1.75rem, calc(1.15rem + 2.4vw), 3.25rem);
+  font-weight: 500;
+  line-height: 1.15;
+  color: $txt-gray-lighest;
+  transition: color 0.35s ease;
+
+  &:focus-visible {
+    outline: 2px solid $brand-color;
+    outline-offset: 4px;
+  }
+}
+
+.seo-reveal-item.active .seo-reveal-trigger {
+  color: $txt-black;
+  font-weight: 600;
+}
+
+.seo-reveal-panel {
   display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  gap: 2.5rem 2rem;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 
-  @include media-breakpoint-up(md) {
-    grid-template-columns: repeat(3, 1fr);
+  >p {
+    // grid items default to min-height: auto, which would ignore the
+    // 0fr track and never fully collapse — this is what lets it.
+    min-height: 0;
+    overflow: hidden;
+    margin: 0;
+    color: $txt-gray;
+    font-size: clamp(1rem, calc(0.9rem + 0.3vw), 1.15rem);
+    line-height: 1.7;
+    opacity: 0;
+    transition: opacity 0.3s ease, padding-bottom 0.45s ease;
   }
+}
 
-  &-item {
+.seo-reveal-item.active .seo-reveal-panel {
+  grid-template-rows: 1fr;
 
-    img,
-    svg {
-      display: block;
-      width: 44px;
-      height: 44px;
-      object-fit: contain;
-      margin-bottom: 1rem;
-    }
-
-    h4 {
-      font-size: 1.15rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-    }
-
-    p {
-      color: $txt-body;
-      font-size: 0.95rem;
-      line-height: 1.6;
-    }
+  >p {
+    opacity: 1;
+    padding-bottom: 1.75rem;
+    transition-delay: 0.05s;
   }
+}
+
+// per-state layer coordinates — same left/top/right-only, native-size
+// convention as section 4's .state-order-* rules above.
+.state-seo-default .layer-main {
+  left: 0;
+  top: 10%;
+}
+
+.state-seo-default .layer-sat-1 {
+  left: 0;
+  top: 46%;
+}
+
+.state-seo-blog .layer-main {
+  left: 0;
+  top: 6%;
+}
+
+.state-seo-blog .layer-sat-1 {
+  right: 0;
+  top: 8%;
+}
+
+.state-seo-faqs .layer-main {
+  left: 0;
+  top: 14%;
+}
+
+.state-seo-faqs .layer-sat-1 {
+  left: 0;
+  top: 70%;
+}
+
+.state-seo-analytics .layer-main {
+  left: 20%;
+  top: 14%;
+}
+
+.state-seo-social .layer-main {
+  left: 0;
+  top: 10%;
+}
+
+.state-seo-social .layer-sat-1 {
+  right: 12%;
+  top: 30%;
+}
+
+.state-seo-email .layer-main {
+  left: 0;
+  top: 36%;
 }
 
 /* =========================================================
