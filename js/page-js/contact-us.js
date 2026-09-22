@@ -5,6 +5,8 @@
    scroll, inspired by wearemotto.com/contact).
    ========================================================= */
 
+import { revealSection } from "../text-effects.js";
+
 gsap.registerPlugin(ScrollTrigger);
 
 var prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -127,21 +129,7 @@ if (!prefersReducedMotion) {
 
     /* ---------- Section heading + description reveals ---------- */
 
-    document.querySelectorAll(".section").forEach(function (section) {
-        var heading = section.querySelector(".section-heading");
-        var descs = section.querySelectorAll(".section-text-desc");
-
-        var tl = gsap.timeline({
-            scrollTrigger: { trigger: section, start: "top 80%", toggleActions: "play none none reverse" }
-        });
-
-        if (heading) {
-            tl.from(heading, { opacity: 0, filter: "blur(20px)", y: 20, duration: 1, ease: "power2.out" });
-        }
-        if (descs.length) {
-            tl.from(descs, { y: 30, opacity: 0, duration: 0.8, stagger: 0.2, ease: "power2.out" }, "-=0.8");
-        }
-    });
+    document.querySelectorAll(".section").forEach(revealSection);
 
     var revealGroup = function (containerSelector, itemSelector, vars) {
         document.querySelectorAll(containerSelector).forEach(function (container) {

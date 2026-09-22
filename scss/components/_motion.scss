@@ -20,3 +20,11 @@
   overflow: hidden;
   border-radius: inherit;
 }
+
+/* "Scroll Highlight" paragraph words (js/text-effects.js — revealParagraph).
+   Opacity is set inline by GSAP at split time; this just gives each word
+   its own box so the per-word opacity scrub reads cleanly. */
+.hl-word {
+  display: inline-block;
+  will-change: opacity;
+}

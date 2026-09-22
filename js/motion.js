@@ -1,3 +1,5 @@
+import { revealHeading, revealSection } from "./text-effects.js";
+
 gsap.registerPlugin(ScrollTrigger);
 
 var prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -85,26 +87,16 @@ if (window.CustomEase) {
 }
 
 /* =========================================================
-   HERO SECTION — letters, subtext, CTAs
+   HERO SECTION — headline words, subtext, CTAs
    ========================================================= */
 
-// ---------- Split heading letters ----------
+// ---------- Split heading into words ("Fade Up Words") ----------
 var heading = document.querySelector("#headline");
-var html = heading.innerHTML;
-heading.innerHTML = html.replace(/(<[^>]+>)|([^<\s])/g, function (m, tag, ch) {
-    if (tag) return tag;
-    return '<span class="letter">' + ch + '</span>';
-});
-var letters = document.querySelectorAll(".letter");
 
 var heroTl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
-// Letters cascade in with a soft 3D rotation + blur
-heroTl.from(letters, {
-    y: 60, opacity: 0, rotateX: -90, filter: "blur(8px)",
-    duration: 1, ease: "power2.out",
-    stagger: { each: 0.025, from: "start" }
-}, 0);
+// Words rise up from behind their masked wrapper while fading in
+revealHeading(heading, { timeline: heroTl, position: 0 });
 
 // Subtitle
 heroTl.from("#subtext", { y: 20, opacity: 0, duration: 0.6 }, "-=0.5");
@@ -116,6 +108,9 @@ heroTl.from(".btn-hero-cta", {
 
 /* =========================================================
    PANEL GROUP #1 — Browser / editor scene
+   Held on its own timeline so it can be dropped into heroTl
+   AFTER the text has fully finished revealing (see heroTl.add
+   below) — text reveal, then image, never overlapping.
    ========================================================= */
 
 var browserTl = gsap.timeline({ defaults: { ease: "power3.out" } });
@@ -128,7 +123,7 @@ browserTl.from("#browser", {
     filter: "blur(14px)",
     duration: 1.1,
     ease: "power3.out"
-}, "-=0.2");
+}, 0);
 
 // 2. Satellite panels fly to their exact resting position from a slight
 //    outward offset, softly blurred, staggered so they feel orchestrated
@@ -182,6 +177,10 @@ if (!prefersReducedMotion) {
         });
     });
 }
+
+// Text reveal, then image: the browser scene only starts once every
+// hero text tween (headline words, subtext, CTA) has fully finished.
+heroTl.add(browserTl, ">");
 
 /* =========================================================
    PANEL GROUP #2 — Calendar / product scene
@@ -276,36 +275,7 @@ if (!prefersReducedMotion) {
    ========================================================= */
 
 if (!prefersReducedMotion) {
-    document.querySelectorAll(".section").forEach((section) => {
-        const sectionHeading = section.querySelector(".section-heading");
-        const sectionDescs = section.querySelectorAll(".section-text-desc");
-
-        const sectionTl = gsap.timeline({
-            scrollTrigger: {
-                trigger: section,
-                start: "top 80%",
-                toggleActions: "play none none reverse",
-                // markers: true, // uncomment while debugging trigger points
-            }
-        });
-
-        if (sectionHeading) {
-            sectionTl.from(sectionHeading, {
-                opacity: 0, filter: "blur(20px)", y: 20,
-                duration: 1, ease: "power2.out"
-            });
-        }
-
-        if (sectionDescs.length) {
-            sectionTl.from(sectionDescs, {
-                y: 30,
-                opacity: 0,
-                duration: 0.8,
-                stagger: 0.2,
-                ease: "power2.out",
-            }, "-=0.8");
-        }
-    });
+    document.querySelectorAll(".section").forEach(revealSection);
 
     /* =====================================================
        GENERIC GRID / LIST REVEALS

@@ -7,6 +7,8 @@
    Swiper instances, ...).
    ========================================================= */
 
+import { revealHeading, revealSection } from "../text-effects.js";
+
 gsap.registerPlugin(ScrollTrigger);
 
 var prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -74,21 +76,26 @@ if (prefersReducedMotion) {
     }
 
     /* =========================================================
-       HERO — heading, subtext, floating panel scene
+       HERO — heading ("Fade Up Words"), subtext, floating panel
+       scene. Text reveals fully first, then the image scene
+       starts — no overlap between the two groups.
        ========================================================= */
+
+    var heroHeading = document.querySelector(".first-fold-content .title");
 
     var heroTl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
-    heroTl.from(".first-fold-content .title", { y: 30, opacity: 0, filter: "blur(10px)", duration: 0.9 }, 0);
-    heroTl.from(".first-fold-content .desc", { y: 20, opacity: 0, duration: 0.7 }, "-=0.55");
+    revealHeading(heroHeading, { timeline: heroTl, position: 0 });
+    heroTl.from(".first-fold-content .desc", { y: 20, opacity: 0, duration: 0.6 }, "-=0.5");
 
     // 1. Main artboard reveals through a clip-path wipe — the mask rises
     //    to uncover the image (paired with a slight zoom-settle) instead
-    //    of a plain fade, so it reads as a deliberate "unveil".
+    //    of a plain fade, so it reads as a deliberate "unveil". It only
+    //    starts once the text above has fully finished revealing.
     heroTl.fromTo("#browser img",
         { clipPath: "inset(100% 0% 0% 0%)", scale: 1.12 },
         { clipPath: "inset(0% 0% 0% 0%)", scale: 1, duration: 1.3, ease: "power4.out" },
-        "-=0.35"
+        ">"
     );
 
     // 2. Satellite panels fly in from the direction of their resting corner.
@@ -135,30 +142,7 @@ if (prefersReducedMotion) {
        enters the viewport.
        ========================================================= */
 
-    document.querySelectorAll(".section").forEach(function (section) {
-        var sectionHeading = section.querySelector(".section-heading");
-        var sectionDescs = section.querySelectorAll(".section-text-desc");
-
-        var sectionTl = gsap.timeline({
-            scrollTrigger: {
-                trigger: section,
-                start: "top 80%",
-                toggleActions: "play none none reverse",
-            }
-        });
-
-        if (sectionHeading) {
-            sectionTl.from(sectionHeading, {
-                opacity: 0, filter: "blur(20px)", y: 20, duration: 1, ease: "power2.out"
-            });
-        }
-
-        if (sectionDescs.length) {
-            sectionTl.from(sectionDescs, {
-                y: 30, opacity: 0, duration: 0.8, stagger: 0.2, ease: "power2.out",
-            }, "-=0.8");
-        }
-    });
+    document.querySelectorAll(".section").forEach(revealSection);
 
     /* =========================================================
        4-STEP PROCESS — each content-block gets its own scene:

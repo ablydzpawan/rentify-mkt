@@ -5,6 +5,8 @@
    text marquee.
    ========================================================= */
 
+import { revealHeading, revealSection } from "../text-effects.js";
+
 gsap.registerPlugin(ScrollTrigger);
 
 var prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -146,19 +148,24 @@ if (!prefersReducedMotion) {
         revealEase = "framerReveal";
     }
 
-    /* ---------- Hero heading + floating images ---------- */
+    /* ---------- Hero heading ("Fade Up Words") + floating images ----------
+       Text reveals fully first, then the floating product images start —
+       no overlap between the two groups. */
+
+    var heroHeading = document.querySelector(".faq-hero-content .title");
 
     var heroTl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
-    heroTl.from(".faq-hero-content .title", { y: 30, opacity: 0, filter: "blur(10px)", duration: 0.9 }, 0);
-    heroTl.from(".faq-hero-content .desc", { y: 20, opacity: 0, duration: 0.7 }, "-=0.55");
+    revealHeading(heroHeading, { timeline: heroTl, position: 0 });
+    heroTl.from(".faq-hero-content .desc", { y: 20, opacity: 0, duration: 0.6 }, "-=0.5");
 
     // Floating product images clip-reveal in (mask rises to uncover each
-    // one, paired with a zoom-settle) instead of a plain fade.
+    // one, paired with a zoom-settle) instead of a plain fade. Only starts
+    // once the text above has fully finished revealing.
     heroTl.fromTo(".faq-hero-float img",
         { clipPath: "inset(100% 0% 0% 0%)", scale: 1.15 },
         { clipPath: "inset(0% 0% 0% 0%)", scale: 1, duration: 0.9, stagger: 0.1, ease: "power3.out" },
-        "-=0.5"
+        ">"
     );
 
     heroTl.eventCallback("onComplete", function () {
@@ -177,22 +184,7 @@ if (!prefersReducedMotion) {
 
     /* ---------- Section heading + description reveals ---------- */
 
-    document.querySelectorAll(".section").forEach(function (section) {
-        var heading = section.querySelector(".section-heading");
-        var descs = section.querySelectorAll(".section-text-desc");
-        if (!heading && !descs.length) return;
-
-        var tl = gsap.timeline({
-            scrollTrigger: { trigger: section, start: "top 80%", toggleActions: "play none none reverse" }
-        });
-
-        if (heading) {
-            tl.from(heading, { opacity: 0, filter: "blur(20px)", y: 20, duration: 1, ease: "power2.out" });
-        }
-        if (descs.length) {
-            tl.from(descs, { y: 30, opacity: 0, duration: 0.8, stagger: 0.2, ease: "power2.out" }, "-=0.8");
-        }
-    });
+    document.querySelectorAll(".section").forEach(revealSection);
 
     /* ---------- FAQ tabs + first category's items ---------- */
 
