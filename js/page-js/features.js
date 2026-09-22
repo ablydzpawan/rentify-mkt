@@ -104,8 +104,10 @@ function initLayerReveals(scope, opts) {
         });
 
         if (opts.clip) {
+            // "right" (default) wipes left-to-right; "bottom" wipes bottom-to-top.
+            var clipFrom = opts.clipFrom === "bottom" ? "inset(100% 0% 0% 0%)" : "inset(0% 100% 0% 0%)";
             tl.fromTo(mainLayer,
-                { clipPath: "inset(0% 100% 0% 0%)", opacity: 1 },
+                { clipPath: clipFrom, opacity: 1 },
                 { clipPath: "inset(0% 0% 0% 0%)", duration: 1, ease: "power4.out" },
                 0
             );
@@ -131,12 +133,12 @@ function initLayerReveals(scope, opts) {
 }
 
 /* =========================================================
-   SYNCED ACCORDION — "Simplify Your Order Management" and
-   "SEO and Marketing". The custom single-open collapse (same
-   collapse:show pattern as faq.js — see js/collapse-offcanvas.js)
-   drives which `.state` is visible in the shared image panel.
-   Wired unconditionally; the crossfade itself is skipped under
-   reduced motion (the newly active state just appears).
+   SYNCED ACCORDION — "Simplify Your Order Management". The
+   custom single-open collapse (same collapse:show pattern as
+   faq.js — see js/collapse-offcanvas.js) drives which `.state`
+   is visible in the shared image panel. Wired unconditionally;
+   the crossfade itself is skipped under reduced motion (the
+   newly active state just appears).
    ========================================================= */
 
 function initSyncedAccordion(rootSelector) {
@@ -191,6 +193,70 @@ function initSyncedAccordion(rootSelector) {
 }
 
 /* =========================================================
+   HOVER REVEAL — "SEO and Marketing". No accordion here: every
+   item's description sits visible at all times, and hovering
+   (or focusing) a list item swaps the shared image panel with
+   an "Image Reveal — Bottom to Top" wipe — a clip-path mask that
+   rises up over the incoming image instead of a plain crossfade.
+   Mirrors initSyncedAccordion's state-swap plumbing but trades
+   the click-to-expand trigger for mouseenter/focus, since there's
+   no collapsed content left to expand.
+   ========================================================= */
+
+function initHoverReveal(rootSelector) {
+    document.querySelectorAll(rootSelector).forEach(function (root) {
+        var triggers = root.querySelectorAll(".faq-list-link[data-image-state]");
+        var visual = root.querySelector(".sync-accordion-visual");
+        if (!triggers.length || !visual) return;
+
+        var states = {};
+        visual.querySelectorAll(".state").forEach(function (state) {
+            states[state.getAttribute("data-state")] = state;
+        });
+
+        function playState(key) {
+            var state = states[key];
+            if (!state || state.classList.contains("is-active")) return;
+
+            Object.keys(states).forEach(function (k) {
+                states[k].classList.remove("is-active");
+            });
+            state.classList.add("is-active");
+
+            if (prefersReducedMotion) return;
+
+            var img = state.querySelector(".image-wrap .layer");
+            if (!img) return;
+
+            gsap.killTweensOf(img);
+            gsap.fromTo(img,
+                { clipPath: "inset(100% 0% 0% 0%)", scale: 1.06 },
+                { clipPath: "inset(0% 0% 0% 0%)", scale: 1, duration: 0.8, ease: "power3.out" }
+            );
+        }
+
+        function activate(trigger) {
+            var key = trigger.getAttribute("data-image-state");
+            if (!key) return;
+
+            triggers.forEach(function (t) {
+                t.closest(".faq-list-item").classList.remove("active");
+                t.removeAttribute("aria-current");
+            });
+            trigger.closest(".faq-list-item").classList.add("active");
+            trigger.setAttribute("aria-current", "true");
+
+            playState(key);
+        }
+
+        triggers.forEach(function (trigger) {
+            trigger.addEventListener("mouseenter", function () { activate(trigger); });
+            trigger.addEventListener("focus", function () { activate(trigger); });
+        });
+    });
+}
+
+/* =========================================================
    TAB PANELS — "Checkout and Pricing". Same pill-tabs +
    fade-in pattern faq.js uses for its category tabs, plus a
    layer-reveal replay on the newly active panel (skipped
@@ -236,7 +302,7 @@ function initTabPanels(tabsSelector, panelSelector) {
 }
 
 initSyncedAccordion("#order-mgmt-accordion");
-initSyncedAccordion("#seo-accordion");
+initHoverReveal("#seo-accordion");
 initTabPanels(".checkout-tabs .pill-tabs", ".checkout-panel");
 
 if (prefersReducedMotion) {
@@ -347,15 +413,23 @@ if (prefersReducedMotion) {
     revealGroup(".customization-intro", "div", { y: 20, stagger: 0.08 });
     revealGroup(".system-grid", ".system-grid-item", { y: 30, stagger: 0.1 });
 
+    // SEO and Marketing's list items have no collapse animation of their
+    // own any more (see initHoverReveal above), so they get the same
+    // fade + rise scroll-entrance every other list on this page uses.
+    revealGroup("#seo-accordion", ".faq-list-item", { y: 20, stagger: 0.08 });
+
     initLayerReveals(document.querySelectorAll(".listing-block-media"), { clip: true });
     initLayerReveals(document.querySelectorAll(".customization-panel"));
     initLayerReveals(document.querySelectorAll(".system-grid-media"), { clip: true });
 
     // initial entrance for the default-active state/panel in each
     // synced accordion and the tab group — subsequent states replay
-    // their own reveal on click/activation (see initSyncedAccordion
-    // and initTabPanels above).
-    initLayerReveals(document.querySelectorAll(".sync-accordion-visual .state.is-active"));
+    // their own reveal on activation (see initSyncedAccordion,
+    // initHoverReveal and initTabPanels above). SEO's panel uses the
+    // same bottom-to-top clip reveal its hover swap uses, everywhere
+    // else keeps the blur/scale settle.
+    initLayerReveals(document.querySelectorAll("#order-mgmt-accordion .sync-accordion-visual .state.is-active"));
+    initLayerReveals(document.querySelectorAll("#seo-accordion .sync-accordion-visual .state.is-active"), { clip: true, clipFrom: "bottom" });
     initLayerReveals(document.querySelectorAll(".checkout-panel.is-active .checkout-panel-visual"));
 
     window.addEventListener("load", function () { ScrollTrigger.refresh(); });

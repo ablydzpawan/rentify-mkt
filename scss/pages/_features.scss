@@ -213,10 +213,11 @@
 .sync-accordion {
   display: flex;
   flex-flow: row wrap;
-  gap: 2.5rem;
+  gap: 4rem;
   align-items: flex-start;
 
   @include media-breakpoint-up(lg) {
+    gap: 6rem;
     flex-wrap: nowrap;
   }
 
@@ -224,13 +225,12 @@
     position: relative;
     flex: 1 1 100%;
     aspect-ratio: 798 / 760;
-
     overflow: hidden;
     background: transparent linear-gradient(133deg, #A9A9FE 0%, #93CAFB 44%, #F0F6B6 100%);
     border-radius: 30px;
 
     @include media-breakpoint-up(lg) {
-      flex: 0 1 48%;
+      flex: 0 1 58%;
       position: sticky;
       top: 6rem;
     }
@@ -265,6 +265,14 @@
 // rotating chevron. Scoped to this modifier class only so the real
 // FAQ page's numbered list is untouched.
 .faq-list-chevron {
+  .faq-list-item {
+    padding: 1rem 0;
+
+    &:first-child {
+      border: none;
+    }
+  }
+
   .faq-list-link {
     display: flex;
     align-items: center;
@@ -279,14 +287,56 @@
 
   .chevron {
     flex-shrink: 0;
-    width: 18px;
-    height: 18px;
+    width: 2rem;
+    height: 2rem;
     color: $txt-black;
     transition: transform 0.25s ease;
   }
 
   .faq-list-link[aria-expanded="true"] .chevron {
     transform: rotate(180deg);
+  }
+}
+
+// Hover-reveal variant of .faq-list-numbered (SEO and Marketing) —
+// there's no accordion here: every item's description stays visible
+// and hovering (or keyboard-focusing) an item is what selects it, so
+// this drops the plus/minus expand indicator entirely and instead
+// highlights whichever item is currently selected.
+.faq-list-numbered--hover-reveal {
+  .faq-list-link {
+    cursor: pointer;
+
+    &:before,
+    &:after {
+      content: none;
+    }
+  }
+
+  .faq-num,
+  .faq-question,
+  .faq_data {
+    transition: color 0.3s ease;
+  }
+
+  .faq-list-item:not(.active) {
+
+    .faq-num,
+    .faq-question {
+      color: $txt-gray-light;
+    }
+
+    .faq_data {
+      color: $txt-gray-lighest;
+    }
+  }
+
+  .faq-list-item.active {
+
+    .faq-num,
+    .faq-question {
+      color: $brand-color;
+    }
   }
 }
 
@@ -616,7 +666,7 @@
   justify-content: space-between;
   gap: 2rem;
   padding: clamp(1.75rem, 4vw, 4rem);
-  border-radius: 30px;
+  border-radius: 50px;
   color: #fff;
 
   &.is-active {
@@ -637,14 +687,14 @@
     }
 
     h3 {
-      font-size: clamp(1.5rem, calc(1.25rem + 1.5vw), 2.5rem);
+      font-size: clamp(1.5rem, calc(1.25rem + 1.5vw), 2rem);
       font-weight: 600;
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
     }
 
     p {
-      font-size: 1.05rem;
-      line-height: 1.6;
+      font-size: 1.5rem;
+      line-height: 1.4;
       opacity: 0.9;
     }
   }
@@ -653,7 +703,8 @@
     position: relative;
     flex: 1 1 100%;
     aspect-ratio: 16/11;
-    border-radius: 20px;
+    padding: 4rem 4rem;
+    border-radius: 30px;
     overflow: hidden;
     background: rgba(255, 255, 255, 0.08);
 
