@@ -1,0 +1,95 @@
+/*
+  Custom cursor (js/cursor.js): a small dot plus a trailing ring
+  that grows into a soft highlight over interactive elements.
+  Only ever present when js/cursor.js has added
+  html.has-custom-cursor (hover-capable pointer, motion allowed).
+*/
+
+html.has-custom-cursor,
+html.has-custom-cursor * {
+  cursor: none !important;
+}
+
+.custom-cursor-dot,
+.custom-cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0;
+  will-change: transform;
+}
+
+.custom-cursor-dot {
+  width: 8px;
+  height: 8px;
+  background: $brand-color;
+  transition: opacity .2s ease;
+
+  &.is-hidden {
+    opacity: 0;
+  }
+}
+
+.custom-cursor-ring {
+  width: 38px;
+  height: 38px;
+  border: 1.5px solid rgba(45, 133, 254, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    width .3s cubic-bezier(.16, 1, .3, 1),
+    height .3s cubic-bezier(.16, 1, .3, 1),
+    border-color .3s ease,
+    background-color .3s ease,
+    border-radius .3s ease,
+    opacity .2s ease;
+
+  &.is-hover {
+    width: 64px;
+    height: 64px;
+    border-color: transparent;
+    background: rgba(45, 133, 254, 0.12);
+  }
+
+  &.is-active {
+    width: 30px;
+    height: 30px;
+  }
+
+  &.is-text {
+    width: 4px;
+    height: 26px;
+    border-radius: 2px;
+    background: rgba(45, 133, 254, 0.6);
+    border-color: transparent;
+  }
+
+  // Swiper carousels — a filled pill with a "Drag" label instead of the
+  // plain hover ring, so the draggable strip reads as draggable.
+  &.is-drag {
+    width: 84px;
+    height: 84px;
+    background: $brand-color;
+    border-color: transparent;
+
+    .custom-cursor-label {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+}
+
+.custom-cursor-label {
+  opacity: 0;
+  transform: scale(0.5);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #fff;
+  white-space: nowrap;
+  transition: opacity .25s ease, transform .25s ease;
+}

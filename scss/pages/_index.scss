@@ -75,9 +75,17 @@
    }
  }
 
- .letter {
+ .word-wrap {
    display: inline-block;
-   will-change: transform, filter, opacity;
+   overflow: hidden;
+   vertical-align: top;
+   padding-bottom: 0.15em;
+   margin-bottom: -0.15em;
+ }
+
+ .word {
+   display: inline-block;
+   will-change: transform, opacity;
  }
 
 

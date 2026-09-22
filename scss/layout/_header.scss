@@ -150,19 +150,49 @@
       }
     }
 
-    & span {
-      display: inline-block;
-      transition: transform 0.3s cubic-bezier(0.2, 1, 0.8, 1);
-    }
-
     &:hover,
     &:focus-visible {
       color: $txt-black;
     }
 
-    &:hover span,
-    &:focus-visible span {
-      transform: translate3d(0, -2px, 0);
+    // ---------- Text-roll hover (js/nav-text-roll.js) ----------
+    // Each word becomes a masked (overflow-hidden) window onto two
+    // stacked copies of itself. On hover both copies slide up a full
+    // line: the original scrolls out the top while the brand-colored
+    // duplicate scrolls in from the bottom, staggered per word via
+    // --i for a cascading roll across the label.
+    .nav-roll {
+      display: inline-block;
+    }
+
+    .nav-roll-word {
+      display: inline-block;
+      position: relative;
+      overflow: hidden;
+      vertical-align: top;
+    }
+
+    .nav-roll-copy {
+      display: block;
+    }
+
+    .nav-roll-after {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      color: $brand-color;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .nav-roll-copy {
+        transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        transition-delay: calc(var(--i, 0) * 45ms);
+      }
+
+      &:hover .nav-roll-copy,
+      &:focus-visible .nav-roll-copy {
+        transform: translate3d(0, -100%, 0);
+      }
     }
   }
 
