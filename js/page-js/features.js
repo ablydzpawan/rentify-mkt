@@ -103,7 +103,15 @@ function initLayerReveals(scope, opts) {
             },
         });
 
-        if (opts.clip) {
+        if (opts.clipShape === "aperture") {
+            // Camera-iris reveal: a circular mask irises open from the
+            // image's own center instead of wiping in from an edge.
+            tl.fromTo(mainLayer,
+                { clipPath: "circle(0% at 50% 50%)", scale: 1.08, opacity: 1 },
+                { clipPath: "circle(75% at 50% 50%)", scale: 1, duration: 1, ease: "power3.out" },
+                0
+            );
+        } else if (opts.clip) {
             // "right" (default) wipes left-to-right; "bottom" wipes bottom-to-top.
             var clipFrom = opts.clipFrom === "bottom" ? "inset(100% 0% 0% 0%)" : "inset(0% 100% 0% 0%)";
             tl.fromTo(mainLayer,
@@ -197,12 +205,12 @@ function initSyncedAccordion(rootSelector) {
    item is a big heading-sized label; hovering (or focusing) one
    opens its description with a pure-CSS height reveal (see
    .seo-reveal-panel in scss/pages/_features.scss) and swaps the
-   shared image panel with an "Image Reveal — Bottom to Top" wipe
-   — a clip-path mask that rises up over the incoming image
-   instead of a plain crossfade. Mirrors initSyncedAccordion's
-   state-swap plumbing but trades the click-to-expand trigger for
-   mouseenter/focus, since there's no collapsed content left to
-   expand.
+   shared image panel with an "Image Aperture Reveal" — a circular
+   clip-path mask that irises open from the image's own center,
+   like a camera aperture, instead of a plain crossfade. Mirrors
+   initSyncedAccordion's state-swap plumbing but trades the
+   click-to-expand trigger for mouseenter/focus, since there's no
+   collapsed content left to expand.
    ========================================================= */
 
 function initHoverReveal(rootSelector) {
@@ -232,8 +240,8 @@ function initHoverReveal(rootSelector) {
 
             gsap.killTweensOf(img);
             gsap.fromTo(img,
-                { clipPath: "inset(100% 0% 0% 0%)", scale: 1.06 },
-                { clipPath: "inset(0% 0% 0% 0%)", scale: 1, duration: 0.8, ease: "power3.out" }
+                { clipPath: "circle(0% at 50% 50%)", scale: 1.06 },
+                { clipPath: "circle(75% at 50% 50%)", scale: 1, duration: 0.8, ease: "power3.out" }
             );
         }
 
@@ -532,7 +540,7 @@ if (prefersReducedMotion) {
     // same bottom-to-top clip reveal its hover swap uses, everywhere
     // else keeps the blur/scale settle.
     initLayerReveals(document.querySelectorAll("#order-mgmt-accordion .sync-accordion-visual .state.is-active"));
-    initLayerReveals(document.querySelectorAll("#seo-accordion .seo-panel-visual .seo-panel-state.is-active"), { clip: true, clipFrom: "bottom" });
+    initLayerReveals(document.querySelectorAll("#seo-accordion .seo-panel-visual .seo-panel-state.is-active"), { clipShape: "aperture" });
     initLayerReveals(document.querySelectorAll(".checkout-panel.is-active .checkout-panel-visual"));
 
     window.addEventListener("load", function () { ScrollTrigger.refresh(); });
