@@ -1,7 +1,8 @@
 /* =========================================================
-   CUSTOM CURSOR — a small dot plus a trailing ring that follows
-   the pointer, growing into a soft highlight over links, buttons
-   and hero imagery for a tactile hover affordance.
+   CUSTOM CURSOR — common module, loaded via its own <script>
+   tag on every page. A small dot plus a trailing ring that
+   follows the pointer, growing into a soft highlight over links,
+   buttons and hero imagery for a tactile hover affordance.
 
    Self-contained (no GSAP dependency) so it can run on every
    page, including the lightweight ones that don't load the

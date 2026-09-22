@@ -1,8 +1,9 @@
 /* =========================================================
-   COLLAPSE + OFFCANVAS — vanilla replacements for the two
-   Bootstrap JS components this site actually used (the FAQ /
-   footer accordions and the mobile nav drawer), so the ~70KB
-   Bootstrap bundle can be dropped entirely.
+   COLLAPSE + OFFCANVAS — common module, loaded via its own
+   <script type="module"> tag on every page. Vanilla replacements
+   for the two Bootstrap JS components this site actually used
+   (the FAQ/footer accordions and the mobile nav drawer), so the
+   ~70KB Bootstrap bundle can be dropped entirely.
 
    Reads the same data-bs-toggle / data-bs-target / data-bs-dismiss
    markup Bootstrap's own JS auto-wired, and drives the same
@@ -11,9 +12,9 @@
    to change — only the behavior behind them.
 
    Self-initializes on import (wires up every matching element
-   already in the page), and also exports showCollapse/hideCollapse
-   for pages (faq.js, features.js) that need to close sibling
-   accordion items programmatically.
+   already in the page), and also exports hideCollapse for pages
+   (faq.js, features.js) that need to close sibling accordion
+   items programmatically.
    ========================================================= */
 
 function resolveTarget(trigger) {
@@ -54,7 +55,7 @@ function onHeightTransitionEnd(target, cb) {
     target.addEventListener("transitionend", handler);
 }
 
-export function showCollapse(target) {
+function showCollapse(target) {
     if (!target || target.classList.contains("collapsing") || isCollapseShown(target)) return;
 
     target.classList.remove("collapse");

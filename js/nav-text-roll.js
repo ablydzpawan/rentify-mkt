@@ -1,5 +1,6 @@
 /* =========================================================
-   DESKTOP NAV — text-roll hover effect.
+   DESKTOP NAV — text-roll hover effect. Common module, loaded
+   via its own <script> tag on every page.
    Splits each nav label into per-word masked windows, each
    holding two stacked copies of the word (see scss/layout/
    _header.scss for the mask/translate styling): on hover both

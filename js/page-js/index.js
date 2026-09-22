@@ -1,4 +1,11 @@
-import { revealHeading, revealSection } from "./text-effects.js";
+/* =========================================================
+   HOME — page motion layer. Lenis + GSAP + ScrollTrigger setup,
+   sticky header, nav pill, hero headline/panel scenes, section
+   reveals, Swiper carousels, the accordion FAQ preview, and the
+   integrations SVG draw — everything specific to index.html.
+   ========================================================= */
+
+import { revealHeading, revealSection } from "../text-effects.js";
 
 gsap.registerPlugin(ScrollTrigger);
 

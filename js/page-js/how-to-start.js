@@ -1,8 +1,8 @@
 /* =========================================================
    HOW TO START — page motion layer.
-   Mirrors js/motion.js (Lenis + GSAP + ScrollTrigger setup,
-   sticky header, nav pill, scroll reveals) but scoped to the
-   elements that actually exist on this page, so it doesn't
+   Mirrors js/page-js/index.js (Lenis + GSAP + ScrollTrigger
+   setup, sticky header, nav pill, scroll reveals) but scoped to
+   the elements that actually exist on this page, so it doesn't
    depend on homepage-only markup (#headline, .calendar-stage,
    Swiper instances, ...).
    ========================================================= */

@@ -1,7 +1,8 @@
 /* =========================================================
    PRICING — page motion layer. Same Lenis + GSAP + ScrollTrigger
-   setup as js/motion.js and js/page-js/how-to-start.js, scoped to
-   this page's own markup (pricing cards, comparison table).
+   setup as js/page-js/index.js and js/page-js/how-to-start.js,
+   scoped to this page's own markup (pricing cards, comparison
+   table).
    ========================================================= */
 
 import { revealHeading, revealSection } from "../text-effects.js";

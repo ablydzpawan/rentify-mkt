@@ -1,7 +1,8 @@
 /* =========================================================
-   TEXT EFFECTS — shared heading/paragraph reveal helpers, used
-   by every page's motion layer (js/motion.js + js/page-js/*.js)
-   so headings and paragraphs animate identically site-wide:
+   TEXT EFFECTS — common helper module (imported by every
+   js/page-js/*.js page script, not loaded via its own <script>
+   tag). Shared heading/paragraph reveal helpers so headings and
+   paragraphs animate identically site-wide:
 
    - Headings ("Fade Up Words"): the hero title treatment —
      split into words, each rising up from behind a masked
@@ -22,7 +23,7 @@ function splitTokens(el, wordFn) {
     });
 }
 
-export function headingWords(el) {
+function headingWords(el) {
     if (!el) return [];
     if (!el.dataset.wordSplit) {
         el.dataset.wordSplit = "1";
@@ -33,7 +34,7 @@ export function headingWords(el) {
     return el.querySelectorAll(".word");
 }
 
-export function highlightWords(el) {
+function highlightWords(el) {
     if (!el) return [];
     if (!el.dataset.hlSplit) {
         el.dataset.hlSplit = "1";
@@ -79,7 +80,7 @@ export function revealHeading(el, opts) {
    Words sit dimmed, then brighten in sequence as the paragraph
    scrolls through the trigger range — scrubbed to scroll position,
    not a one-shot play-on-enter. */
-export function revealParagraph(el, opts) {
+function revealParagraph(el, opts) {
     var words = highlightWords(el);
     if (!words.length) return null;
     opts = opts || {};

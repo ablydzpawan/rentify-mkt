@@ -132,10 +132,10 @@ function initLayerReveals(scope, opts) {
 
 /* =========================================================
    SYNCED ACCORDION — "Simplify Your Order Management" and
-   "SEO and Marketing". Bootstrap's native single-open collapse
-   (same show.bs.collapse pattern as faq.js) drives which
-   `.state` is visible in the shared image panel. Wired
-   unconditionally; the crossfade itself is skipped under
+   "SEO and Marketing". The custom single-open collapse (same
+   collapse:show pattern as faq.js — see js/collapse-offcanvas.js)
+   drives which `.state` is visible in the shared image panel.
+   Wired unconditionally; the crossfade itself is skipped under
    reduced motion (the newly active state just appears).
    ========================================================= */
 
