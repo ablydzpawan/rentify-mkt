@@ -92,6 +92,14 @@
                 <img src="./images/feature-hero-pie-chart.png" alt="Pie chart widget">
               </div>
             </div>
+            <!-- The layered panel canvas above is desktop-only (see
+                 .features-hero-canvas / .features-hero-mobile in
+                 scss/pages/_features.scss) — its five absolutely
+                 positioned, native-sized panels don't have room to
+                 lay out sensibly on small screens, so mobile gets
+                 this single flat image instead. -->
+            <img class="features-hero-mobile" src="./images/hero-features.png"
+              alt="Rentify dashboard preview">
           </div>
         </section>
 
@@ -1379,10 +1387,17 @@
     <script src='./js/j4CustomEase.min.js'></script>
     <script type="module" src="./js/collapse-offcanvas.js"></script>
     <script src="./js/cursor.js"></script>
+    <script src="./js/back-to-top.js"></script>
     <script src="./js/nav-text-roll.js"></script>
     <script type="module" src="./js/page-js/features.js"></script>
 
 
+    <button type="button" class="back-to-top" aria-label="Back to top">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 19V5M5 12l7-7 7 7"></path>
+      </svg>
+    </button>
   </body>
 
 </html>

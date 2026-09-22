@@ -23,6 +23,10 @@ if (!prefersReducedMotion && window.Lenis) {
     lenis.on("scroll", ScrollTrigger.update);
     gsap.ticker.add(function (time) { lenis.raf(time * 1000); });
     gsap.ticker.lagSmoothing(0);
+
+    // exposed so js/back-to-top.js can scroll through Lenis's virtual
+    // scroll instead of a plain window.scrollTo (which would desync it)
+    window.lenis = lenis;
 }
 
 /* ---------- Sticky header ---------- */

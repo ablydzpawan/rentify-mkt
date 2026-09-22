@@ -35,6 +35,10 @@ if (!prefersReducedMotion && window.Lenis) {
 
     // Lenis already smooths the frame timing; let GSAP defer to it.
     gsap.ticker.lagSmoothing(0);
+
+    // exposed so js/back-to-top.js can scroll through Lenis's virtual
+    // scroll instead of a plain window.scrollTo (which would desync it)
+    window.lenis = lenis;
 }
 
 /* =========================================================
@@ -335,7 +339,13 @@ if (!prefersReducedMotion) {
     });
     revealGroup(".pricings", ".pricings-item", { y: 50, scale: 0.95 });
     revealGroup(".calendar-check", "li", { x: -30, y: 0, stagger: 0.1 });
-    revealGroup(".accordion-container", ".accordion-card", { y: 50, stagger: 0.12 });
+    // clearProps: "transform" strips the inline transform GSAP sets for
+    // the y-offset once the reveal finishes, so the CSS fanned-tilt
+    // rotation (and the .active card's reset to upright — see
+    // .accordion-card in scss/pages/_index.scss) stays in control
+    // instead of getting frozen at whatever angle was current the one
+    // time this reveal played.
+    revealGroup(".accordion-container", ".accordion-card", { y: 50, stagger: 0.12, clearProps: "transform" });
     revealGroup(".faq-list", ".faq-list-item", { y: 25, stagger: 0.1 });
     revealGroup(".footer-top .row", ".col-auto", { y: 30, stagger: 0.12 });
     revealGroup(".black-cta", ":scope > *", { y: 30, stagger: 0.1, duration: 0.8 });

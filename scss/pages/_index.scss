@@ -427,17 +427,29 @@
    border-radius: 20px;
    overflow: hidden;
    cursor: pointer;
-   transition: flex 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+   transition: flex 0.6s cubic-bezier(0.25, 1, 0.5, 1), transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
    background-size: cover;
    background-position: center;
    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+   transform: rotate(0deg);
 
+   // Collapsed cards fan out a few degrees, alternating direction, so
+   // they read as loosely stacked rather than a flat row; the active
+   // card straightens back out below.
+   &:nth-child(odd) {
+     transform: rotate(-6deg);
+   }
+
+   &:nth-child(even) {
+     transform: rotate(6deg);
+   }
 
    /* Active Expanded Card */
    &.active {
      flex: 2.5;
      /* Expanded width ratio */
      cursor: default;
+     transform: rotate(0deg);
 
      &::after {
        background: #0062ff;
@@ -540,6 +552,10 @@
    .accordion-card {
      height: 120px;
      width: 100%;
+     // the fanned tilt only reads correctly in a horizontal row —
+     // stacked vertically it just clips rotated rectangles, so it's
+     // off entirely on narrow screens.
+     transform: none;
    }
 
    .accordion-card.active {

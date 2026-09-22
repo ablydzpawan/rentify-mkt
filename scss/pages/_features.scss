@@ -105,12 +105,26 @@
     z-index: 3;
   }
 
+  // Below md, the five absolutely positioned native-sized panels no
+  // longer have room to lay out sensibly (see .features-hero-mobile,
+  // right below, which replaces this entire canvas on those screens
+  // instead of trying to keep patching panel positions smaller).
   @include media-breakpoint-down(md) {
-    aspect-ratio: 1600/1300;
+    display: none;
+  }
+}
 
-    #hero-phone {
-      left: 28%;
-    }
+// Single flat image swapped in for .features-hero-canvas below md —
+// simpler and far more reliable on small screens than trying to keep
+// five overlapping native-sized panels legible at that width.
+.features-hero-mobile {
+  display: none;
+  width: 100%;
+  height: auto;
+  border-radius: 24px;
+
+  @include media-breakpoint-down(md) {
+    display: block;
   }
 }
 
@@ -652,52 +666,34 @@
 // convention as section 4's .state-order-* rules above.
 .state-seo-default .layer-main {
   left: 0;
-  top: 10%;
-}
-
-.state-seo-default .layer-sat-1 {
-  left: 0;
-  top: 46%;
+  top: 5%;
 }
 
 .state-seo-blog .layer-main {
   left: 0;
-  top: 6%;
+  top: 7%;
 }
 
-.state-seo-blog .layer-sat-1 {
-  right: 0;
-  top: 8%;
-}
 
 .state-seo-faqs .layer-main {
   left: 0;
-  top: 14%;
-}
-
-.state-seo-faqs .layer-sat-1 {
-  left: 0;
-  top: 70%;
+  top: 10%;
 }
 
 .state-seo-analytics .layer-main {
-  left: 20%;
+  left: 0;
   top: 14%;
 }
 
 .state-seo-social .layer-main {
   left: 0;
-  top: 10%;
+  top: 18%;
 }
 
-.state-seo-social .layer-sat-1 {
-  right: 12%;
-  top: 30%;
-}
 
 .state-seo-email .layer-main {
   left: 0;
-  top: 36%;
+  top: 15%;
 }
 
 /* =========================================================
