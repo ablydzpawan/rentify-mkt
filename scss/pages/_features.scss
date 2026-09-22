@@ -701,28 +701,50 @@
 }
 
 /* =========================================================
-   8. SYSTEM FEATURE — horizontal scroll-linked carousel: the
-   track pans left as the page scrolls. The "pin" is plain CSS
-   position: sticky on .system-scroll, not GSAP's JS-managed
-   pin (which inserts its own spacer and was producing an
-   oversized, occasionally janky scroll region) — initHorizontalScroll
-   in features.js sets .system-scroll-pin's height to exactly
-   viewport-height-of-the-row + however far the track needs to
-   travel, which is what actually holds .system-scroll in place
-   while GSAP just reads scroll progress and tweens the track's
-   x, no pinning logic of its own. Falls back to a native
-   swipeable row (overflow-x: auto, .system-scroll-pin at its
-   natural height so sticky never engages) whenever JS/motion is
-   off, so the content is never trapped behind a scroll-jack that
-   can't run.
+   8. SYSTEM FEATURE — horizontal scroll-linked carousel, in the
+   spirit of demo.motionkit.io/horizontal-scroll-animation's
+   "Everything You Need, All In One Place" section: the heading
+   and intro copy stay put in view the whole time the row scrolls
+   past beneath them (that reference keeps its intro text and
+   card track inside the same pinned area — see
+   .system-scroll-head below — instead of scrolling the heading
+   away before the horizontal pan even starts), and every card
+   pans at the same uniform speed with no stagger between them.
+
+   The "pin" here is plain CSS position: sticky on .system-scroll,
+   not GSAP's JS-managed pin (which inserts its own spacer and was
+   producing an oversized, occasionally janky scroll region) —
+   initHorizontalScroll in features.js sets .system-scroll-pin's
+   height to exactly the row's own height plus however far the
+   track needs to travel, which is what actually holds
+   .system-scroll in place while GSAP just reads scroll progress
+   and tweens the track's x, no pinning logic of its own. Falls
+   back to a native swipeable row (overflow-x: auto,
+   .system-scroll-pin at its natural height so sticky never
+   engages) whenever JS/motion is off, so the content is never
+   trapped behind a scroll-jack that can't run.
    ========================================================= */
+// Same fix as #listing above and for the same reason: .section sets
+// overflow-x: hidden, which forces overflow-y to compute as auto,
+// silently turning the section into its own scroll container and
+// breaking position: sticky below (it would stick to the section's
+// box instead of the viewport — in practice, not visually stick at
+// all). This is what was actually behind the horizontal scroll never
+// holding the row in the viewport no matter how the pin height or
+// scrub ratio were tuned.
+#system-feature {
+  overflow: visible;
+}
+
 .system-scroll-pin {
   position: relative;
 }
 
 .system-scroll {
   position: sticky;
-  top: 0;
+  // clears the site's own sticky header (same offset .sync-accordion-visual
+  // and .listing-block already stick beneath elsewhere on this page)
+  top: 6rem;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
@@ -736,6 +758,13 @@
   &.is-pinned {
     overflow: hidden;
   }
+}
+
+// Heading + intro copy — sits above the track, inside the same
+// sticky element, so it's visible for the full scroll instead of
+// scrolling away before the horizontal pan starts.
+.system-scroll-head {
+  margin-bottom: 2rem;
 }
 
 .system-scroll-track {
