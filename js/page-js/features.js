@@ -208,11 +208,11 @@ function initSyncedAccordion(rootSelector) {
 function initHoverReveal(rootSelector) {
     document.querySelectorAll(rootSelector).forEach(function (root) {
         var triggers = root.querySelectorAll(".seo-reveal-trigger[data-image-state]");
-        var visual = root.querySelector(".sync-accordion-visual");
+        var visual = root.querySelector(".seo-panel-visual");
         if (!triggers.length || !visual) return;
 
         var states = {};
-        visual.querySelectorAll(".state").forEach(function (state) {
+        visual.querySelectorAll(".seo-panel-state").forEach(function (state) {
             states[state.getAttribute("data-state")] = state;
         });
 
@@ -305,34 +305,43 @@ function initTabPanels(tabsSelector, panelSelector) {
 
 /* =========================================================
    HORIZONTAL SCROLL — "System Feature". The card row is wider
-   than the viewport; instead of wrapping it, the section pins in
-   place and the track pans left as the page scrolls, so vertical
-   scrolling drives a horizontal reveal (a different technique
-   from every clip-path/fade reveal elsewhere on this page). Each
-   card also fades + rises in as it crosses into the pinned
-   viewport, using the horizontal tween itself as the
-   scrollTrigger's containerAnimation so ScrollTrigger measures
-   position along the track's x-axis instead of page scroll.
+   than the viewport; instead of wrapping it, .system-scroll
+   sticks (plain CSS position: sticky) while the page scrolls
+   through its tall .system-scroll-pin wrapper, and the track
+   pans left in step — vertical scrolling drives a horizontal
+   reveal, a different technique from every clip-path/fade
+   reveal elsewhere on this page. Each card also fades + rises
+   in as it crosses into the sticky viewport, using the
+   horizontal tween itself as the scrollTrigger's
+   containerAnimation so ScrollTrigger measures position along
+   the track's x-axis instead of page scroll.
 
-   A 1:1 pixel mapping between vertical scroll and horizontal pan
-   would need as much extra page height as the row overflows by —
-   with 8 cards that's 2000px+ of scroll spent on one section, and
-   worse on narrow viewports where more of the row overflows. So:
-   SCROLL_RATIO scrubs the full horizontal distance across a
-   shorter vertical range, and the pin is desktop-only (matching
-   the $grid-breakpoints lg value in scss/themes/_variables.scss)
-   — below that, .system-scroll's CSS overflow-x: auto (see
-   scss/pages/_features.scss) is the interaction, same as it is
-   under prefers-reduced-motion. Every card still gets its fade +
-   rise reveal at every width, just against a plain scroll trigger
-   instead of the horizontal tween where there's no pin to use as
-   a containerAnimation.
+   This deliberately avoids ScrollTrigger's own pin:true. That
+   inserts a JS-managed spacer and toggles the pinned element to
+   position: fixed on every pin/unpin, which — stacked with 8
+   more ScrollTriggers on the cards inside it — was measuring its
+   spacer taller than intended and had visible stutter. Sizing
+   .system-scroll-pin ourselves (its natural row height, plus
+   however far the track needs to travel, scaled down by
+   SCROLL_RATIO so an 1:1 pixel mapping doesn't cost the section
+   2000px+ of scroll) means the sticky/scrub math has nothing left
+   to get wrong, and position: sticky is compositor-driven — no
+   fixed-position or spacer thrashing on every scroll tick.
+
+   The sticky wrapper only gets sized (and therefore only visually
+   "pins") on desktop widths (min-width: 992px, matching the lg
+   breakpoint already used for this layout in
+   scss/pages/_features.scss); below that .system-scroll's
+   existing overflow-x: auto CSS is the interaction — same
+   fallback already used under prefers-reduced-motion — so there's
+   no scroll-jack (and no extra height) on tablet/mobile at all.
    ========================================================= */
 
-function initHorizontalScroll(containerSelector, trackSelector, itemSelector) {
+function initHorizontalScroll(pinSelector, containerSelector, trackSelector, itemSelector) {
+    var pinEl = document.querySelector(pinSelector);
     var container = document.querySelector(containerSelector);
     var track = document.querySelector(trackSelector);
-    if (!container || !track) return;
+    if (!pinEl || !container || !track) return;
 
     var SCROLL_RATIO = 0.55;
     var canPin = window.matchMedia("(min-width: 992px)").matches;
@@ -343,19 +352,27 @@ function initHorizontalScroll(containerSelector, trackSelector, itemSelector) {
             return Math.max(0, track.scrollWidth - container.clientWidth);
         };
 
+        // .system-scroll is sticky, so it only visually "pins" for as
+        // long as its parent (.system-scroll-pin) is taller than it —
+        // this is what actually reserves that scroll runway; GSAP below
+        // just reads progress across it and tweens the track.
+        var sizePinWrapper = function () {
+            pinEl.style.height = (container.offsetHeight + getDistance() * SCROLL_RATIO) + "px";
+        };
+        sizePinWrapper();
+
         container.classList.add("is-pinned");
 
         scrollTween = gsap.to(track, {
             x: function () { return -getDistance(); },
             ease: "none",
             scrollTrigger: {
-                trigger: container,
+                trigger: pinEl,
                 start: "top top",
-                end: function () { return "+=" + (getDistance() * SCROLL_RATIO); },
+                end: "bottom bottom",
                 scrub: 0.6,
-                pin: true,
-                anticipatePin: 1,
                 invalidateOnRefresh: true,
+                onRefreshInit: sizePinWrapper,
             },
         });
     }
@@ -498,7 +515,7 @@ if (prefersReducedMotion) {
     // System Feature's cards get their fade/rise from
     // initHorizontalScroll below instead (each one settles in as it
     // crosses into the pinned viewport), not a plain scroll-entrance.
-    initHorizontalScroll(".system-scroll", ".system-scroll-track", ".system-grid-item");
+    initHorizontalScroll(".system-scroll-pin", ".system-scroll", ".system-scroll-track", ".system-grid-item");
 
     // SEO and Marketing's list items have no collapse animation of their
     // own any more (see initHoverReveal above), so they get the same
@@ -515,7 +532,7 @@ if (prefersReducedMotion) {
     // same bottom-to-top clip reveal its hover swap uses, everywhere
     // else keeps the blur/scale settle.
     initLayerReveals(document.querySelectorAll("#order-mgmt-accordion .sync-accordion-visual .state.is-active"));
-    initLayerReveals(document.querySelectorAll("#seo-accordion .sync-accordion-visual .state.is-active"), { clip: true, clipFrom: "bottom" });
+    initLayerReveals(document.querySelectorAll("#seo-accordion .seo-panel-visual .seo-panel-state.is-active"), { clip: true, clipFrom: "bottom" });
     initLayerReveals(document.querySelectorAll(".checkout-panel.is-active .checkout-panel-visual"));
 
     window.addEventListener("load", function () { ScrollTrigger.refresh(); });

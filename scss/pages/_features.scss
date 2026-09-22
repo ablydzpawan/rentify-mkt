@@ -205,10 +205,14 @@
 }
 
 /* =========================================================
-   4 & 7. SYNCED ACCORDION — a shared image panel on the left
-   with one .state per accordion item (only one visible at a
-   time), and a numbered accordion list on the right. Used for
-   both "Simplify Your Order Management" and "SEO and Marketing".
+   4. SYNCED ACCORDION — "Simplify Your Order Management" only.
+   A shared image panel on the left with one .state per accordion
+   item (only one visible at a time), and a numbered accordion
+   list on the right. SEO and Marketing has its own, separate
+   .seo-panel/.seo-panel-visual/.seo-panel-state classes below —
+   the two sections used to share these classes, which meant a
+   tweak meant for one silently changed the other. Keep them
+   apart even if a future edit makes them look similar again.
    ========================================================= */
 .sync-accordion {
   display: flex;
@@ -251,13 +255,69 @@
     }
   }
 
-  &-list,
-  .seo-reveal-list {
+  &-list {
     flex: 1 1 100%;
 
     @include media-breakpoint-up(lg) {
       flex: 0 1 46%;
     }
+  }
+}
+
+/* =========================================================
+   7. SEO PANEL — "SEO and Marketing" only. Same idea as
+   .sync-accordion above (shared image panel + a list that
+   controls which state shows), but its own class names so
+   nothing here can leak into or be leaked into by Order
+   Management's accordion.
+   ========================================================= */
+.seo-panel {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 4rem;
+  align-items: flex-start;
+
+  @include media-breakpoint-up(lg) {
+    gap: 6rem;
+    flex-wrap: nowrap;
+  }
+
+  &-visual {
+    position: relative;
+    flex: 1 1 100%;
+    aspect-ratio: 798 / 760;
+    overflow: hidden;
+    background: transparent linear-gradient(133deg, #A9A9FE 0%, #93CAFB 44%, #F0F6B6 100%);
+    border-radius: 30px;
+
+    @include media-breakpoint-up(lg) {
+      flex: 0 1 58%;
+      position: sticky;
+      top: 6rem;
+    }
+  }
+
+  &-state {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+
+    &.is-active {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+  }
+}
+
+.seo-reveal-list {
+  flex: 1 1 100%;
+
+  @include media-breakpoint-up(lg) {
+    flex: 0 1 46%;
   }
 }
 
@@ -632,13 +692,27 @@
 
 /* =========================================================
    8. SYSTEM FEATURE — horizontal scroll-linked carousel: the
-   track pans left as the page scrolls, pinned in the viewport
-   until every card has passed (see initHorizontalScroll in
-   features.js). Falls back to a native swipeable row
-   (overflow-x: auto) whenever JS/motion is off, so the content
-   is never trapped behind a scroll-jack that can't run.
+   track pans left as the page scrolls. The "pin" is plain CSS
+   position: sticky on .system-scroll, not GSAP's JS-managed
+   pin (which inserts its own spacer and was producing an
+   oversized, occasionally janky scroll region) — initHorizontalScroll
+   in features.js sets .system-scroll-pin's height to exactly
+   viewport-height-of-the-row + however far the track needs to
+   travel, which is what actually holds .system-scroll in place
+   while GSAP just reads scroll progress and tweens the track's
+   x, no pinning logic of its own. Falls back to a native
+   swipeable row (overflow-x: auto, .system-scroll-pin at its
+   natural height so sticky never engages) whenever JS/motion is
+   off, so the content is never trapped behind a scroll-jack that
+   can't run.
    ========================================================= */
+.system-scroll-pin {
+  position: relative;
+}
+
 .system-scroll {
+  position: sticky;
+  top: 0;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
@@ -648,7 +722,7 @@
   }
 
   // Added by initHorizontalScroll once GSAP takes over panning the
-  // track — the pinned viewport shouldn't also scroll natively.
+  // track — the sticky viewport shouldn't also scroll natively.
   &.is-pinned {
     overflow: hidden;
   }
