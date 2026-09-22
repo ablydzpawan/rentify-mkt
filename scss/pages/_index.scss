@@ -201,7 +201,12 @@
    }
 
    .features-item {
-     width: 650px;
+     // min() keeps this identical to the fixed 650px card on desktop
+     // (88vw only overtakes 650px below a ~740px viewport) while
+     // letting it shrink to fit narrower screens instead of overflowing
+     // — the fixed 650px alone made every card spill off a phone
+     // viewport with no way to see the rest of it.
+     width: #{"min(88vw, 650px)"};
      flex-shrink: 0;
      // opacity: .45;
      transform: scale(.90);
@@ -377,15 +382,21 @@
  /* Swiper Base Styling */
  .swiper-expo.swiper-3d {
    width: 100%;
-   height: 643px;
+   // min() keeps this identical to the fixed 643px on desktop (both
+   // this and the slide's own width below only start shrinking under
+   // a ~1083px viewport, and shrink at the same rate as each other so
+   // the card's 975:643 aspect ratio stays consistent) — the fixed
+   // 643px alone made this carousel absurdly tall relative to a phone
+   // viewport, most of the card cropped off past the screen edges.
+   height: #{"min(59.35vw, 643px)"};
    overflow: visible;
  }
 
  /* Individual Slide Card */
  .swiper-expo .swiper-slide {
    position: relative;
-   width: 975px;
-   /* Matches your DOM structure */
+   // see the height: min(...) note above — shrinks at the same rate.
+   width: #{"min(90vw, 975px)"};
    height: 100%;
    border-radius: 24px;
    overflow: hidden;
