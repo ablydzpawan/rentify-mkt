@@ -109,10 +109,12 @@ function initLayerReveals(scope, opts) {
 
         if (opts.clipShape === "aperture") {
             // Camera-iris reveal: a circular mask irises open from the
-            // image's own center instead of wiping in from an edge.
+            // image's own center instead of wiping in from an edge,
+            // with the image itself fading in at the same time rather
+            // than snapping straight to full opacity.
             tl.fromTo(mainLayer,
-                { clipPath: "circle(0% at 50% 50%)", scale: 1.08, opacity: 1 },
-                { clipPath: "circle(75% at 50% 50%)", scale: 1, duration: 1, ease: "power3.out" },
+                { clipPath: "circle(0% at 50% 50%)", scale: 1.08, opacity: 0 },
+                { clipPath: "circle(75% at 50% 50%)", scale: 1, opacity: 1, duration: 1, ease: "power3.out" },
                 0
             );
         } else if (opts.clip) {
@@ -211,7 +213,9 @@ function initSyncedAccordion(rootSelector) {
    .seo-reveal-panel in scss/pages/_features.scss) and swaps the
    shared image panel with an "Image Aperture Reveal" — a circular
    clip-path mask that irises open from the image's own center,
-   like a camera aperture, instead of a plain crossfade. Mirrors
+   like a camera aperture, with the image fading in (opacity 0->1)
+   over the same duration so it plays in rather than just snapping
+   to full strength once the iris finishes. Mirrors
    initSyncedAccordion's state-swap plumbing but trades the
    click-to-expand trigger for mouseenter/focus, since there's no
    collapsed content left to expand.
@@ -244,8 +248,8 @@ function initHoverReveal(rootSelector) {
 
             gsap.killTweensOf(img);
             gsap.fromTo(img,
-                { clipPath: "circle(0% at 50% 50%)", scale: 1.06 },
-                { clipPath: "circle(75% at 50% 50%)", scale: 1, duration: 0.8, ease: "power3.out" }
+                { clipPath: "circle(0% at 50% 50%)", scale: 1.06, opacity: 0 },
+                { clipPath: "circle(75% at 50% 50%)", scale: 1, opacity: 1, duration: 0.8, ease: "power3.out" }
             );
         }
 
