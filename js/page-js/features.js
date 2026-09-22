@@ -314,11 +314,19 @@ function initTabPanels(tabsSelector, panelSelector) {
    scrollTrigger's containerAnimation so ScrollTrigger measures
    position along the track's x-axis instead of page scroll.
 
-   CSS keeps .system-scroll natively swipeable (overflow-x: auto)
-   as the baseline; this only runs — and only then adds the
-   .is-pinned class that turns off that native scroll — once GSAP
-   takes over, so reduced-motion visitors keep a plain swipeable
-   row instead of a scroll-jack that never plays.
+   A 1:1 pixel mapping between vertical scroll and horizontal pan
+   would need as much extra page height as the row overflows by —
+   with 8 cards that's 2000px+ of scroll spent on one section, and
+   worse on narrow viewports where more of the row overflows. So:
+   SCROLL_RATIO scrubs the full horizontal distance across a
+   shorter vertical range, and the pin is desktop-only (matching
+   the $grid-breakpoints lg value in scss/themes/_variables.scss)
+   — below that, .system-scroll's CSS overflow-x: auto (see
+   scss/pages/_features.scss) is the interaction, same as it is
+   under prefers-reduced-motion. Every card still gets its fade +
+   rise reveal at every width, just against a plain scroll trigger
+   instead of the horizontal tween where there's no pin to use as
+   a containerAnimation.
    ========================================================= */
 
 function initHorizontalScroll(containerSelector, trackSelector, itemSelector) {
@@ -326,39 +334,53 @@ function initHorizontalScroll(containerSelector, trackSelector, itemSelector) {
     var track = document.querySelector(trackSelector);
     if (!container || !track) return;
 
-    var getDistance = function () {
-        return Math.max(0, track.scrollWidth - container.clientWidth);
-    };
+    var SCROLL_RATIO = 0.55;
+    var canPin = window.matchMedia("(min-width: 992px)").matches;
+    var scrollTween = null;
 
-    container.classList.add("is-pinned");
+    if (canPin) {
+        var getDistance = function () {
+            return Math.max(0, track.scrollWidth - container.clientWidth);
+        };
 
-    var scrollTween = gsap.to(track, {
-        x: function () { return -getDistance(); },
-        ease: "none",
-        scrollTrigger: {
-            trigger: container,
-            start: "top top",
-            end: function () { return "+=" + getDistance(); },
-            scrub: 0.6,
-            pin: true,
-            anticipatePin: 1,
-            invalidateOnRefresh: true,
-        },
-    });
+        container.classList.add("is-pinned");
 
-    track.querySelectorAll(itemSelector).forEach(function (item) {
-        gsap.from(item, {
+        scrollTween = gsap.to(track, {
+            x: function () { return -getDistance(); },
+            ease: "none",
+            scrollTrigger: {
+                trigger: container,
+                start: "top top",
+                end: function () { return "+=" + (getDistance() * SCROLL_RATIO); },
+                scrub: 0.6,
+                pin: true,
+                anticipatePin: 1,
+                invalidateOnRefresh: true,
+            },
+        });
+    }
+
+    track.querySelectorAll(itemSelector).forEach(function (item, index) {
+        gsap.from(item, Object.assign({
             opacity: 0,
             y: 40,
             duration: 1,
+            delay: canPin ? 0 : index * 0.06,
             ease: "power2.out",
+        }, canPin ? {
             scrollTrigger: {
                 trigger: item,
                 containerAnimation: scrollTween,
                 start: "left 88%",
                 toggleActions: "play none none reverse",
             },
-        });
+        } : {
+            scrollTrigger: {
+                trigger: item,
+                start: "top 90%",
+                toggleActions: "play none none reverse",
+            },
+        }));
     });
 }
 
