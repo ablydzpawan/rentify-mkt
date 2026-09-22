@@ -97,6 +97,14 @@
    max-width: 1780px;
    margin: 0 auto;
 
+   // Below md the percentage-positioned panels compress into an
+   // increasingly illegible mess — .hero-mobile (below) replaces this
+   // whole canvas with a single flat image instead, same approach as
+   // .features-hero-canvas / .features-hero-mobile on the Features page.
+   @include media-breakpoint-down(md) {
+     display: none;
+   }
+
    .panel {
      position: absolute;
      will-change: transform, filter, opacity;
@@ -165,6 +173,20 @@
      .toolbar {
        transform-origin: left center;
      }
+   }
+ }
+
+ // Single flat image swapped in for .canvas below md — see the
+ // display: none note on .canvas above.
+ .hero-mobile {
+   display: none;
+   width: 100%;
+   height: auto;
+   margin: 0 auto;
+   border-radius: 24px;
+
+   @include media-breakpoint-down(md) {
+     display: block;
    }
  }
 
