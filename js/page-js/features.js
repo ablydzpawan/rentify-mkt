@@ -193,19 +193,21 @@ function initSyncedAccordion(rootSelector) {
 }
 
 /* =========================================================
-   HOVER REVEAL — "SEO and Marketing". No accordion here: every
-   item's description sits visible at all times, and hovering
-   (or focusing) a list item swaps the shared image panel with
-   an "Image Reveal — Bottom to Top" wipe — a clip-path mask that
-   rises up over the incoming image instead of a plain crossfade.
-   Mirrors initSyncedAccordion's state-swap plumbing but trades
-   the click-to-expand trigger for mouseenter/focus, since there's
-   no collapsed content left to expand.
+   HOVER REVEAL — "SEO and Marketing". No accordion here: each
+   item is a big heading-sized label; hovering (or focusing) one
+   opens its description with a pure-CSS height reveal (see
+   .seo-reveal-panel in scss/pages/_features.scss) and swaps the
+   shared image panel with an "Image Reveal — Bottom to Top" wipe
+   — a clip-path mask that rises up over the incoming image
+   instead of a plain crossfade. Mirrors initSyncedAccordion's
+   state-swap plumbing but trades the click-to-expand trigger for
+   mouseenter/focus, since there's no collapsed content left to
+   expand.
    ========================================================= */
 
 function initHoverReveal(rootSelector) {
     document.querySelectorAll(rootSelector).forEach(function (root) {
-        var triggers = root.querySelectorAll(".faq-list-link[data-image-state]");
+        var triggers = root.querySelectorAll(".seo-reveal-trigger[data-image-state]");
         var visual = root.querySelector(".sync-accordion-visual");
         if (!triggers.length || !visual) return;
 
@@ -240,10 +242,10 @@ function initHoverReveal(rootSelector) {
             if (!key) return;
 
             triggers.forEach(function (t) {
-                t.closest(".faq-list-item").classList.remove("active");
+                t.closest(".seo-reveal-item").classList.remove("active");
                 t.removeAttribute("aria-current");
             });
-            trigger.closest(".faq-list-item").classList.add("active");
+            trigger.closest(".seo-reveal-item").classList.add("active");
             trigger.setAttribute("aria-current", "true");
 
             playState(key);
@@ -297,6 +299,65 @@ function initTabPanels(tabsSelector, panelSelector) {
             }
 
             if (window.ScrollTrigger) ScrollTrigger.refresh();
+        });
+    });
+}
+
+/* =========================================================
+   HORIZONTAL SCROLL — "System Feature". The card row is wider
+   than the viewport; instead of wrapping it, the section pins in
+   place and the track pans left as the page scrolls, so vertical
+   scrolling drives a horizontal reveal (a different technique
+   from every clip-path/fade reveal elsewhere on this page). Each
+   card also fades + rises in as it crosses into the pinned
+   viewport, using the horizontal tween itself as the
+   scrollTrigger's containerAnimation so ScrollTrigger measures
+   position along the track's x-axis instead of page scroll.
+
+   CSS keeps .system-scroll natively swipeable (overflow-x: auto)
+   as the baseline; this only runs — and only then adds the
+   .is-pinned class that turns off that native scroll — once GSAP
+   takes over, so reduced-motion visitors keep a plain swipeable
+   row instead of a scroll-jack that never plays.
+   ========================================================= */
+
+function initHorizontalScroll(containerSelector, trackSelector, itemSelector) {
+    var container = document.querySelector(containerSelector);
+    var track = document.querySelector(trackSelector);
+    if (!container || !track) return;
+
+    var getDistance = function () {
+        return Math.max(0, track.scrollWidth - container.clientWidth);
+    };
+
+    container.classList.add("is-pinned");
+
+    var scrollTween = gsap.to(track, {
+        x: function () { return -getDistance(); },
+        ease: "none",
+        scrollTrigger: {
+            trigger: container,
+            start: "top top",
+            end: function () { return "+=" + getDistance(); },
+            scrub: 0.6,
+            pin: true,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+        },
+    });
+
+    track.querySelectorAll(itemSelector).forEach(function (item) {
+        gsap.from(item, {
+            opacity: 0,
+            y: 40,
+            duration: 1,
+            ease: "power2.out",
+            scrollTrigger: {
+                trigger: item,
+                containerAnimation: scrollTween,
+                start: "left 88%",
+                toggleActions: "play none none reverse",
+            },
         });
     });
 }
@@ -411,16 +472,19 @@ if (prefersReducedMotion) {
     });
 
     revealGroup(".customization-intro", "div", { y: 20, stagger: 0.08 });
-    revealGroup(".system-grid", ".system-grid-item", { y: 30, stagger: 0.1 });
+
+    // System Feature's cards get their fade/rise from
+    // initHorizontalScroll below instead (each one settles in as it
+    // crosses into the pinned viewport), not a plain scroll-entrance.
+    initHorizontalScroll(".system-scroll", ".system-scroll-track", ".system-grid-item");
 
     // SEO and Marketing's list items have no collapse animation of their
     // own any more (see initHoverReveal above), so they get the same
     // fade + rise scroll-entrance every other list on this page uses.
-    revealGroup("#seo-accordion", ".faq-list-item", { y: 20, stagger: 0.08 });
+    revealGroup("#seo-accordion", ".seo-reveal-item", { y: 20, stagger: 0.08 });
 
     initLayerReveals(document.querySelectorAll(".listing-block-media"), { clip: true });
     initLayerReveals(document.querySelectorAll(".customization-panel"));
-    initLayerReveals(document.querySelectorAll(".system-grid-media"), { clip: true });
 
     // initial entrance for the default-active state/panel in each
     // synced accordion and the tab group — subsequent states replay

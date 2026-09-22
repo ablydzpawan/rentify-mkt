@@ -251,7 +251,8 @@
     }
   }
 
-  &-list {
+  &-list,
+  .seo-reveal-list {
     flex: 1 1 100%;
 
     @include media-breakpoint-up(lg) {
@@ -298,45 +299,78 @@
   }
 }
 
-// Hover-reveal variant of .faq-list-numbered (SEO and Marketing) —
-// there's no accordion here: every item's description stays visible
-// and hovering (or keyboard-focusing) an item is what selects it, so
-// this drops the plus/minus expand indicator entirely and instead
-// highlights whichever item is currently selected.
-.faq-list-numbered--hover-reveal {
-  .faq-list-link {
-    cursor: pointer;
+// "SEO and Marketing" hover-reveal list — no accordion, no numbers:
+// every item is its own big heading-sized label. The inactive ones
+// sit muted with nothing below them; hovering (or keyboard-focusing)
+// one darkens its label and smoothly opens its description, while
+// the previously active one closes back down. The open/close height
+// is pure CSS (grid-template-rows 0fr -> 1fr), not the JS height
+// measuring collapse-offcanvas.js uses elsewhere on this site.
+.seo-reveal-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
 
-    &:before,
-    &:after {
-      content: none;
-    }
+.seo-reveal-item {
+  border-top: 1px solid rgba(0, 0, 0, .12);
+
+  &:last-child {
+    border-bottom: 1px solid rgba(0, 0, 0, .12);
   }
+}
 
-  .faq-num,
-  .faq-question,
-  .faq_data {
-    transition: color 0.3s ease;
+.seo-reveal-trigger {
+  display: block;
+  width: 100%;
+  background: transparent;
+  border: none;
+  text-align: #{$start-direction};
+  cursor: pointer;
+  padding: 1.35rem 0;
+  font-size: clamp(1.75rem, calc(1.15rem + 2.4vw), 3.25rem);
+  font-weight: 500;
+  line-height: 1.15;
+  color: $txt-gray-lighest;
+  transition: color 0.35s ease;
+
+  &:focus-visible {
+    outline: 2px solid $brand-color;
+    outline-offset: 4px;
   }
+}
 
-  .faq-list-item:not(.active) {
+.seo-reveal-item.active .seo-reveal-trigger {
+  color: $txt-black;
+  font-weight: 600;
+}
 
-    .faq-num,
-    .faq-question {
-      color: $txt-gray-light;
-    }
+.seo-reveal-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 
-    .faq_data {
-      color: $txt-gray-lighest;
-    }
+  >p {
+    // grid items default to min-height: auto, which would ignore the
+    // 0fr track and never fully collapse — this is what lets it.
+    min-height: 0;
+    overflow: hidden;
+    margin: 0;
+    color: $txt-gray;
+    font-size: clamp(1rem, calc(0.9rem + 0.3vw), 1.15rem);
+    line-height: 1.7;
+    opacity: 0;
+    transition: opacity 0.3s ease, padding-bottom 0.45s ease;
   }
+}
 
-  .faq-list-item.active {
+.seo-reveal-item.active .seo-reveal-panel {
+  grid-template-rows: 1fr;
 
-    .faq-num,
-    .faq-question {
-      color: $brand-color;
-    }
+  >p {
+    opacity: 1;
+    padding-bottom: 1.75rem;
+    transition-delay: 0.05s;
   }
 }
 
@@ -597,34 +631,49 @@
 }
 
 /* =========================================================
-   8. SYSTEM FEATURE — 4-card grid, vertical layout (image
-   top, copy below), scroll-triggered layer reveal.
+   8. SYSTEM FEATURE — horizontal scroll-linked carousel: the
+   track pans left as the page scrolls, pinned in the viewport
+   until every card has passed (see initHorizontalScroll in
+   features.js). Falls back to a native swipeable row
+   (overflow-x: auto) whenever JS/motion is off, so the content
+   is never trapped behind a scroll-jack that can't run.
    ========================================================= */
-.system-grid {
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
+.system-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  // Added by initHorizontalScroll once GSAP takes over panning the
+  // track — the pinned viewport shouldn't also scroll natively.
+  &.is-pinned {
+    overflow: hidden;
+  }
+}
+
+.system-scroll-track {
+  display: flex;
+  align-items: stretch;
   gap: 1.5rem;
+  width: max-content;
+  padding-bottom: 0.25rem;
+}
 
-  @include media-breakpoint-up(sm) {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.system-grid-item {
+  // flex items default to min-width: auto, which lets a large image's
+  // intrinsic size force the track wider than intended — this lets
+  // the item actually shrink to fit its own column.
+  flex: 0 0 clamp(280px, 32vw, 420px);
+  min-width: 0;
+  border-radius: 20px;
+  padding: 3.5rem;
+  display: flex;
+  flex-direction: column;
 
-  @include media-breakpoint-up(lg) {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  &-item {
-    // grid items default to min-width: auto, which lets a large image's
-    // intrinsic size force the track wider than the grid container —
-    // this lets the item actually shrink to fit its column.
-    min-width: 0;
-    border-radius: 20px;
-    padding: 3.5rem;
-    display: flex;
-    flex-direction: column;
-  }
-
-  &-media {
+  .system-grid-media {
     position: relative;
     aspect-ratio: 4/3;
     border-radius: 14px;
@@ -632,7 +681,6 @@
     margin-bottom: 1.25rem;
 
     img {
-
       object-fit: cover;
       display: block;
     }
