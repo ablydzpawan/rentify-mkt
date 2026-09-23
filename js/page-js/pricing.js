@@ -138,8 +138,10 @@ if (!prefersReducedMotion) {
     };
 
     /* ---------- Section badge ("01 pricing" / "02 plan compare") —
-       the two rotated tags fly in from opposite angles and settle
-       with a bouncy overshoot, instead of a flat fade. ---------- */
+       the caption unrolls left-to-right like a strip of tape being
+       pulled, then the number tag is stamped down on top of it (drops
+       in oversized, lands with a small squash). clearProps hands the
+       transform back to the stylesheet once the tween is done. ---------- */
 
     document.querySelectorAll(".section-num").forEach(function (badge) {
         var num = badge.querySelector(".num");
@@ -149,51 +151,61 @@ if (!prefersReducedMotion) {
         gsap.timeline({
             scrollTrigger: { trigger: badge, start: "top 88%", toggleActions: "play none none reverse" },
         })
-            .from(num, {
-                opacity: 0, scale: 0.4, rotate: -60,
-                duration: 0.7, ease: "back.out(1.9)",
+            .fromTo(caption, { clipPath: "inset(0 100% 0 0 round 20px)" }, {
+                clipPath: "inset(0 0% 0 0 round 20px)",
+                duration: 0.6, ease: "power3.inOut", clearProps: "clipPath",
             }, 0)
-            .from(caption, {
-                opacity: 0, scale: 0.4, rotate: 60, x: -20,
-                duration: 0.7, ease: "back.out(1.9)",
-            }, 0.12);
+            .from(num, {
+                opacity: 0, scale: 2.2, yPercent: -120,
+                duration: 0.45, ease: "power4.in",
+            }, 0.4)
+            .to(num, {
+                keyframes: [
+                    { scaleX: 1.15, scaleY: 0.85, duration: 0.08 },
+                    { scaleX: 1, scaleY: 1, duration: 0.3, ease: "back.out(3)" },
+                ],
+                clearProps: "transform",
+            });
     });
 
     /* ---------- Billing toggle row ---------- */
 
     revealGroup(".bg-pricing-page .text-center", ".billing-toggle", { y: 16, duration: 0.6, stagger: 0 });
 
-    /* ---------- Pricing cards — the four cards already overlap in a
-       fanned stack (each one shifted left, rising z-index). The
-       entrance plays that up: they fly in from below at alternating
-       angles and settle into the stack. A second, continuous
-       scroll-scrubbed tween then gently fans them further apart the
-       whole time the section is in view, and pulls them back together
-       as it leaves — using `x`, so it never fights the entrance
-       tween's y/rotate/scale. ---------- */
+    /* ---------- Pricing cards — dealt out like a hand of cards: all
+       four start collapsed onto the first card's spot as one deck,
+       then slide out to their places in the overlapping stack, top
+       card (Enterprise) first. Offsets are measured from the live layout, so it works
+       for the 4-up row and the stacked mobile column alike. ---------- */
 
     document.querySelectorAll(".plans").forEach(function (plans) {
         var cards = plans.querySelectorAll(".card");
         if (!cards.length) return;
 
-        gsap.from(cards, {
-            opacity: 0, y: 60, scale: 0.94,
-            rotate: function (i) { return i % 2 === 0 ? -6 : 6; },
-            duration: 0.8, stagger: 0.12, ease: "back.out(1.4)",
-            scrollTrigger: { trigger: plans, start: "top 85%", toggleActions: "play none none reverse" },
-        });
+        var offset = function (card, axis) {
+            var first = cards[0].getBoundingClientRect();
+            var rect = card.getBoundingClientRect();
+            return axis === "x" ? first.left - rect.left : first.top - rect.top;
+        };
 
-        cards.forEach(function (card, i) {
-            // each card already sits at its own translateX(...) offset
-            // in CSS (the overlapping stack) — "+=" adds this spread
-            // relative to that base instead of replacing it, so the
-            // stack fans out further without snapping back together
-            var spread = (i - (cards.length - 1) / 2) * 26;
-            gsap.to(card, {
-                x: "+=" + spread, ease: "none",
-                scrollTrigger: { trigger: plans, start: "top bottom", end: "bottom top", scrub: 0.8 },
-            });
-        });
+        gsap.timeline({
+            scrollTrigger: {
+                trigger: plans, start: "top 80%",
+                toggleActions: "play none none reverse", invalidateOnRefresh: true,
+            },
+        })
+            .from(cards, {
+                opacity: 0, duration: 0.4, ease: "power1.out",
+            })
+            .from(cards, {
+                // relative "+=" keeps each card's CSS translateX(...)
+                // stack offset as the resting value and animates in
+                // from the deck spot
+                x: function (i, card) { return "+=" + offset(card, "x"); },
+                y: function (i, card) { return "+=" + offset(card, "y"); },
+                rotate: function (i) { return (i - 1.5) * -3; },
+                duration: 0.9, stagger: { each: 0.1, from: "end" }, ease: "power4.out",
+            }, 0.35);
     });
 
     /* ---------- Comparison table: header cards, category rows, and

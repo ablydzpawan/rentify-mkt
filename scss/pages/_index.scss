@@ -37,7 +37,7 @@
      // max-width: 760px;
      margin: 18px auto 13px;
      font-size: clamp(36px, 4.5vw, 88px);
-     font-weight: 700;
+     font-weight: 600;
      line-height: 1.08;
      letter-spacing: -0.01em;
      margin: 0 0 24px;
@@ -110,58 +110,46 @@
      will-change: transform, filter, opacity;
    }
 
+   // no width/height — every panel renders at its native pixel size so
+   // the PNGs aren't resampled (which blurred them), same as
+   // .features-hero-canvas on the Features page
    .panel img {
      display: block;
-     width: 100%;
-     height: 100%;
-     object-fit: contain;
    }
 
    .url-bar {
      left: 2.98%;
      top: 7.43%;
-     width: 15.73%;
-     height: 5.86%;
      z-index: 4;
    }
 
    .browser {
      left: 21.63%;
      top: 14.04%;
-     width: 57.02%;
-     height: 85.24%;
      z-index: 1;
    }
 
    .toolbar {
      left: 19.6%;
      top: 37.68%;
-     width: 4.21%;
-     height: 48.28%;
      z-index: 3;
    }
 
    .font-panel {
      left: 0.5%;
      top: 35.14%;
-     width: 12.75%;
-     height: 35.14%;
      z-index: 2;
    }
 
    .color-panel {
      left: 86.24%;
      top: 0%;
-     width: 12.64%;
-     height: 37.28%;
      z-index: 2;
    }
 
    .template-panel {
      left: 73.43%;
      top: 57%;
-     width: 22.02%;
-     height: 25.07%;
      z-index: 2;
    }
 

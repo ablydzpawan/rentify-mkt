@@ -21,7 +21,7 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
-  border-radius: inherit;
+  //border-radius: inherit;
 }
 
 .image-wrap .layer {
@@ -186,7 +186,7 @@
 
     h3 {
       font-size: clamp(1.5rem, calc(1.25rem + 1.5vw), 2.75rem);
-      font-weight: 600;
+      font-weight: 400;
       margin-bottom: 1rem;
     }
 
@@ -390,8 +390,8 @@
 }
 
 .state-order-buffer .layer-sat-2 {
-  right: 10%;
-  top: 70%;
+  right: 7%;
+  top: 77%;
 }
 
 .state-order-return .layer-main {
@@ -616,7 +616,7 @@
   text-align: #{$start-direction};
   cursor: pointer;
   padding: 1.35rem 0;
-  font-size: clamp(1.75rem, calc(1.15rem + 2.4vw), 3.25rem);
+  font-size: clamp(1.75rem, calc(1.15rem + 2.4vw), 3rem);
   font-weight: 500;
   line-height: 1.15;
   color: $txt-gray-lighest;

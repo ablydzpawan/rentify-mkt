@@ -8,17 +8,15 @@
   width: fit-content;
   font-size: 0.95rem;
   font-weight: 500;
-  color: $txt-gray;
-  text-transform: uppercase;
-  letter-spacing: .02em;
+  color: $txt-black;
 
   .cycle-label {
     cursor: pointer;
     transition: color .2s ease;
 
     &.active {
-      font-weight: 600;
-      color: $txt-black;
+      // font-weight: 600;
+      // color: $txt-black;
     }
   }
 
@@ -29,7 +27,7 @@
     width: 42px;
     height: 24px;
     border-radius: 100px;
-    background: #e3e3e3;
+    background: #000;
     border: none;
     cursor: pointer;
     flex-shrink: 0;
@@ -56,16 +54,9 @@
 }
 
 //Page: Pricing
-.page-pricing {
-  background-color: #CDE2FB;
-
-  .first-fold {
-    background-color: transparent;
-  }
-}
 
 .bg-pricing-page {
-  background-color: #fff;
+  background-color: #CDE2FB;
   border-radius: 100px 100px 0px 0px;
 }
 
@@ -103,8 +94,13 @@
     top: 25%;
     left: 60%;
     overflow: visible;
-    animation: num-drift 5s ease-in-out infinite;
-    transition: transform .35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 2px 0 rgba(0, 0, 0, .08);
+    // hover uses the individual `translate`/`rotate`/`scale` properties
+    // so it composes with (not fights) the GSAP entrance, which writes
+    // the `transform` property inline
+    transition: translate .35s cubic-bezier(0.34, 1.56, 0.64, 1),
+      rotate .35s cubic-bezier(0.34, 1.56, 0.64, 1),
+      box-shadow .35s ease;
 
     span {
       transform: none;
@@ -113,7 +109,7 @@
 
   .caption {
     transform: rotate(15deg);
-    background-color: #525252;
+    background-color: #000;
     color: #fff;
     z-index: 1;
     border-radius: 20px;
@@ -131,7 +127,8 @@
     display: flex;
     position: relative;
     overflow: visible;
-    transition: transform .35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: rotate .35s cubic-bezier(0.34, 1.56, 0.64, 1),
+      scale .35s cubic-bezier(0.34, 1.56, 0.64, 1);
 
     span {
       text-transform: uppercase;
@@ -140,31 +137,19 @@
     }
   }
 
-  // playful wiggle on hover — the two rotated badges "unstick" from
-  // each other a touch, like a stamp lifting off the page.
+  // hover: the number tag peels up off the caption like a sticker
+  // lifting at one corner, while the caption straightens a little
   &:hover {
     .num {
-      transform: translate(-50%, -50%) rotate(-14deg) scale(1.08);
-      animation-play-state: paused;
+      translate: 0 -6px;
+      rotate: 6deg;
+      box-shadow: 0 10px 18px rgba(0, 0, 0, .14);
     }
 
     .caption {
-      transform: rotate(20deg) scale(1.06);
+      rotate: -7deg;
+      scale: 1.04;
     }
-  }
-}
-
-// gentle idle sway so the badge never feels fully static, even before
-// it's scrolled into hover range
-@keyframes num-drift {
-
-  0%,
-  100% {
-    transform: translate(-50%, -50%) rotate(-7deg);
-  }
-
-  50% {
-    transform: translate(-50%, -50%) rotate(-3deg);
   }
 }
 
@@ -206,7 +191,7 @@
     &.basic {
       z-index: 1;
       transform: translateX(0);
-      background: #166aea12;
+      background: #EEF4FE;
       border-radius: 100px 0 0 100px;
 
     }
@@ -214,7 +199,7 @@
     &.popular {
       z-index: 2;
       transform: translateX(-44px);
-      background: transparent linear-gradient(152deg, #8080FE80 0%, #60B4FF80 44%, #EDFF3EB3 100%) 0% 0% no-repeat padding-box;
+      background: transparent linear-gradient(152deg, #8080FE80 0%, #60B4FF80 44%, #EDFF3EB3 100%);
       border-radius: 50px 0 0 50px;
     }
 
@@ -229,10 +214,9 @@
     &.enterprise {
       z-index: 4;
       transform: translateX(-132px);
-      background: #166aea12;
+      background: #E7EFFC;
       border-radius: 50px 100px 100px 50px;
     }
-
 
     @include media-breakpoint-down(md) {
       border-radius: 24px;
@@ -584,8 +568,8 @@
     // site's custom display font doesn't ship those Unicode characters.
     .mark {
       display: inline-block;
-      width: 16px;
-      height: 16px;
+      width: 1.5rem;
+      height: 1.5rem;
       font-size: 0;
       color: transparent;
       background-color: transparent;
