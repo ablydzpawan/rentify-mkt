@@ -1,0 +1,19 @@
+// Split-word heading reveals (js/text-effects.js wraps each word in
+// .word-wrap > .word; [data-text-anim] hides text until it runs).
+[data-text-anim] {
+  visibility: hidden;
+}
+
+.word-wrap {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding-bottom: 0.15em;
+  margin-bottom: -0.15em;
+}
+
+.word {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+

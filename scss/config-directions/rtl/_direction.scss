@@ -1,0 +1,9 @@
+/*** RTL websites ***/
+// See config-directions/ltr/_direction.scss.
+$direction: rtl !default;
+$opposite-direction: ltr !default;
+
+$start-direction: right !default;
+$end-direction: left !default;
+
+$transform-direction: -1 !default;

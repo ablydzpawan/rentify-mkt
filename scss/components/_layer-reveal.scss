@@ -1,0 +1,36 @@
+/* ---------- Layered-composite "reveal" mechanics ----------
+   Shared by the home, how-to-start and features pages: a .reveal /
+   .image-wrap box holding absolutely-positioned .layer images (one
+   .layer-main plus floating .layer-sat-* satellites). Page files only
+   add per-state layer coordinates. ---------- */
+.reveal,
+.image-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  //border-radius: inherit;
+}
+
+.image-wrap .layer {
+  position: absolute;
+  // Deliberately no width/height here — every layer renders at its
+  // native pixel size (these PNGs are already cropped/exported at the
+  // size they're meant to display at). Forcing a percentage width
+  // upscales the smaller badge/icon assets and blurs them, and was
+  // also producing inaccurate compositions since the same forced
+  // size doesn't fit every layer's actual content.
+  will-change: transform, filter, opacity;
+}
+
+// shared depth/shadow treatment for every "satellite" layer (the
+// smaller supporting cards/icons that float around the main layer)
+.image-wrap .layer-main {
+  z-index: 1;
+}
+
+.image-wrap [class*="layer-sat"] {
+  z-index: 2;
+  filter: drop-shadow(0 14px 26px rgba(0, 0, 0, 0.2));
+}
+

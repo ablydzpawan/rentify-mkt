@@ -334,3 +334,58 @@
     }
   }
 }
+
+/* ---------- First-fold hero canvas: exact-position panel group ----------
+   how-to-start only; the shared .first-fold shell (title, desc) lives in
+   pages/_inner.scss, which common.css loads. */
+.first-fold {
+  .first-fold-canvas {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1799 / 602;
+    /* locks every panel's relative position */
+    max-width: 1780px;
+    margin: 0 auto;
+
+    .panel {
+      position: absolute;
+      will-change: transform, filter, opacity;
+    }
+
+    // no width/height — native pixel size so the PNGs aren't resampled
+    // (which blurred them), same as the home and Features hero canvases
+    .panel img {
+      display: block;
+    }
+
+    /* main artboard — theme editor preview, centered */
+    #browser {
+      left: 23%;
+      top: 0;
+      z-index: 2;
+      overflow: hidden;
+    }
+
+    /* satellites — positioned to match the design's floating card group */
+    #sales-panel {
+      left: 0;
+      top: 0;
+    }
+
+    #product-panel {
+      left: 0;
+      bottom: 0;
+    }
+
+    #social-panel {
+      right: 0;
+      top: 0;
+    }
+
+    #url-bar {
+      right: 0;
+      bottom: 0;
+    }
+  }
+}
+

@@ -1,0 +1,43 @@
+//marquee
+.marquee {
+  white-space: nowrap;
+  width: 100%;
+  overflow: hidden;
+
+  &-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 15s linear infinite;
+  }
+
+  &-item {
+    flex: 0 0 auto;
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+    margin: 0 2rem;
+    text-transform: uppercase;
+    font-size: clamp(36px, 14vw, 15rem);
+    color: $txt-black;
+    font-weight: 700;
+    position: relative;
+
+    &::after {
+      content: "\2022";
+      margin-left: 2rem;
+      line-height: 1;
+      font-size: clamp(36px, 16vw, 15rem);
+    }
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+

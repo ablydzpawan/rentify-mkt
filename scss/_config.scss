@@ -1,0 +1,20 @@
+// Shared configuration — variables, functions and mixins only, no CSS
+// output. Imported at the top of every entry file (bootstrap.scss aside)
+// so each compiled stylesheet can use the same tokens and breakpoints.
+
+// $direction, $start-direction, ... LTR by default; the values are
+// !default, so the gulp RTL build (and the blog's blog-rtl.scss) set the
+// RTL ones first and these don't override them. A real path, so plain
+// `sass` / editor compilers work without extra include paths.
+@import "config-directions/ltr/direction";
+
+// Bootstrap configuration (for media-breakpoint-up() etc.)
+@import "bootstrap/functions";
+@import "bootstrap/variables";
+@import "bootstrap/variables-dark";
+@import "bootstrap/maps";
+@import "bootstrap/mixins";
+@import "bootstrap/utilities";
+
+// Project variables + mixins
+@import "themes/variables";

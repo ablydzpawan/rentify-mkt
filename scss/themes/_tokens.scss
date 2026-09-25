@@ -1,0 +1,14 @@
+// Design tokens as CSS custom properties — output once, in common.css.
+:root {
+  --bs-gutter-x: 1rem;
+  --bs-gutter-y: 1rem;
+  --background-bg-primary: #efefef;
+  --background-bg-secondary: #fff;
+  --background-bg-tertiary: rgba(0, 0, 0, 0.06);
+  --brand-color: #2D85FE;
+  --brand-color-alpha: 45, 133, 254;
+  --brand-color-inverse: rgb(255, 255, 255);
+  --secondary-color: #14424c;
+  --secondary-color-inverse: #ffffff;
+  --secondary-color-alpha: 7, 149, 230;
+}

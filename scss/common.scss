@@ -1,0 +1,31 @@
+// css/common.css — everything shared by more than one page: tokens,
+// layout (header, offcanvas menu, footer), components and the section
+// patterns several pages reuse. Page-only styles go in the page entries.
+@import "config";
+
+//themes
+@import "themes/tokens";
+
+//layout
+@import "layout/header";
+@import "layout/offcanvas-menu";
+@import "layout/footer";
+
+//components
+@import "components/custom-cursor";
+@import "components/button";
+@import "components/section";
+@import "components/scrollbar";
+@import "components/form";
+@import "components/misc";
+@import "components/motion";
+@import "components/back-to-top";
+@import "components/text-reveal";
+@import "components/layer-reveal";
+@import "components/why-us";
+@import "components/faq-list";
+@import "components/cta";
+@import "components/marquee";
+
+//shared inner-page patterns (first-fold hero, businesses strip)
+@import "pages/inner";

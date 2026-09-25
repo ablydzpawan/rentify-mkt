@@ -1,6 +1,7 @@
 /*
-  Supporting styles for the GSAP/Lenis motion layer (js/motion.js).
-  Loaded after main-ltr.css so these rules can extend it without edits.
+  Supporting styles for the GSAP/Lenis motion layer (js/page-js/*.js).
+  Part of common.css, imported after the other components so these
+  rules can extend them without edits.
 */
 
 /* Pre-hide only above-the-fold hero content, before JS takes over, so it

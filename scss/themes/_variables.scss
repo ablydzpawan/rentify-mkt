@@ -1,16 +1,9 @@
-:root {
-  --bs-gutter-x: 1rem;
-  --bs-gutter-y: 1rem;
-  --background-bg-primary: #efefef;
-  --background-bg-secondary: #fff;
-  --background-bg-tertiary: rgba(0, 0, 0, 0.06);
-  --brand-color: #2D85FE;
-  --brand-color-alpha: 45, 133, 254;
-  --brand-color-inverse: rgb(255, 255, 255);
-  --secondary-color: #14424c;
-  --secondary-color-inverse: #ffffff;
-  --secondary-color-alpha: 7, 149, 230;
-}
+// Variables and mixins only — this file must not emit CSS, since every
+// entry file imports it (see _config.scss). Custom properties live in
+// themes/_tokens.scss, which only common.css outputs.
+
+//spacing
+$section-padding: clamp(2rem, 5vw, 10rem);
 
 //default colors
 $dark-color: #888;
@@ -241,18 +234,6 @@ $avatar-ratio: 1/1;
   }
 }
 
-@keyframes fadeInUp {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateY(0px);
-  }
-}
-
 //Pseudo
 @mixin pseudo($display: block, $pos: absolute, $content: "") {
   content: $content;
@@ -278,47 +259,6 @@ $avatar-ratio: 1/1;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-@mixin placeholder {
-  animation: placeholderShimmer 2s linear;
-  animation-iteration-count: infinite;
-  background-color: $bg-white;
-  background-image: -webkit-gradient(linear,
-      left top,
-      right top,
-      from(rgba(0, 0, 0, 0.08)),
-      color-stop(15%, rgba(0, 0, 0, 0.15)),
-      color-stop(30%, rgba(0, 0, 0, 0.08)));
-  background-image: -webkit-linear-gradient(left,
-      rgba(0, 0, 0, 0.08) 0,
-      rgba(0, 0, 0, 0.15) 15%,
-      rgba(0, 0, 0, 0.08) 30%);
-  background-image: linear-gradient(to right,
-      rgba(0, 0, 0, 0.08) 0,
-      rgba(0, 0, 0, 0.15) 15%,
-      rgba(0, 0, 0, 0.08) 30%);
-  background-size: 1200px 100%;
-}
-
-@-webkit-keyframes placeholderShimmer {
-  0% {
-    background-position: -1200px 0;
-  }
-
-  100% {
-    background-position: 1200px 0;
-  }
-}
-
-@keyframes placeholderShimmer {
-  0% {
-    background-position: -1200px 0;
-  }
-
-  100% {
-    background-position: 1200px 0;
-  }
 }
 
 @mixin underline {

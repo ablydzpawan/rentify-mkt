@@ -1,0 +1,11 @@
+/*** LTR websites ***/
+// !default so a bundle that sets its own direction first (the blog's
+// blog-rtl.scss) keeps it. Picked up through the build's includePaths
+// (see gulpfile.js), so the same entry files compile to LTR or RTL.
+$direction: ltr !default;
+$opposite-direction: rtl !default;
+
+$start-direction: left !default;
+$end-direction: right !default;
+
+$transform-direction: 1 !default;

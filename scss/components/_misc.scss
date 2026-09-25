@@ -1,8 +1,5 @@
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
+// box-sizing: border-box on everything comes from Bootstrap's reboot
+// (bootstrap.css), which always loads first.
 
 html,
 body {

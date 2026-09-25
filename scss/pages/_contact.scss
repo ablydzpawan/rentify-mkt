@@ -109,7 +109,137 @@
          padding: 12px 2.25rem;
          font-size: 0.95rem;
        }
+
+       &.is-loading {
+         pointer-events: none;
+         opacity: 0.7;
+       }
      }
+
+     .form-policy a {
+       color: inherit;
+       text-decoration: underline;
+       text-underline-offset: 3px;
+     }
+   }
+ }
+
+
+ /* ---------- FORM: floating labels ----------
+    The label rests inside the field like a placeholder and floats up
+    above it on focus or once the field has a value. Fields carry
+    placeholder=" " so :placeholder-shown can tell empty from filled. */
+ #get-in-touch .form-float {
+   position: relative;
+   padding-top: 1.5rem;
+
+   .form-label {
+     position: absolute;
+     top: 1.5rem;
+     inset-inline-start: 0;
+     margin: 0;
+     line-height: 3rem;
+     pointer-events: none;
+     transition: top 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+       font-size 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+       line-height 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+       color 0.3s ease;
+   }
+
+   input::placeholder,
+   textarea::placeholder {
+     color: transparent;
+   }
+
+   &:focus-within .form-label,
+   input:not(:placeholder-shown)+.form-label,
+   textarea:not(:placeholder-shown)+.form-label {
+     top: 0;
+     line-height: 1.5rem;
+     font-size: 0.95rem;
+     color: $txt-gray-light;
+   }
+
+   &:focus-within .form-label {
+     color: $txt-black;
+   }
+
+   @media (prefers-reduced-motion: reduce) {
+     .form-label {
+       transition: none;
+     }
+   }
+ }
+
+
+ /* ---------- FORM CARD: success state ---------- */
+ .form-success {
+   position: absolute;
+   inset: 0;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   text-align: center;
+   padding: clamp(1.75rem, 3vw, 3rem);
+
+   &[hidden] {
+     display: none;
+   }
+
+   &-icon {
+     width: clamp(88px, 8vw, 120px);
+     margin-bottom: 1.5rem;
+
+     svg {
+       display: block;
+       width: 100%;
+       overflow: visible;
+     }
+   }
+
+   &-ring,
+   &-check {
+     fill: none;
+     stroke: $brand-color;
+     stroke-width: 6;
+     stroke-linecap: round;
+     stroke-linejoin: round;
+   }
+
+   &-ring {
+     fill: rgba($brand-color, 0.08);
+   }
+
+   &-title {
+     color: $txt-black;
+     font-size: clamp(32px, 3.5vw, 52px);
+     font-weight: 600;
+     line-height: 1.1;
+     margin: 0 0 0.75rem;
+   }
+
+   &-desc {
+     max-width: 360px;
+     font-size: 1.05rem;
+     line-height: 1.6;
+     color: $txt-gray;
+     margin: 0 0 2rem;
+   }
+ }
+
+ .form-confetti {
+   position: absolute;
+   inset: 0;
+   pointer-events: none;
+   z-index: 3;
+
+   i {
+     position: absolute;
+     top: 0;
+     left: 0;
+     display: block;
+     will-change: transform, opacity;
    }
  }
 
@@ -193,3 +323,39 @@
      }
    }
  }
+
+/* ---------- HERO MARQUEE: contact variant + spinning glyph ---------- */
+.marquee-contact {
+  .marquee-item {
+    font-weight: 500;
+    font-size: clamp(36px, 14vw, 11rem);
+
+    &::after {
+      content: normal;
+    }
+  }
+}
+
+.marquee-glyph {
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
+
+  svg {
+    font-size: 0.7em;
+    display: inline-flex;
+    transform-origin: center;
+    animation: rotate360 3s linear infinite;
+  }
+}
+
+@keyframes rotate360 {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+

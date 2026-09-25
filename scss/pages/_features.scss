@@ -7,44 +7,8 @@
 // file used to drift after enough incremental edits. Section 2
 // (Rental Businesses Empowered by Us) and the FAQs/CTA/marquee
 // sections near the bottom of the page have no entry here because
-// they're shared components styled elsewhere (_index.scss, _faq.scss,
-// components/_section.scss) with nothing features.html overrides.
-
-/* ---------- shared "reveal" mechanics for every layered composite on
-   this page (hero canvas panels, listing cards, accordion visuals,
-   system cards, checkout panels). Mirrors the how-to-start page's
-   .reveal/.image-wrap/.layer system but kept self-contained here so
-   this file doesn't depend on another page's partial load order. ---------- */
-.reveal,
-.image-wrap {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  //border-radius: inherit;
-}
-
-.image-wrap .layer {
-  position: absolute;
-  // Deliberately no width/height here — every layer renders at its
-  // native pixel size (these PNGs are already cropped/exported at the
-  // size they're meant to display at). Forcing a percentage width
-  // upscales the smaller badge/icon assets and blurs them, and was
-  // also producing inaccurate compositions since the same forced
-  // size doesn't fit every layer's actual content.
-  will-change: transform, filter, opacity;
-}
-
-// shared depth/shadow treatment for every "satellite" layer (the
-// smaller supporting cards/icons that float around the main layer)
-.image-wrap .layer-main {
-  z-index: 1;
-}
-
-.image-wrap [class*="layer-sat"] {
-  z-index: 2;
-  filter: drop-shadow(0 14px 26px rgba(0, 0, 0, 0.2));
-}
+// they're shared components styled in common.css (components/_faq-list,
+// _cta, _marquee, _section) with nothing features.html overrides.
 
 /* =========================================================
    1. HERO — "One Platform. Every Rental Need."

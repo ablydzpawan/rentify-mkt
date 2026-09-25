@@ -1,38 +1,23 @@
+// All-in-one bundle kept for the blog only (blog/scss/_blog.scss imports
+// it). The site pages load bootstrap.css + common.css + their own page
+// stylesheet instead — see bootstrap.scss, common.scss and the page
+// entry files next to this one.
+
 //Framework
 @import "bootstrap/bootstrap";
-
-//@import "vendors/jquery.fancybox.min";
 
 //vendors
 @import "vendors/swiper.min.scss";
 
-//themes
-@import "themes/variables";
+//shared
+@import "common";
 
-//layout
-@import "layout/header";
-@import "layout/offcanvas-menu";
-@import "layout/footer";
-
-//components
-@import "components/loader";
-@import "components/custom-cursor";
-@import "components/hamburger";
-@import "components/button";
-@import "components/section";
-@import "components/scrollbar";
-
-@import "components/form";
-@import "components/checkbox";
-@import "components/misc";
-@import "components/motion";
-@import "components/back-to-top";
 //pages
 @import "pages/index";
 @import "pages/how-it-works";
-@import "pages/inner";
 @import "pages/contact";
 @import "pages/faq";
 @import "pages/plans";
 @import "pages/video";
 @import "pages/features";
+@import "pages/legal";

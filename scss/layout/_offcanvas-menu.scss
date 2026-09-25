@@ -163,3 +163,44 @@
   //border-radius: $common-radius;
   border-radius: $card-radius;
 }
+
+.offcanvas-menu {
+  @include bg-brand;
+  display: flex;
+  flex-direction: column;
+  transition: transform .3s ease-in-out;
+  max-width: 340px;
+
+  &.show {
+    .offcanvas-body {
+      transition: all 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      opacity: 1;
+      padding: 4rem 2rem;
+
+      @include media-breakpoint-up(lg) {
+        padding: 4rem 3rem;
+      }
+    }
+  }
+
+  .btn-close {
+    background: none;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    font-size: 2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+
+  .offcanvas-body {
+    padding: 5rem 4.375rem;
+    opacity: 0;
+  }
+
+}
+

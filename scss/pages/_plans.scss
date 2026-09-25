@@ -177,45 +177,75 @@
     border: none;
     background: linear-gradient(180deg, #EEF4FE 0%, #E7EEFC 100%);
     position: relative;
-    padding: 3rem 3rem;
-    padding-right: 6rem;
+    padding: 3rem;
     display: flex;
     flex-direction: column;
     gap: 14px;
     isolation: isolate;
 
-    // shifted via transform (not left) so they compose cleanly with
-    // the GSAP scroll-scrub translateX in pricing.js — left would
-    // fight transform for the same visual axis and, unlike transform,
-    // isn't GPU-accelerated, so the layered stack pans less smoothly.
+    // Overlapping row (per design): every card except the last in its
+    // row runs $plan-overlap further right, underneath the next card's
+    // rounded left corner. A negative margin-right widens the stretched
+    // grid item without moving its neighbours, so each card's content
+    // still starts at its own column edge and the row stays evenly
+    // spaced edge to edge. The extra padding-right keeps that card's
+    // content clear of the part tucked under its neighbour.
+    $plan-overlap: 50px;
+    $plan-radius-outer: 64px;
+    $plan-radius-inner: 44px;
+
+    @include media-breakpoint-up(md) {
+      padding: 3rem 3rem 3rem 2.625rem;
+      padding-right: calc(3rem + #{$plan-overlap});
+      margin-right: -$plan-overlap;
+      border-radius: $plan-radius-inner 0 0 $plan-radius-inner;
+
+      // last card in each row: nothing to tuck under, round the right side
+      &:nth-child(2n) {
+        margin-right: 0;
+        padding-right: 3rem;
+        border-radius: $plan-radius-inner $plan-radius-outer $plan-radius-outer $plan-radius-inner;
+      }
+    }
+
+    @include media-breakpoint-up(lg) {
+      &:nth-child(2n) {
+        margin-right: -$plan-overlap;
+        padding-right: calc(3rem + #{$plan-overlap});
+        border-radius: $plan-radius-inner 0 0 $plan-radius-inner;
+      }
+
+      &:last-child {
+        margin-right: 0;
+        padding-right: 3rem;
+        border-radius: $plan-radius-inner $plan-radius-outer $plan-radius-outer $plan-radius-inner;
+      }
+    }
+
     &.basic {
       z-index: 1;
-      transform: translateX(0);
       background: #EEF4FE;
-      border-radius: 100px 0 0 100px;
 
+      @include media-breakpoint-up(md) {
+        border-top-left-radius: $plan-radius-outer;
+        border-bottom-left-radius: $plan-radius-outer;
+      }
     }
 
     &.popular {
       background: transparent linear-gradient(152deg, #B5B5FF 0%, #AAD6FE 44%, #F1FF6D 100%) 0% 0% no-repeat;
       z-index: 2;
-      transform: translateX(-44px);
-      border-radius: 50px 0 0 50px;
     }
 
     &.advanced {
       z-index: 3;
-      transform: translateX(-88px);
       background: #FFFFFF;
       border: 1px solid #D8E6FC;
-      border-radius: 50px 0 0 50px;
     }
 
     &.enterprise {
       z-index: 4;
-      transform: translateX(-132px);
       background: #E7EFFC;
-      border-radius: 50px 100px 100px 50px;
     }
 
     @include media-breakpoint-down(md) {
@@ -228,7 +258,7 @@
   .badge-popular {
     position: absolute;
     top: 28px;
-    right: 24px;
+    right: 74px;
     background: #D7F17A;
     color: $txt-black;
     font-weight: 700;
@@ -426,8 +456,8 @@
       top: -14px;
       left: 50%;
       transform: translateX(-50%);
-      background: $txt-black;
-      color: #fff;
+      background-color: #D7F17A;
+      color: #000;
       font-size: 0.7rem;
       font-weight: 700;
       letter-spacing: .04em;

@@ -172,40 +172,37 @@ if (!prefersReducedMotion) {
 
     revealGroup(".bg-pricing-page .text-center", ".billing-toggle", { y: 16, duration: 0.6, stagger: 0 });
 
-    /* ---------- Pricing cards — dealt out like a hand of cards: all
-       four start collapsed onto the first card's spot as one deck,
-       then slide out to their places in the overlapping stack, top
-       card (Enterprise) first. Offsets are measured from the live layout, so it works
-       for the 4-up row and the stacked mobile column alike. ---------- */
+    /* ---------- Pricing cards — mask wipe + content cascade: each card's
+       panel wipes open left to right like a curtain (Basic first,
+       Enterprise last), then its contents — badge, icon, name, price,
+       "What's included", each feature line and the button — rise in one
+       after another. Only clip-path / y / opacity are animated, so the
+       overlapping row layout from _plans.scss is left untouched. ---------- */
 
     document.querySelectorAll(".plans").forEach(function (plans) {
         var cards = plans.querySelectorAll(".card");
         if (!cards.length) return;
 
-        var offset = function (card, axis) {
-            var first = cards[0].getBoundingClientRect();
-            var rect = card.getBoundingClientRect();
-            return axis === "x" ? first.left - rect.left : first.top - rect.top;
-        };
+        var tl = gsap.timeline({
+            scrollTrigger: { trigger: plans, start: "top 80%", toggleActions: "play none none reverse" },
+        });
 
-        gsap.timeline({
-            scrollTrigger: {
-                trigger: plans, start: "top 80%",
-                toggleActions: "play none none reverse", invalidateOnRefresh: true,
-            },
-        })
-            .from(cards, {
-                opacity: 0, duration: 0.4, ease: "power1.out",
-            })
-            .from(cards, {
-                // relative "+=" keeps each card's CSS translateX(...)
-                // stack offset as the resting value and animates in
-                // from the deck spot
-                x: function (i, card) { return "+=" + offset(card, "x"); },
-                y: function (i, card) { return "+=" + offset(card, "y"); },
-                rotate: function (i) { return (i - 1.5) * -3; },
-                duration: 0.9, stagger: { each: 0.1, from: "end" }, ease: "power4.out",
-            }, 0.35);
+        cards.forEach(function (card, i) {
+            var at = i * 0.18;
+            var parts = card.querySelectorAll(
+                ".badge-popular, .avatar, .card-head, .price-row, h6, .feat-list li, .cta"
+            );
+
+            tl.fromTo(card,
+                { clipPath: "inset(0% 100% 0% 0%)" },
+                { clipPath: "inset(0% 0% 0% 0%)", duration: 0.8, ease: "power3.inOut", clearProps: "clipPath" },
+                at
+            );
+
+            tl.from(parts, {
+                opacity: 0, y: 16, duration: 0.5, stagger: 0.04, ease: revealEase,
+            }, at + 0.4);
+        });
     });
 
     /* ---------- Comparison table: header cards, category rows, and
