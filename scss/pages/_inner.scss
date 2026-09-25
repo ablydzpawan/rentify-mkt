@@ -136,3 +136,153 @@
 
   &-img {}
 }
+
+//Legal pages — Privacy Policy, Terms of Use
+.legal-hero {
+  padding-top: clamp(48px, 7vw, 120px);
+  padding-bottom: clamp(32px, 4vw, 64px);
+  background: transparent radial-gradient(closest-side at 50% 45%, #FEF9AD 0%, #FFFFFF 100%) 0% 0% no-repeat;
+
+  &-content {
+    max-width: 820px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .title {
+    color: $txt-black;
+    font-size: clamp(36px, 4.5vw, 64px);
+    font-weight: 600;
+    line-height: 1.1;
+    margin: 0 0 20px;
+  }
+
+  .desc {
+    font-size: clamp(15px, 1.2vw, 1.15rem);
+    line-height: 1.6;
+    color: $txt-body;
+    margin: 0 auto;
+    max-width: 640px;
+  }
+}
+
+.legal-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0 0 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: $txt-gray-light;
+
+  span {
+    color: $txt-gray-lighest;
+  }
+}
+
+.legal-updated {
+  display: inline-block;
+  margin: 1.5rem 0 0;
+  padding: 0.4rem 1rem;
+  border-radius: 100px;
+  background: $bg-gray;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: $txt-gray;
+}
+
+.legal-section {
+  padding-top: clamp(24px, 3vw, 48px);
+}
+
+.legal-content {
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.legal-block {
+  padding: clamp(24px, 3vw, 40px) 0;
+  border-top: 1px solid rgba(0, 0, 0, .12);
+
+  &:last-child {
+    border-bottom: 1px solid rgba(0, 0, 0, .12);
+  }
+
+  &-title {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    color: $txt-black;
+    font-size: clamp(22px, 2vw, 28px);
+    font-weight: 600;
+    line-height: 1.25;
+    margin: 0 0 1rem;
+  }
+
+  .legal-num {
+    flex: 0 0 auto;
+    font-size: 1rem;
+    font-weight: 500;
+    color: $txt-gray-lighest;
+  }
+
+  p,
+  li {
+    font-size: clamp(15px, 1.1vw, 1.05rem);
+    line-height: 1.7;
+    color: $txt-gray;
+  }
+
+  p {
+    margin: 0 0 1rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  ul {
+    margin: 0 0 1rem;
+    padding-inline-start: 1.25rem;
+    list-style: disc;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  li {
+    margin-bottom: 0.4rem;
+  }
+
+  a {
+    color: $brand-color;
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+}
+
+//Footer — legal links under the copyright line
+.footer-legal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.25rem;
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+
+  a {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: $txt-gray-light;
+    transition: color 0.3s ease-in-out;
+
+    &:hover,
+    &:focus-visible {
+      color: $txt-black;
+    }
+  }
+}

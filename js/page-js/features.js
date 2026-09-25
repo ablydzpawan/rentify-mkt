@@ -107,17 +107,7 @@ function initLayerReveals(scope, opts) {
             },
         });
 
-        if (opts.clipShape === "aperture") {
-            // Camera-iris reveal: a circular mask irises open from the
-            // image's own center instead of wiping in from an edge,
-            // with the image itself fading in at the same time rather
-            // than snapping straight to full opacity.
-            tl.fromTo(mainLayer,
-                { clipPath: "circle(0% at 50% 50%)", scale: 1.08, opacity: 0 },
-                { clipPath: "circle(75% at 50% 50%)", scale: 1, opacity: 1, duration: 1, ease: "power3.out" },
-                0
-            );
-        } else if (opts.clip) {
+        if (opts.clip) {
             // "right" (default) wipes left-to-right; "bottom" wipes bottom-to-top.
             var clipFrom = opts.clipFrom === "bottom" ? "inset(100% 0% 0% 0%)" : "inset(0% 100% 0% 0%)";
             tl.fromTo(mainLayer,
@@ -211,11 +201,10 @@ function initSyncedAccordion(rootSelector) {
    item is a big heading-sized label; hovering (or focusing) one
    opens its description with a pure-CSS height reveal (see
    .seo-reveal-panel in scss/pages/_features.scss) and swaps the
-   shared image panel with an "Image Aperture Reveal" — a circular
-   clip-path mask that irises open from the image's own center,
-   like a camera aperture, with the image fading in (opacity 0->1)
-   over the same duration so it plays in rather than just snapping
-   to full strength once the iris finishes. Mirrors
+   shared image panel with a directional "shutter push": moving
+   down the list, the new image wipes up from the bottom edge
+   while the old one slides up and out; moving up the list plays
+   the same thing in reverse. Mirrors
    initSyncedAccordion's state-swap plumbing but trades the
    click-to-expand trigger for mouseenter/focus, since there's no
    collapsed content left to expand.
@@ -232,11 +221,18 @@ function initHoverReveal(rootSelector) {
             states[state.getAttribute("data-state")] = state;
         });
 
+        // list position of each state, so the shutter knows which way
+        // to travel (moving down the list pushes up, and vice versa)
+        var order = {};
+        triggers.forEach(function (t, i) { order[t.getAttribute("data-image-state")] = i; });
+
         function playState(key) {
             var state = states[key];
             if (!state || state.classList.contains("is-active")) return;
 
+            var prevKey = null;
             Object.keys(states).forEach(function (k) {
+                if (states[k].classList.contains("is-active")) prevKey = k;
                 states[k].classList.remove("is-active");
             });
             state.classList.add("is-active");
@@ -246,10 +242,23 @@ function initHoverReveal(rootSelector) {
             var img = state.querySelector(".image-wrap .layer");
             if (!img) return;
 
+            var down = prevKey === null || (order[key] || 0) > (order[prevKey] || 0);
+            var prevImg = prevKey ? states[prevKey].querySelector(".image-wrap .layer") : null;
+
+            // outgoing image slides off the way the shutter travels while
+            // its state fades out (CSS opacity transition on .seo-panel-state)
+            if (prevImg) {
+                gsap.killTweensOf(prevImg);
+                gsap.to(prevImg, {
+                    yPercent: down ? -10 : 10, duration: 0.5, ease: "power2.in",
+                    onComplete: function () { gsap.set(prevImg, { clearProps: "transform,clipPath" }); },
+                });
+            }
+
             gsap.killTweensOf(img);
             gsap.fromTo(img,
-                { clipPath: "circle(0% at 50% 50%)", scale: 1.06, opacity: 0 },
-                { clipPath: "circle(75% at 50% 50%)", scale: 1, opacity: 1, duration: 0.8, ease: "power3.out" }
+                { clipPath: down ? "inset(100% 0% 0% 0%)" : "inset(0% 0% 100% 0%)", yPercent: down ? 12 : -12, opacity: 1 },
+                { clipPath: "inset(0% 0% 0% 0%)", yPercent: 0, duration: 0.75, ease: "power4.out" }
             );
         }
 
@@ -548,7 +557,7 @@ if (prefersReducedMotion) {
     // same bottom-to-top clip reveal its hover swap uses, everywhere
     // else keeps the blur/scale settle.
     initLayerReveals(document.querySelectorAll("#order-mgmt-accordion .sync-accordion-visual .state.is-active"));
-    initLayerReveals(document.querySelectorAll("#seo-accordion .seo-panel-visual .seo-panel-state.is-active"), { clipShape: "aperture" });
+    initLayerReveals(document.querySelectorAll("#seo-accordion .seo-panel-visual .seo-panel-state.is-active"), { clip: true, clipFrom: "bottom" });
     initLayerReveals(document.querySelectorAll(".checkout-panel.is-active .checkout-panel-visual"));
 
     window.addEventListener("load", function () { ScrollTrigger.refresh(); });

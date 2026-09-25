@@ -197,9 +197,9 @@
     }
 
     &.popular {
+      background: transparent linear-gradient(152deg, #B5B5FF 0%, #AAD6FE 44%, #F1FF6D 100%) 0% 0% no-repeat;
       z-index: 2;
       transform: translateX(-44px);
-      background: transparent linear-gradient(152deg, #8080FE80 0%, #60B4FF80 44%, #EDFF3EB3 100%);
       border-radius: 50px 0 0 50px;
     }
 
@@ -568,6 +568,7 @@
     // site's custom display font doesn't ship those Unicode characters.
     .mark {
       display: inline-block;
+      vertical-align: middle;
       width: 1.5rem;
       height: 1.5rem;
       font-size: 0;
