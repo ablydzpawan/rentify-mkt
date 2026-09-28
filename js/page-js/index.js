@@ -339,13 +339,23 @@ if (!prefersReducedMotion) {
     });
     revealGroup(".pricings", ".pricings-item", { y: 50, scale: 0.95 });
     revealGroup(".calendar-check", "li", { x: -30, y: 0, stagger: 0.1 });
-    // clearProps: "transform" strips the inline transform GSAP sets for
-    // the y-offset once the reveal finishes, so the CSS fanned-tilt
-    // rotation (and the .active card's reset to upright — see
-    // .accordion-card in scss/pages/_index.scss) stays in control
-    // instead of getting frozen at whatever angle was current the one
-    // time this reveal played.
-    revealGroup(".accordion-container", ".accordion-card", { y: 50, stagger: 0.12, clearProps: "transform" });
+    // The cards' 3D turn (perspective + rotateY, flipping with the open
+    // card — see .accordion-card in scss/pages/_index.scss) lives on
+    // `transform`, so this reveal rises them in with `top` instead:
+    // animating transform would flatten the cards mid-reveal and snap
+    // them back to their angle at the end.
+    gsap.from(".accordion-container .accordion-card", {
+        opacity: 0,
+        top: 50,
+        duration: 0.9,
+        ease: revealEase,
+        stagger: 0.12,
+        scrollTrigger: {
+            trigger: ".accordion-container",
+            start: "top 85%",
+            toggleActions: "play none none reverse",
+        },
+    });
     revealGroup(".faq-list", ".faq-list-item", { y: 25, stagger: 0.1 });
     revealGroup(".footer-top .row", ".col-auto", { y: 30, stagger: 0.12 });
     revealGroup(".black-cta", ":scope > *", { y: 30, stagger: 0.1, duration: 0.8 });

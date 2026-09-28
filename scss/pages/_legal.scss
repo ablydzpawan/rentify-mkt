@@ -86,7 +86,8 @@
     flex: 0 0 auto;
     font-size: 1rem;
     font-weight: 500;
-    color: $txt-gray-lighest;
+    // 0.6 black on white passes 4.5:1 contrast; 0.5 did not
+    color: $txt-gray-light;
   }
 
   p,

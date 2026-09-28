@@ -287,7 +287,19 @@ if (!prefersReducedMotion) {
 
     /* ---------- Why choose cards ---------- */
 
-    revealGroup(".why-choose-grid", ".why-choose-card", { y: 50, scale: 0.95, stagger: 0.1 });
+    // same card rise + bouncy icon pop as the homepage's why-us row
+    revealGroup(".why-us", ".why-us-item", { y: 50, stagger: 0.1 });
+    revealGroup(".why-us", ".why-us-icon svg", {
+        opacity: 0,
+        y: 0,
+        scale: 0.4,
+        rotate: -18,
+        transformOrigin: "50% 50%",
+        duration: 0.75,
+        delay: 0.15,
+        ease: "back.out(2.2)",
+        stagger: 0.12,
+    });
 
     /* ---------- FAQ + footer ---------- */
 

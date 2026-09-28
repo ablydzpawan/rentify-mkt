@@ -34,3 +34,26 @@
   filter: drop-shadow(0 14px 26px rgba(0, 0, 0, 0.2));
 }
 
+/* ---------- Mobile: one flat image per composition ----------
+   Below lg the native-sized layers no longer fit their box, so each
+   multi-layer .image-wrap (marked .layers-desktop) is swapped for a
+   pre-rendered .layers-mobile image of the same composition — same
+   approach as the home and Features hero canvases. The image is
+   captured at the wrap's desktop size, so it fills the same box. */
+.layers-mobile {
+  display: none;
+}
+
+@include media-breakpoint-down(lg) {
+  .image-wrap.layers-desktop {
+    display: none;
+  }
+
+  .layers-mobile {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}
+

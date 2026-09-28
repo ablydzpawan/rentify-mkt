@@ -60,5 +60,12 @@
       flex: auto;
       max-width: none;
     }
+
+    // logos carry width/height attributes so their space is reserved
+    // before they load; height:auto keeps them in proportion when shrunk
+    img {
+      max-width: 100%;
+      height: auto;
+    }
   }
 }

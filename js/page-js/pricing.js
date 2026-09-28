@@ -190,7 +190,7 @@ if (!prefersReducedMotion) {
         cards.forEach(function (card, i) {
             var at = i * 0.18;
             var parts = card.querySelectorAll(
-                ".badge-popular, .avatar, .card-head, .price-row, h6, .feat-list li, .cta"
+                ".badge-popular, .avatar, .card-head, .price-row, .h6, .feat-list li, .cta"
             );
 
             tl.fromTo(card,

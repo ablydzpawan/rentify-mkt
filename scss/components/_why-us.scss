@@ -16,8 +16,9 @@
   }
 
   &-item {
-    flex: 0 0 calc(50% - 2rem);
-    max-width: calc(50% - 2rem);
+    // two per row: half the width minus half of the 2rem gap
+    flex: 0 0 calc(50% - 1rem);
+    max-width: calc(50% - 1rem);
     padding: 2rem 1.5rem;
     display: flex;
     flex-direction: column;

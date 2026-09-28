@@ -69,16 +69,16 @@
     z-index: 3;
   }
 
-  // Below md, the five absolutely positioned native-sized panels no
+  // Below lg, the five absolutely positioned native-sized panels no
   // longer have room to lay out sensibly (see .features-hero-mobile,
   // right below, which replaces this entire canvas on those screens
   // instead of trying to keep patching panel positions smaller).
-  @include media-breakpoint-down(md) {
+  @include media-breakpoint-down(lg) {
     display: none;
   }
 }
 
-// Single flat image swapped in for .features-hero-canvas below md —
+// Single flat image swapped in for .features-hero-canvas below lg —
 // simpler and far more reliable on small screens than trying to keep
 // five overlapping native-sized panels legible at that width.
 .features-hero-mobile {
@@ -87,7 +87,7 @@
   height: auto;
   border-radius: 24px;
 
-  @include media-breakpoint-down(md) {
+  @include media-breakpoint-down(lg) {
     display: block;
   }
 }
@@ -401,7 +401,7 @@
       margin-bottom: 1rem;
     }
 
-    h4 {
+    h3 {
       font-size: 1.15rem;
       font-weight: 700;
       margin-bottom: 0.5rem;
@@ -438,7 +438,7 @@
     grid-template-columns: repeat(4, 1fr);
   }
 
-  h4 {
+  h3 {
     font-size: 1.1rem;
     font-weight: 700;
     margin-bottom: 0.5rem;
@@ -458,8 +458,11 @@
   overflow: hidden;
   background: linear-gradient(135deg, #8fa2f2 0%, #b9c6fb 100%);
 
+  // below md the layers are swapped for one flat 2:1 image
+  // (.layers-mobile), so the panel keeps that image's shape
   @include media-breakpoint-down(md) {
-    aspect-ratio: 4/5;
+    aspect-ratio: 2/1;
+    border-radius: 20px;
   }
 
   // no width/height — native size, see .image-wrap .layer above
@@ -759,7 +762,7 @@
     }
   }
 
-  h4 {
+  h3 {
     font-size: 1.15rem;
     font-weight: 700;
     margin-bottom: 0.5rem;
@@ -831,6 +834,12 @@
 
     @include media-breakpoint-up(xl) {
       flex: 0 1 54%;
+    }
+
+    // the flat .layers-mobile image needs the room more than the frame
+    @include media-breakpoint-down(md) {
+      padding: 1rem;
+      border-radius: 20px;
     }
   }
 }

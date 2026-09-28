@@ -347,6 +347,12 @@
     max-width: 1780px;
     margin: 0 auto;
 
+    // Below lg the panels shrink to an illegible strip (and sat over the
+    // heading) — .first-fold-mobile (below) replaces the whole canvas.
+    @include media-breakpoint-down(lg) {
+      display: none;
+    }
+
     .panel {
       position: absolute;
       will-change: transform, filter, opacity;
@@ -389,3 +395,16 @@
   }
 }
 
+// Single composed image swapped in for .first-fold-canvas below lg —
+// same approach as .hero-mobile on the home page.
+.first-fold-mobile {
+  display: none;
+  width: 100%;
+  max-width: 560px;
+  height: auto;
+  margin: 0 auto;
+
+  @include media-breakpoint-down(lg) {
+    display: block;
+  }
+}

@@ -46,6 +46,18 @@
         }
       }
 
+      // collapse toggle inside the heading: looks like plain heading text
+      button {
+        display: block;
+        width: 100%;
+        padding: 0;
+        border: 0;
+        background: none;
+        color: inherit;
+        font: inherit;
+        text-align: start;
+      }
+
       @include media-breakpoint-down(sm) {
         margin-top: 1.5rem;
         //background-color: $bg-gray;
@@ -153,6 +165,8 @@
       font-size: 1rem;
       @include btn-hover;
       align-items: flex-start;
+      // keeps each tap target at least 24px tall
+      padding-block: 0.25rem;
     }
   }
 }

@@ -79,11 +79,11 @@
    max-width: 1780px;
    margin: 0 auto;
 
-   // Below md the percentage-positioned panels compress into an
+   // Below lg the percentage-positioned panels compress into an
    // increasingly illegible mess — .hero-mobile (below) replaces this
    // whole canvas with a single flat image instead, same approach as
    // .features-hero-canvas / .features-hero-mobile on the Features page.
-   @include media-breakpoint-down(md) {
+   @include media-breakpoint-down(lg) {
      display: none;
    }
 
@@ -151,11 +151,13 @@
  .hero-mobile {
    display: none;
    width: 100%;
+   // near-square image: capped so it doesn't tower over tablets
+   max-width: 520px;
    height: auto;
    margin: 0 auto;
    border-radius: 24px;
 
-   @include media-breakpoint-down(md) {
+   @include media-breakpoint-down(lg) {
      display: block;
    }
  }
@@ -242,6 +244,26 @@
    /* locks every panel's relative position */
    max-width: 1765px;
    margin: 0 auto;
+
+   // Below md the satellite cards shrink to unreadable specks, so the
+   // scene collapses to just the big calendar panel at full width.
+   @include media-breakpoint-down(md) {
+     aspect-ratio: auto;
+
+     .cal-panel:not(.calendar-panel) {
+       display: none;
+     }
+
+     .calendar-panel {
+       position: static;
+       width: 100%;
+       height: auto;
+
+       img {
+         height: auto;
+       }
+     }
+   }
  }
 
  .cal-panel {
@@ -297,31 +319,59 @@
    z-index: 2;
  }
 
+ // One column (icon beside text) on phones, two from sm, and the
+ // original five-across row with the icon stacked on top from lg.
  .calendar-check {
-   margin-top: 1.5rem;
-   display: flex;
-   gap: 0.5rem;
+   margin: 1.5rem 0 0;
+   padding: 0;
+   list-style: none;
+   display: grid;
+   grid-template-columns: minmax(0, 1fr);
+   gap: 1rem 1.5rem;
+
+   @include media-breakpoint-up(sm) {
+     grid-template-columns: repeat(2, minmax(0, 1fr));
+     gap: 1.5rem 2rem;
+   }
+
+   @include media-breakpoint-up(lg) {
+     grid-template-columns: repeat(5, minmax(0, 1fr));
+     gap: 0.5rem;
+   }
 
    li {
-     padding-top: clamp(2rem, 3vw, 10rem);
-     font-size: 1.5rem;
+     font-size: clamp(1rem, calc(0.85rem + 0.6vw), 1.5rem);
      line-height: 1.4;
      font-weight: 600;
      position: relative;
      display: flex;
-     flex-direction: column;
-     gap: 1rem;
+     flex-direction: row;
+     align-items: center;
+     gap: 0.875rem;
+
+     @include media-breakpoint-up(lg) {
+       flex-direction: column;
+       align-items: flex-start;
+       gap: 1rem;
+       padding-top: clamp(2rem, 3vw, 10rem);
+     }
 
      .icon {
+       flex-shrink: 0;
        display: flex;
        align-items: center;
        justify-content: center;
        background-color: #CFE2FF;
        border-radius: 50%;
        padding: 0.5rem;
-       width: 2.9rem;
-       height: 2.9rem;
+       width: 2.5rem;
+       height: 2.5rem;
        aspect-ratio: 1/1;
+
+       @include media-breakpoint-up(lg) {
+         width: 2.9rem;
+         height: 2.9rem;
+       }
 
        img {
          width: 100%;
@@ -405,156 +455,203 @@
    max-width: 80%;
  }
 
- //Accordion
+ //Accordion — "Get Started" steps. Stacked cards below lg; from lg a
+ // horizontal row where the open card is a flat blue panel (badge, UI
+ // mockup, title, description) and the closed cards are photo cards
+ // turned in 3D so their outer edge comes towards the viewer: cards
+ // left of the open one lean one way, cards right of it the other.
+ $acc-blue: #116dff;
+ $acc-navy: #04132b;
+ $acc-ease: cubic-bezier(0.25, 1, 0.5, 1);
+
  .accordion-container {
    display: flex;
-   gap: 2.625rem;
+   flex-direction: column;
+   gap: 1rem;
    width: 100%;
-   height: 526px;
    margin-bottom: 2.5rem;
+
+   @include media-breakpoint-up(lg) {
+     flex-direction: row;
+     gap: clamp(1.5rem, 3vw, 3.125rem);
+     height: clamp(440px, 36vw, 500px);
+   }
  }
 
- /* Individual Card Styles */
  .accordion-card {
    position: relative;
-   flex: 1;
-   /* Default collapsed width ratio */
+   display: flex;
+   flex-direction: column;
+   justify-content: flex-end;
+   min-height: 120px;
+   padding: 4.5rem 1.25rem 1.25rem;
    border-radius: 20px;
    overflow: hidden;
    cursor: pointer;
-   transition: flex 0.6s cubic-bezier(0.25, 1, 0.5, 1), transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
    background-size: cover;
    background-position: center;
-   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-   transform: rotate(0deg);
+   transition: flex 0.6s $acc-ease, transform 0.6s $acc-ease, padding 0.6s $acc-ease;
 
-   // Collapsed cards fan out a few degrees, alternating direction, so
-   // they read as loosely stacked rather than a flat row; the active
-   // card straightens back out below.
-   &:nth-child(odd) {
-     transform: rotate(-6deg);
+   // navy fade behind the title; turns solid blue on the open card,
+   // which hides its photo entirely
+   &::after {
+     content: "";
+     position: absolute;
+     inset: 0;
+     z-index: 1;
+     background: linear-gradient(to top, $acc-navy 0%, rgba($acc-navy, 0.8) 22%, rgba($acc-navy, 0) 60%);
    }
 
-   &:nth-child(even) {
-     transform: rotate(6deg);
-   }
-
-   /* Active Expanded Card */
    &.active {
-     flex: 2.5;
-     /* Expanded width ratio */
+     min-height: 300px;
      cursor: default;
-     transform: rotate(0deg);
 
      &::after {
-       background: #0062ff;
+       background: $acc-blue;
      }
-
-     .card-description {
-       opacity: 1;
-       max-height: 100px;
-     }
-
-
    }
 
+   @include media-breakpoint-up(lg) {
+     flex: 1 1 0;
+     min-width: 0;
+     min-height: 0;
+     padding: 0 0 3.5rem;
+     border-radius: 30px;
+     // lets the badge, title and side spacing scale with the card's own
+     // width (cqi units) so closed cards keep the design's proportions
+     container-type: inline-size;
+     // closed cards left of the open one: outer (left) edge forward
+     transform: perspective(1000px) rotateY(14deg);
 
- }
+     // closed cards right of the open one: outer (right) edge forward
+     &.active~& {
+       transform: perspective(1000px) rotateY(-14deg);
+     }
 
-
- /* Gradient Overlay for Text Readability */
- .accordion-card::after {
-   content: '';
-   position: absolute;
-   z-index: 1;
-   inset: 0;
-   background: linear-gradient(to top, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.1) 60%, rgba(0, 0, 0, 0.3) 100%);
-   z-index: 1;
+     &.active {
+       flex: 2.2 1 0;
+       transform: perspective(1000px) rotateY(0deg);
+     }
+   }
  }
 
  /* Number Badge */
  .badge {
    position: absolute;
-   top: 24px;
-   left: 24px;
+   top: 1.25rem;
+   left: 1.25rem;
+   z-index: 2;
+   display: flex;
+   align-items: center;
+   justify-content: center;
    width: 36px;
    height: 36px;
+   border-radius: 50%;
    background-color: #ffffff;
    color: #000000;
    font-weight: 700;
    font-size: 16px;
-   border-radius: 50%;
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   z-index: 2;
-   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+   transition: top 0.6s $acc-ease, left 0.6s $acc-ease;
+
+   @include media-breakpoint-up(lg) {
+     top: 2.25rem;
+     left: 12cqi;
+
+     .accordion-card.active & {
+       top: 3.125rem;
+       left: 3.125rem;
+     }
+   }
  }
 
- /* Content Overlay */
- .card-content {
-   position: absolute;
-   bottom: 3.125rem;
-   left: 3.125rem;
-   right: 3.125rem;
-   z-index: 2;
-   color: #ffffff;
- }
-
- .card-title {
-   font-size: 2rem;
-   font-weight: 600;
-   line-height: 1.2;
-   margin-bottom: 8px;
-   white-space: nowrap;
- }
-
- .card-description {
-   font-size: 15px;
-   line-height: 1.5;
-   color: rgba(255, 255, 255, 0.9);
-   opacity: 0;
-   max-height: 0;
-   overflow: hidden;
-   transition: opacity 0.4s ease 0.2s, max-height 0.4s ease 0.2s;
- }
-
- /* Mock UI Element Inside Blue Card */
+ /* Mock UI element, shown on the open card only */
  .ui-mockup {
-   margin: 3rem auto;
-   width: 100%;
-   max-width: 320px;
-   opacity: 0;
-   transform: translateY(10px);
-   z-index: 2;
    position: relative;
-   transition: opacity 0.4s ease, transform 0.4s ease;
- }
+   z-index: 2;
+   display: none;
+   max-width: 280px;
+   margin: 0 auto 1.5rem;
 
- .accordion-card.active .ui-mockup {
-   opacity: 1;
-   transform: translateY(0);
-   transition-delay: 0.2s;
- }
+   .accordion-card.active & {
+     display: block;
+   }
 
- /* Responsive adjustment for small screens */
- @media (max-width: 768px) {
-   .accordion-container {
-     flex-direction: column;
+   img {
+     display: block;
+     max-width: 100%;
      height: auto;
    }
 
-   .accordion-card {
-     height: 120px;
-     width: 100%;
-     // the fanned tilt only reads correctly in a horizontal row —
-     // stacked vertically it just clips rotated rectangles, so it's
-     // off entirely on narrow screens.
-     transform: none;
-   }
+   // centred in the space right of the badge, shrinking to fit
+   @include media-breakpoint-up(lg) {
+     position: absolute;
+     top: 3.125rem;
+     left: 7.5rem;
+     right: 3.125rem;
+     display: flex;
+     justify-content: center;
+     max-width: none;
+     margin: 0;
+     opacity: 0;
+     transform: translateY(10px);
+     transition: opacity 0.4s ease, transform 0.4s ease;
 
-   .accordion-card.active {
-     height: 300px;
+     .accordion-card.active & {
+       opacity: 1;
+       transform: translateY(0);
+       transition-delay: 0.25s;
+     }
+   }
+ }
+
+ /* Title + description */
+ .card-content {
+   position: relative;
+   z-index: 2;
+   color: #ffffff;
+
+   // % padding resolves against the card's width, same as 12cqi, but
+   // Chromium mis-paints cqi padding while it transitions
+   @include media-breakpoint-up(lg) {
+     padding-inline: 12%;
+     transition: padding 0.6s $acc-ease;
+
+     .accordion-card.active & {
+       padding-inline: 3.125rem;
+     }
+   }
+ }
+
+ .card-title {
+   margin: 0;
+   font-size: clamp(1.25rem, calc(1rem + 1.5vw), 1.6rem);
+   font-weight: 500;
+   line-height: 1.2;
+
+   // closed: ~31px on a 281px card, like the design; open: up to 32px
+   @include media-breakpoint-up(lg) {
+     font-size: #{"min(2rem, 10.8cqi)"};
+
+     .accordion-card.active & {
+       font-size: #{"min(2rem, 7cqi)"};
+     }
+   }
+ }
+
+ .card-description {
+   max-height: 0;
+   margin: 0;
+   overflow: hidden;
+   opacity: 0;
+   color: #ffffff;
+   font-size: clamp(0.95rem, calc(0.8rem + 0.45vw), 1.25rem);
+   line-height: 1.6;
+   transition: opacity 0.4s ease 0.2s, max-height 0.4s ease 0.2s, margin 0.4s ease 0.2s;
+
+   .accordion-card.active & {
+     max-height: 8rem;
+     margin-top: 0.75rem;
+     opacity: 1;
    }
  }
 
