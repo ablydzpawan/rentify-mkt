@@ -484,6 +484,25 @@ bindAdjacentSlideNav(expoSwiper);
 
 const cards = document.querySelectorAll('.accordion-card');
 
+// Wrap each card title's words in a mask + inner span so the open card's
+// title can rise in word by word (see .card-title .w in _index.scss);
+// --i drives the stagger. Real spaces stay between the words.
+document.querySelectorAll('.accordion-card .card-title').forEach(title => {
+    const words = title.textContent.trim().split(/\s+/);
+    title.textContent = '';
+    words.forEach((word, i) => {
+        const mask = document.createElement('span');
+        mask.className = 'w';
+        const inner = document.createElement('span');
+        inner.className = 'w-inner';
+        inner.style.setProperty('--i', i);
+        inner.textContent = word;
+        mask.appendChild(inner);
+        title.appendChild(mask);
+        if (i < words.length - 1) title.appendChild(document.createTextNode(' '));
+    });
+});
+
 cards.forEach(card => {
     card.addEventListener('click', () => {
         // Remove active class from all cards
