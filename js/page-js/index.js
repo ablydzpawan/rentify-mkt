@@ -6,8 +6,13 @@
    ========================================================= */
 
 import { revealHeading, revealSection } from "../text-effects.js";
+import { initHeader } from "../header-effects.js";
+import { initFaqEffects } from "../faq-effects.js";
 
 gsap.registerPlugin(ScrollTrigger);
+
+// FAQ accordion: drawn lines, row entrance, single-open (js/faq-effects.js)
+initFaqEffects();
 
 var prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -41,18 +46,10 @@ if (!prefersReducedMotion && window.Lenis) {
     window.lenis = lenis;
 }
 
-/* =========================================================
-   STICKY HEADER — smooth shrink/shadow transition once the
-   page has scrolled past the top. The CSS transition on
-   .site-header does the actual easing; this just flips the
-   state class in sync with the (Lenis-smoothed) scroll pos.
-   ========================================================= */
+/* ---------- Header: solid on scroll, hides on scroll down, returns
+   on scroll up (shared, see js/header-effects.js) ---------- */
 
-ScrollTrigger.create({
-    start: "top -80",
-    end: 99999,
-    toggleClass: { targets: ".site-header", className: "is-scrolled" },
-});
+initHeader(window.lenis || null);
 
 /* =========================================================
    DESKTOP NAV — tab-bar hover pill (CSS anchor positioning).
@@ -356,7 +353,6 @@ if (!prefersReducedMotion) {
             toggleActions: "play none none reverse",
         },
     });
-    revealGroup(".faq-list", ".faq-list-item", { y: 25, stagger: 0.1 });
     revealGroup(".footer-top .row", ".col-auto", { y: 30, stagger: 0.12 });
     revealGroup(".black-cta", ":scope > *", { y: 30, stagger: 0.1, duration: 0.8 });
 

@@ -76,8 +76,10 @@
      background: #fff;
      padding: clamp(1.75rem, 3vw, 3rem);
      background: #FFFFFF 0% 0% no-repeat;
-     box-shadow: 0px 3px 6px #00000029;
+
      border-radius: 50px;
+     box-shadow: 0px 0px 40px #00000014;
+
 
      .form-group {
        margin-bottom: 1.25rem;
@@ -324,38 +326,37 @@
    }
  }
 
-/* ---------- HERO MARQUEE: contact variant + spinning glyph ---------- */
-.marquee-contact {
-  .marquee-item {
-    font-weight: 500;
-    font-size: clamp(36px, 14vw, 11rem);
+ /* ---------- HERO MARQUEE: contact variant + spinning glyph ---------- */
+ .marquee-contact {
+   .marquee-item {
+     font-weight: 500;
+     font-size: clamp(36px, 14vw, 11rem);
 
-    &::after {
-      content: normal;
-    }
-  }
-}
+     &::after {
+       content: normal;
+     }
+   }
+ }
 
-.marquee-glyph {
-  display: inline-flex;
-  align-items: center;
-  line-height: 1;
+ .marquee-glyph {
+   display: inline-flex;
+   align-items: center;
+   line-height: 1;
 
-  svg {
-    font-size: 0.7em;
-    display: inline-flex;
-    transform-origin: center;
-    animation: rotate360 3s linear infinite;
-  }
-}
+   svg {
+     font-size: 0.7em;
+     display: inline-flex;
+     transform-origin: center;
+     animation: rotate360 3s linear infinite;
+   }
+ }
 
-@keyframes rotate360 {
-  from {
-    transform: rotate(0deg);
-  }
+ @keyframes rotate360 {
+   from {
+     transform: rotate(0deg);
+   }
 
-  to {
-    transform: rotate(360deg);
-  }
-}
-
+   to {
+     transform: rotate(360deg);
+   }
+ }

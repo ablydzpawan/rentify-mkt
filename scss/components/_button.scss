@@ -493,6 +493,11 @@
    overflow: hidden;
    cursor: pointer;
    border: none;
+   // keeps the label's blend (below) inside the button
+   isolation: isolate;
+   // overrides the global `a { transition: all .75s }`, so the <a> and
+   // <button> versions behave the same
+   transition: box-shadow 0.3s ease, transform 0.3s ease;
 
    &:after {
      @include bg-white;
@@ -500,31 +505,50 @@
      width: 0%;
      height: 100%;
      position: absolute;
-     transition: all 0.4s ease-in-out;
+     top: 0;
      right: 0;
+     transition: width 0.4s ease-in-out;
    }
 
-   &:hover::after {
-     right: auto;
-     left: 0;
-     width: 100%;
+   // hover only where hover is real (a tap on touch screens would
+   // otherwise leave the button stuck white); keyboard focus gets it too
+   @media (hover: hover) {
+     &:hover::after {
+       right: auto;
+       left: 0;
+       width: 100%;
+     }
+
+     &:hover span {
+       animation: scaleUp 0.3s ease-in-out;
+     }
    }
 
+   &:focus-visible {
+     outline: 2px solid #000;
+     outline-offset: 3px;
+
+     &::after {
+       right: auto;
+       left: 0;
+       width: 100%;
+     }
+   }
+
+   // White text with `difference` shows white over the black button and
+   // black over the white fill, letter by letter as the fill sweeps across,
+   // so the label never goes black-on-black or white-on-white mid-wipe
+   // (a timed color change can't keep in step with the wipe)
    & span {
      text-align: center;
      text-decoration: none;
      width: 100%;
      padding: 6px 1rem;
-     color: currentColor;
+     color: #fff;
+     mix-blend-mode: difference;
      font-size: 1.125em;
      font-weight: 700;
      z-index: 20;
-     transition: all 0.3s ease-in-out;
-   }
-
-   &:hover span {
-     color: #000;
-     animation: scaleUp 0.3s ease-in-out;
    }
 
    @keyframes scaleUp {

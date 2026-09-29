@@ -115,6 +115,21 @@ function onKeydown(e) {
     if (e.key === "Escape" && openOffcanvas) hideOffcanvas(openOffcanvas);
 }
 
+// The full-screen nav menu (.offcanvas-menu) sits under the header and
+// is closed by the header's own toggle, so it skips the backdrop and
+// flags <html> for the header's open-state styling.
+function isNavMenu(target) {
+    return target.classList.contains("offcanvas-menu");
+}
+
+function setToggleState(trigger, open) {
+    if (!trigger) return;
+    trigger.setAttribute("aria-expanded", String(open));
+    if (trigger.classList.contains("menu-button")) {
+        trigger.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    }
+}
+
 function showOffcanvas(target, trigger) {
     if (!target || target.classList.contains("show")) return;
     if (openOffcanvas && openOffcanvas !== target) hideOffcanvas(openOffcanvas);
@@ -122,6 +137,18 @@ function showOffcanvas(target, trigger) {
     openOffcanvas = target;
     openTrigger = trigger || null;
     document.body.style.overflow = "hidden";
+    // Lenis drives the page scroll on most pages; overflow:hidden alone
+    // wouldn't stop it scrolling the page behind the panel
+    if (window.lenis) window.lenis.stop();
+    setToggleState(trigger, true);
+
+    if (isNavMenu(target)) {
+        document.documentElement.classList.add("menu-open");
+        target.classList.add("show");
+        target.focus();
+        document.addEventListener("keydown", onKeydown);
+        return;
+    }
 
     var backdrop = document.createElement("div");
     backdrop.className = "offcanvas-backdrop fade";
@@ -145,9 +172,13 @@ function hideOffcanvas(target) {
 
     target.classList.add("hiding");
     target.classList.remove("show");
+    document.documentElement.classList.remove("menu-open");
+    setToggleState(openTrigger, false);
+    if (window.lenis) window.lenis.start();
 
+    // drawers slide (transform); the nav menu wipes (clip-path)
     var onTransformEnd = function (e) {
-        if (e.target !== target || e.propertyName !== "transform") return;
+        if (e.target !== target || (e.propertyName !== "transform" && e.propertyName !== "clip-path")) return;
         target.removeEventListener("transitionend", onTransformEnd);
         target.classList.remove("hiding");
     };
@@ -190,3 +221,56 @@ document.querySelectorAll('[data-bs-dismiss="offcanvas"]').forEach(function (dis
         if (target) hideOffcanvas(target);
     });
 });
+
+// The menu toggle only exists below lg; don't leave the full-screen menu
+// open (with no visible way to close it) after the viewport grows past it.
+var navMenuMq = window.matchMedia("(min-width: 992px)");
+var onNavMenuMq = function (e) {
+    if (e.matches && openOffcanvas && isNavMenu(openOffcanvas)) hideOffcanvas(openOffcanvas);
+};
+if (navMenuMq.addEventListener) navMenuMq.addEventListener("change", onNavMenuMq);
+
+/* ---------- Menu links: letter scramble on hover ----------
+   pririty.com's menu effect: on mouseenter the letters turn to
+   random characters and resolve back (last letters first) over
+   ~600ms. Hover-capable pointers only. */
+
+(function () {
+    if (!window.matchMedia("(hover: hover)").matches) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    var POOL = "abcdefghijklmnopqrstvwxyz1234567890";
+    var randomChar = function () { return POOL.charAt(Math.floor(Math.random() * POOL.length)); };
+
+    document.querySelectorAll(".offcanvas-menu .menu-link").forEach(function (link) {
+        var text = link.textContent.trim();
+        link.setAttribute("aria-label", text);
+        // inline wrapper: the link itself is a flex box, which would drop
+        // the bare spaces between the letter spans
+        link.innerHTML = '<span class="menu-link-text" aria-hidden="true">' + text.split("").map(function (c) {
+            return c === " " ? " " : '<span class="char">' + c + "</span>";
+        }).join("") + "</span>";
+
+        var chars = Array.prototype.slice.call(link.querySelectorAll(".char"));
+        var interval, timeout;
+
+        var reset = function () {
+            clearInterval(interval);
+            clearTimeout(timeout);
+            chars.forEach(function (ch, i) { ch.textContent = text.replace(/ /g, "").charAt(i); });
+        };
+
+        link.addEventListener("mouseenter", function () {
+            reset();
+            var remaining = chars.length;
+            interval = setInterval(function () {
+                chars.forEach(function (ch, i) {
+                    ch.textContent = i < remaining ? randomChar() : text.replace(/ /g, "").charAt(i);
+                });
+                remaining--;
+            }, 100);
+            timeout = setTimeout(reset, 600);
+        });
+        link.addEventListener("mouseleave", reset);
+    });
+})();

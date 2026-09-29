@@ -1,12 +1,15 @@
 /* =========================================================
    FAQ — page motion layer. Same Lenis + GSAP + ScrollTrigger
    setup as the other pages, plus: category tab switching,
-   single-open accordion, and a scroll-velocity linked curved
-   text marquee.
+   single-open accordion, a seamless curved text marquee, and
+   the pririty.com motion language (text-split slide/fade
+   effects, blur-scale image reveals, drawn divider lines,
+   scroll parallax).
    ========================================================= */
 
-import { revealHeading, revealSection } from "../text-effects.js";
-import { hideCollapse } from "../collapse-offcanvas.js";
+import { revealHeading } from "../text-effects.js";
+import { initHeader } from "../header-effects.js";
+import { initFaqEffects, playRows } from "../faq-effects.js";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -29,13 +32,10 @@ if (!prefersReducedMotion && window.Lenis) {
     window.lenis = lenis;
 }
 
-/* ---------- Sticky header ---------- */
+/* ---------- Header: solid on scroll, hides on scroll down, returns
+   on scroll up (shared, see js/header-effects.js) ---------- */
 
-ScrollTrigger.create({
-    start: "top -80",
-    end: 99999,
-    toggleClass: { targets: ".site-header", className: "is-scrolled" },
-});
+initHeader(window.lenis || null);
 
 /* ---------- Desktop nav hover pill ---------- */
 
@@ -58,6 +58,11 @@ ScrollTrigger.create({
         if (!nav.contains(e.relatedTarget)) nav.classList.remove("is-tab-active");
     });
 })();
+
+/* ---------- Accordion: drawn lines, row entrance, single-open
+   (shared with every page's FAQ section, see js/faq-effects.js) ---------- */
+
+initFaqEffects();
 
 /* =========================================================
    CATEGORY TABS — click a pill, show that category's group,
@@ -86,10 +91,8 @@ ScrollTrigger.create({
             });
 
             if (nextGroup) {
-                if (!prefersReducedMotion && window.gsap) {
-                    gsap.fromTo(nextGroup, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" });
-                }
                 nextGroup.classList.add("active");
+                nextGroup.querySelectorAll(".faq-list-numbered").forEach(playRows);
             }
 
             if (window.ScrollTrigger) ScrollTrigger.refresh();
@@ -97,109 +100,159 @@ ScrollTrigger.create({
     });
 })();
 
-/* ---------- Single-open accordion within each category ---------- */
-
-(function () {
-    document.querySelectorAll(".faq-list-numbered").forEach(function (list) {
-        list.addEventListener("collapse:show", function (e) {
-            list.querySelectorAll(".collapse.show").forEach(function (open) {
-                if (open !== e.target) hideCollapse(open);
-            });
-
-            var item = e.target.closest(".faq-list-item");
-            list.querySelectorAll(".faq-list-item.active").forEach(function (i) { i.classList.remove("active"); });
-            if (item) item.classList.add("active");
-        });
-    });
-})();
-
 /* =========================================================
    CURVED MARQUEE — text drifts continuously along the arc,
-   accelerating with scroll velocity (same language as the
-   contact page's hero marquee).
+   accelerating with scroll velocity. The offset wraps by the
+   length of exactly one "Frequently Asked Questions " unit, so
+   the wrap lands on an identical frame: no visible jump.
    ========================================================= */
 
 (function () {
-    var path = document.getElementById("curvedMarqueePath");
     var textPath = document.getElementById("curvedMarqueeTextPath");
-    if (!path || !textPath || prefersReducedMotion) return;
+    if (!textPath || prefersReducedMotion) return;
 
-    var pathLength = path.getTotalLength();
+    var UNITS = 5; // repetitions in the markup
+    var unitLength = 0;
     var offset = 0;
     var lastScroll = window.scrollY;
     var velocity = 0;
 
+    function measure() {
+        unitLength = textPath.getComputedTextLength() / UNITS;
+    }
+
+    measure();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
+
     gsap.ticker.add(function () {
+        if (!unitLength) return;
         var current = lenis ? lenis.scroll : window.scrollY;
         var delta = current - lastScroll;
         lastScroll = current;
         velocity += (delta - velocity) * 0.15;
 
         offset -= 0.9 + Math.abs(velocity) * 0.6;
-        if (offset < -pathLength) offset += pathLength;
-        if (offset > 0) offset -= pathLength;
+        offset %= unitLength; // stays in (-unitLength, 0]
 
         textPath.setAttribute("startOffset", offset);
     });
 })();
 
+/* ---------- Split an element's text into chars (keeps <br>) ---------- */
+
+// Works on text nodes (not innerHTML) so an entity like &amp; stays
+// one character.
+function splitChars(el) {
+    if (el.dataset.charSplit) return el.querySelectorAll(".char");
+    el.dataset.charSplit = "1";
+    Array.prototype.slice.call(el.childNodes).forEach(function (node) {
+        if (node.nodeType !== 3) return;
+        var frag = document.createDocumentFragment();
+        node.textContent.split(/(\s+)/).forEach(function (part) {
+            if (!part) return;
+            if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(" ")); return; }
+            var word = document.createElement("span");
+            word.className = "char-word";
+            part.split("").forEach(function (c) {
+                var ch = document.createElement("span");
+                ch.className = "char";
+                ch.textContent = c;
+                word.appendChild(ch);
+            });
+            frag.appendChild(word);
+        });
+        node.parentNode.replaceChild(frag, node);
+    });
+    return el.querySelectorAll(".char");
+}
+
+/* ---------- Play on enter (top at 60%), reset once scrolled back
+   below the viewport — the reference's createScrollTrigger. ---------- */
+
+function playOnScroll(trigger, tl) {
+    ScrollTrigger.create({
+        trigger: trigger,
+        start: "top bottom",
+        onLeaveBack: function () { tl.progress(0).pause(); },
+    });
+    ScrollTrigger.create({
+        trigger: trigger,
+        start: "top 60%",
+        onEnter: function () { tl.play(); },
+    });
+}
+
 if (!prefersReducedMotion) {
 
-    var revealEase = "power3.out";
-    if (window.CustomEase) {
-        CustomEase.create("framerReveal", "0.16, 1, 0.3, 1");
-        revealEase = "framerReveal";
-    }
+    /* ---------- Header drops in from the top ---------- */
 
-    /* ---------- Hero heading ("Fade Up Words") + floating images ----------
-       Text reveals fully first, then the floating product images start —
-       no overlap between the two groups. */
+    gsap.from(".site-header", { y: -100, opacity: 0, duration: 1, ease: "power3.out", clearProps: "opacity" });
 
-    var heroHeading = document.querySelector(".faq-hero-content .title");
+    /* ---------- Hero ----------
+       Title words slide up with a slight overshoot, the line under
+       it slides in from the right, then the product images resolve
+       from a blurred, oversized state (the reference's image reveal:
+       scale 1.5 -> 1, blur 40px -> 0, fade in). */
 
-    var heroTl = gsap.timeline({ defaults: { ease: "power3.out" } });
+    var heroTl = gsap.timeline({ delay: 0.2 });
 
-    revealHeading(heroHeading, { timeline: heroTl, position: 0 });
-    heroTl.from(".faq-hero-content .desc", { y: 20, opacity: 0, duration: 0.6 }, "-=0.5");
+    revealHeading(document.querySelector(".faq-hero-content .title"), {
+        timeline: heroTl,
+        position: 0,
+        vars: { yPercent: 100, opacity: 0, duration: 0.5, ease: "back.out(2)", stagger: { amount: 0.5 } },
+    });
 
-    // Floating product images clip-reveal in (mask rises to uncover each
-    // one, paired with a zoom-settle) instead of a plain fade. Only starts
-    // once the text above has fully finished revealing.
+    heroTl.from(".faq-hero-content .desc", { opacity: 0, x: "1em", duration: 0.6, ease: "power2.out" }, 0.45);
+
     heroTl.fromTo(".faq-hero-float img",
-        { clipPath: "inset(100% 0% 0% 0%)", scale: 1.15 },
-        { clipPath: "inset(0% 0% 0% 0%)", scale: 1, duration: 0.9, stagger: 0.1, ease: "power3.out" },
-        ">"
+        { scale: 1.5, opacity: 0, filter: "blur(40px)" },
+        {
+            scale: 1, opacity: 1, filter: "blur(0px)",
+            duration: 1, ease: "power3.out", stagger: 0.12,
+            clearProps: "filter",
+        },
+        0.5
     );
 
+    // gentle idle bob once the reveal has settled
     heroTl.eventCallback("onComplete", function () {
         document.querySelectorAll(".faq-hero-float").forEach(function (float, i) {
-            gsap.timeline({
+            gsap.to(float, {
+                y: i % 2 === 0 ? "-=10" : "+=10",
+                rotate: i % 2 === 0 ? 0.8 : -0.8,
+                duration: 2.8 + (i % 3) * 0.5,
+                ease: "sine.inOut",
                 repeat: -1,
                 yoyo: true,
                 delay: i * 0.2,
-                defaults: { duration: 2.8 + (i % 3) * 0.5, ease: "sine.inOut" },
-            }).to(float, {
-                y: i % 2 === 0 ? "-=10" : "+=10",
-                rotate: i % 2 === 0 ? 0.8 : -0.8,
             });
         });
     });
 
-    /* ---------- Section heading + description reveals ---------- */
-
-    document.querySelectorAll(".section").forEach(revealSection);
-
-    /* ---------- FAQ tabs + first category's items ---------- */
-
-    gsap.from(".pill-tabs li", {
-        opacity: 0, y: 12, duration: 0.6, stagger: 0.05, ease: revealEase,
-        scrollTrigger: { trigger: ".faq-tabs", start: "top 85%", toggleActions: "play none none reverse" },
+    // scroll parallax: each image drifts up at its own rate as the
+    // hero scrolls away (yPercent, so it composes with the idle bob's y)
+    document.querySelectorAll(".faq-hero-float").forEach(function (float, i) {
+        gsap.to(float, {
+            yPercent: -[35, 60, 25, 50, 40][i % 5],
+            ease: "none",
+            scrollTrigger: { trigger: ".faq-hero", start: "top top", end: "bottom top", scrub: true },
+        });
     });
 
-    gsap.from("#Rentify .faq-list-item", {
-        opacity: 0, y: 20, duration: 0.7, stagger: 0.06, ease: revealEase,
-        scrollTrigger: { trigger: ".faq-contents", start: "top 80%", toggleActions: "play none none reverse" },
-    });
+    /* ---------- Category tabs ---------- */
+
+    var tabsTl = gsap.timeline({ paused: true });
+    tabsTl.from(".pill-tabs li", { opacity: 0, x: "1em", duration: 0.6, ease: "power2.out", stagger: { amount: 0.2 } });
+    playOnScroll(".faq-tabs", tabsTl);
+
+    /* ---------- CTA heading: letters fade in, random order ---------- */
+
+    var ctaTitle = document.querySelector("#cta .cta-gradient-title");
+    if (ctaTitle) {
+        var ctaTl = gsap.timeline({ paused: true });
+        ctaTl.from(splitChars(ctaTitle), { opacity: 0, duration: 0.05, ease: "power1.out", stagger: { amount: 0.4, from: "random" } });
+        playOnScroll(ctaTitle, ctaTl);
+    }
 
     window.addEventListener("load", function () { ScrollTrigger.refresh(); });
 }

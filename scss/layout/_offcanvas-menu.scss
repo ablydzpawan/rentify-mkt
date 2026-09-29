@@ -164,43 +164,101 @@
   border-radius: $card-radius;
 }
 
-.offcanvas-menu {
-  @include bg-brand;
+// Full-screen menu panel. It sits just under the sticky header, so the
+// header's hamburger stays visible and turns into the close button
+// (pririty.com's menu). Opens as a wipe from the start edge (0.5s ease);
+// on close it waits for the links to lift out (0.3s) before wiping shut.
+.offcanvas.offcanvas-menu {
+  --menu-clip-closed: #{if($direction == rtl, inset(0 0 0 100%), inset(0 100% 0 0))};
+  z-index: $zindex-sticky - 1;
+  inset: 0;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  border: 0;
+  background-color: #0a0a0a;
+  color: #fff;
   display: flex;
   flex-direction: column;
-  transition: transform .3s ease-in-out;
-  max-width: 340px;
+  transform: none;
+  clip-path: var(--menu-clip-closed);
+  transition: clip-path 0.5s ease 0.3s;
 
-  &.show {
-    .offcanvas-body {
-      transition: all 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      opacity: 1;
-      padding: 4rem 2rem;
-
-      @include media-breakpoint-up(lg) {
-        padding: 4rem 3rem;
-      }
-    }
+  &.showing,
+  &.show:not(.hiding) {
+    transform: none;
+    clip-path: inset(0 0 0 0);
+    transition: clip-path 0.5s ease;
   }
 
-  .btn-close {
-    background: none;
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background-color: transparent;
-    border: none;
-    border-radius: 0;
-    font-size: 2rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
+  // the header's hamburger/x closes it; Esc works too
+  .offcanvas-header {
+    display: none;
   }
 
   .offcanvas-body {
-    padding: 5rem 4.375rem;
-    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 6.5rem 1.5rem 1.5rem;
+
+    @include media-breakpoint-up(md) {
+      padding: 8rem 3rem 2rem;
+    }
   }
 
+  @media (prefers-reduced-motion: reduce) {
+    &,
+    &.show:not(.hiding),
+    .menu-link,
+    .socail-nav {
+      transition-duration: 0.01s !important;
+      transition-delay: 0s !important;
+    }
+  }
 }
 
+// header over the open menu: transparent, white logo; the back-to-top
+// button would float over the menu's bottom row
+html.menu-open {
+  .back-top {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .site-header {
+    background: transparent;
+    border-bottom-color: transparent;
+    backdrop-filter: none;
+
+    .brand img {
+      filter: invert(1);
+    }
+  }
+}
+
+html.menu-open .site-header .menu-button {
+  .button-icon {
+    background-size: 0 1.5px;
+
+    &::before,
+    &::after {
+      width: 0;
+    }
+  }
+
+  &::before,
+  &::after {
+    opacity: 1;
+    transition: opacity 0.4s ease 0.4s, transform 0.8s ease 0.4s;
+  }
+
+  &::before {
+    transform: rotate(45deg);
+  }
+
+  &::after {
+    transform: rotate(-45deg);
+  }
+}

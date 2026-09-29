@@ -13,9 +13,13 @@
    ========================================================= */
 
 import { revealHeading, revealSection } from "../text-effects.js";
-import { hideCollapse } from "../collapse-offcanvas.js";
+import { initHeader } from "../header-effects.js";
+import { initFaqEffects } from "../faq-effects.js";
 
 gsap.registerPlugin(ScrollTrigger);
+
+// FAQ accordion: drawn lines, row entrance, single-open (js/faq-effects.js)
+initFaqEffects();
 
 var prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -41,13 +45,10 @@ if (!prefersReducedMotion && window.Lenis) {
     window.lenis = lenis;
 }
 
-/* ---------- Sticky header ---------- */
+/* ---------- Header: solid on scroll, hides on scroll down, returns
+   on scroll up (shared, see js/header-effects.js) ---------- */
 
-ScrollTrigger.create({
-    start: "top -80",
-    end: 99999,
-    toggleClass: { targets: ".site-header", className: "is-scrolled" },
-});
+initHeader(window.lenis || null);
 
 /* ---------- Desktop nav hover pill ---------- */
 
@@ -178,15 +179,10 @@ function initSyncedAccordion(rootSelector) {
                 .from(satelliteLayers, { opacity: 0, y: 16, scale: 0.85, filter: "blur(6px)", duration: 0.5, stagger: 0.08, ease: "back.out(1.7)" }, "-=0.35");
         }
 
+        // single-open + the row/answer motion come from js/faq-effects.js;
+        // this only swaps the image panel to the opened row's state
         list.addEventListener("collapse:show", function (e) {
-            list.querySelectorAll(".collapse.show").forEach(function (open) {
-                if (open !== e.target) hideCollapse(open);
-            });
-
             var item = e.target.closest(".faq-list-item");
-            list.querySelectorAll(".faq-list-item.active").forEach(function (i) { i.classList.remove("active"); });
-            if (item) item.classList.add("active");
-
             var trigger = item ? item.querySelector(".faq-list-link") : null;
             var key = trigger ? trigger.getAttribute("data-image-state") : null;
             if (key) playState(key);

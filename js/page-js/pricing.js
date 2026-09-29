@@ -6,8 +6,13 @@
    ========================================================= */
 
 import { revealHeading, revealSection } from "../text-effects.js";
+import { initHeader } from "../header-effects.js";
+import { initFaqEffects } from "../faq-effects.js";
 
 gsap.registerPlugin(ScrollTrigger);
+
+// FAQ accordion: drawn lines, row entrance, single-open (js/faq-effects.js)
+initFaqEffects();
 
 var prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -29,13 +34,10 @@ if (!prefersReducedMotion && window.Lenis) {
     window.lenis = lenis;
 }
 
-/* ---------- Sticky header ---------- */
+/* ---------- Header: solid on scroll, hides on scroll down, returns
+   on scroll up (shared, see js/header-effects.js) ---------- */
 
-ScrollTrigger.create({
-    start: "top -80",
-    end: 99999,
-    toggleClass: { targets: ".site-header", className: "is-scrolled" },
-});
+initHeader(window.lenis || null);
 
 /* ---------- Desktop nav hover pill ---------- */
 
@@ -263,7 +265,6 @@ if (!prefersReducedMotion) {
 
     /* ---------- FAQ + footer ---------- */
 
-    revealGroup(".faq-list", ".faq-list-item", { y: 20, stagger: 0.1 });
     revealGroup(".footer-top .row", ".col-auto", { y: 25, stagger: 0.1 });
 
     window.addEventListener("load", function () { ScrollTrigger.refresh(); });

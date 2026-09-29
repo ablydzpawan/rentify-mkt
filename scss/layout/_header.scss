@@ -8,7 +8,7 @@
   backdrop-filter: blur(18px);
   border-bottom: solid 1px transparent;
   padding: 0;
-  transition: background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+  transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 
   &-inner {
     display: flex;
@@ -18,14 +18,43 @@
     transition: padding 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
+  // trustedconnectivity.valid.com's header: once the page scrolls it
+  // turns into a solid brand-colored bar with white text, tightens up
+  // and scales the logo down (0.4s expo-out); js/header-effects.js
+  // also slides it away on scroll down and back on scroll up
   &.is-scrolled {
-    background: rgba(255, 255, 255, 0.92);
-    border-bottom-color: #eeeeee;
-    //  box-shadow: $shadow6;
+    background: $brand-color;
+    border-bottom-color: transparent;
+    color: #fff;
 
     .site-header-inner {
       padding: 0.65rem 0;
     }
+
+    .brand {
+      transform: scale(0.75);
+
+      img {
+        filter: brightness(0) invert(1);
+      }
+    }
+
+    .desktop-nav {
+      color: #fff;
+    }
+  }
+
+  .brand {
+    transform-origin: #{$start-direction} center;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+
+    img {
+      transition: filter 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+  }
+
+  .desktop-nav {
+    transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
 
@@ -48,15 +77,74 @@
       width: 2.5rem;
       height: 2.5rem;
       flex-shrink: 0;
+      // the desktop pill's side padding would leave the icon ~4px wide
+      padding: 0;
     }
 
     @include media-breakpoint-up(lg) {
       display: none;
     }
 
+    // Hamburger drawn in CSS (pririty.com's): three bars; on open the
+    // outer two collapse toward opposite sides (0.3s), the middle one
+    // fades, and an x turns in over them (0.8s after a 0.4s beat).
+    position: relative;
+    color: #000;
+
     .svg {
-      // width: 1.5rem;
-      // height: 1.5rem;
+      display: none;
+    }
+
+    .button-icon {
+      position: relative;
+      display: block;
+      flex-shrink: 0;
+      width: 18px;
+      height: 12px;
+      background: linear-gradient(currentColor, currentColor) center / 100% 1.5px no-repeat;
+      transition: background-size 0.3s ease;
+
+      &::before,
+      &::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 1.5px;
+        background: currentColor;
+        transition: width 0.3s ease;
+      }
+
+      &::before {
+        top: 0;
+        #{$start-direction}: 0;
+      }
+
+      &::after {
+        bottom: 0;
+        #{$end-direction}: 0;
+      }
+    }
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 18px;
+      height: 1.5px;
+      margin: -0.75px 0 0 -9px;
+      background: currentColor;
+      opacity: 0;
+      transition: opacity 0.2s ease, transform 0.3s ease;
+    }
+
+    &::before {
+      transform: rotate(145deg);
+    }
+
+    &::after {
+      transform: rotate(-55deg);
     }
 
     &:hover {
@@ -237,69 +325,93 @@
 
 
 
-//Mobile only
-
+//Mobile menu (inside .offcanvas-menu) — pririty.com style: numbered,
+//uppercase links that drop into place, letter-scramble on hover
+//(js/collapse-offcanvas.js), social links along the bottom
 .menu {
   display: flex;
   flex-direction: column;
-  // gap: 2rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: menu;
 
-  li+li {
-    border-top: solid 1px rgba(255, 255, 255, 0.4);
+  li {
+    // each link drops in from above its own row
+    overflow: hidden;
+    counter-increment: menu;
   }
 
   &-link {
-    display: block;
-    padding: 1rem 0;
-    padding-inline-end: 2.5rem;
-    // margin: 1rem 0;
-    font-size: 1.575rem;
-    font-weight: 300;
+    display: flex;
+    align-items: center;
+    margin: clamp(0.4rem, 1.4vh, 1rem) 0;
+    color: #fff;
+    font-size: clamp(1.75rem, 6vw, 2.6rem);
+    font-weight: 400;
     line-height: 1.1;
-    opacity: 1;
-    position: relative;
+    text-transform: uppercase;
+    transform: translateY(-70px);
+    transition: transform 0.2s ease;
 
-    @include media-breakpoint-up(lg) {
-      font-size: 3rem;
+    &::before {
+      content: counter(menu, decimal-leading-zero);
+      min-width: 1rem;
+      margin-#{$end-direction}: 1.25rem;
+      color: $brand-color;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.875rem;
+      font-weight: 400;
+      letter-spacing: 0;
     }
 
-    &:after {
-      transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-      will-change: transition;
-      content: "";
-      position: absolute;
-      top: 1.125rem;
-      right: 0;
-      opacity: 0;
-      transform: translateX(-0.5rem);
-      width: 2.5rem;
-      height: 2.5rem;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='rgba(255,255,255,1)'%3E%3Cpath fill='none' d='M0 0h24v24H0z'%3E%3C/path%3E%3Cpath d='M1.99974 13.0001L1.9996 11.0002L18.1715 11.0002L14.2218 7.05044L15.636 5.63623L22 12.0002L15.636 18.3642L14.2218 16.9499L18.1716 13.0002L1.99974 13.0001Z'%3E%3C/path%3E%3C/svg%3E");
-    }
-
-    &:hover {
-      transition: all 0.75s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-
-      &:after {
-        transform: translateX(0);
-        opacity: 1;
-      }
+    &:hover,
+    &:focus-visible {
+      color: #fff;
     }
   }
 }
 
 .socail-nav {
-  margin-top: 2.5rem;
   display: flex;
-  gap: 2rem;
+  flex-wrap: wrap;
+  gap: 0.5rem 2rem;
+  margin: 0;
+  padding: 1.5rem 0 0;
+  list-style: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  opacity: 0;
+  transform: translateY(1rem);
+  transition: opacity 0.3s ease, transform 0.3s ease;
 
   &-link {
-    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.875rem;
     text-transform: uppercase;
-    opacity: 0.7;
+    transition: color 0.2s;
 
     &:hover {
-      opacity: 1;
+      color: #fff;
     }
   }
+}
+
+// open state: links settle 0.8s ease after a 0.4s beat (the panel's
+// wipe goes first), the social row follows
+.offcanvas-menu.show:not(.hiding) {
+  .menu-link {
+    transform: none;
+    transition: transform 0.8s ease 0.4s;
+  }
+
+  .socail-nav {
+    opacity: 1;
+    transform: none;
+    transition: opacity 0.6s ease 0.7s, transform 0.8s ease 0.7s;
+  }
+}
+
+// letter scramble (collapse-offcanvas.js swaps each .char's text)
+.menu-link .char {
+  display: inline-block;
 }

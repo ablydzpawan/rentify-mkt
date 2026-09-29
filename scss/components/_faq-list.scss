@@ -31,11 +31,22 @@
   }
 
   &-item {
+    position: relative;
     padding: 2rem 0;
     // margin-top: $gap-sm;
 
-    &+& {
-      border-top: solid 1px #000;
+    // divider between rows: a drawn line rather than a border, so it
+    // can grow in (see "drawn divider lines" below)
+    &+&::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      #{$start-direction}: 0;
+      width: 100%;
+      height: 1px;
+      background-color: #000;
+      transform: scaleX(var(--line-scale, 1));
+      transform-origin: #{$start-direction} center;
     }
 
     @include media-breakpoint-up(lg) {
@@ -83,16 +94,52 @@
       width: 12px;
     }
 
+    // plus -> x: both bars turn 135deg together (0.4s ease)
+    &:after {
+      transform: rotate(0deg);
+      transition: transform 0.4s ease;
+    }
+
     &:before {
       transform: rotate(90deg);
-      transition: all 0.2s ease-in-out;
+      transition: transform 0.4s ease;
     }
 
     &[aria-expanded="true"] {
       &:before {
-        transform: rotate(0deg);
+        transform: rotate(225deg);
+      }
+
+      &:after {
+        transform: rotate(135deg);
       }
     }
+  }
+}
+
+// FAQ accordion motion (js/faq-effects.js), shared by the FAQ page and
+// every page's FAQ section: row lines draw from the start edge (1s
+// outQuart, staggered by row index --i) once the list scrolls in, and
+// rows open/close with a 0.4s ease height tween.
+.faq-list,
+.faq-section .faq-list-numbered,
+.faq-list-chevron {
+  &.is-line-ready .faq-list-item {
+    --line-scale: 0;
+
+    &::before,
+    &::after {
+      transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1);
+      transition-delay: calc(var(--i, 0) * 0.08s);
+    }
+  }
+
+  &.is-line-ready.is-line-drawn .faq-list-item {
+    --line-scale: 1;
+  }
+
+  .collapsing {
+    transition: height 0.4s ease;
   }
 }
 
@@ -238,4 +285,3 @@
     margin: 0;
   }
 }
-

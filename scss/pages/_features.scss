@@ -260,11 +260,31 @@
 // rotating chevron. Scoped to this modifier class only so the real
 // FAQ page's numbered list is untouched.
 .faq-list-chevron {
+  // row separators are drawn lines (they grow in, see the shared
+  // .is-line-ready rules in _faq-list.scss) rather than borders
   .faq-list-item {
+    position: relative;
     padding: 1rem 0;
+    border: 0;
 
-    &:first-child {
-      border: none;
+    &+&::before,
+    &:last-child::after {
+      content: "";
+      position: absolute;
+      #{$start-direction}: 0;
+      width: 100%;
+      height: 1px;
+      background: rgba(0, 0, 0, 0.12);
+      transform: scaleX(var(--line-scale, 1));
+      transform-origin: #{$start-direction} center;
+    }
+
+    &+&::before {
+      top: 0;
+    }
+
+    &:last-child::after {
+      bottom: 0;
     }
   }
 
@@ -285,7 +305,7 @@
     width: 2rem;
     height: 2rem;
     color: $txt-black;
-    transition: transform 0.25s ease;
+    transition: transform 0.4s ease;
   }
 
   .faq-list-link[aria-expanded="true"] .chevron {

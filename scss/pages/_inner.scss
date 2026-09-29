@@ -38,34 +38,82 @@
 }
 
 
-//Bussinesses
+//Bussinesses — infinite logo marquee
+// Two identical .bussinesses-list copies sit side by side and each slides
+// by exactly its own width (translate -100%), so when the first copy has
+// left, the second is exactly where the first started: no jump. Every
+// item carries the same inline padding, so the seam between the copies
+// gets the same space as the gaps inside them.
 .bussinesses {
+  --bussinesses-duration: 35s;
   display: flex;
-  gap: 2rem;
-  flex-flow: row wrap;
-  align-items: center;
-  justify-content: space-between;
+  overflow: hidden;
   mask-image: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 12.5%, rgb(0, 0, 0) 87.5%, rgba(0, 0, 0, 0) 100%);
 
-  @include media-breakpoint-up(lg) {
-    flex-flow: row nowrap;
+  &-list {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    // at least as wide as the strip, so on very wide screens one copy
+    // still fills it; space-around keeps the gaps (and the seam) equal
+    justify-content: space-around;
+    min-width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    animation: bussinesses-marquee var(--bussinesses-duration) linear infinite;
+    will-change: transform;
+    backface-visibility: hidden;
+  }
+
+  // pausing both copies together keeps them aligned, so the loop stays seamless
+  &:hover &-list {
+    animation-play-state: paused;
   }
 
   &-item {
-    padding: 0 1rem;
-    flex-shrink: 1;
-    max-width: 150px;
+    flex: 0 0 auto;
+    padding: 0 1.5rem;
 
     @include media-breakpoint-up(lg) {
-      flex: auto;
-      max-width: none;
+      padding: 0 2.5rem;
     }
 
-    // logos carry width/height attributes so their space is reserved
-    // before they load; height:auto keeps them in proportion when shrunk
+    // logos keep their width/height attributes (space reserved before
+    // load); capping the height scales them down in proportion on phones
     img {
-      max-width: 100%;
-      height: auto;
+      display: block;
+      width: auto;
+      max-height: 44px;
+
+      @include media-breakpoint-up(md) {
+        max-height: none;
+      }
     }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &-list {
+      animation: none;
+      flex-wrap: wrap;
+      justify-content: center;
+      row-gap: 1.5rem;
+    }
+
+    &-list[aria-hidden="true"] {
+      display: none;
+    }
+  }
+}
+
+// LTR slides left; the RTL build ($transform-direction: -1) slides right,
+// matching the lists' right-to-left flex order
+@keyframes bussinesses-marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-100% * $transform-direction, 0, 0);
   }
 }

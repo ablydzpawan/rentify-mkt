@@ -6,6 +6,7 @@
    ========================================================= */
 
 import { revealHeading } from "../text-effects.js";
+import { initHeader } from "../header-effects.js";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -28,13 +29,10 @@ if (!prefersReducedMotion && window.Lenis) {
     window.lenis = lenis;
 }
 
-/* ---------- Sticky header ---------- */
+/* ---------- Header: solid on scroll, hides on scroll down, returns
+   on scroll up (shared, see js/header-effects.js) ---------- */
 
-ScrollTrigger.create({
-    start: "top -80",
-    end: 99999,
-    toggleClass: { targets: ".site-header", className: "is-scrolled" },
-});
+initHeader(window.lenis || null);
 
 /* ---------- Desktop nav hover pill ---------- */
 
