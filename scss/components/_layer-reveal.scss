@@ -21,6 +21,9 @@
   // also producing inaccurate compositions since the same forced
   // size doesn't fit every layer's actual content.
   will-change: transform, filter, opacity;
+  // js/layer-scale.js shrinks the whole composition when the box is
+  // narrower than its full desktop width (1280px up to ~1400px)
+  zoom: var(--layer-scale, 1);
 }
 
 // shared depth/shadow treatment for every "satellite" layer (the
@@ -35,7 +38,7 @@
 }
 
 /* ---------- Mobile: one flat image per composition ----------
-   Below lg the native-sized layers no longer fit their box, so each
+   Below $flyer-breakpoint the native-sized layers no longer fit their box, so each
    multi-layer .image-wrap (marked .layers-desktop) is swapped for a
    pre-rendered .layers-mobile image of the same composition — same
    approach as the home and Features hero canvases. The image is
@@ -44,7 +47,7 @@
   display: none;
 }
 
-@include media-breakpoint-down(lg) {
+@include flyer-mobile {
   .image-wrap.layers-desktop {
     display: none;
   }

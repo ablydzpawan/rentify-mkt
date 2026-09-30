@@ -35,16 +35,17 @@
      font-size: clamp(36px, 4.5vw, 88px);
      font-weight: 600;
      line-height: 1.08;
-     letter-spacing: -0.01em;
-     margin: 0 0 24px;
+     margin: 0 auto;
+     margin-bottom: 24px;
    }
 
    .desc {
      line-height: 1.6;
      color: $txt-black;
-     margin: 0 0 36px;
+     text-wrap-style: balance;
      //max-width: 650px;
      margin: 0 auto;
+     max-width: 915px;
      font-weight: 500;
      font-size: clamp(15px, 1.7vw, 1.5rem);
      margin-bottom: 1.5rem;
@@ -79,11 +80,11 @@
    max-width: 1780px;
    margin: 0 auto;
 
-   // Below lg the percentage-positioned panels compress into an
-   // increasingly illegible mess — .hero-mobile (below) replaces this
-   // whole canvas with a single flat image instead, same approach as
-   // .features-hero-canvas / .features-hero-mobile on the Features page.
-   @include media-breakpoint-down(lg) {
+   // Below $flyer-breakpoint the panels get too small to read —
+   // .hero-mobile (below) replaces this whole canvas with a single flat
+   // image instead, same approach as .features-hero-canvas /
+   // .features-hero-mobile on the Features page.
+   @include flyer-mobile {
      display: none;
    }
 
@@ -92,62 +93,60 @@
      will-change: transform, filter, opacity;
    }
 
-   // no width/height — every panel renders at its native pixel size so
-   // the PNGs aren't resampled (which blurred them), same as
-   // .features-hero-canvas on the Features page
+   // Widths are each PNG's native width over the 1780px canvas, so at
+   // full size every panel renders 1:1 (no resampling blur) and below
+   // that the whole composition scales down together
    .panel img {
      display: block;
+     width: 100%;
+     height: auto;
    }
 
    .url-bar {
      left: 2.98%;
      top: 7.43%;
+     width: 15.73%;
      z-index: 4;
    }
 
    .browser {
      left: 21.63%;
      top: 14.04%;
+     width: 57.3%;
      z-index: 1;
    }
 
    .toolbar {
      left: 19.6%;
      top: 37.68%;
+     width: 8.31%;
      z-index: 3;
    }
 
    .font-panel {
      left: 0.5%;
      top: 35.14%;
+     width: 13.76%;
      z-index: 2;
    }
 
    .color-panel {
      left: 86.24%;
      top: 0%;
+     width: 13.26%;
      z-index: 2;
    }
 
    .template-panel {
      left: 73.43%;
      top: 57%;
+     width: 26.35%;
      z-index: 2;
-   }
-
-   @media (max-width:900px) {
-     & {
-       aspect-ratio: 1780/900;
-     }
-
-     .toolbar {
-       transform-origin: left center;
-     }
    }
  }
 
- // Single flat image swapped in for .canvas below md — see the
- // display: none note on .canvas above.
+ // Single flat image swapped in for .canvas below $flyer-breakpoint —
+ // see the display: none note on .canvas above.
  .hero-mobile {
    display: none;
    width: 100%;
@@ -157,7 +156,7 @@
    margin: 0 auto;
    border-radius: 24px;
 
-   @include media-breakpoint-down(lg) {
+   @include flyer-mobile {
      display: block;
    }
  }
@@ -183,9 +182,16 @@
      // opacity: .45;
      transform: scale(.90);
 
-     transition:
-       transform .6s ease,
-       opacity .6s ease;
+     // phones: left-aligned (see featuresSwiper in js/page-js/index.js)
+     // and narrower, so ~50px of the next card shows at the right edge;
+     // shrinking from the left keeps that peek from pulling inward
+     @include media-breakpoint-down(md) {
+       width: 80vw;
+       transform-origin: left center;
+     }
+
+     transition: transform .6s ease,
+     opacity .6s ease;
 
      // Your existing styles
      .refeatures-img {
@@ -400,22 +406,42 @@
    // the card's 975:643 aspect ratio stays consistent) — the fixed
    // 643px alone made this carousel absurdly tall relative to a phone
    // viewport, most of the card cropped off past the screen edges.
-   height: #{"min(59.35vw, 643px)"};
+   // phones: 76vw card (see the slide width below) at the 975:643 ratio
+   height: 50.12vw;
    overflow: visible;
+
+   // md up to 1440px: keep the 1440px desktop proportions (643px is
+   // 44.65vw there) so the carousel scales down as one piece instead of
+   // the 975px card eating more and more of the viewport. js/page-js/
+   // index.js scales the slide overlap/offset by the same ratio.
+   @include media-breakpoint-up(md) {
+     height: #{"min(44.65vw, 643px)"};
+   }
  }
 
  /* Individual Slide Card */
  .swiper-expo .swiper-slide {
    position: relative;
-   // see the height: min(...) note above — shrinks at the same rate.
-   width: #{"min(90vw, 975px)"};
+   // phones: narrower than the viewport so the prev/next cards peek out
+   // on both sides (js/page-js/index.js also eases their overlap/turn)
+   width: 76vw;
    height: 100%;
-   border-radius: 24px;
+
+   // 975px is 67.71vw at 1440px — see the md note on .swiper-expo above
+   @include media-breakpoint-up(md) {
+     width: #{"min(67.71vw, 975px)"};
+   }
+
+
    overflow: hidden;
    transform-style: preserve-3d;
    // box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
-   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease, filter 0.6s ease;
-   will-change: transform, opacity, filter;
+   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+   opacity 0.6s ease,
+   filter 0.6s ease;
+   will-change: transform,
+   opacity,
+   filter;
 
  }
 
@@ -777,7 +803,12 @@
 
  //Pricings
  .bg-pricing {
-   background: transparent radial-gradient(closest-side at 50% 50%, #BADBFF 0%, #FFFFFF 100%) 0% 0%;
+   background-color: #CDE2FB;
+
+   @include media-breakpoint-up(lg) {
+     background: transparent radial-gradient(closest-side at 50% 50%, #BADBFF 0%, #FFFFFF 100%) 0% 0%;
+   }
+
 
  }
 
@@ -785,10 +816,11 @@
    display: flex;
    flex-direction: column;
    gap: 2rem;
-   margin: 2rem 0;
+   margin: 0.5rem 0;
 
    @include media-breakpoint-up(lg) {
      flex-direction: row;
+     margin: 2rem 0;
    }
 
    &-item {
@@ -1004,7 +1036,9 @@
    }
 
    .h3 {
-     font-size: 2.5rem;
+     flex: 1;
+     // 24px at a 390px phone, grows linearly, caps at 40px from ~1440px
+     font-size: clamp(1.5rem, calc(1.129rem + 1.524vw), 2.5rem);
      font-weight: 500;
      line-height: 1.4;
    }

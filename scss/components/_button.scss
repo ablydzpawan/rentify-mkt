@@ -566,17 +566,13 @@
    }
  }
 
-
-
-
-
  .animated-button {
    @include bg-black;
    position: relative;
    display: inline-flex;
    align-items: center;
    gap: 4px;
-   padding: 0.8rem 2.5rem;
+   padding: 0.6rem 2.5rem;
    border: 4px solid $bg-black;
    outline: none;
    border-color: transparent;

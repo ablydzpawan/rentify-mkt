@@ -1,6 +1,10 @@
 //Why choose Rentify — card row used on the home and contact pages
 .bg-whychoose {
-  background: transparent radial-gradient(closest-side at 50% 50%, #BADBFF 0%, #FFFFFF 100%) 0% 0%;
+  background-color: #CDE2FB;
+
+  @include media-breakpoint-up(lg) {
+    background: transparent radial-gradient(closest-side at 50% 50%, #BADBFF 0%, #FFFFFF 100%) 0% 0%;
+  }
 }
 
 //Why Us
@@ -13,6 +17,34 @@
   @include media-breakpoint-up(lg) {
     flex-flow: row;
     gap: 3rem;
+  }
+
+  // Phones: one swipeable row (CSS scroll-snap, no JS) that bleeds past
+  // the container gutter to the screen edges, each card 75vw so the next
+  // one peeks in on the right. The block padding leaves room for the
+  // cards' shadow, which the scroll container would otherwise clip.
+  @include media-breakpoint-down(md) {
+    // matches .container's side padding: Bootstrap's 0.75rem, or the
+    // 1.5rem _misc.scss sets at 600px and below
+    --why-us-gutter: 0.75rem;
+
+    @media (max-width: 600px) {
+      --why-us-gutter: 1.5rem;
+    }
+
+    flex-flow: row nowrap;
+    gap: 1.25rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--why-us-gutter);
+    overscroll-behavior-x: contain;
+    margin-inline: calc(var(--why-us-gutter) * -1);
+    padding: 1.5rem var(--why-us-gutter) 3rem;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 
   &-item {
@@ -33,6 +65,12 @@
       max-width: none;
     }
 
+    @include media-breakpoint-down(md) {
+      flex: 0 0 75vw;
+      max-width: 75vw;
+      scroll-snap-align: start;
+    }
+
     &:nth-child(1n) {
       transform: matrix(1, -0.09, 0.09, 1, 0, 0);
 
@@ -51,6 +89,13 @@
     &:nth-child(4n) {
       transform: matrix(1, 0.09, -0.09, 1, 0, 24);
 
+    }
+
+    // phones: flat, level cards in the swipe row — no tilt or stagger
+    @include media-breakpoint-down(md) {
+      &:nth-child(n) {
+        transform: none;
+      }
     }
   }
 
@@ -84,4 +129,3 @@
     opacity: 0.7;
   }
 }
-

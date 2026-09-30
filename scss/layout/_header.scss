@@ -19,13 +19,12 @@
   }
 
   // trustedconnectivity.valid.com's header: once the page scrolls it
-  // turns into a solid brand-colored bar with white text, tightens up
-  // and scales the logo down (0.4s expo-out); js/header-effects.js
-  // also slides it away on scroll down and back on scroll up
+  // turns into a solid white bar, tightens up and scales the logo down
+  // (0.4s expo-out); js/header-effects.js also slides it away on scroll
+  // down and back on scroll up
   &.is-scrolled {
-    background: $brand-color;
-    border-bottom-color: transparent;
-    color: #fff;
+    background: #fff;
+    border-bottom-color: $border-color;
 
     .site-header-inner {
       padding: 0.65rem 0;
@@ -33,14 +32,6 @@
 
     .brand {
       transform: scale(0.75);
-
-      img {
-        filter: brightness(0) invert(1);
-      }
-    }
-
-    .desktop-nav {
-      color: #fff;
     }
   }
 

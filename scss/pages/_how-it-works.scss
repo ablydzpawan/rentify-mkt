@@ -347,9 +347,9 @@
     max-width: 1780px;
     margin: 0 auto;
 
-    // Below lg the panels shrink to an illegible strip (and sat over the
-    // heading) — .first-fold-mobile (below) replaces the whole canvas.
-    @include media-breakpoint-down(lg) {
+    // Below $flyer-breakpoint the panels shrink to an illegible strip —
+    // .first-fold-mobile (below) replaces the whole canvas.
+    @include flyer-mobile {
       display: none;
     }
 
@@ -358,16 +358,20 @@
       will-change: transform, filter, opacity;
     }
 
-    // no width/height — native pixel size so the PNGs aren't resampled
-    // (which blurred them), same as the home and Features hero canvases
+    // Widths are each PNG's native width over the 1780px canvas, so at
+    // full size they render 1:1 and below that scale down together,
+    // same as the home and Features hero canvases
     .panel img {
       display: block;
+      width: 100%;
+      height: auto;
     }
 
     /* main artboard — theme editor preview, centered */
     #browser {
       left: 23%;
       top: 0;
+      width: 55.45%;
       z-index: 2;
       overflow: hidden;
     }
@@ -376,27 +380,31 @@
     #sales-panel {
       left: 0;
       top: 0;
+      width: 20.06%;
     }
 
     #product-panel {
       left: 0;
       bottom: 0;
+      width: 23.76%;
     }
 
     #social-panel {
       right: 0;
       top: 0;
+      width: 20%;
     }
 
     #url-bar {
       right: 0;
       bottom: 0;
+      width: 20%;
     }
   }
 }
 
-// Single composed image swapped in for .first-fold-canvas below lg —
-// same approach as .hero-mobile on the home page.
+// Single composed image swapped in for .first-fold-canvas below
+// $flyer-breakpoint — same approach as .hero-mobile on the home page.
 .first-fold-mobile {
   display: none;
   width: 100%;
@@ -404,7 +412,7 @@
   height: auto;
   margin: 0 auto;
 
-  @include media-breakpoint-down(lg) {
+  @include flyer-mobile {
     display: block;
   }
 }

@@ -26,20 +26,23 @@
 
   .panel {
     position: absolute;
-    // no width/height — every panel renders at its native pixel size
-    // (measured directly off the reference screenshot's ~1600px-wide
-    // hero canvas, which these PNGs already match 1:1).
     will-change: transform, filter, opacity;
   }
 
+  // Widths are each PNG's native width over the 1600px canvas (the
+  // reference screenshot's hero width, which these PNGs match 1:1), so
+  // at full size they render unscaled and below that shrink together
   .panel img {
     display: block;
+    width: 100%;
+    height: auto;
     object-fit: contain;
   }
 
   #hero-phone {
     left: 35%;
     top: 13%;
+    width: 30.375%;
     z-index: 2;
     border-radius: 24px;
     overflow: hidden;
@@ -48,46 +51,49 @@
   #hero-total-spent {
     left: 12%;
     top: 19%;
+    width: 27.75%;
     z-index: 3;
   }
 
   #hero-daily-traffic {
     right: 8%;
     top: 20%;
+    width: 13.875%;
     z-index: 3;
   }
 
   #hero-date-picker {
     right: 6%;
     top: 54%;
+    width: 18.4375%;
     z-index: 3;
   }
 
   #hero-pie-chart {
     left: 6%;
     top: 54%;
+    width: 13.875%;
     z-index: 3;
   }
 
-  // Below lg, the five absolutely positioned native-sized panels no
-  // longer have room to lay out sensibly (see .features-hero-mobile,
-  // right below, which replaces this entire canvas on those screens
-  // instead of trying to keep patching panel positions smaller).
-  @include media-breakpoint-down(lg) {
+  // Below $flyer-breakpoint the panels get too small to read (see
+  // .features-hero-mobile, right below, which replaces this entire
+  // canvas on those screens).
+  @include flyer-mobile {
     display: none;
   }
 }
 
-// Single flat image swapped in for .features-hero-canvas below lg —
-// simpler and far more reliable on small screens than trying to keep
-// five overlapping native-sized panels legible at that width.
+// Single flat image swapped in for .features-hero-canvas below
+// $flyer-breakpoint — far more legible on small screens than five
+// overlapping scaled-down panels.
 .features-hero-mobile {
   display: none;
   width: 100%;
   height: auto;
   border-radius: 24px;
 
-  @include media-breakpoint-down(lg) {
+  @include flyer-mobile {
     display: block;
   }
 }

@@ -3,19 +3,33 @@
 
   &-top {
     padding-bottom: 2rem;
+  }
 
-    // Columns are `.col-auto` (content-width, no built-in responsive
-    // stacking), which lets them overflow the viewport on narrow phones
-    // once combined with the newsletter form's own min-width below.
-    // Stack them full-width until there's room for them side by side.
-    .row {
-      @include media-breakpoint-down(md) {
-        >.col-auto {
-          flex: 0 0 100%;
-          max-width: 100%;
-          width: 100%;
-        }
-      }
+  // Four columns (copyright/legal, nav, social/contact, newsletter):
+  // one stacked column on phones, a 2×2 grid from sm, and a single
+  // content-width row spread edge to edge from lg
+  &-cols {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2.5rem;
+
+    @include media-breakpoint-up(sm) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 3rem 2rem;
+    }
+
+    @include media-breakpoint-up(lg) {
+      display: flex;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+  }
+
+  &-col {
+    min-width: 0;
+
+    @include media-breakpoint-up(lg) {
+      flex: 0 0 auto;
     }
   }
 
@@ -59,7 +73,6 @@
       }
 
       @include media-breakpoint-down(sm) {
-        margin-top: 1.5rem;
         //background-color: $bg-gray;
         // padding: 1rem;
 
@@ -74,6 +87,13 @@
     .footer-nav {
       display: block;
 
+      // phones: two columns so the seven links take half the height
+      @include media-breakpoint-down(sm) {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        column-gap: 1.5rem;
+      }
+
       &-item {
         color: currentColor;
         font-size: 0.875em;
@@ -87,7 +107,6 @@
         font-size: 1rem;
         text-transform: uppercase;
         color: currentColor;
-
         position: relative;
         text-rendering: optimizeLegibility;
         transition: color 0.3s ease-in-out;
@@ -144,8 +163,12 @@
   .desc {
     max-width: 1024px;
     margin: 0 auto;
-    font-size: 1.2rem;
+    font-size: 0.8rem;
     text-align: center;
+
+    @include media-breakpoint-up(lg) {
+      font-size: 1.2rem;
+    }
 
     strong {
       font-weight: 700;
@@ -156,7 +179,7 @@
     display: flex;
     flex-direction: column;
     font-size: 1rem;
-    margin-top: 2rem;
+    margin-top: 1rem;
 
     @include media-breakpoint-up(lg) {}
 
@@ -175,11 +198,12 @@
 //Newsletter
 .form-newsletter {
   position: relative;
-  min-width: 320px;
+  width: 100%;
 
-  @include media-breakpoint-down(sm) {
-    min-width: 0;
-    width: 100%;
+  // fills its grid cell below lg; in the lg content-width row it needs
+  // a minimum so the input doesn't collapse to the placeholder's width
+  @include media-breakpoint-up(lg) {
+    min-width: 320px;
   }
 
   &-input {

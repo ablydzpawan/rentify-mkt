@@ -4,7 +4,10 @@
   background-color: #fff;
   //padding: calc(1rem + 3.5vw) 0;
   padding: $section-padding 0;
-  overflow-x: hidden;
+  // clip (not hidden): trims bleeding carousels like the home niches
+  // slider without turning the section into a scroll container, so
+  // position: sticky inside sections keeps working
+  overflow-x: clip;
 
   //height: 100vh;
   //min-height: 100svh;
@@ -20,7 +23,6 @@
     width: 100%;
     margin-bottom: 1rem;
     display: flex;
-
     justify-content: space-between;
     flex-direction: column;
     // align-items: flex-start;
@@ -73,7 +75,7 @@
 
     p {
       color: currentColor;
-      text-wrap-style: balance;
+      //  text-wrap-style: balance;
       font-weight: 400;
     }
   }
@@ -111,18 +113,12 @@
 
     &-desc {
       color: currentColor;
-      font-size: 0.9rem;
+      // 1rem on phones, grows with the viewport, caps at 1.5rem from ~1440px
+      font-size: clamp(1rem, calc(0.6rem + 1vw), 1.25rem);
       font-weight: 400;
       line-height: 1.6;
-      text-wrap-style: balance;
+      //text-wrap-style: balance;
       margin-bottom: 2rem;
-
-
-      // font-weight: $font-weight-regular;
-      @include media-breakpoint-up(lg) {
-        font-size: 1.5rem;
-
-      }
     }
   }
 
@@ -168,4 +164,3 @@
   margin: 0 auto;
   padding: 0;
 }
-

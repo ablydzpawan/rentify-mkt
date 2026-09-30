@@ -378,12 +378,21 @@ const featuresSwiper = new Swiper(".featuresSwiper", {
     watchSlidesProgress: true,
 
     breakpoints: {
+        // phones: active card sits at the page gutter instead of centered,
+        // so the next card peeks in on the right and reads as a slider
+        // (card width is narrowed to match in _index.scss)
         0: {
-            spaceBetween: 10
+            spaceBetween: 12,
+            centeredSlides: false,
+            slidesOffsetBefore: 16,
+            slidesOffsetAfter: 16
         },
 
         768: {
-            spaceBetween: 20
+            spaceBetween: 20,
+            centeredSlides: true,
+            slidesOffsetBefore: 0,
+            slidesOffsetAfter: 0
         },
 
         1200: {
@@ -395,11 +404,30 @@ const featuresSwiper = new Swiper(".featuresSwiper", {
 
 //Swiper
 
+// From md up to 1440px the cards shrink with the viewport to keep the
+// 1440px desktop proportions (see .swiper-expo in _index.scss), so the
+// pixel overlap and offset below shrink by the same ratio
+function expoScale() {
+    const w = window.innerWidth;
+    return w >= 768 && w < 1440 ? w / 1440 : 1;
+}
+
+// Below md the neighbours need to peek out past the (narrower, see
+// _index.scss) center card: less overlap, a shallower turn and a
+// smaller pull toward the center than the desktop values
+function expoMotion() {
+    if (window.innerWidth < 768) {
+        return { space: -30, rotate: 35, shiftX: -10, depth: 30 };
+    }
+    const k = expoScale();
+    return { space: -200 * k, rotate: 80, shiftX: -80 * k, depth: 50 * k };
+}
+
 const expoSwiper = new Swiper('.swiper-expo', {
     direction: 'horizontal',
     slidesPerView: 'auto',
     centeredSlides: true,
-    spaceBetween: -200,
+    spaceBetween: expoMotion().space,
     loop: true,
     speed: 750,
     parallax: true,
@@ -416,18 +444,22 @@ const expoSwiper = new Swiper('.swiper-expo', {
 
     /* 3D Dynamic Transformation Logic */
     on: {
+        beforeResize(s) {
+            s.params.spaceBetween = expoMotion().space;
+        },
         progress(s) {
+            const motion = expoMotion();
             s.slides.forEach((slide) => {
                 const progress = slide.progress; // Offset from active slide: -1 (left), 0 (center), 1 (right)
                 const absProgress = Math.abs(progress);
 
                 // 1. Perspective 3D rotation around Y axis
-                const rotateY = progress * 80;
+                const rotateY = progress * motion.rotate;
 
                 // 2. Scale & translateZ depth matrix calculation
                 const scale = 1 - Math.min(absProgress * 0.0, 1);
-                const translateZ = -absProgress * 50;
-                const translateX = progress * -80;
+                const translateZ = -absProgress * motion.depth;
+                const translateX = progress * motion.shiftX;
 
                 // 3. Opacity & depth blur curve
                 const opacity = 1 - Math.min(absProgress * 0, 1);

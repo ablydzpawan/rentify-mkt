@@ -143,6 +143,23 @@ $hero-ratio: 10/3.33;
 $video-ratio: 16/9;
 $avatar-ratio: 1/1;
 
+// Flyer compositions (hero canvases, layered .image-wrap scenes) keep
+// their animated, absolutely positioned panels from this width up and
+// swap to a single pre-rendered mobile image below it
+$flyer-breakpoint: 1280px;
+
+@mixin flyer-desktop {
+  @media (min-width: $flyer-breakpoint) {
+    @content;
+  }
+}
+
+@mixin flyer-mobile {
+  @media (max-width: $flyer-breakpoint - 0.02) {
+    @content;
+  }
+}
+
 //Bg brand
 @mixin bg-brand {
   background-color: $brand-color;
