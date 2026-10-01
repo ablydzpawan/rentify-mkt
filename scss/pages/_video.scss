@@ -1,22 +1,13 @@
 ﻿//Video tutorials
 $video-feature-bg: #CFE2FB;
 $video-panel-bg: #F5F5F5;
-$video-panel-radius: clamp(24px, 3vw, 48px);
+$video-panel-radius: clamp(1.5rem, 3vw, 3rem);
 
 .video-hero {
-  padding-bottom: clamp(2rem, 4vw, 4rem);
+  //padding-bottom: clamp(2rem, 4vw, 4rem);
 
   .first-fold-content {
-    margin-bottom: 0;
-  }
-
-  .title {
-    font-size: clamp(36px, 4.5vw, 64px);
-  }
-
-  .desc {
-    font-size: clamp(15px, 1.2vw, 1.15rem);
-    margin-bottom: 0;
+    //margin-bottom: 0;
   }
 }
 
@@ -62,7 +53,7 @@ $video-panel-radius: clamp(24px, 3vw, 48px);
     padding: 0;
     border: 0;
     background: none;
-    border-radius: 20px;
+    border-radius: 1.25rem;
     cursor: pointer;
     aspect-ratio: $video-ratio;
 
@@ -295,7 +286,7 @@ $video-panel-radius: clamp(24px, 3vw, 48px);
     width: 100%;
     max-width: calc((100vh - 8rem) * 16 / 9);
     margin-inline: auto;
-    border-radius: 20px;
+    border-radius: 1.25rem;
     overflow: hidden;
     background-color: #000;
     box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);

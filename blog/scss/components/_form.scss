@@ -6,7 +6,7 @@ $input-border-style: solid;
 $input-border-width: 1px;
 $input-border-color: #dedede;
 $input-border: none;
-$input-border-radius: 40px;
+$input-border-radius: 2.8571rem;
 $input-bg: $bg-gray;
 $input-color: #474747;
 $input-border-focus: #000;
@@ -505,7 +505,7 @@ $input-border-focus: #000;
 //NEW
 $phone-filed-size: 110px;
 $flt-input-padding: 0 10px;
-$flt-input-border-radius: 12px !default;
+$flt-input-border-radius: 0.8571rem !default;
 $flt-input-height: 4.5rem;
 $input-line-height: 1.2;
 $fltinput-border-color: #dedede;

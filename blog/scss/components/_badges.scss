@@ -28,7 +28,7 @@
     //background-color: $brand-color;
     //color:lighten($brand-color, 55%);
     @include bg-brand();
-    border-radius: 1px;
+    border-radius: 0.0714rem;
     padding: 4px 8px;
 
     .text {

@@ -1,12 +1,13 @@
 .site-header {
   // position: fixed;
   position: sticky;
-  top: 0;
+  // sits right under the sticky .offer-bar (layout/_offer-bar.scss)
+  top: var(--offer-bar-h, 0);
   z-index: $zindex-sticky;
   width: 100%;
   margin: 0 auto;
   backdrop-filter: blur(18px);
-  border-bottom: solid 1px transparent;
+  border-bottom: solid 1px $border-color;
   padding: 0;
   transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 
@@ -48,11 +49,15 @@
     transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
+  .cta-btn {
+    padding-inline: 1rem;
+    min-width: 120px;
+  }
 
   .menu-button {
     background-color: #fff;
     border: solid 1px #000;
-    border-radius: 50px;
+    border-radius: 3.125rem;
     display: flex;
     gap: 0.4rem;
     align-items: center;
@@ -157,7 +162,7 @@
       height: auto;
       line-height: 1;
 
-      span {
+      >span {
         padding: 0 0.25rem;
         font-size: 1em;
       }
@@ -216,7 +221,7 @@
     padding: 0.6rem 1.1rem;
     line-height: 1.4;
     white-space: nowrap;
-    border-radius: 999px;
+    border-radius: 62.4375rem;
     transition: color 0.25s ease;
 
     // Every link gets its own permanent anchor-name (rather than only the
@@ -293,7 +298,7 @@
       z-index: 0;
       pointer-events: none;
       background: $bg-brand-100;
-      border-radius: 999px;
+      border-radius: 62.4375rem;
       opacity: 0;
       transition: top 0.35s cubic-bezier(0.16, 1, 0.3, 1),
         left 0.35s cubic-bezier(0.16, 1, 0.3, 1),

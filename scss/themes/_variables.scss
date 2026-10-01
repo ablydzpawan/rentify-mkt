@@ -110,15 +110,15 @@ $shadow11: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px
   rgba(0, 0, 0, 0.09) 0px -3px 5px;
 
 //radius
-$radius-radius-lg: 16px;
-$theme-radius: 24px;
-$common-radius: 4px;
-$card-radius: 12px;
-$radius4: 4px;
-$radius3: 3px;
-$radius2: 2px;
-$radius1: 1px;
-$radius: 4px;
+$radius-radius-lg: 1rem;
+$theme-radius: 1.5rem;
+$common-radius: 0.25rem;
+$card-radius: 0.75rem;
+$radius4: 0.25rem;
+$radius3: 0.1875rem;
+$radius2: 0.125rem;
+$radius1: 0.0625rem;
+$radius: 0.25rem;
 
 //messages
 $success-color: #1dc9b7;
@@ -146,7 +146,7 @@ $avatar-ratio: 1/1;
 // Flyer compositions (hero canvases, layered .image-wrap scenes) keep
 // their animated, absolutely positioned panels from this width up and
 // swap to a single pre-rendered mobile image below it
-$flyer-breakpoint: 1280px;
+$flyer-breakpoint: 1024px;
 
 @mixin flyer-desktop {
   @media (min-width: $flyer-breakpoint) {

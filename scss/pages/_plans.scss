@@ -26,7 +26,7 @@
     align-items: center;
     width: 42px;
     height: 24px;
-    border-radius: 100px;
+    border-radius: 6.25rem;
     background: #000;
     border: none;
     cursor: pointer;
@@ -57,7 +57,16 @@
 
 .bg-pricing-page {
   background-color: #CDE2FB;
-  border-radius: 100px 100px 0px 0px;
+  border-radius: 6.25rem 6.25rem 0 0;
+}
+
+.bg-compare {
+  border-top-left-radius: 4.125rem;
+  border-top-right-radius: 4.125rem;
+  position: relative;
+  z-index: 1;
+  top: -66px;
+  margin-bottom: -66px;
 }
 
 .section-num {
@@ -69,7 +78,8 @@
   width: min-content;
   height: min-content;
   padding: 24px 0 0;
-  margin: 2rem auto;
+  margin: 0 auto;
+  margin-bottom: 2rem;
   display: flex;
   position: relative;
   overflow: visible;
@@ -78,7 +88,7 @@
     transform: translate(-50%, -50%) rotate(-7deg);
     background-color: #efefef;
     z-index: 1;
-    border-radius: 8px;
+    border-radius: 0.5rem;
     flex-flow: row;
     flex: none;
     place-content: center;
@@ -112,7 +122,7 @@
     background-color: #000;
     color: #fff;
     z-index: 1;
-    border-radius: 20px;
+    border-radius: 1.25rem;
     flex-flow: row;
     flex: none;
     place-content: center;
@@ -161,7 +171,7 @@
   gap: 0;
   padding: 36px 0 60px;
   align-items: stretch;
-  border-radius: 28px;
+  border-radius: 1.75rem;
   overflow: hidden;
 
   @include media-breakpoint-up(md) {
@@ -191,8 +201,8 @@
     // spaced edge to edge. The extra padding-right keeps that card's
     // content clear of the part tucked under its neighbour.
     $plan-overlap: 50px;
-    $plan-radius-outer: 64px;
-    $plan-radius-inner: 44px;
+    $plan-radius-outer: 4rem;
+    $plan-radius-inner: 2.75rem;
 
     @include media-breakpoint-up(md) {
       padding: 3rem 3rem 3rem 2.625rem;
@@ -249,7 +259,7 @@
     }
 
     @include media-breakpoint-down(md) {
-      border-radius: 24px;
+      border-radius: 1.5rem;
     }
   }
 
@@ -266,7 +276,7 @@
     letter-spacing: .04em;
     text-transform: uppercase;
     padding: 6px 14px;
-    border-radius: 100px;
+    border-radius: 6.25rem;
   }
 
   .avatar {
@@ -364,10 +374,7 @@
     width: 100%;
     height: auto;
 
-    span {
-      padding: 14px 1rem;
-      font-size: 1rem;
-    }
+
 
     &:active {
       transform: translateY(1px);
@@ -381,7 +388,7 @@
   padding: clamp(28px, 4vw, 56px) 0 clamp(28px, 5vw, 90px);
   background: #0A0A0A;
   padding: 4rem;
-  border-radius: clamp(24px, 4vw, 64px);
+  border-radius: clamp(1.5rem, 4vw, 4rem);
 
   .compareTable {
     border-collapse: separate;
@@ -407,7 +414,7 @@
       position: relative;
       min-width: 150px;
       background: #fff;
-      border-radius: 20px;
+      border-radius: 1.25rem;
       padding: 20px 1rem;
       transform: translateY(-46px);
       box-shadow: 0 18px 40px rgba(0, 0, 0, .35);
@@ -463,7 +470,7 @@
       letter-spacing: .04em;
       text-transform: uppercase;
       padding: 6px 14px;
-      border-radius: 999px;
+      border-radius: 62.4375rem;
       white-space: nowrap;
       box-shadow: 0 8px 18px rgba(0, 0, 0, .35);
       z-index: 2;
@@ -498,7 +505,7 @@
       color: #fff;
       font-weight: 600;
       padding: 1rem 1.25rem;
-      border-radius: 30px;
+      border-radius: 1.875rem;
       text-align: start;
       // display: flex;
       // align-items: center;
@@ -538,7 +545,7 @@
     // scanning a plan's row across the table feels tactile
     tbody tr:not(.cat-row) {
       transition: background-color .25s ease;
-      border-radius: 16px;
+      border-radius: 1rem;
 
       td {
         transition: transform .25s cubic-bezier(0.16, 1, 0.3, 1), color .25s ease;
@@ -576,7 +583,7 @@
 
     td.tier-col {
       text-align: center;
-      border-radius: 12px;
+      border-radius: 0.75rem;
       transition: background-color .25s ease;
     }
 
@@ -628,13 +635,13 @@
       text-align: center;
     }
 
-    tfoot .btn-theme {
+    tfoot .btn-white {
       width: 100%;
       max-width: 220px;
       height: auto;
       transition: transform .3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow .3s ease;
 
-      span {
+      >span {
         padding: 12px 1rem;
         font-size: 0.95rem;
       }

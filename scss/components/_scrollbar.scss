@@ -14,10 +14,10 @@
   &::-webkit-scrollbar-thumb {
     background-color: $brand-color;
     background-clip: padding-box;
-    border-radius: 10px;
+    border-radius: 0.625rem;
     //border: 2px solid #eff1f5;
     border: 1.5px solid transparent;
-    border-radius: 3px;
+    border-radius: 0.1875rem;
   }
   &::-webkit-scrollbar-thumb:active {
     background-color: #61686e;

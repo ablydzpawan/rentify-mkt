@@ -140,34 +140,38 @@ if (!prefersReducedMotion) {
     };
 
     /* ---------- Section badge ("01 pricing" / "02 plan compare") —
-       the caption unrolls left-to-right like a strip of tape being
-       pulled, then the number tag is stamped down on top of it (drops
-       in oversized, lands with a small squash). clearProps hands the
-       transform back to the stylesheet once the tween is done. ---------- */
+       the number card flips face-up and its digits roll up into view,
+       then the caption drops in and swings into place under it like a
+       tag on a hook (overshoots, sways back, settles at its 15deg tilt).
+       clearProps hands transforms back to the stylesheet (the resting
+       tilts live in _plans.scss) once each tween is done. ---------- */
 
     document.querySelectorAll(".section-num").forEach(function (badge) {
         var num = badge.querySelector(".num");
+        var digits = num && num.querySelector("span");
         var caption = badge.querySelector(".caption");
         if (!num || !caption) return;
 
-        gsap.timeline({
+        var tl = gsap.timeline({
             scrollTrigger: { trigger: badge, start: "top 88%", toggleActions: "play none none reverse" },
-        })
-            .fromTo(caption, { clipPath: "inset(0 100% 0 0 round 20px)" }, {
-                clipPath: "inset(0 0% 0 0 round 20px)",
-                duration: 0.6, ease: "power3.inOut", clearProps: "clipPath",
-            }, 0)
-            .from(num, {
-                opacity: 0, scale: 2.2, yPercent: -120,
-                duration: 0.45, ease: "power4.in",
-            }, 0.4)
-            .to(num, {
-                keyframes: [
-                    { scaleX: 1.15, scaleY: 0.85, duration: 0.08 },
-                    { scaleX: 1, scaleY: 1, duration: 0.3, ease: "back.out(3)" },
-                ],
-                clearProps: "transform",
-            });
+        });
+
+        tl.from(num, {
+            opacity: 0, rotationY: -180, scale: 0.6, transformPerspective: 400,
+            duration: 0.7, ease: "back.out(1.6)", clearProps: "transform,opacity",
+        }, 0);
+
+        if (digits) {
+            tl.fromTo(digits,
+                { clipPath: "inset(0 0 100% 0)", yPercent: 80 },
+                { clipPath: "inset(0 0 0% 0)", yPercent: 0, duration: 0.45, ease: "power3.out", clearProps: "clipPath,transform" },
+                0.4);
+        }
+
+        tl.from(caption, {
+            opacity: 0, rotation: -70, y: -20,
+            duration: 1.3, ease: "elastic.out(1, 0.4)", clearProps: "transform,opacity",
+        }, 0.6);
     });
 
     /* ---------- Billing toggle row ---------- */

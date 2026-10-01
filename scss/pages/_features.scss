@@ -21,7 +21,7 @@
   aspect-ratio: 1600 / 827;
   max-width: 1600px;
   margin: 0 auto;
-  border-radius: 50px;
+  border-radius: 3.125rem;
   background-color: #116dff33;
 
   .panel {
@@ -44,7 +44,7 @@
     top: 13%;
     width: 30.375%;
     z-index: 2;
-    border-radius: 24px;
+    border-radius: 1.5rem;
     overflow: hidden;
   }
 
@@ -91,7 +91,7 @@
   display: none;
   width: 100%;
   height: auto;
-  border-radius: 24px;
+  border-radius: 1.5rem;
 
   @include flyer-mobile {
     display: block;
@@ -121,7 +121,7 @@
   justify-content: space-between;
   gap: 2rem;
   padding: clamp(1.75rem, 4vw, 4rem);
-  border-radius: 30px;
+  border-radius: 1.875rem;
   margin-bottom: 1.25rem;
 
   // Stacked-card scroll effect: each row sticks near the top as you
@@ -171,7 +171,7 @@
     flex: 1 1 100%;
     max-width: 550px;
     aspect-ratio: 16/10;
-    border-radius: 20px;
+    border-radius: 1.25rem;
     overflow: hidden;
 
     @include media-breakpoint-up(xl) {
@@ -228,7 +228,7 @@
     aspect-ratio: 798 / 760;
     overflow: hidden;
     background: transparent linear-gradient(133deg, #A9A9FE 0%, #93CAFB 44%, #F0F6B6 100%);
-    border-radius: 30px;
+    border-radius: 1.875rem;
 
     @include media-breakpoint-up(lg) {
       flex: 0 1 58%;
@@ -480,7 +480,7 @@
 .customization-panel {
   position: relative;
   aspect-ratio: 16/8;
-  border-radius: 30px;
+  border-radius: 1.875rem;
   overflow: hidden;
   background: linear-gradient(135deg, #8fa2f2 0%, #b9c6fb 100%);
 
@@ -488,7 +488,7 @@
   // (.layers-mobile), so the panel keeps that image's shape
   @include media-breakpoint-down(md) {
     aspect-ratio: 2/1;
-    border-radius: 20px;
+    border-radius: 1.25rem;
   }
 
   // no width/height — native size, see .image-wrap .layer above
@@ -770,7 +770,7 @@
   // the item actually shrink to fit its own column.
   flex: 0 0 clamp(280px, 32vw, 420px);
   min-width: 0;
-  border-radius: 20px;
+  border-radius: 1.25rem;
   padding: 3.5rem;
   display: flex;
   flex-direction: column;
@@ -778,7 +778,7 @@
   .system-grid-media {
     position: relative;
     aspect-ratio: 4/3;
-    border-radius: 14px;
+    border-radius: 0.875rem;
     overflow: hidden;
     margin-bottom: 1.25rem;
 
@@ -816,7 +816,7 @@
   justify-content: space-between;
   gap: 2rem;
   padding: clamp(1.75rem, 4vw, 4rem);
-  border-radius: 50px;
+  border-radius: 3.125rem;
   color: #fff;
 
   &.is-active {
@@ -854,7 +854,7 @@
     flex: 1 1 100%;
     aspect-ratio: 16/11;
     padding: 4rem 4rem;
-    border-radius: 30px;
+    border-radius: 1.875rem;
     overflow: hidden;
     background: rgba(255, 255, 255, 0.08);
 
@@ -865,7 +865,7 @@
     // the flat .layers-mobile image needs the room more than the frame
     @include media-breakpoint-down(md) {
       padding: 1rem;
-      border-radius: 20px;
+      border-radius: 1.25rem;
     }
   }
 }

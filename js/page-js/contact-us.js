@@ -124,11 +124,18 @@ initHeader(window.lenis || null);
     var card = form.closest(".contact-form-card");
     var confetti = card.querySelector(".form-confetti");
     var submitBtn = form.querySelector('button[type="submit"]');
-    var submitLabel = submitBtn.querySelector("span");
+    var submitLabel = submitBtn.querySelector(".btn-roll");
     var resetBtn = success.querySelector(".form-success-reset");
     var ring = success.querySelector(".form-success-ring");
     var check = success.querySelector(".form-success-check");
     var originalLabel = submitLabel.textContent;
+
+    // .btn-roll draws its label from data-text (the hover text roll), so
+    // both have to change together
+    var setLabel = function (text) {
+        submitLabel.textContent = text;
+        submitLabel.setAttribute("data-text", text);
+    };
 
     var confettiColors = ["#2D85FE", "#FFD84D", "#FF6B6B", "#22C55E", "#000E20", "#FEF9AD"];
 
@@ -236,12 +243,12 @@ initHeader(window.lenis || null);
         e.preventDefault();
 
         submitBtn.classList.add("is-loading");
-        submitLabel.textContent = "Sending…";
+        setLabel("Sending…");
 
         // No backend wired up yet — simulate the network round-trip.
         setTimeout(function () {
             submitBtn.classList.remove("is-loading");
-            submitLabel.textContent = originalLabel;
+            setLabel(originalLabel);
             form.reset();
             showSuccess();
             resetBtn.focus({ preventScroll: true });

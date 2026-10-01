@@ -3,7 +3,7 @@
   padding-top: 0;
   padding-bottom: clamp(24px, 3vw, 48px);
   // soft yellow glow behind the heading (faq.jpg)
-  background: radial-gradient(ellipse 42% 58% at 50% 42%, #fdf6a3 0%, rgba(253, 246, 163, 0.55) 45%, rgba(255, 255, 255, 0) 100%);
+  // background: radial-gradient(ellipse 42% 58% at 50% 42%, #fdf6a3 0%, rgba(253, 246, 163, 0.55) 45%, rgba(255, 255, 255, 0) 100%);
 
   &-inner {
     position: relative;
@@ -55,7 +55,7 @@
     @include media-breakpoint-up(md) {
       display: block;
       position: absolute;
-      border-radius: clamp(10px, 1.1vw, 18px);
+      border-radius: clamp(0.625rem, 1.1vw, 1.125rem);
       overflow: hidden;
       will-change: transform;
 

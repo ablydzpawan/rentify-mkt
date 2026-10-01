@@ -3,8 +3,8 @@
  $checkbox-bg-inverse: var(--checkbox-bg-inverse);
  $checkbox-size: 14px;
  $checkbox-font-size: 0.8rem;
- $checkbox-radius: 3px;
- $switch-radius: 30px;
+ $checkbox-radius: 0.2143rem;
+ $switch-radius: 2.1429rem;
  $checkbox-line-height: 1.5;
  $checkbox-hover-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.04),
    0px 4px 5px 0px rgba(0, 0, 0, 0.04), 0px 1px 10px 0px rgba(0, 0, 0, 0.04);
@@ -220,16 +220,16 @@
          margin: 2px 0;
          height: 40px;
          width: 75px;
-         border-radius: 20px;
+         border-radius: 1.4286rem;
 
          &:before {
            width: 72px;
-           border-radius: 20px;
+           border-radius: 1.4286rem;
          }
 
          &:after {
            width: 72px;
-           border-radius: 20px;
+           border-radius: 1.4286rem;
            height: 34px;
            width: 34px;
            line-height: 34px;

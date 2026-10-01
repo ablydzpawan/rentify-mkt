@@ -1,7 +1,7 @@
 .pagination {
   background-color: transparent;
   border: none;
-  border-radius: 50px;
+  border-radius: 3.5714rem;
   // box-shadow: $shadow;
   display: inline-flex;
   //border-radius: $common-radius;
@@ -46,7 +46,7 @@
 
   &-link {
     background-color: $bg-white;
-    border-radius: 50px;
+    border-radius: 3.5714rem;
     border: none;
     border: $border;
     width: 40px;
@@ -76,7 +76,7 @@
     background-color: #f1f1f1;
     color: #000;
     border: none;
-    border-radius: 200px;
+    border-radius: 14.2857rem;
     padding-#{$start-direction}: 1rem;
     padding-#{$end-direction}: 1rem;
     width: auto;

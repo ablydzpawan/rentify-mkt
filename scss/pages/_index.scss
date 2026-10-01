@@ -6,8 +6,11 @@
    // background-image: url("../images/bg-lines.svg");
    background-size: cover;
    position: relative;
-   background: transparent radial-gradient(closest-side at 50% 63%, #ADD3FE 0%, #FFFFFF 100%) 0% 0% no-repeat;
+
    // padding: clamp(34px, 7vw, 156px) 16px 84px;
+   @include media-breakpoint-up(lg) {
+     background: transparent radial-gradient(closest-side at 50% 63%, #ADD3FE 0%, #FFFFFF 100%) 0% 0% no-repeat;
+   }
 
  }
 
@@ -154,7 +157,7 @@
    max-width: 520px;
    height: auto;
    margin: 0 auto;
-   border-radius: 24px;
+   border-radius: 1.5rem;
 
    @include flyer-mobile {
      display: block;
@@ -197,7 +200,7 @@
      .refeatures-img {
        width: 100%;
        // height: 345px;
-       border-radius: 26px;
+       border-radius: 1.625rem;
        overflow: hidden;
 
        img {
@@ -511,7 +514,7 @@
    justify-content: flex-end;
    min-height: 120px;
    padding: 4.5rem 1.25rem 1.25rem;
-   border-radius: 20px;
+   border-radius: 1.25rem;
    overflow: hidden;
    cursor: pointer;
    background-size: cover;
@@ -561,7 +564,7 @@
      min-width: 0;
      min-height: 0;
      padding: 0 0 3.5rem;
-     border-radius: 30px;
+     border-radius: 1.875rem;
      // lets the badge, title and side spacing scale with the card's own
      // width (cqi units) so closed cards keep the design's proportions
      container-type: inline-size;
@@ -826,7 +829,7 @@
    &-item {
      @include bg-white;
      // border: 1px solid #B9D8FB;
-     border-radius: 30px;
+     border-radius: 1.875rem;
      padding: 2.5rem 3rem;
      display: flex;
      flex-direction: column;
@@ -843,7 +846,7 @@
        content: "";
        position: absolute;
        inset: 0;
-       border-radius: 30px;
+       border-radius: 1.875rem;
        padding: 2px;
        // border thickness
        background: linear-gradient(120deg, #166AEA, #77ACFC, #DDFB76, #166AEA);
@@ -889,7 +892,7 @@
    .most {
      background: #DDFB76;
      color: $txt-black;
-     border-radius: 23px;
+     border-radius: 1.4375rem;
      padding: 0.35rem 0.56rem;
      font-size: 0.8rem;
      font-weight: 600;
@@ -1019,7 +1022,7 @@
  .black-cta {
    background-color: #000;
    color: #fff;
-   border-radius: 30px;
+   border-radius: 1.875rem;
    display: flex;
    flex-direction: column;
    justify-content: center;
