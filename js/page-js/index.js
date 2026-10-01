@@ -412,12 +412,13 @@ function expoScale() {
     return w >= 768 && w < 1440 ? w / 1440 : 1;
 }
 
-// Below md the neighbours need to peek out past the (narrower, see
-// _index.scss) center card: less overlap, a shallower turn and a
-// smaller pull toward the center than the desktop values
+// Below md the cards lie flat in a row with exactly 1rem between them
+// (any turn or depth would narrow the side cards and widen the gap),
+// the neighbours peeking out past the narrower center card (_index.scss)
 function expoMotion() {
     if (window.innerWidth < 768) {
-        return { space: -30, rotate: 35, shiftX: -10, depth: 30 };
+        const rem = parseFloat(getComputedStyle(document.documentElement).fontSize);
+        return { space: rem, rotate: 0, shiftX: 0, depth: 0 };
     }
     const k = expoScale();
     return { space: -200 * k, rotate: 80, shiftX: -80 * k, depth: 50 * k };

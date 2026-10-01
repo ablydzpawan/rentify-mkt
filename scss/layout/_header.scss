@@ -15,7 +15,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1rem 0;
+    padding: 1rem 0.65rem;
     transition: padding 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
@@ -28,7 +28,7 @@
     border-bottom-color: $border-color;
 
     .site-header-inner {
-      padding: 0.65rem 0;
+      padding: 0.65rem;
     }
 
     .brand {
@@ -56,7 +56,7 @@
 
   .menu-button {
     background-color: #fff;
-    border: solid 1px #000;
+    border: none;
     border-radius: 3.125rem;
     display: flex;
     gap: 0.4rem;
