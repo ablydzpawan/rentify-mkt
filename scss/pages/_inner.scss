@@ -1,7 +1,9 @@
 //first-fold
 .first-fold {
-  max-width: 1780px;
-  margin: 0 auto;
+  &-inner {
+    max-width: 1780px;
+    margin: 0 auto;
+  }
 
   &-content {
     position: relative;

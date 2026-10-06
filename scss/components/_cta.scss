@@ -1,5 +1,8 @@
 //CTA
 .cta-gradient {
+  position: sticky;
+  bottom: 0;
+  z-index: 0;
   background: transparent linear-gradient(115deg, #A0CBFC 0%, #E9FF9C 100%) 0% 0% no-repeat;
 
   &-data {
@@ -11,8 +14,7 @@
   &-title {
     color: $txt-black;
     font-size: clamp(36px, 4.5vw, 88px);
-    font-weight: 700;
+    font-weight: 400;
     margin-bottom: 2rem;
   }
 }
-

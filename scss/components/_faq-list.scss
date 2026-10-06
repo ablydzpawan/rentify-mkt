@@ -26,7 +26,7 @@
     align-items: center;
     gap: 10px;
     line-height: 1.4;
-    font-weight: 700;
+    font-weight: 400;
     font-size: 1.85rem;
   }
 
@@ -234,7 +234,7 @@
 
   .faq-question {
     flex: 2;
-    font-size: clamp(1rem, 1.2vw, 2rem);
+    font-size: clamp(1rem, 1.6vw, 2rem);
     font-weight: 500;
     color: $txt-black;
   }
