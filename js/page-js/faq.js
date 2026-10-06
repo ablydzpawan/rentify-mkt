@@ -100,44 +100,6 @@ initFaqEffects();
     });
 })();
 
-/* =========================================================
-   CURVED MARQUEE — text drifts continuously along the arc,
-   accelerating with scroll velocity. The offset wraps by the
-   length of exactly one "Frequently Asked Questions " unit, so
-   the wrap lands on an identical frame: no visible jump.
-   ========================================================= */
-
-(function () {
-    var textPath = document.getElementById("curvedMarqueeTextPath");
-    if (!textPath || prefersReducedMotion) return;
-
-    var UNITS = 5; // repetitions in the markup
-    var unitLength = 0;
-    var offset = 0;
-    var lastScroll = window.scrollY;
-    var velocity = 0;
-
-    function measure() {
-        unitLength = textPath.getComputedTextLength() / UNITS;
-    }
-
-    measure();
-    if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
-
-    gsap.ticker.add(function () {
-        if (!unitLength) return;
-        var current = lenis ? lenis.scroll : window.scrollY;
-        var delta = current - lastScroll;
-        lastScroll = current;
-        velocity += (delta - velocity) * 0.15;
-
-        offset -= 0.9 + Math.abs(velocity) * 0.6;
-        offset %= unitLength; // stays in (-unitLength, 0]
-
-        textPath.setAttribute("startOffset", offset);
-    });
-})();
-
 /* ---------- Split an element's text into chars (keeps <br>) ---------- */
 
 // Works on text nodes (not innerHTML) so an entity like &amp; stays
@@ -188,56 +150,11 @@ if (!prefersReducedMotion) {
 
     gsap.from(".site-header", { y: -100, opacity: 0, duration: 1, ease: "power3.out", clearProps: "opacity" });
 
-    /* ---------- Hero ----------
-       Title words slide up with a slight overshoot, the line under
-       it slides in from the right, then the product images resolve
-       from a blurred, oversized state (the reference's image reveal:
-       scale 1.5 -> 1, blur 40px -> 0, fade in). */
+    /* ---------- Hero heading ("Fade Up Words") + subtext ---------- */
 
-    var heroTl = gsap.timeline({ delay: 0.2 });
-
-    revealHeading(document.querySelector(".faq-hero-content .title"), {
-        timeline: heroTl,
-        position: 0,
-        vars: { yPercent: 100, opacity: 0, duration: 0.5, ease: "back.out(2)", stagger: { amount: 0.5 } },
-    });
-
-    heroTl.from(".faq-hero-content .desc", { opacity: 0, x: "1em", duration: 0.6, ease: "power2.out" }, 0.45);
-
-    heroTl.fromTo(".faq-hero-float img",
-        { scale: 1.5, opacity: 0, filter: "blur(40px)" },
-        {
-            scale: 1, opacity: 1, filter: "blur(0px)",
-            duration: 1, ease: "power3.out", stagger: 0.12,
-            clearProps: "filter",
-        },
-        0.5
-    );
-
-    // gentle idle bob once the reveal has settled
-    heroTl.eventCallback("onComplete", function () {
-        document.querySelectorAll(".faq-hero-float").forEach(function (float, i) {
-            gsap.to(float, {
-                y: i % 2 === 0 ? "-=10" : "+=10",
-                rotate: i % 2 === 0 ? 0.8 : -0.8,
-                duration: 2.8 + (i % 3) * 0.5,
-                ease: "sine.inOut",
-                repeat: -1,
-                yoyo: true,
-                delay: i * 0.2,
-            });
-        });
-    });
-
-    // scroll parallax: each image drifts up at its own rate as the
-    // hero scrolls away (yPercent, so it composes with the idle bob's y)
-    document.querySelectorAll(".faq-hero-float").forEach(function (float, i) {
-        gsap.to(float, {
-            yPercent: -[35, 60, 25, 50, 40][i % 5],
-            ease: "none",
-            scrollTrigger: { trigger: ".faq-hero", start: "top top", end: "bottom top", scrub: true },
-        });
-    });
+    var heroTl = gsap.timeline({ defaults: { ease: "power3.out" } });
+    revealHeading(document.querySelector(".first-fold-content .title"), { timeline: heroTl, position: 0 });
+    heroTl.from(".first-fold-content .desc", { y: 20, opacity: 0, duration: 0.6 }, "-=0.5");
 
     /* ---------- Category tabs ---------- */
 

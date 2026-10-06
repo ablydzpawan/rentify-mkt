@@ -23,7 +23,7 @@ $video-panel-radius: clamp(1.5rem, 3vw, 3rem);
   z-index: 1;
   margin-top: calc(#{$video-panel-radius} * -1);
   background-color: $bg-white;
-  border-radius: $video-panel-radius $video-panel-radius 0 0;
+  border-radius: $video-panel-radius $video-panel-radius $video-panel-radius $video-panel-radius;
 
   .container {
     display: flex;
