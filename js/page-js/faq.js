@@ -7,7 +7,7 @@
    scroll parallax).
    ========================================================= */
 
-import { revealHeading } from "../text-effects.js";
+import { revealHeading, revealSection } from "../text-effects.js";
 import { initHeader } from "../header-effects.js";
 import { initFaqEffects, playRows } from "../faq-effects.js";
 
@@ -100,34 +100,6 @@ initFaqEffects();
     });
 })();
 
-/* ---------- Split an element's text into chars (keeps <br>) ---------- */
-
-// Works on text nodes (not innerHTML) so an entity like &amp; stays
-// one character.
-function splitChars(el) {
-    if (el.dataset.charSplit) return el.querySelectorAll(".char");
-    el.dataset.charSplit = "1";
-    Array.prototype.slice.call(el.childNodes).forEach(function (node) {
-        if (node.nodeType !== 3) return;
-        var frag = document.createDocumentFragment();
-        node.textContent.split(/(\s+)/).forEach(function (part) {
-            if (!part) return;
-            if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(" ")); return; }
-            var word = document.createElement("span");
-            word.className = "char-word";
-            part.split("").forEach(function (c) {
-                var ch = document.createElement("span");
-                ch.className = "char";
-                ch.textContent = c;
-                word.appendChild(ch);
-            });
-            frag.appendChild(word);
-        });
-        node.parentNode.replaceChild(frag, node);
-    });
-    return el.querySelectorAll(".char");
-}
-
 /* ---------- Play on enter (top at 60%), reset once scrolled back
    below the viewport — the reference's createScrollTrigger. ---------- */
 
@@ -162,14 +134,9 @@ if (!prefersReducedMotion) {
     tabsTl.from(".pill-tabs li", { opacity: 0, x: "1em", duration: 0.6, ease: "power2.out", stagger: { amount: 0.2 } });
     playOnScroll(".faq-tabs", tabsTl);
 
-    /* ---------- CTA heading: letters fade in, random order ---------- */
+    /* ---------- Section heading + description reveals ---------- */
 
-    var ctaTitle = document.querySelector("#cta .cta-gradient-title");
-    if (ctaTitle) {
-        var ctaTl = gsap.timeline({ paused: true });
-        ctaTl.from(splitChars(ctaTitle), { opacity: 0, duration: 0.05, ease: "power1.out", stagger: { amount: 0.4, from: "random" } });
-        playOnScroll(ctaTitle, ctaTl);
-    }
+    document.querySelectorAll(".section").forEach(revealSection);
 
     window.addEventListener("load", function () { ScrollTrigger.refresh(); });
 }

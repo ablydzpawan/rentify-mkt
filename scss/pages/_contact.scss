@@ -23,7 +23,7 @@
      .title,
      h1 {
        font-size: clamp(32px, 4vw, 52px);
-       font-weight: 700;
+       font-weight: 400;
        line-height: 1.1;
        margin-bottom: 1rem;
      }
@@ -107,7 +107,7 @@
      .btn-black {
        height: auto;
 
-       > span {
+       >span {
          padding: 12px 2.25rem;
          font-size: 0.95rem;
        }

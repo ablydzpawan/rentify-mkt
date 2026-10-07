@@ -119,6 +119,7 @@ $radius3: 0.1875rem;
 $radius2: 0.125rem;
 $radius1: 0.0625rem;
 $radius: 0.25rem;
+$curve: clamp(1.5rem, 3vw, 3rem);
 
 //messages
 $success-color: #1dc9b7;

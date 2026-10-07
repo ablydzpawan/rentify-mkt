@@ -44,6 +44,11 @@
     font-size: 1.125rem;
     font-weight: 700;
     text-transform: uppercase;
+
+    &::before {
+      content: "|";
+      margin: 0 0.5rem;
+    }
   }
 
   // "| No Limitations | Zero Cost for 180 Days"

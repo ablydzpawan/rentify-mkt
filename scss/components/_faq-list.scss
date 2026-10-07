@@ -2,8 +2,8 @@
 //numbered/tabbed variant (faq page, features accordions)
 .bg-faqs {
   background-color: #fff;
-  border-bottom-left-radius: 4.125rem;
-  border-bottom-right-radius: 4.125rem;
+  border-bottom-left-radius: $curve;
+  border-bottom-right-radius: $curve;
   position: relative;
   z-index: 2;
   bottom: -66px;

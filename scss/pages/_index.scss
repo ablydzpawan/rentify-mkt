@@ -345,7 +345,7 @@
 
    @include media-breakpoint-up(lg) {
      grid-template-columns: repeat(5, minmax(0, 1fr));
-     gap: 0.5rem;
+     gap: 1rem 3rem;
    }
 
    li {
@@ -809,6 +809,7 @@
    background-color: #CDE2FB;
 
    @include media-breakpoint-up(lg) {
+
      background: transparent radial-gradient(closest-side at 50% 50%, #BADBFF 0%, #FFFFFF 100%) 0% 0%;
    }
 
@@ -849,7 +850,7 @@
        border-radius: 1.875rem;
        padding: 2px;
        // border thickness
-       background: linear-gradient(120deg, #166AEA, #77ACFC, #DDFB76, #166AEA);
+       background: $brand-color;
        background-size: 300% 300%;
        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
        -webkit-mask-composite: xor;
@@ -1042,7 +1043,7 @@
      flex: 1;
      // 24px at a 390px phone, grows linearly, caps at 40px from ~1440px
      font-size: clamp(1.5rem, calc(1.129rem + 1.524vw), 2.5rem);
-     font-weight: 500;
+     font-weight: 400;
      line-height: 1.4;
    }
  }

@@ -119,3 +119,13 @@
     transform: translate3d(-100% * $transform-direction, 0, 0);
   }
 }
+
+
+.curve-bottom {
+  border-bottom-left-radius: $curve;
+  border-bottom-right-radius: $curve;
+  position: relative;
+  z-index: 2;
+  bottom: -66px;
+  margin-top: -66px;
+}

@@ -1,7 +1,7 @@
 ﻿//Video tutorials
 $video-feature-bg: #CFE2FB;
 $video-panel-bg: #F5F5F5;
-$video-panel-radius: clamp(1.5rem, 3vw, 3rem);
+$video-panel-radius: $curve ;
 
 .video-hero {
   //padding-bottom: clamp(2rem, 4vw, 4rem);
@@ -20,10 +20,12 @@ $video-panel-radius: clamp(1.5rem, 3vw, 3rem);
 // white sheet that slides up over the blue feature band
 .video-library {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   margin-top: calc(#{$video-panel-radius} * -1);
+  // curves over the top of the CTA below, same as .bg-faqs on other pages
+  margin-bottom: -4.125rem;
   background-color: $bg-white;
-  border-radius: $video-panel-radius $video-panel-radius $video-panel-radius $video-panel-radius;
+  border-radius: $video-panel-radius;
 
   .container {
     display: flex;

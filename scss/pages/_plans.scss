@@ -57,12 +57,12 @@
 
 .bg-pricing-page {
   background-color: #CDE2FB;
-  border-radius: 6.25rem 6.25rem 0 0;
+  border-radius: $curve $curve 0 0;
 }
 
 .bg-compare {
-  border-top-left-radius: 4.125rem;
-  border-top-right-radius: 4.125rem;
+  border-top-left-radius: $curve;
+  border-top-right-radius: $curve;
   position: relative;
   z-index: 1;
   top: -66px;

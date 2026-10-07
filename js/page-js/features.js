@@ -384,13 +384,19 @@ function initHorizontalScroll(pinSelector, containerSelector, trackSelector, ite
 
         container.classList.add("is-pinned");
 
+        // Match the tween's range to exactly when sticky holds the row:
+        // it sticks once pinEl's top reaches .system-scroll's CSS `top`
+        // and releases after (pin height - row height) = distance *
+        // SCROLL_RATIO more scroll. "top top" / "bottom bottom" drifted
+        // from that by the sticky offset and the viewport height, leaving
+        // dead zones where the row sat stuck with the track not moving.
         scrollTween = gsap.to(track, {
             x: function () { return -getDistance(); },
             ease: "none",
             scrollTrigger: {
                 trigger: pinEl,
-                start: "top top",
-                end: "bottom bottom",
+                start: function () { return "top " + (parseFloat(getComputedStyle(container).top) || 0) + "px"; },
+                end: function () { return "+=" + getDistance() * SCROLL_RATIO; },
                 scrub: 0.6,
                 invalidateOnRefresh: true,
                 onRefreshInit: sizePinWrapper,
@@ -557,4 +563,20 @@ if (prefersReducedMotion) {
     initLayerReveals(document.querySelectorAll(".checkout-panel.is-active .checkout-panel-visual"));
 
     window.addEventListener("load", function () { ScrollTrigger.refresh(); });
+
+    // Lazy images (and accordion/tab swaps) change the page height after
+    // "load", leaving every trigger's start/end stale — the horizontal
+    // scroll would then pan out of step with its sticky hold. Re-measure
+    // whenever the document height actually changes.
+    if ("ResizeObserver" in window) {
+        var refreshTimer = null;
+        var lastHeight = document.body.offsetHeight;
+        new ResizeObserver(function () {
+            var height = document.body.offsetHeight;
+            if (height === lastHeight) return;
+            lastHeight = height;
+            clearTimeout(refreshTimer);
+            refreshTimer = setTimeout(function () { ScrollTrigger.refresh(); }, 200);
+        }).observe(document.body);
+    }
 }
