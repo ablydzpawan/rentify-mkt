@@ -870,90 +870,55 @@
   }
 }
 
-// Each panel has its own image set at its own native size, so — unlike
-// the shared rule this replaces — every panel's layers are positioned
-// individually rather than sharing one generic left/top/width.
-#checkout .layer-main {
-  left: 0;
-  top: 0;
+// Layer positions are measured off the design comps (every layer sits at
+// the same 0.692 of its native size there). All values are % of the
+// .checkout-panel-visual box: on desktop the wrap fills the box edge to
+// edge, so the whole composition scales with it — no native-size +
+// js/layer-scale.js zoom here. The comps carry no extra shadow, so the
+// shared satellite drop-shadow is switched off.
+@include flyer-desktop {
+  .checkout-panel-visual {
+    padding: 0;
+  }
 }
 
-#checkout .layer-sat-1 {
-  right: 2%;
-  top: 20%;
+.checkout-panel .image-wrap .layer {
+  zoom: 1;
+  height: auto;
+  filter: none;
 }
 
-#esigning .layer-main {
-  left: 0;
-  top: 6%;
+#checkout {
+  .layer-main { left: 7.42%; top: 1.72%; width: 80.8%; }
+  .layer-sat-1 { left: 61.38%; top: 35.99%; width: 33.13%; }
 }
 
-#esigning .layer-sat-1 {
-  right: 2%;
-  top: 40%;
+#esigning {
+  .layer-main { left: 7.54%; top: 10.79%; width: 76.69%; }
+  .layer-sat-1 { left: 56.64%; top: 50.4%; width: 37.84%; }
+  .layer-sat-2 { left: 78.11%; top: 25.25%; width: 14.47%; }
 }
 
-#esigning .layer-sat-2 {
-  right: 20%;
-  top: 8%;
+#document {
+  .layer-main { left: 7.7%; top: 10.71%; width: 76.41%; }
+  .layer-sat-1 { left: 69.98%; top: 53.44%; width: 22.39%; }
+  .layer-sat-2 { left: 45.47%; top: 74.76%; width: 8.35%; }
+  .layer-sat-3 { left: 76.16%; top: 13.39%; width: 11.01%; }
 }
 
-#document .layer-main {
-  left: 0;
-  top: 2%;
+#delivery {
+  .layer-main { left: 5.2%; top: 7.59%; width: 89.86%; }
+  .layer-sat-1 { left: 32.78%; top: 60.97%; width: 33.97%; }
 }
 
-#document .layer-sat-1 {
-  right: 2%;
-  top: 44%;
+#charges {
+  .layer-main { left: 7.34%; top: 10.84%; width: 76.56%; }
+  .layer-sat-1 { left: 13.37%; top: 68.52%; width: 31.05%; }
+  .layer-sat-2 { left: 60.77%; top: 44.85%; width: 31.43%; }
 }
 
-#document .layer-sat-2 {
-  left: 4%;
-  top: 72%;
-}
-
-#document .layer-sat-3 {
-  right: 34%;
-  top: 2%;
-}
-
-#delivery .layer-main {
-  left: 0;
-  top: 0;
-}
-
-#delivery .layer-sat-1 {
-  left: 20%;
-  top: 78%;
-}
-
-#delivery .layer-sat-2 {
-  right: 4%;
-  top: 4%;
-}
-
-#charges .layer-main {
-  left: 20%;
-  top: 16%;
-}
-
-#charges .layer-sat-1 {
-  left: 20%;
-  top: 78%;
-}
-
-#nonop .layer-main {
-  left: 0;
-  top: 6%;
-}
-
-#nonop .layer-sat-1 {
-  right: 2%;
-  top: 4%;
-}
-
-#nonop .layer-sat-2 {
-  right: 2%;
-  top: 48%;
+#nonop {
+  .layer-main { left: 7.71%; top: 12.04%; width: 76.55%; }
+  .layer-sat-1 { left: 13.61%; top: 61.11%; width: 27.5%; }
+  .layer-sat-2 { left: 58.3%; top: 37.46%; width: 36.12%; }
 }
