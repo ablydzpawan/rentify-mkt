@@ -15,8 +15,12 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1rem 0.65rem;
+    padding: 1rem 0;
     transition: padding 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+
+    @include media-breakpoint-up(lg) {
+      padding: 1rem 0.65rem;
+    }
   }
 
   // trustedconnectivity.valid.com's header: once the page scrolls it
@@ -28,7 +32,11 @@
     border-bottom-color: $border-color;
 
     .site-header-inner {
-      padding: 0.65rem;
+
+
+      @include media-breakpoint-up(lg) {
+        padding: 0.65rem;
+      }
     }
 
     .brand {
@@ -168,11 +176,14 @@
       }
     }
 
-    // Below sm there isn't room for logo + hamburger + a labeled CTA
-    // without wrapping or overflowing; the hamburger menu remains the
-    // sole nav entry point at this size, matching common mobile patterns.
+    // Below sm there's only room for logo + Contact Us + hamburger, so
+    // Log In moves into the hamburger menu
     @include media-breakpoint-down(sm) {
-      display: none;
+      min-width: 0;
+
+      &.btn-outline-black {
+        display: none;
+      }
     }
   }
 

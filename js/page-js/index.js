@@ -404,21 +404,20 @@ const featuresSwiper = new Swiper(".featuresSwiper", {
 
 //Swiper
 
-// From md up to 1440px the cards shrink with the viewport to keep the
+// From lg up to 1440px the cards shrink with the viewport to keep the
 // 1440px desktop proportions (see .swiper-expo in _index.scss), so the
 // pixel overlap and offset below shrink by the same ratio
 function expoScale() {
     const w = window.innerWidth;
-    return w >= 768 && w < 1440 ? w / 1440 : 1;
+    return w >= 992 && w < 1440 ? w / 1440 : 1;
 }
 
-// Below md the cards lie flat in a row with exactly 1rem between them
-// (any turn or depth would narrow the side cards and widen the gap),
-// the neighbours peeking out past the narrower center card (_index.scss)
+// Below lg the portrait cards sit in a row 20px apart, the neighbours
+// peeking out past the center card with a slight turn (_index.scss);
+// shiftX pulls them back in by about what the turn narrows them
 function expoMotion() {
-    if (window.innerWidth < 768) {
-        const rem = parseFloat(getComputedStyle(document.documentElement).fontSize);
-        return { space: rem, rotate: 0, shiftX: 0, depth: 0 };
+    if (window.innerWidth < 992) {
+        return { space: 20, rotate: 22, shiftX: -8, depth: 30 };
     }
     const k = expoScale();
     return { space: -200 * k, rotate: 80, shiftX: -80 * k, depth: 50 * k };

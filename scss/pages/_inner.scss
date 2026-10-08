@@ -3,6 +3,11 @@
   &-inner {
     max-width: 1780px;
     margin: 0 auto;
+    padding: 0 1.5rem;
+
+    @include media-breakpoint-up(md) {
+      padding: 0;
+    }
   }
 
   &-content {
