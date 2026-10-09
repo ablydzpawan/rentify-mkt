@@ -117,12 +117,12 @@ function initLayerReveals(scope, opts) {
                 0
             );
         } else {
-            tl.from(mainLayer, { opacity: 0, scale: 0.92, y: 30, filter: "blur(12px)", duration: 0.9, ease: "power3.out" }, 0);
+            tl.from(mainLayer, { opacity: 0, scale: 0.92, y: 30, filter: "blur(12px)", duration: 0.9, ease: "power3.out", clearProps: "filter,transform" }, 0);
         }
 
         if (satelliteLayers.length) {
             tl.from(satelliteLayers, {
-                opacity: 0, y: 20, scale: 0.85, filter: "blur(8px)", duration: 0.7, stagger: 0.1, ease: "back.out(1.6)"
+                opacity: 0, y: 20, scale: 0.85, filter: "blur(8px)", duration: 0.7, stagger: 0.1, ease: "back.out(1.6)", clearProps: "filter,transform"
             }, "-=0.5");
         }
 
@@ -175,8 +175,8 @@ function initSyncedAccordion(rootSelector) {
 
             gsap.killTweensOf(layers);
             gsap.timeline()
-                .from(mainLayer, { opacity: 0, scale: 0.94, y: 20, filter: "blur(10px)", duration: 0.6, ease: "power3.out" }, 0)
-                .from(satelliteLayers, { opacity: 0, y: 16, scale: 0.85, filter: "blur(6px)", duration: 0.5, stagger: 0.08, ease: "back.out(1.7)" }, "-=0.35");
+                .from(mainLayer, { opacity: 0, scale: 0.94, y: 20, filter: "blur(10px)", duration: 0.6, ease: "power3.out", clearProps: "filter,transform" }, 0)
+                .from(satelliteLayers, { opacity: 0, y: 16, scale: 0.85, filter: "blur(6px)", duration: 0.5, stagger: 0.08, ease: "back.out(1.7)", clearProps: "filter,transform" }, "-=0.35");
         }
 
         // single-open + the row/answer motion come from js/faq-effects.js;
@@ -470,7 +470,7 @@ if (prefersReducedMotion) {
     heroTl.from("#hero-daily-traffic", { opacity: 0, y: -24, x: 30, scale: 0.9, filter: "blur(10px)", duration: 0.85 }, "-=0.75");
     heroTl.from("#hero-date-picker", { opacity: 0, y: 24, x: 30, scale: 0.9, filter: "blur(10px)", duration: 0.85 }, "-=0.7");
 
-    heroTl.to(".features-hero-canvas .panel", { filter: "blur(0px)", scale: 1, duration: 0.4, ease: "power1.out" }, "-=0.2");
+    heroTl.to(".features-hero-canvas .panel", { filter: "blur(0px)", scale: 1, duration: 0.4, ease: "power1.out", clearProps: "filter,transform" }, "-=0.2");
 
     heroTl.eventCallback("onComplete", function () {
         document.querySelectorAll(".features-hero-canvas .panel:not(#hero-phone)").forEach(function (panel, i) {
@@ -482,7 +482,6 @@ if (prefersReducedMotion) {
             }).to(panel, {
                 y: i % 2 === 0 ? "-=10" : "+=10",
                 x: i % 2 === 0 ? "+=4" : "-=4",
-                rotate: i % 2 === 0 ? 0.5 : -0.5,
             });
         });
     });

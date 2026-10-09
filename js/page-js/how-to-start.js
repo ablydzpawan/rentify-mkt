@@ -123,7 +123,7 @@ if (prefersReducedMotion) {
 
     // 3. Tiny settle — kills any residual blur/scale.
     heroTl.to(".first-fold-canvas .panel", {
-        filter: "blur(0px)", scale: 1, duration: 0.4, ease: "power1.out"
+        filter: "blur(0px)", scale: 1, duration: 0.4, ease: "power1.out", clearProps: "filter,transform"
     }, "-=0.2");
 
     // 4. Idle float once everything has settled.
@@ -137,7 +137,6 @@ if (prefersReducedMotion) {
             }).to(panel, {
                 y: i % 2 === 0 ? "-=10" : "+=10",
                 x: i % 2 === 0 ? "+=4" : "-=4",
-                rotate: i % 2 === 0 ? 0.5 : -0.5,
             });
         });
     });
@@ -174,7 +173,7 @@ if (prefersReducedMotion) {
 
         if (mainLayer) {
             blockTl.from(mainLayer, {
-                opacity: 0, scale: 0.92, y: 30, filter: "blur(12px)", duration: 0.9, ease: "power3.out"
+                opacity: 0, scale: 0.92, y: 30, filter: "blur(12px)", duration: 0.9, ease: "power3.out", clearProps: "filter,transform"
             }, 0);
         }
 
@@ -193,6 +192,7 @@ if (prefersReducedMotion) {
                 duration: 0.7,
                 stagger: 0.1,
                 ease: "back.out(1.6)",
+                clearProps: "filter,transform",
             }, "-=0.5");
         }
 

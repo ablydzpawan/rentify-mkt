@@ -59,10 +59,32 @@ initHeader(window.lenis || null);
     });
 })();
 
-/* ---------- Accordion: drawn lines, row entrance, single-open
-   (shared with every page's FAQ section, see js/faq-effects.js) ---------- */
+/* ---------- Hero intro, played in order: heading -> subtext ->
+   category tabs (when already on screen) -> FAQ rows ---------- */
 
-initFaqEffects();
+var heroTl = null;
+
+if (!prefersReducedMotion) {
+    heroTl = gsap.timeline({ defaults: { ease: "power3.out" } });
+    revealHeading(document.querySelector(".first-fold-content .title"), { timeline: heroTl, position: 0 });
+    heroTl.from(".first-fold-content .desc", { y: 20, opacity: 0, duration: 0.6 }, "-=0.5");
+
+    var tabsVars = { opacity: 0, x: "1em", duration: 0.6, ease: "power2.out", stagger: { amount: 0.2 } };
+
+    if (ScrollTrigger.isInViewport(".faq-tabs")) {
+        heroTl.from(".pill-tabs li", tabsVars, "-=0.2");
+    } else {
+        var tabsTl = gsap.timeline({ paused: true });
+        tabsTl.from(".pill-tabs li", tabsVars);
+        playOnScroll(".faq-tabs", tabsTl);
+    }
+}
+
+/* ---------- Accordion: drawn lines, row entrance, single-open
+   (shared with every page's FAQ section, see js/faq-effects.js).
+   Rows wait for the hero intro so they land last. ---------- */
+
+initFaqEffects({ after: heroTl });
 
 /* =========================================================
    CATEGORY TABS — click a pill, show that category's group,
@@ -121,18 +143,6 @@ if (!prefersReducedMotion) {
     /* ---------- Header drops in from the top ---------- */
 
     gsap.from(".site-header", { y: -100, opacity: 0, duration: 1, ease: "power3.out", clearProps: "opacity" });
-
-    /* ---------- Hero heading ("Fade Up Words") + subtext ---------- */
-
-    var heroTl = gsap.timeline({ defaults: { ease: "power3.out" } });
-    revealHeading(document.querySelector(".first-fold-content .title"), { timeline: heroTl, position: 0 });
-    heroTl.from(".first-fold-content .desc", { y: 20, opacity: 0, duration: 0.6 }, "-=0.5");
-
-    /* ---------- Category tabs ---------- */
-
-    var tabsTl = gsap.timeline({ paused: true });
-    tabsTl.from(".pill-tabs li", { opacity: 0, x: "1em", duration: 0.6, ease: "power2.out", stagger: { amount: 0.2 } });
-    playOnScroll(".faq-tabs", tabsTl);
 
     /* ---------- Section heading + description reveals ---------- */
 

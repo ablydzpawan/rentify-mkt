@@ -158,7 +158,7 @@ browserTl.from("#template-panel", {
 
 // 3. Tiny settle — kills any residual blur/scale
 browserTl.to(".panel", {
-    filter: "blur(0px)", scale: 1, duration: 0.4, ease: "power1.out"
+    filter: "blur(0px)", scale: 1, duration: 0.4, ease: "power1.out", clearProps: "filter,transform"
 }, "-=0.2");
 
 /* =========================================================
@@ -180,7 +180,6 @@ if (!prefersReducedMotion) {
             }).to(panel, {
                 y: i % 2 === 0 ? "-=12" : "+=12",
                 x: i % 2 === 0 ? "+=4" : "-=4",
-                rotate: i % 2 === 0 ? 0.6 : -0.6,
             });
         });
     });
@@ -240,7 +239,10 @@ calendarTl.from("#model-image", {
 
 // 3. Tiny settle — kills any residual blur/scale so everything lands crisp
 calendarTl.to(".cal-panel", {
-    filter: "blur(0px)", scale: 1, duration: 0.4, ease: "power1.out"
+    filter: "blur(0px)", scale: 1, duration: 0.4, ease: "power1.out",
+    // drop the inline filter/transform once settled so the browser repaints
+    // the panels at full resolution instead of keeping a stretched GPU layer
+    clearProps: "filter,transform"
 }, "-=0.2");
 
 /* =========================================================
@@ -267,7 +269,6 @@ if (!prefersReducedMotion) {
             }).to(panel, {
                 y: i % 2 === 0 ? "-=12" : "+=12",
                 x: i % 2 === 0 ? "+=4" : "-=4",
-                rotate: i % 2 === 0 ? 0.6 : -0.6,
             });
 
             calendarFloatTweens.push(floatTl);

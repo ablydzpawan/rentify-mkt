@@ -63,8 +63,11 @@ function wireAccordion(list) {
 
 /* Wires every FAQ list on the page. Lists inside a hidden container
    (the FAQ page's inactive category tabs) get their entrance from
-   playRows() when shown, so only visible ones are scroll-triggered. */
-export function initFaqEffects() {
+   playRows() when shown, so only visible ones are scroll-triggered.
+   opts.after: a timeline (e.g. the page's hero intro) to wait for
+   before the rows may play, so they don't race ahead of it. */
+export function initFaqEffects(opts) {
+    opts = opts || {};
     document.querySelectorAll(LIST_SELECTOR).forEach(function (list) {
         wireAccordion(list);
         if (prefersReducedMotion) return;
@@ -77,11 +80,15 @@ export function initFaqEffects() {
         if (!list.offsetParent) return; // hidden tab
 
         gsap.set(rowParts(list), { opacity: 0 });
-        ScrollTrigger.create({
-            trigger: list,
-            start: "top 80%",
-            once: true,
-            onEnter: function () { playRows(list); },
-        });
+        var watch = function () {
+            ScrollTrigger.create({
+                trigger: list,
+                start: "top 80%",
+                once: true,
+                onEnter: function () { playRows(list); },
+            });
+        };
+        if (opts.after) opts.after.then(watch);
+        else watch();
     });
 }

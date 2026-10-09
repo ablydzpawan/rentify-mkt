@@ -20,7 +20,6 @@
   // upscales the smaller badge/icon assets and blurs them, and was
   // also producing inaccurate compositions since the same forced
   // size doesn't fit every layer's actual content.
-  will-change: transform, filter, opacity;
   // js/layer-scale.js shrinks the whole composition when the box is
   // narrower than its full desktop width (1280px up to ~1400px)
   zoom: var(--layer-scale, 1);

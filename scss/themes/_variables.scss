@@ -161,6 +161,26 @@ $flyer-breakpoint: 1024px;
   }
 }
 
+// Flyer canvas laid out at its design width, so every panel image
+// renders at its native pixel size (no % width/height resampling it
+// blurry). js/layer-scale.js reads --flyer-width and sets
+// --flyer-scale to shrink the whole canvas uniformly, only when it
+// doesn't fit.
+@mixin flyer-canvas($width) {
+  --flyer-width: #{$width};
+  position: relative;
+  width: $width * 1px;
+  max-width: none;
+  zoom: var(--flyer-scale, 1);
+}
+
+@mixin flyer-img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: none;
+}
+
 //Bg brand
 @mixin bg-brand {
   background-color: $brand-color;

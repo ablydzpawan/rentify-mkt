@@ -100,11 +100,8 @@
  }
 
  .canvas {
-   position: relative;
-   width: 100%;
+   @include flyer-canvas(1780);
    aspect-ratio: 1780 / 700;
-   /* locks every panel's relative position */
-   max-width: 1780px;
    margin: 0 auto;
 
    // Below $flyer-breakpoint the panels get too small to read —
@@ -117,57 +114,45 @@
 
    .panel {
      position: absolute;
-     will-change: transform, filter, opacity;
    }
 
-   // Widths are each PNG's native width over the 1780px canvas, so at
-   // full size every panel renders 1:1 (no resampling blur) and below
-   // that the whole composition scales down together
    .panel img {
-     display: block;
-     width: 100%;
-     height: auto;
+     @include flyer-img;
    }
 
    .url-bar {
      left: 2.98%;
      top: 7.43%;
-     width: 15.73%;
      z-index: 4;
    }
 
    .browser {
      left: 21.63%;
      top: 14.04%;
-     width: 57.3%;
      z-index: 1;
    }
 
    .toolbar {
      left: 19.6%;
      top: 37.68%;
-     width: 8.31%;
      z-index: 3;
    }
 
    .font-panel {
      left: 0.5%;
      top: 35.14%;
-     width: 13.76%;
      z-index: 2;
    }
 
    .color-panel {
      left: 86.24%;
      top: 0%;
-     width: 13.26%;
      z-index: 2;
    }
 
    .template-panel {
      left: 73.43%;
      top: 57%;
-     width: 26.35%;
      z-index: 2;
    }
  }
@@ -292,16 +277,24 @@
  .calendar-canvas {
    position: relative;
    width: 100%;
-   aspect-ratio: 1765 / 797;
-   /* locks every panel's relative position */
-   max-width: 1765px;
    margin: 0 auto;
+
+   // Desktop: laid out at the 1765px design width so every panel image
+   // renders at its native size. The scene was designed wider than the
+   // container, so it may bleed past it (see .calendar-stage) and only
+   // shrinks, as a whole, once the viewport itself is too narrow.
+   @include media-breakpoint-up(lg) {
+     @include flyer-canvas(1765);
+     --flyer-fit: viewport;
+     flex: none;
+     aspect-ratio: 1765 / 797;
+     margin: 0;
+   }
 
    // Below lg the satellite cards shrink to unreadable specks, so the
    // scene collapses to the calendar panel alone, which swaps (via its
    // <picture> source) to a single flat image with the satellites baked in.
    @include media-breakpoint-down(lg) {
-     aspect-ratio: auto;
      max-width: 560px;
 
      .cal-panel:not(.calendar-panel) {
@@ -310,13 +303,20 @@
 
      .calendar-panel {
        position: static;
-       width: 100%;
-       height: auto;
 
        img {
+         width: 100%;
          height: auto;
        }
      }
+   }
+ }
+
+ // centres the canvas even while it's wider than the container
+ .calendar-stage {
+   @include media-breakpoint-up(lg) {
+     display: flex;
+     justify-content: center;
    }
  }
 
@@ -335,54 +335,40 @@
 
  .cal-panel {
    position: absolute;
-   will-change: transform, filter, opacity;
  }
 
  .cal-panel img {
-   display: block;
-   width: 100%;
-   height: 100%;
-   object-fit: contain;
+   @include flyer-img;
  }
 
  /* Exact coordinates, detected from the source PNG's alpha channel (1765×797 canvas) */
  .calendar-panel {
    left: 17.74%;
    top: 12.42%;
-   width: 64.81%;
-   height: 87.58%;
    z-index: 1;
  }
 
  .toggle {
    left: 83.23%;
    top: 6.15%;
-   width: 12.07%;
-   height: 4.27%;
    z-index: 3;
  }
 
  .product-card {
    left: 0%;
    top: 0%;
-   width: 9.35%;
-   height: 20.70%;
    z-index: 2;
  }
 
  .shoe-image {
    left: 4.65%;
    top: 62.11%;
-   width: 8.95%;
-   height: 14.81%;
    z-index: 2;
  }
 
  .model-image {
    left: 90.65%;
    top: 43.79%;
-   width: 9.35%;
-   height: 24.84%;
    z-index: 2;
  }
 
