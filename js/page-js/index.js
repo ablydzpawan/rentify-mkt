@@ -5,7 +5,7 @@
    integrations SVG draw — everything specific to index.html.
    ========================================================= */
 
-import { revealHeading, revealSection } from "../text-effects.js";
+import { revealHeading, revealSection, playInView, revealHeroImage } from "../text-effects.js";
 import { initHeader } from "../header-effects.js";
 import { initFaqEffects } from "../faq-effects.js";
 
@@ -186,8 +186,12 @@ if (!prefersReducedMotion) {
 }
 
 // Text reveal, then image: the browser scene only starts once every
-// hero text tween (headline words, subtext, CTA) has fully finished.
-heroTl.add(browserTl, ">");
+// hero text tween (headline words, subtext, CTA) has fully finished,
+// and only once the canvas is actually on screen.
+playInView(browserTl, ".canvas", { after: heroTl });
+
+// small screens show the flat hero image instead of the canvas
+if (!prefersReducedMotion) revealHeroImage(document.querySelector(".hero-mobile"), heroTl);
 
 /* =========================================================
    PANEL GROUP #2 — Calendar / product scene
@@ -341,7 +345,10 @@ if (!prefersReducedMotion) {
     // card — see .accordion-card in scss/pages/_index.scss) lives on
     // `transform`, so this reveal rises them in with `top` instead:
     // animating transform would flatten the cards mid-reveal and snap
-    // them back to their angle at the end.
+    // them back to their angle at the end. The open card's own CSS
+    // entrance (badge pop, light sweep, title words, mockup) is held
+    // paused until .is-inview lands, so it plays as the cards rise in
+    // instead of off-screen on page load.
     gsap.from(".accordion-container .accordion-card", {
         opacity: 0,
         top: 50,
@@ -352,6 +359,7 @@ if (!prefersReducedMotion) {
             trigger: ".accordion-container",
             start: "top 85%",
             toggleActions: "play none none reverse",
+            onEnter: function (self) { self.trigger.classList.add("is-inview"); },
         },
     });
     revealGroup(".footer-top .row", ".col-auto", { y: 30, stagger: 0.12 });
@@ -434,6 +442,14 @@ const expoSwiper = new Swiper('.swiper-expo', {
     parallax: true,
     grabCursor: true,
 
+    // auto-advances, pausing while hovered; held stopped until the
+    // carousel scrolls into view (see the ScrollTrigger below)
+    autoplay: prefersReducedMotion ? false : {
+        delay: 3500,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true,
+    },
+
     navigation: {
         nextEl: '.btn-next',
         prevEl: '.btn-prev',
@@ -507,6 +523,21 @@ function bindAdjacentSlideNav(swiperInstance) {
 
 bindAdjacentSlideNav(featuresSwiper);
 bindAdjacentSlideNav(expoSwiper);
+
+// Expo autoplay only runs while the carousel is on screen, so it
+// starts from its first slide when you scroll to it.
+if (!prefersReducedMotion && expoSwiper.autoplay) {
+    expoSwiper.autoplay.stop();
+    ScrollTrigger.create({
+        trigger: expoSwiper.el,
+        start: "top 80%",
+        end: "bottom 20%",
+        onToggle: function (self) {
+            if (self.isActive) expoSwiper.autoplay.start();
+            else expoSwiper.autoplay.stop();
+        },
+    });
+}
 
 //accordion
 

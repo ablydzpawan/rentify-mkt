@@ -7,7 +7,7 @@
    Swiper instances, ...).
    ========================================================= */
 
-import { revealHeading, revealSection } from "../text-effects.js";
+import { revealHeading, revealSection, playInView, revealHeroImage } from "../text-effects.js";
 import { initHeader } from "../header-effects.js";
 import { initFaqEffects } from "../faq-effects.js";
 
@@ -97,37 +97,45 @@ if (prefersReducedMotion) {
     // 1. Main artboard reveals through a clip-path wipe — the mask rises
     //    to uncover the image (paired with a slight zoom-settle) instead
     //    of a plain fade, so it reads as a deliberate "unveil". It only
-    //    starts once the text above has fully finished revealing.
-    heroTl.fromTo("#browser img",
+    //    starts once the text above has fully finished revealing and the
+    //    canvas is on screen.
+    var sceneTl = gsap.timeline({ defaults: { ease: "power3.out" } });
+
+    sceneTl.fromTo("#browser img",
         { clipPath: "inset(100% 0% 0% 0%)", scale: 1.12 },
         { clipPath: "inset(0% 0% 0% 0%)", scale: 1, duration: 1.3, ease: "power4.out" },
-        ">"
+        0
     );
 
     // 2. Satellite panels fly in from the direction of their resting corner.
-    heroTl.from("#sales-panel", {
+    sceneTl.from("#sales-panel", {
         opacity: 0, y: -30, x: -20, scale: 0.9, filter: "blur(10px)", duration: 0.85
     }, "-=0.75");
 
-    heroTl.from("#product-panel", {
+    sceneTl.from("#product-panel", {
         opacity: 0, y: 30, x: -20, scale: 0.9, filter: "blur(10px)", duration: 0.85
     }, "-=0.7");
 
-    heroTl.from("#social-panel", {
+    sceneTl.from("#social-panel", {
         opacity: 0, y: -24, x: 30, scale: 0.9, filter: "blur(10px)", duration: 0.85
     }, "-=0.75");
 
-    heroTl.from("#url-bar", {
+    sceneTl.from("#url-bar", {
         opacity: 0, y: 24, x: 30, scale: 0.9, filter: "blur(10px)", duration: 0.85
     }, "-=0.7");
 
     // 3. Tiny settle — kills any residual blur/scale.
-    heroTl.to(".first-fold-canvas .panel", {
+    sceneTl.to(".first-fold-canvas .panel", {
         filter: "blur(0px)", scale: 1, duration: 0.4, ease: "power1.out", clearProps: "filter,transform"
     }, "-=0.2");
 
+    playInView(sceneTl, ".first-fold-canvas", { after: heroTl });
+
+    // small screens show the flat hero image instead of the canvas
+    revealHeroImage(document.querySelector(".first-fold-mobile"), heroTl);
+
     // 4. Idle float once everything has settled.
-    heroTl.eventCallback("onComplete", function () {
+    sceneTl.eventCallback("onComplete", function () {
         document.querySelectorAll(".first-fold-canvas .panel:not(#browser)").forEach(function (panel, i) {
             gsap.timeline({
                 repeat: -1,

@@ -899,6 +899,20 @@
    }
  }
 
+ // the open card's entrance waits, paused on its first frame, until the
+ // cards scroll into view (js/page-js/index.js adds .is-inview) instead
+ // of playing off-screen on page load
+ .accordion-container:not(.is-inview) .accordion-card.active {
+
+   &::before,
+   .badge,
+   .ui-mockup,
+   .card-title .w-inner,
+   .card-description {
+     animation-play-state: paused;
+   }
+ }
+
  @media (prefers-reduced-motion: reduce) {
 
    .accordion-card::before,

@@ -367,6 +367,28 @@
     }
   }
 
+  // Enterprise: "tailor the store" callout under the feature list,
+  // pushed down with the button so it fills the card's spare space
+  .plan-note {
+    margin: auto 0 4px;
+    padding: 1rem 1.125rem;
+    border-radius: 1rem;
+    background: #fff;
+    border: 1px solid #D8E6FC;
+    box-shadow: 0 10px 24px rgba(22, 106, 234, .08);
+
+    p {
+      margin: 0;
+      font-size: 0.875rem;
+      line-height: 1.5;
+      color: $txt-body;
+    }
+
+    + .cta {
+      margin-top: 0;
+    }
+  }
+
   .cta {
     margin-top: auto;
     width: 100%;

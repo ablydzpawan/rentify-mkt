@@ -6,7 +6,7 @@
    out of the clicked thumbnail and shrinks back into it.
    ========================================================= */
 
-import { revealHeading, revealSection } from "../text-effects.js";
+import { revealHeading, revealSection, playInView } from "../text-effects.js";
 import { initHeader } from "../header-effects.js";
 import { initFaqEffects } from "../faq-effects.js";
 
@@ -255,8 +255,11 @@ if (!prefersReducedMotion) {
     heroTl.from(".video-hero .desc", { y: 20, opacity: 0, duration: 0.6 }, "-=0.5");
 
     var featureCard = document.querySelector(".video-card-feature");
-    // image sits on the right of the feature band
-    if (featureCard) cardScene(featureCard, heroTl, "-=0.2", -1);
+    // image sits on the right of the feature band; plays after the
+    // heading, once the card is on screen
+    if (featureCard) {
+        playInView(cardScene(featureCard, gsap.timeline(), 0, -1), featureCard, { after: heroTl });
+    }
 
     /* ---------- Tutorial cards ---------- */
 

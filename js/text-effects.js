@@ -112,3 +112,40 @@ export function revealSection(section) {
         revealParagraph(desc);
     });
 }
+
+/* ---------- Play once in view ----------
+   Holds `tl` paused until `trigger` scrolls into view, then plays it
+   once. opts.after: a timeline (the page's hero text intro) to wait
+   for first, so a hero's image scene still lands after its text but
+   never plays off-screen (e.g. below the fold on short viewports). */
+export function playInView(tl, trigger, opts) {
+    if (!tl) return null;
+    opts = opts || {};
+    tl.pause();
+
+    var watch = function () {
+        ScrollTrigger.create({
+            trigger: trigger,
+            start: opts.start || "top 90%",
+            once: true,
+            onEnter: function () { tl.play(); },
+        });
+    };
+
+    if (opts.after) opts.after.then(watch);
+    else watch();
+    return tl;
+}
+
+/* ---------- Mobile hero image ----------
+   Small screens swap the layered hero canvas for one flat image
+   (.hero-mobile / .features-hero-mobile / .first-fold-mobile), which
+   gets this simpler rise + unblur, played in view after the text. */
+export function revealHeroImage(img, after) {
+    if (!img || !img.offsetParent) return null;
+    var tl = gsap.timeline().from(img, {
+        opacity: 0, y: 40, scale: 0.96, filter: "blur(12px)",
+        duration: 1, ease: "power3.out", clearProps: "filter,transform",
+    });
+    return playInView(tl, img, { after: after });
+}

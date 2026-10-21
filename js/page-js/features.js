@@ -12,7 +12,7 @@
    case, matching the "provide appropriate fallbacks" requirement.
    ========================================================= */
 
-import { revealHeading, revealSection } from "../text-effects.js";
+import { revealHeading, revealSection, playInView, revealHeroImage } from "../text-effects.js";
 import { initHeader } from "../header-effects.js";
 import { initFaqEffects } from "../faq-effects.js";
 
@@ -458,21 +458,29 @@ if (prefersReducedMotion) {
     heroTl.from(".first-fold-content .desc", { y: 20, opacity: 0, duration: 0.6 }, "-=0.5");
     heroTl.from(".first-fold-content .cta-btn", { y: 16, opacity: 0, scale: 0.92, duration: 0.6, ease: "back.out(1.7)" }, "-=0.35");
 
-    // Image scene only starts once the text above has fully finished.
-    heroTl.fromTo("#hero-phone img",
+    // Image scene only starts once the text above has fully finished
+    // and the canvas is on screen.
+    var sceneTl = gsap.timeline({ defaults: { ease: "power3.out" } });
+
+    sceneTl.fromTo("#hero-phone img",
         { clipPath: "inset(100% 0% 0% 0%)", scale: 1.12 },
         { clipPath: "inset(0% 0% 0% 0%)", scale: 1, duration: 1.3, ease: "power4.out" },
-        ">"
+        0
     );
 
-    heroTl.from("#hero-total-spent", { opacity: 0, y: -30, x: -20, scale: 0.9, filter: "blur(10px)", duration: 0.85 }, "-=0.75");
-    heroTl.from("#hero-pie-chart", { opacity: 0, y: 30, x: -20, scale: 0.9, filter: "blur(10px)", duration: 0.85 }, "-=0.7");
-    heroTl.from("#hero-daily-traffic", { opacity: 0, y: -24, x: 30, scale: 0.9, filter: "blur(10px)", duration: 0.85 }, "-=0.75");
-    heroTl.from("#hero-date-picker", { opacity: 0, y: 24, x: 30, scale: 0.9, filter: "blur(10px)", duration: 0.85 }, "-=0.7");
+    sceneTl.from("#hero-total-spent", { opacity: 0, y: -30, x: -20, scale: 0.9, filter: "blur(10px)", duration: 0.85 }, "-=0.75");
+    sceneTl.from("#hero-pie-chart", { opacity: 0, y: 30, x: -20, scale: 0.9, filter: "blur(10px)", duration: 0.85 }, "-=0.7");
+    sceneTl.from("#hero-daily-traffic", { opacity: 0, y: -24, x: 30, scale: 0.9, filter: "blur(10px)", duration: 0.85 }, "-=0.75");
+    sceneTl.from("#hero-date-picker", { opacity: 0, y: 24, x: 30, scale: 0.9, filter: "blur(10px)", duration: 0.85 }, "-=0.7");
 
-    heroTl.to(".features-hero-canvas .panel", { filter: "blur(0px)", scale: 1, duration: 0.4, ease: "power1.out", clearProps: "filter,transform" }, "-=0.2");
+    sceneTl.to(".features-hero-canvas .panel", { filter: "blur(0px)", scale: 1, duration: 0.4, ease: "power1.out", clearProps: "filter,transform" }, "-=0.2");
 
-    heroTl.eventCallback("onComplete", function () {
+    playInView(sceneTl, ".features-hero-canvas", { after: heroTl });
+
+    // small screens show the flat hero image instead of the canvas
+    revealHeroImage(document.querySelector(".features-hero-mobile"), heroTl);
+
+    sceneTl.eventCallback("onComplete", function () {
         document.querySelectorAll(".features-hero-canvas .panel:not(#hero-phone)").forEach(function (panel, i) {
             gsap.timeline({
                 repeat: -1,
