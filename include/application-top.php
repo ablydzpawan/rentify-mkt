@@ -59,8 +59,8 @@ define('CLOSE_DATE', '+1 month');
 define('DEAL_TITLE', ' - Request For Proposal ');
 // HUBSPOT constants ends
 
-define('CONF_RECAPTCHA_SITEKEY', '');
-define('CONF_RECAPTCHA_SECRETKEY', '');
+define('CONF_RECAPTCHA_SITEKEY', '6LemmfwtAAAAAL99wlG9lNmyU97cvXyTUgv91cpj');
+define('CONF_RECAPTCHA_SECRETKEY', '6LemmfwtAAAAACY4gtrJn0rN_Ec5-619e0lVZrMy');
 
 define('CONF_ROOT_PROJECT_PATH', dirname(__DIR__) . DIRECTORY_SEPARATOR);
 
