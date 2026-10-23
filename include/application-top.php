@@ -31,9 +31,9 @@ if ('localhost' == $_SERVER['SERVER_NAME'] || '192.' == substr($_SERVER['SERVER_
     define('CONF_HIDDEN_RECAPTCHA_SECRETKEY', '6Ld0nfwtAAAAAHRJuyxzBW0XUNuzioESWHzLk3nL');
 }
 
-define('RFQ_MAIL_RECIEVERS_TO', 'atul.arora@fatbit.com,sales@fatbit.com');
-define('RFQ_MAIL_RECIEVERS_CC', 'w3me@outlook.com,fatbitleadscheck@gmail.com');
-define('ERROR_MAIL_CC', 'jasbir.singh@fatbit.marketing,bhavik.gandhi@fatbit.team');
+define('RFQ_MAIL_RECIEVERS_TO', 'sunil.kumar@fatbit.in');
+define('RFQ_MAIL_RECIEVERS_CC', 'sunil.kumar@fatbit.in');
+define('ERROR_MAIL_CC', 'sunil.kumar@fatbit.in');
 
 define('ADMIN_FROM', 'sales@fatbit.com');
 define('ADMIN_FROM_NAME', 'Rentify Team');
