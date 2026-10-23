@@ -33,3 +33,15 @@ node_modules
 
 # Test results
 test.xunit
+
+# Editor settings
+.vscode/
+
+/.htaccess
+/*.zip
+/*.rar
+/*.tar
+/*.gz
+
+# PHP error log files (no .log extension)
+error_log
