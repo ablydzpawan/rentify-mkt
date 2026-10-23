@@ -20,14 +20,15 @@ $server_url = $protocol . $_SERVER['HTTP_HOST'] . '/';
 
 if ('localhost' == $_SERVER['SERVER_NAME'] || '192.' == substr($_SERVER['SERVER_NAME'], 0, 4) || (strpos($_SERVER['HTTP_HOST'], '.4demo.website') > 0) || (strpos($_SERVER['HTTP_HOST'], '.4livedemo.com') > 0)) {
     define('CONF_WEBROOT_URL', $server_url);
-    // Add 4livedemo Captcha V2 Keys
+    // Add 4livedemo Captcha V3 Keys
     define('CONF_HIDDEN_RECAPTCHA_SITEKEY', '6LdhitUUAAAAAOc6zajn7iYscHFouzNzdkGm5maM');
     define('CONF_HIDDEN_RECAPTCHA_SECRETKEY', '6LdhitUUAAAAACVdj9W-MJGJQgRXNQqbPQqUUiyA');
+
+
 } else {
     define('CONF_WEBROOT_URL', '/');
-    // Add Live website Captcha V2 Keys
-    define('CONF_HIDDEN_RECAPTCHA_SITEKEY', '');
-    define('CONF_HIDDEN_RECAPTCHA_SECRETKEY', '');
+    define('CONF_HIDDEN_RECAPTCHA_SITEKEY', '6Ld0nfwtAAAAAKKqj9qMkgEDVJuXKsBS_hPWGGWv');
+    define('CONF_HIDDEN_RECAPTCHA_SECRETKEY', '6Ld0nfwtAAAAAHRJuyxzBW0XUNuzioESWHzLk3nL');
 }
 
 define('RFQ_MAIL_RECIEVERS_TO', 'atul.arora@fatbit.com,sales@fatbit.com');
@@ -58,9 +59,6 @@ define('DEAL_ENDPOINT_NEW', 'https://api.hubapi.com/deals/v1/deal');
 define('CLOSE_DATE', '+1 month');
 define('DEAL_TITLE', ' - Request For Proposal ');
 // HUBSPOT constants ends
-
-define('CONF_RECAPTCHA_SITEKEY', '6LemmfwtAAAAAL99wlG9lNmyU97cvXyTUgv91cpj');
-define('CONF_RECAPTCHA_SECRETKEY', '6LemmfwtAAAAACY4gtrJn0rN_Ec5-619e0lVZrMy');
 
 define('CONF_ROOT_PROJECT_PATH', dirname(__DIR__) . DIRECTORY_SEPARATOR);
 
